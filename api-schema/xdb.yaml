@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  description: >-
+    This APIs between xdb service and SDKs
+  version: 0.0.1
+  title: XDB APIs
+paths:
+  # service APIs are hosted by xdb service for xdb SDKs to call
+  /api/v1/service/process-execution/start:
+    post:
+      summary: start an object process execution
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionStartRequest'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessExecutionStartResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+components:
+  schemas:
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/EncodedObject'
+    EncodedObject:
+      type: object
+      properties:
+        encoding:
+          type: string
+        data:
+          type: string
+    ErrorModel:
+      type: object
+      properties:
+        detail:
+          type: string
+        subStatus:
+          $ref: '#/components/schemas/ErrorSubStatus'
+        originalWorkerErrorDetail:
+          type: string
+        originalWorkerErrorType:
+          type: string
+        originalWorkerErrorStatus:
+          type: integer
+    ErrorSubStatus:
+      type: string
+      enum:
+        - UNCATEGORIZED_SUB_STATUS
+        - EXECUTION_ALREADY_STARTED_SUB_STATUS
+        - EXECUTION_NOT_EXISTS_SUB_STATUS
+        - WORKER_API_ERROR
+        - LONG_POLL_TIME_OUT_SUB_STATUS
+    ProcessExecutionStartRequest:
+      type: object
+      required:
+        - objectId
+        - processId
+      properties:
+        processId:
+          type: string
+        objectId:
+          type: string
+    ProcessExecutionStartResponse:
+      type: object
+      required:
+        - processExecutionId
+      properties:
+        processExecutionId:
+          type: string
