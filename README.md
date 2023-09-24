@@ -24,5 +24,5 @@ It's okay to upgrade but not downgrade the version in a PR.
 
 
 ## Build
-Just run `make` to refresh the generated code. 
+Just run `make` to re-generate the API code based on the OpenAPI schema. 
 

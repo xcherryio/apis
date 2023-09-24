@@ -1,0 +1,369 @@
+openapi: 3.0.3
+info:
+  description: This APIs between xdb service and SDKs
+  title: XDB APIs
+  version: 0.0.1
+servers:
+- url: /
+paths:
+  /api/v1/xdb/service/process-execution/start:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionStartRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessExecutionStartResponse'
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Invalid request
+      summary: start a process execution
+  /api/v1/xdb/worker/async-state/wait-until:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AsyncStateWaitUntilRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncStateWaitUntilResponse'
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerErrorResponse'
+          description: Invalid input
+      summary: invoking AsyncState.waitUntil API
+  /api/v1/xdb/worker/async-state/execute:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AsyncStateExecuteRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncStateExecuteResponse'
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerErrorResponse'
+          description: Invalid input
+      summary: invoking AsyncState.execute API
+components:
+  schemas:
+    AsyncStateWaitUntilRequest:
+      description: the input of the waitUntil API
+      example:
+        asyncStateId: asyncStateId
+        context:
+          processStartedTimestamp: 0
+          processExecutionId: processExecutionId
+          processId: processId
+          firstAttemptTimestamp: 6
+          attempt: 1
+          stateExecutionId: stateExecutionId
+        processType: processType
+        stateInput:
+          data: data
+          encoding: encoding
+      properties:
+        context:
+          $ref: '#/components/schemas/Context'
+        processType:
+          type: string
+        asyncStateId:
+          type: string
+        stateInput:
+          $ref: '#/components/schemas/EncodedObject'
+      type: object
+    AsyncStateWaitUntilResponse:
+      description: the output of the waitUntil API
+      example:
+        commandRequest: "{}"
+      properties:
+        commandRequest:
+          type: object
+      type: object
+    CommandRequest:
+      type: object
+    AsyncStateExecuteRequest:
+      description: the input of the execute API
+      example:
+        stateId: stateId
+        context:
+          processStartedTimestamp: 0
+          processExecutionId: processExecutionId
+          processId: processId
+          firstAttemptTimestamp: 6
+          attempt: 1
+          stateExecutionId: stateExecutionId
+        processType: processType
+        stateInput:
+          data: data
+          encoding: encoding
+      properties:
+        context:
+          $ref: '#/components/schemas/Context'
+        processType:
+          type: string
+        stateId:
+          type: string
+        stateInput:
+          $ref: '#/components/schemas/EncodedObject'
+      type: object
+    AsyncStateExecuteResponse:
+      description: the output of the execute API
+      example:
+        stateDecision:
+          nextStates:
+          - stateConfig:
+              skipWaitUntil: true
+            stateId: stateId
+            stateInput:
+              data: data
+              encoding: encoding
+          - stateConfig:
+              skipWaitUntil: true
+            stateId: stateId
+            stateInput:
+              data: data
+              encoding: encoding
+          threadCloseDecision:
+            closeInput:
+              data: data
+              encoding: encoding
+            closeType: null
+      properties:
+        stateDecision:
+          $ref: '#/components/schemas/StateDecision'
+      type: object
+    StateDecision:
+      description: "the decision at the end of state execution, either nextStates\
+        \ or threadCloseDecision is needed"
+      example:
+        nextStates:
+        - stateConfig:
+            skipWaitUntil: true
+          stateId: stateId
+          stateInput:
+            data: data
+            encoding: encoding
+        - stateConfig:
+            skipWaitUntil: true
+          stateId: stateId
+          stateInput:
+            data: data
+            encoding: encoding
+        threadCloseDecision:
+          closeInput:
+            data: data
+            encoding: encoding
+          closeType: null
+      properties:
+        nextStates:
+          items:
+            $ref: '#/components/schemas/StateMovement'
+          type: array
+        threadCloseDecision:
+          $ref: '#/components/schemas/ThreadCloseDecision'
+      type: object
+    ThreadCloseDecision:
+      example:
+        closeInput:
+          data: data
+          encoding: encoding
+        closeType: null
+      properties:
+        closeType:
+          $ref: '#/components/schemas/ThreadCloseType'
+        closeInput:
+          $ref: '#/components/schemas/EncodedObject'
+      type: object
+    ThreadCloseType:
+      enum:
+      - FORCE_COMPLETE_PROCESS
+      - GRACEFUL_COMPLETE_PROCESS
+      - DEAD_END
+      - FORCE_FAIL_PROCESS
+      type: string
+    StateMovement:
+      example:
+        stateConfig:
+          skipWaitUntil: true
+        stateId: stateId
+        stateInput:
+          data: data
+          encoding: encoding
+      properties:
+        stateId:
+          type: string
+        stateInput:
+          $ref: '#/components/schemas/EncodedObject'
+        stateConfig:
+          $ref: '#/components/schemas/AsyncStateConfig'
+      required:
+      - stateId
+      type: object
+    Context:
+      example:
+        processStartedTimestamp: 0
+        processExecutionId: processExecutionId
+        processId: processId
+        firstAttemptTimestamp: 6
+        attempt: 1
+        stateExecutionId: stateExecutionId
+      properties:
+        processId:
+          type: string
+        processExecutionId:
+          type: string
+        processStartedTimestamp:
+          format: int64
+          type: integer
+        stateExecutionId:
+          type: string
+        firstAttemptTimestamp:
+          description: for async state API only(during backoff retry)
+          format: int64
+          type: integer
+        attempt:
+          description: for async state API only(during backoff retry)
+          type: integer
+      required:
+      - processExecutionId
+      - processId
+      - processStartedTimestamp
+      type: object
+    WorkerErrorResponse:
+      properties:
+        detail:
+          type: string
+        errorType:
+          type: string
+      type: object
+    EncodedObject:
+      example:
+        data: data
+        encoding: encoding
+      properties:
+        encoding:
+          type: string
+        data:
+          type: string
+      type: object
+    ApiErrorResponse:
+      properties:
+        detail:
+          type: string
+        subStatus:
+          $ref: '#/components/schemas/ErrorSubStatus'
+        originalWorkerErrorDetail:
+          type: string
+        originalWorkerErrorType:
+          type: string
+        originalWorkerErrorStatus:
+          type: integer
+      type: object
+    ErrorSubStatus:
+      enum:
+      - UNCATEGORIZED_SUB_STATUS
+      - EXECUTION_ALREADY_STARTED_SUB_STATUS
+      - EXECUTION_NOT_EXISTS_SUB_STATUS
+      - WORKER_API_ERROR
+      - LONG_POLL_TIME_OUT_SUB_STATUS
+      type: string
+    ProcessExecutionStartRequest:
+      description: the request for starting an process execution
+      example:
+        startStateConfig:
+          skipWaitUntil: true
+        startStateInput:
+          data: data
+          encoding: encoding
+        workerUrl: workerUrl
+        startStateId: startStateId
+        processId: processId
+        processStartConfig:
+          timeoutSeconds: 0
+          idReusePolicy: null
+        processType: processType
+      properties:
+        processId:
+          description: "the user business identifier for the process, which can be\
+            \ used for multiple ProcessExecution based on ProcessIdReusePolicy"
+          type: string
+        processType:
+          description: the process type for SDK to lookup the process definition class
+          type: string
+        workerUrl:
+          description: the URL for XDB async service to make callback to worker
+          type: string
+        startStateId:
+          description: StateId of the first AsyncState to start
+          type: string
+        startStateInput:
+          $ref: '#/components/schemas/EncodedObject'
+        startStateConfig:
+          $ref: '#/components/schemas/AsyncStateConfig'
+        processStartConfig:
+          $ref: '#/components/schemas/ProcessStartConfig'
+      required:
+      - processId
+      - processType
+      - workerUrl
+      type: object
+    ProcessStartConfig:
+      example:
+        timeoutSeconds: 0
+        idReusePolicy: null
+      properties:
+        timeoutSeconds:
+          type: integer
+        idReusePolicy:
+          $ref: '#/components/schemas/ProcessIdReusePolicy'
+      type: object
+    ProcessIdReusePolicy:
+      enum:
+      - ALLOW_IF_PREVIOUS_EXIT_ABNORMALLY
+      - ALLOW_IF_NO_RUNNING
+      - DISALLOW_REUSE
+      - TERMINATE_IF_RUNNING
+      type: string
+    AsyncStateConfig:
+      example:
+        skipWaitUntil: true
+      properties:
+        skipWaitUntil:
+          type: boolean
+      type: object
+    ProcessExecutionStartResponse:
+      description: response of ProcessExecutionStartRequest
+      example:
+        processExecutionId: processExecutionId
+      properties:
+        processExecutionId:
+          description: a UUID as the unique identifier of a process execution
+          type: string
+      required:
+      - processExecutionId
+      type: object
