@@ -27,6 +27,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
+        '409':
+          description: Process already started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'                
   # xdb workers APIs are hosted by iWF applications via SDKs, for iWF server to call back
   /api/v1/xdb/worker/async-state/wait-until:
     post:
@@ -43,12 +49,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AsyncStateWaitUntilResponse'
-        '400':
-          description: Invalid input
+        default:
+          description: worker execution failure
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WorkerErrorResponse'
+                $ref: '#/components/schemas/WorkerErrorResponse'              
   /api/v1/xdb/worker/async-state/execute:
     post:
       summary: "invoking AsyncState.execute API"
@@ -64,8 +70,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AsyncStateExecuteResponse'
-        '400':
-          description: Invalid input
+        default:
+          description: worker execution failure
           content:
             application/json:
               schema:
@@ -197,22 +203,12 @@ components:
       properties:
         detail:
           type: string
-        subStatus:
-          $ref: '#/components/schemas/ErrorSubStatus'
         originalWorkerErrorDetail:
           type: string
         originalWorkerErrorType:
           type: string
         originalWorkerErrorStatus:
           type: integer
-    ErrorSubStatus:
-      type: string
-      enum:
-        - UNCATEGORIZED_SUB_STATUS
-        - EXECUTION_ALREADY_STARTED_SUB_STATUS
-        - EXECUTION_NOT_EXISTS_SUB_STATUS
-        - WORKER_API_ERROR
-        - LONG_POLL_TIME_OUT_SUB_STATUS
     ProcessExecutionStartRequest:
       type: object
       description: the request for starting an process execution
