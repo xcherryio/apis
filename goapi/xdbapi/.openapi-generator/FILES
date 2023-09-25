@@ -12,6 +12,8 @@ docs/AsyncStateExecuteRequest.md
 docs/AsyncStateExecuteResponse.md
 docs/AsyncStateWaitUntilRequest.md
 docs/AsyncStateWaitUntilResponse.md
+docs/CommandRequest.md
+docs/CommandWaitingType.md
 docs/Context.md
 docs/DefaultApi.md
 docs/EncodedObject.md
@@ -34,6 +36,8 @@ model_async_state_execute_request.go
 model_async_state_execute_response.go
 model_async_state_wait_until_request.go
 model_async_state_wait_until_response.go
+model_command_request.go
+model_command_waiting_type.go
 model_context.go
 model_encoded_object.go
 model_error_sub_status.go

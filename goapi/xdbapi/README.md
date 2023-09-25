@@ -90,6 +90,8 @@ Class | Method | HTTP request | Description
  - [AsyncStateExecuteResponse](docs/AsyncStateExecuteResponse.md)
  - [AsyncStateWaitUntilRequest](docs/AsyncStateWaitUntilRequest.md)
  - [AsyncStateWaitUntilResponse](docs/AsyncStateWaitUntilResponse.md)
+ - [CommandRequest](docs/CommandRequest.md)
+ - [CommandWaitingType](docs/CommandWaitingType.md)
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
  - [ErrorSubStatus](docs/ErrorSubStatus.md)

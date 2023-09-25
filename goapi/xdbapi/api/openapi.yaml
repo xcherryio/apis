@@ -74,7 +74,7 @@ components:
     AsyncStateWaitUntilRequest:
       description: the input of the waitUntil API
       example:
-        asyncStateId: asyncStateId
+        stateId: stateId
         context:
           processStartedTimestamp: 0
           processExecutionId: processExecutionId
@@ -91,7 +91,7 @@ components:
           $ref: '#/components/schemas/Context'
         processType:
           type: string
-        asyncStateId:
+        stateId:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
@@ -99,13 +99,25 @@ components:
     AsyncStateWaitUntilResponse:
       description: the output of the waitUntil API
       example:
-        commandRequest: "{}"
+        commandRequest:
+          waitingType: null
       properties:
         commandRequest:
-          type: object
+          $ref: '#/components/schemas/CommandRequest'
       type: object
     CommandRequest:
+      example:
+        waitingType: null
+      properties:
+        waitingType:
+          $ref: '#/components/schemas/CommandWaitingType'
       type: object
+    CommandWaitingType:
+      enum:
+      - EmptyCommand
+      - AnyOfCompletion
+      - AllOfCompletion
+      type: string
     AsyncStateExecuteRequest:
       description: the input of the execute API
       example:

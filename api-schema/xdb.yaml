@@ -81,7 +81,7 @@ components:
           $ref: '#/components/schemas/Context'
         processType:
           type: string
-        asyncStateId:
+        stateId:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
@@ -93,6 +93,15 @@ components:
           $ref: '#/components/schemas/CommandRequest'
     CommandRequest:
       type: object
+      properties: 
+        waitingType: 
+          $ref: '#/components/schemas/CommandWaitingType'
+    CommandWaitingType:
+      type: string
+      enum:
+        - EmptyCommand # default value, which means not waiting for anything
+        - AnyOfCompletion
+        - AllOfCompletion
     AsyncStateExecuteRequest:
       type: object
       description: the input of the execute API
