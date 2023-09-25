@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Detail** | Pointer to **string** |  | [optional] 
-**SubStatus** | Pointer to [**ErrorSubStatus**](ErrorSubStatus.md) |  | [optional] 
 **OriginalWorkerErrorDetail** | Pointer to **string** |  | [optional] 
 **OriginalWorkerErrorType** | Pointer to **string** |  | [optional] 
 **OriginalWorkerErrorStatus** | Pointer to **int32** |  | [optional] 
@@ -53,31 +52,6 @@ SetDetail sets Detail field to given value.
 `func (o *ApiErrorResponse) HasDetail() bool`
 
 HasDetail returns a boolean if a field has been set.
-
-### GetSubStatus
-
-`func (o *ApiErrorResponse) GetSubStatus() ErrorSubStatus`
-
-GetSubStatus returns the SubStatus field if non-nil, zero value otherwise.
-
-### GetSubStatusOk
-
-`func (o *ApiErrorResponse) GetSubStatusOk() (*ErrorSubStatus, bool)`
-
-GetSubStatusOk returns a tuple with the SubStatus field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubStatus
-
-`func (o *ApiErrorResponse) SetSubStatus(v ErrorSubStatus)`
-
-SetSubStatus sets SubStatus field to given value.
-
-### HasSubStatus
-
-`func (o *ApiErrorResponse) HasSubStatus() bool`
-
-HasSubStatus returns a boolean if a field has been set.
 
 ### GetOriginalWorkerErrorDetail
 

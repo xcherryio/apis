@@ -94,7 +94,6 @@ Class | Method | HTTP request | Description
  - [CommandWaitingType](docs/CommandWaitingType.md)
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
- - [ErrorSubStatus](docs/ErrorSubStatus.md)
  - [ProcessExecutionStartRequest](docs/ProcessExecutionStartRequest.md)
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
