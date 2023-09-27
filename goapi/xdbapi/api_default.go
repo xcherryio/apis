@@ -18,7 +18,19 @@ import (
 	"net/url"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
+
+	/*
+		ApiV1XdbServiceProcessExecutionDesribePost describe a process execution
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiApiV1XdbServiceProcessExecutionDesribePostRequest
+	*/
+	ApiV1XdbServiceProcessExecutionDesribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDesribePostRequest
+
+	// ApiV1XdbServiceProcessExecutionDesribePostExecute executes the request
+	//  @return ProcessExecutionDescribeResponse
+	ApiV1XdbServiceProcessExecutionDesribePostExecute(r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error)
 
 	/*
 		ApiV1XdbServiceProcessExecutionStartPost start a process execution
@@ -57,12 +69,139 @@ type DefaultApi interface {
 	ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
+
+type ApiApiV1XdbServiceProcessExecutionDesribePostRequest struct {
+	ctx                             context.Context
+	ApiService                      DefaultAPI
+	processExecutionDescribeRequest *ProcessExecutionDescribeRequest
+}
+
+func (r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) ProcessExecutionDescribeRequest(processExecutionDescribeRequest ProcessExecutionDescribeRequest) ApiApiV1XdbServiceProcessExecutionDesribePostRequest {
+	r.processExecutionDescribeRequest = &processExecutionDescribeRequest
+	return r
+}
+
+func (r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) Execute() (*ProcessExecutionDescribeResponse, *http.Response, error) {
+	return r.ApiService.ApiV1XdbServiceProcessExecutionDesribePostExecute(r)
+}
+
+/*
+ApiV1XdbServiceProcessExecutionDesribePost describe a process execution
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiApiV1XdbServiceProcessExecutionDesribePostRequest
+*/
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDesribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDesribePostRequest {
+	return ApiApiV1XdbServiceProcessExecutionDesribePostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ProcessExecutionDescribeResponse
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDesribePostExecute(r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProcessExecutionDescribeResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionDesribePost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/xdb/service/process-execution/desribe"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.processExecutionDescribeRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiApiV1XdbServiceProcessExecutionStartPostRequest struct {
 	ctx                          context.Context
-	ApiService                   DefaultApi
+	ApiService                   DefaultAPI
 	processExecutionStartRequest *ProcessExecutionStartRequest
 }
 
@@ -81,7 +220,7 @@ ApiV1XdbServiceProcessExecutionStartPost start a process execution
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbServiceProcessExecutionStartPostRequest
 */
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStartPostRequest {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStartPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStartPostRequest {
 	return ApiApiV1XdbServiceProcessExecutionStartPostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -91,7 +230,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPost(ctx context
 // Execute executes the request
 //
 //	@return ProcessExecutionStartResponse
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPostExecute(r ApiApiV1XdbServiceProcessExecutionStartPostRequest) (*ProcessExecutionStartResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStartPostExecute(r ApiApiV1XdbServiceProcessExecutionStartPostRequest) (*ProcessExecutionStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -99,7 +238,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPostExecute(r Ap
 		localVarReturnValue *ProcessExecutionStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbServiceProcessExecutionStartPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionStartPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -189,7 +328,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPostExecute(r Ap
 
 type ApiApiV1XdbWorkerAsyncStateExecutePostRequest struct {
 	ctx                      context.Context
-	ApiService               DefaultApi
+	ApiService               DefaultAPI
 	asyncStateExecuteRequest *AsyncStateExecuteRequest
 }
 
@@ -208,7 +347,7 @@ ApiV1XdbWorkerAsyncStateExecutePost invoking AsyncState.execute API
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbWorkerAsyncStateExecutePostRequest
 */
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateExecutePostRequest {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateExecutePost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateExecutePostRequest {
 	return ApiApiV1XdbWorkerAsyncStateExecutePostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -218,7 +357,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePost(ctx context.Cont
 // Execute executes the request
 //
 //	@return AsyncStateExecuteResponse
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV1XdbWorkerAsyncStateExecutePostRequest) (*AsyncStateExecuteResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV1XdbWorkerAsyncStateExecutePostRequest) (*AsyncStateExecuteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -226,7 +365,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV
 		localVarReturnValue *AsyncStateExecuteResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbWorkerAsyncStateExecutePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbWorkerAsyncStateExecutePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -303,7 +442,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV
 
 type ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest struct {
 	ctx                        context.Context
-	ApiService                 DefaultApi
+	ApiService                 DefaultAPI
 	asyncStateWaitUntilRequest *AsyncStateWaitUntilRequest
 }
 
@@ -322,7 +461,7 @@ ApiV1XdbWorkerAsyncStateWaitUntilPost invoking AsyncState.waitUntil API
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest
 */
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateWaitUntilPost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest {
 	return ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -332,7 +471,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPost(ctx context.Co
 // Execute executes the request
 //
 //	@return AsyncStateWaitUntilResponse
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -340,7 +479,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiAp
 		localVarReturnValue *AsyncStateWaitUntilResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbWorkerAsyncStateWaitUntilPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbWorkerAsyncStateWaitUntilPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

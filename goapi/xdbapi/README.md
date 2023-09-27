@@ -77,9 +77,10 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**ApiV1XdbServiceProcessExecutionStartPost**](docs/DefaultApi.md#apiv1xdbserviceprocessexecutionstartpost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
-*DefaultApi* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultApi.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
-*DefaultApi* | [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](docs/DefaultApi.md#apiv1xdbworkerasyncstatewaituntilpost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
+*DefaultAPI* | [**ApiV1XdbServiceProcessExecutionDesribePost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutiondesribepost) | **Post** /api/v1/xdb/service/process-execution/desribe | describe a process execution
+*DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStartPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstartpost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
+*DefaultAPI* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
+*DefaultAPI* | [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstatewaituntilpost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 
 
 ## Documentation For Models
@@ -94,6 +95,8 @@ Class | Method | HTTP request | Description
  - [CommandWaitingType](docs/CommandWaitingType.md)
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
+ - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
+ - [ProcessExecutionDescribeResponse](docs/ProcessExecutionDescribeResponse.md)
  - [ProcessExecutionStartRequest](docs/ProcessExecutionStartRequest.md)
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
