@@ -32,7 +32,34 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiErrorResponse'                
+                $ref: '#/components/schemas/ApiErrorResponse'  
+  /api/v1/xdb/service/process-execution/desribe:
+    post:
+      summary: describe a process execution
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionDescribeRequest'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessExecutionDescribeResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: Process execution not exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
   # xdb workers APIs are hosted by iWF applications via SDKs, for iWF server to call back
   /api/v1/xdb/worker/async-state/wait-until:
     post:
@@ -79,6 +106,29 @@ paths:
 
 components:
   schemas:
+    ProcessExecutionDescribeRequest:
+      type: object
+      properties: 
+        processId:
+          type: string
+    ProcessExecutionDescribeResponse:
+      type: object  
+      properties: 
+        processExecutionId:
+          type: string
+        processType:
+          type: string
+          description: the process type for SDK to lookup the process definition class
+        workerUrl:
+          type: string
+          description: the URL for XDB async service to make callback to worker
+        startStateId:
+          type: string
+          description: StateId of the first AsyncState to start
+        startStateConfig: # config for the startState
+          $ref: '#/components/schemas/AsyncStateConfig'
+        processStartConfig: # more configs for the process execution
+          $ref: '#/components/schemas/ProcessStartConfig'          
     AsyncStateWaitUntilRequest:
       type: object
       description: the input of the waitUntil API

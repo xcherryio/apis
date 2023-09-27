@@ -33,6 +33,33 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Process already started
       summary: start a process execution
+  /api/v1/xdb/service/process-execution/desribe:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionDescribeRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessExecutionDescribeResponse'
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Invalid request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Process execution not exists
+      summary: describe a process execution
   /api/v1/xdb/worker/async-state/wait-until:
     post:
       requestBody:
@@ -77,6 +104,41 @@ paths:
       summary: invoking AsyncState.execute API
 components:
   schemas:
+    ProcessExecutionDescribeRequest:
+      example:
+        processId: processId
+      properties:
+        processId:
+          type: string
+      type: object
+    ProcessExecutionDescribeResponse:
+      example:
+        startStateConfig:
+          skipWaitUntil: true
+        workerUrl: workerUrl
+        startStateId: startStateId
+        processExecutionId: processExecutionId
+        processStartConfig:
+          timeoutSeconds: 0
+          idReusePolicy: null
+        processType: processType
+      properties:
+        processExecutionId:
+          type: string
+        processType:
+          description: the process type for SDK to lookup the process definition class
+          type: string
+        workerUrl:
+          description: the URL for XDB async service to make callback to worker
+          type: string
+        startStateId:
+          description: StateId of the first AsyncState to start
+          type: string
+        startStateConfig:
+          $ref: '#/components/schemas/AsyncStateConfig'
+        processStartConfig:
+          $ref: '#/components/schemas/ProcessStartConfig'
+      type: object
     AsyncStateWaitUntilRequest:
       description: the input of the waitUntil API
       example:
