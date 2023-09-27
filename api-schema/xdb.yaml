@@ -33,7 +33,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'  
-  /api/v1/xdb/service/process-execution/desribe:
+  /api/v1/xdb/service/process-execution/describe:
     post:
       summary: describe a process execution
       requestBody:

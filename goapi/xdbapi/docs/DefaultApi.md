@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApiV1XdbServiceProcessExecutionDesribePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionDesribePost) | **Post** /api/v1/xdb/service/process-execution/desribe | describe a process execution
+[**ApiV1XdbServiceProcessExecutionDescribePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionDescribePost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
 [**ApiV1XdbServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStartPost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
 [**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 
 
 
-## ApiV1XdbServiceProcessExecutionDesribePost
+## ApiV1XdbServiceProcessExecutionDescribePost
 
-> ProcessExecutionDescribeResponse ApiV1XdbServiceProcessExecutionDesribePost(ctx).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
+> ProcessExecutionDescribeResponse ApiV1XdbServiceProcessExecutionDescribePost(ctx).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
 
 describe a process execution
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionDesribePost(context.Background()).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionDescribePost(context.Background()).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionDesribePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionDescribePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApiV1XdbServiceProcessExecutionDesribePost`: ProcessExecutionDescribeResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbServiceProcessExecutionDesribePost`: %v\n", resp)
+    // response from `ApiV1XdbServiceProcessExecutionDescribePost`: ProcessExecutionDescribeResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbServiceProcessExecutionDescribePost`: %v\n", resp)
 }
 ```
 
@@ -50,7 +50,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExecutionDesribePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExecutionDescribePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

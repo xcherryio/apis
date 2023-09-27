@@ -77,7 +77,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultAPI* | [**ApiV1XdbServiceProcessExecutionDesribePost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutiondesribepost) | **Post** /api/v1/xdb/service/process-execution/desribe | describe a process execution
+*DefaultAPI* | [**ApiV1XdbServiceProcessExecutionDescribePost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutiondescribepost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStartPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstartpost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstatewaituntilpost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API

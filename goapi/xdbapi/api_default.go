@@ -21,16 +21,16 @@ import (
 type DefaultAPI interface {
 
 	/*
-		ApiV1XdbServiceProcessExecutionDesribePost describe a process execution
+		ApiV1XdbServiceProcessExecutionDescribePost describe a process execution
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiApiV1XdbServiceProcessExecutionDesribePostRequest
+		@return ApiApiV1XdbServiceProcessExecutionDescribePostRequest
 	*/
-	ApiV1XdbServiceProcessExecutionDesribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDesribePostRequest
+	ApiV1XdbServiceProcessExecutionDescribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDescribePostRequest
 
-	// ApiV1XdbServiceProcessExecutionDesribePostExecute executes the request
+	// ApiV1XdbServiceProcessExecutionDescribePostExecute executes the request
 	//  @return ProcessExecutionDescribeResponse
-	ApiV1XdbServiceProcessExecutionDesribePostExecute(r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error)
+	ApiV1XdbServiceProcessExecutionDescribePostExecute(r ApiApiV1XdbServiceProcessExecutionDescribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error)
 
 	/*
 		ApiV1XdbServiceProcessExecutionStartPost start a process execution
@@ -72,29 +72,29 @@ type DefaultAPI interface {
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
 
-type ApiApiV1XdbServiceProcessExecutionDesribePostRequest struct {
+type ApiApiV1XdbServiceProcessExecutionDescribePostRequest struct {
 	ctx                             context.Context
 	ApiService                      DefaultAPI
 	processExecutionDescribeRequest *ProcessExecutionDescribeRequest
 }
 
-func (r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) ProcessExecutionDescribeRequest(processExecutionDescribeRequest ProcessExecutionDescribeRequest) ApiApiV1XdbServiceProcessExecutionDesribePostRequest {
+func (r ApiApiV1XdbServiceProcessExecutionDescribePostRequest) ProcessExecutionDescribeRequest(processExecutionDescribeRequest ProcessExecutionDescribeRequest) ApiApiV1XdbServiceProcessExecutionDescribePostRequest {
 	r.processExecutionDescribeRequest = &processExecutionDescribeRequest
 	return r
 }
 
-func (r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) Execute() (*ProcessExecutionDescribeResponse, *http.Response, error) {
-	return r.ApiService.ApiV1XdbServiceProcessExecutionDesribePostExecute(r)
+func (r ApiApiV1XdbServiceProcessExecutionDescribePostRequest) Execute() (*ProcessExecutionDescribeResponse, *http.Response, error) {
+	return r.ApiService.ApiV1XdbServiceProcessExecutionDescribePostExecute(r)
 }
 
 /*
-ApiV1XdbServiceProcessExecutionDesribePost describe a process execution
+ApiV1XdbServiceProcessExecutionDescribePost describe a process execution
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiApiV1XdbServiceProcessExecutionDesribePostRequest
+	@return ApiApiV1XdbServiceProcessExecutionDescribePostRequest
 */
-func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDesribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDesribePostRequest {
-	return ApiApiV1XdbServiceProcessExecutionDesribePostRequest{
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDescribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDescribePostRequest {
+	return ApiApiV1XdbServiceProcessExecutionDescribePostRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -103,7 +103,7 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDesribePost(ctx conte
 // Execute executes the request
 //
 //	@return ProcessExecutionDescribeResponse
-func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDesribePostExecute(r ApiApiV1XdbServiceProcessExecutionDesribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDescribePostExecute(r ApiApiV1XdbServiceProcessExecutionDescribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -111,12 +111,12 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDesribePostExecute(r 
 		localVarReturnValue *ProcessExecutionDescribeResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionDesribePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionDescribePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/xdb/service/process-execution/desribe"
+	localVarPath := localBasePath + "/api/v1/xdb/service/process-execution/describe"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
