@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Context** | Pointer to [**Context**](Context.md) |  | [optional] 
 **ProcessType** | Pointer to **string** |  | [optional] 
-**AsyncStateId** | Pointer to **string** |  | [optional] 
+**StateId** | Pointer to **string** |  | [optional] 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 
 ## Methods
@@ -78,30 +78,30 @@ SetProcessType sets ProcessType field to given value.
 
 HasProcessType returns a boolean if a field has been set.
 
-### GetAsyncStateId
+### GetStateId
 
-`func (o *AsyncStateWaitUntilRequest) GetAsyncStateId() string`
+`func (o *AsyncStateWaitUntilRequest) GetStateId() string`
 
-GetAsyncStateId returns the AsyncStateId field if non-nil, zero value otherwise.
+GetStateId returns the StateId field if non-nil, zero value otherwise.
 
-### GetAsyncStateIdOk
+### GetStateIdOk
 
-`func (o *AsyncStateWaitUntilRequest) GetAsyncStateIdOk() (*string, bool)`
+`func (o *AsyncStateWaitUntilRequest) GetStateIdOk() (*string, bool)`
 
-GetAsyncStateIdOk returns a tuple with the AsyncStateId field if it's non-nil, zero value otherwise
+GetStateIdOk returns a tuple with the StateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAsyncStateId
+### SetStateId
 
-`func (o *AsyncStateWaitUntilRequest) SetAsyncStateId(v string)`
+`func (o *AsyncStateWaitUntilRequest) SetStateId(v string)`
 
-SetAsyncStateId sets AsyncStateId field to given value.
+SetStateId sets StateId field to given value.
 
-### HasAsyncStateId
+### HasStateId
 
-`func (o *AsyncStateWaitUntilRequest) HasAsyncStateId() bool`
+`func (o *AsyncStateWaitUntilRequest) HasStateId() bool`
 
-HasAsyncStateId returns a boolean if a field has been set.
+HasStateId returns a boolean if a field has been set.
 
 ### GetStateInput
 

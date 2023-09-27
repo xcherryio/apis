@@ -26,6 +26,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Invalid request
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Process already started
       summary: start a process execution
   /api/v1/xdb/worker/async-state/wait-until:
     post:
@@ -41,12 +47,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncStateWaitUntilResponse'
           description: successful operation
-        "400":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkerErrorResponse'
-          description: Invalid input
+          description: worker execution failure
       summary: invoking AsyncState.waitUntil API
   /api/v1/xdb/worker/async-state/execute:
     post:
@@ -62,19 +68,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncStateExecuteResponse'
           description: successful operation
-        "400":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkerErrorResponse'
-          description: Invalid input
+          description: worker execution failure
       summary: invoking AsyncState.execute API
 components:
   schemas:
     AsyncStateWaitUntilRequest:
       description: the input of the waitUntil API
       example:
-        asyncStateId: asyncStateId
+        stateId: stateId
         context:
           processStartedTimestamp: 0
           processExecutionId: processExecutionId
@@ -91,7 +97,7 @@ components:
           $ref: '#/components/schemas/Context'
         processType:
           type: string
-        asyncStateId:
+        stateId:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
@@ -99,13 +105,25 @@ components:
     AsyncStateWaitUntilResponse:
       description: the output of the waitUntil API
       example:
-        commandRequest: "{}"
+        commandRequest:
+          waitingType: null
       properties:
         commandRequest:
-          type: object
+          $ref: '#/components/schemas/CommandRequest'
       type: object
     CommandRequest:
+      example:
+        waitingType: null
+      properties:
+        waitingType:
+          $ref: '#/components/schemas/CommandWaitingType'
       type: object
+    CommandWaitingType:
+      enum:
+      - EmptyCommand
+      - AnyOfCompletion
+      - AllOfCompletion
+      type: string
     AsyncStateExecuteRequest:
       description: the input of the execute API
       example:
@@ -275,8 +293,6 @@ components:
       properties:
         detail:
           type: string
-        subStatus:
-          $ref: '#/components/schemas/ErrorSubStatus'
         originalWorkerErrorDetail:
           type: string
         originalWorkerErrorType:
@@ -284,14 +300,6 @@ components:
         originalWorkerErrorStatus:
           type: integer
       type: object
-    ErrorSubStatus:
-      enum:
-      - UNCATEGORIZED_SUB_STATUS
-      - EXECUTION_ALREADY_STARTED_SUB_STATUS
-      - EXECUTION_NOT_EXISTS_SUB_STATUS
-      - WORKER_API_ERROR
-      - LONG_POLL_TIME_OUT_SUB_STATUS
-      type: string
     ProcessExecutionStartRequest:
       description: the request for starting an process execution
       example:

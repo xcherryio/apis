@@ -19,11 +19,10 @@ var _ MappedNullable = &ApiErrorResponse{}
 
 // ApiErrorResponse struct for ApiErrorResponse
 type ApiErrorResponse struct {
-	Detail                    *string         `json:"detail,omitempty"`
-	SubStatus                 *ErrorSubStatus `json:"subStatus,omitempty"`
-	OriginalWorkerErrorDetail *string         `json:"originalWorkerErrorDetail,omitempty"`
-	OriginalWorkerErrorType   *string         `json:"originalWorkerErrorType,omitempty"`
-	OriginalWorkerErrorStatus *int32          `json:"originalWorkerErrorStatus,omitempty"`
+	Detail                    *string `json:"detail,omitempty"`
+	OriginalWorkerErrorDetail *string `json:"originalWorkerErrorDetail,omitempty"`
+	OriginalWorkerErrorType   *string `json:"originalWorkerErrorType,omitempty"`
+	OriginalWorkerErrorStatus *int32  `json:"originalWorkerErrorStatus,omitempty"`
 }
 
 // NewApiErrorResponse instantiates a new ApiErrorResponse object
@@ -73,38 +72,6 @@ func (o *ApiErrorResponse) HasDetail() bool {
 // SetDetail gets a reference to the given string and assigns it to the Detail field.
 func (o *ApiErrorResponse) SetDetail(v string) {
 	o.Detail = &v
-}
-
-// GetSubStatus returns the SubStatus field value if set, zero value otherwise.
-func (o *ApiErrorResponse) GetSubStatus() ErrorSubStatus {
-	if o == nil || IsNil(o.SubStatus) {
-		var ret ErrorSubStatus
-		return ret
-	}
-	return *o.SubStatus
-}
-
-// GetSubStatusOk returns a tuple with the SubStatus field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiErrorResponse) GetSubStatusOk() (*ErrorSubStatus, bool) {
-	if o == nil || IsNil(o.SubStatus) {
-		return nil, false
-	}
-	return o.SubStatus, true
-}
-
-// HasSubStatus returns a boolean if a field has been set.
-func (o *ApiErrorResponse) HasSubStatus() bool {
-	if o != nil && !IsNil(o.SubStatus) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubStatus gets a reference to the given ErrorSubStatus and assigns it to the SubStatus field.
-func (o *ApiErrorResponse) SetSubStatus(v ErrorSubStatus) {
-	o.SubStatus = &v
 }
 
 // GetOriginalWorkerErrorDetail returns the OriginalWorkerErrorDetail field value if set, zero value otherwise.
@@ -215,9 +182,6 @@ func (o ApiErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
-	}
-	if !IsNil(o.SubStatus) {
-		toSerialize["subStatus"] = o.SubStatus
 	}
 	if !IsNil(o.OriginalWorkerErrorDetail) {
 		toSerialize["originalWorkerErrorDetail"] = o.OriginalWorkerErrorDetail

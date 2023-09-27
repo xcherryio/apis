@@ -19,7 +19,7 @@ var _ MappedNullable = &AsyncStateWaitUntilResponse{}
 
 // AsyncStateWaitUntilResponse the output of the waitUntil API
 type AsyncStateWaitUntilResponse struct {
-	CommandRequest map[string]interface{} `json:"commandRequest,omitempty"`
+	CommandRequest *CommandRequest `json:"commandRequest,omitempty"`
 }
 
 // NewAsyncStateWaitUntilResponse instantiates a new AsyncStateWaitUntilResponse object
@@ -40,19 +40,19 @@ func NewAsyncStateWaitUntilResponseWithDefaults() *AsyncStateWaitUntilResponse {
 }
 
 // GetCommandRequest returns the CommandRequest field value if set, zero value otherwise.
-func (o *AsyncStateWaitUntilResponse) GetCommandRequest() map[string]interface{} {
+func (o *AsyncStateWaitUntilResponse) GetCommandRequest() CommandRequest {
 	if o == nil || IsNil(o.CommandRequest) {
-		var ret map[string]interface{}
+		var ret CommandRequest
 		return ret
 	}
-	return o.CommandRequest
+	return *o.CommandRequest
 }
 
 // GetCommandRequestOk returns a tuple with the CommandRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateWaitUntilResponse) GetCommandRequestOk() (map[string]interface{}, bool) {
+func (o *AsyncStateWaitUntilResponse) GetCommandRequestOk() (*CommandRequest, bool) {
 	if o == nil || IsNil(o.CommandRequest) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.CommandRequest, true
 }
@@ -66,9 +66,9 @@ func (o *AsyncStateWaitUntilResponse) HasCommandRequest() bool {
 	return false
 }
 
-// SetCommandRequest gets a reference to the given map[string]interface{} and assigns it to the CommandRequest field.
-func (o *AsyncStateWaitUntilResponse) SetCommandRequest(v map[string]interface{}) {
-	o.CommandRequest = v
+// SetCommandRequest gets a reference to the given CommandRequest and assigns it to the CommandRequest field.
+func (o *AsyncStateWaitUntilResponse) SetCommandRequest(v CommandRequest) {
+	o.CommandRequest = &v
 }
 
 func (o AsyncStateWaitUntilResponse) MarshalJSON() ([]byte, error) {

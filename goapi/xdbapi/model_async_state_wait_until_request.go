@@ -19,10 +19,10 @@ var _ MappedNullable = &AsyncStateWaitUntilRequest{}
 
 // AsyncStateWaitUntilRequest the input of the waitUntil API
 type AsyncStateWaitUntilRequest struct {
-	Context      *Context       `json:"context,omitempty"`
-	ProcessType  *string        `json:"processType,omitempty"`
-	AsyncStateId *string        `json:"asyncStateId,omitempty"`
-	StateInput   *EncodedObject `json:"stateInput,omitempty"`
+	Context     *Context       `json:"context,omitempty"`
+	ProcessType *string        `json:"processType,omitempty"`
+	StateId     *string        `json:"stateId,omitempty"`
+	StateInput  *EncodedObject `json:"stateInput,omitempty"`
 }
 
 // NewAsyncStateWaitUntilRequest instantiates a new AsyncStateWaitUntilRequest object
@@ -106,36 +106,36 @@ func (o *AsyncStateWaitUntilRequest) SetProcessType(v string) {
 	o.ProcessType = &v
 }
 
-// GetAsyncStateId returns the AsyncStateId field value if set, zero value otherwise.
-func (o *AsyncStateWaitUntilRequest) GetAsyncStateId() string {
-	if o == nil || IsNil(o.AsyncStateId) {
+// GetStateId returns the StateId field value if set, zero value otherwise.
+func (o *AsyncStateWaitUntilRequest) GetStateId() string {
+	if o == nil || IsNil(o.StateId) {
 		var ret string
 		return ret
 	}
-	return *o.AsyncStateId
+	return *o.StateId
 }
 
-// GetAsyncStateIdOk returns a tuple with the AsyncStateId field value if set, nil otherwise
+// GetStateIdOk returns a tuple with the StateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateWaitUntilRequest) GetAsyncStateIdOk() (*string, bool) {
-	if o == nil || IsNil(o.AsyncStateId) {
+func (o *AsyncStateWaitUntilRequest) GetStateIdOk() (*string, bool) {
+	if o == nil || IsNil(o.StateId) {
 		return nil, false
 	}
-	return o.AsyncStateId, true
+	return o.StateId, true
 }
 
-// HasAsyncStateId returns a boolean if a field has been set.
-func (o *AsyncStateWaitUntilRequest) HasAsyncStateId() bool {
-	if o != nil && !IsNil(o.AsyncStateId) {
+// HasStateId returns a boolean if a field has been set.
+func (o *AsyncStateWaitUntilRequest) HasStateId() bool {
+	if o != nil && !IsNil(o.StateId) {
 		return true
 	}
 
 	return false
 }
 
-// SetAsyncStateId gets a reference to the given string and assigns it to the AsyncStateId field.
-func (o *AsyncStateWaitUntilRequest) SetAsyncStateId(v string) {
-	o.AsyncStateId = &v
+// SetStateId gets a reference to the given string and assigns it to the StateId field.
+func (o *AsyncStateWaitUntilRequest) SetStateId(v string) {
+	o.StateId = &v
 }
 
 // GetStateInput returns the StateInput field value if set, zero value otherwise.
@@ -186,8 +186,8 @@ func (o AsyncStateWaitUntilRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProcessType) {
 		toSerialize["processType"] = o.ProcessType
 	}
-	if !IsNil(o.AsyncStateId) {
-		toSerialize["asyncStateId"] = o.AsyncStateId
+	if !IsNil(o.StateId) {
+		toSerialize["stateId"] = o.StateId
 	}
 	if !IsNil(o.StateInput) {
 		toSerialize["stateInput"] = o.StateInput

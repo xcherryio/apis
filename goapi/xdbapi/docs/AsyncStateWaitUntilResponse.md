@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CommandRequest** | Pointer to **map[string]interface{}** |  | [optional] 
+**CommandRequest** | Pointer to [**CommandRequest**](CommandRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCommandRequest
 
-`func (o *AsyncStateWaitUntilResponse) GetCommandRequest() map[string]interface{}`
+`func (o *AsyncStateWaitUntilResponse) GetCommandRequest() CommandRequest`
 
 GetCommandRequest returns the CommandRequest field if non-nil, zero value otherwise.
 
 ### GetCommandRequestOk
 
-`func (o *AsyncStateWaitUntilResponse) GetCommandRequestOk() (*map[string]interface{}, bool)`
+`func (o *AsyncStateWaitUntilResponse) GetCommandRequestOk() (*CommandRequest, bool)`
 
 GetCommandRequestOk returns a tuple with the CommandRequest field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCommandRequest
 
-`func (o *AsyncStateWaitUntilResponse) SetCommandRequest(v map[string]interface{})`
+`func (o *AsyncStateWaitUntilResponse) SetCommandRequest(v CommandRequest)`
 
 SetCommandRequest sets CommandRequest field to given value.
 
