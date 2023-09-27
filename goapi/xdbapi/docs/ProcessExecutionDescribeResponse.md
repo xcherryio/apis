@@ -7,9 +7,7 @@ Name | Type | Description | Notes
 **ProcessExecutionId** | Pointer to **string** |  | [optional] 
 **ProcessType** | Pointer to **string** | the process type for SDK to lookup the process definition class | [optional] 
 **WorkerUrl** | Pointer to **string** | the URL for XDB async service to make callback to worker | [optional] 
-**StartStateId** | Pointer to **string** | StateId of the first AsyncState to start | [optional] 
-**StartStateConfig** | Pointer to [**AsyncStateConfig**](AsyncStateConfig.md) |  | [optional] 
-**ProcessStartConfig** | Pointer to [**ProcessStartConfig**](ProcessStartConfig.md) |  | [optional] 
+**StartTimestamp** | Pointer to **int32** | start time of the process execution | [optional] 
 
 ## Methods
 
@@ -105,80 +103,30 @@ SetWorkerUrl sets WorkerUrl field to given value.
 
 HasWorkerUrl returns a boolean if a field has been set.
 
-### GetStartStateId
+### GetStartTimestamp
 
-`func (o *ProcessExecutionDescribeResponse) GetStartStateId() string`
+`func (o *ProcessExecutionDescribeResponse) GetStartTimestamp() int32`
 
-GetStartStateId returns the StartStateId field if non-nil, zero value otherwise.
+GetStartTimestamp returns the StartTimestamp field if non-nil, zero value otherwise.
 
-### GetStartStateIdOk
+### GetStartTimestampOk
 
-`func (o *ProcessExecutionDescribeResponse) GetStartStateIdOk() (*string, bool)`
+`func (o *ProcessExecutionDescribeResponse) GetStartTimestampOk() (*int32, bool)`
 
-GetStartStateIdOk returns a tuple with the StartStateId field if it's non-nil, zero value otherwise
+GetStartTimestampOk returns a tuple with the StartTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStartStateId
+### SetStartTimestamp
 
-`func (o *ProcessExecutionDescribeResponse) SetStartStateId(v string)`
+`func (o *ProcessExecutionDescribeResponse) SetStartTimestamp(v int32)`
 
-SetStartStateId sets StartStateId field to given value.
+SetStartTimestamp sets StartTimestamp field to given value.
 
-### HasStartStateId
+### HasStartTimestamp
 
-`func (o *ProcessExecutionDescribeResponse) HasStartStateId() bool`
+`func (o *ProcessExecutionDescribeResponse) HasStartTimestamp() bool`
 
-HasStartStateId returns a boolean if a field has been set.
-
-### GetStartStateConfig
-
-`func (o *ProcessExecutionDescribeResponse) GetStartStateConfig() AsyncStateConfig`
-
-GetStartStateConfig returns the StartStateConfig field if non-nil, zero value otherwise.
-
-### GetStartStateConfigOk
-
-`func (o *ProcessExecutionDescribeResponse) GetStartStateConfigOk() (*AsyncStateConfig, bool)`
-
-GetStartStateConfigOk returns a tuple with the StartStateConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStartStateConfig
-
-`func (o *ProcessExecutionDescribeResponse) SetStartStateConfig(v AsyncStateConfig)`
-
-SetStartStateConfig sets StartStateConfig field to given value.
-
-### HasStartStateConfig
-
-`func (o *ProcessExecutionDescribeResponse) HasStartStateConfig() bool`
-
-HasStartStateConfig returns a boolean if a field has been set.
-
-### GetProcessStartConfig
-
-`func (o *ProcessExecutionDescribeResponse) GetProcessStartConfig() ProcessStartConfig`
-
-GetProcessStartConfig returns the ProcessStartConfig field if non-nil, zero value otherwise.
-
-### GetProcessStartConfigOk
-
-`func (o *ProcessExecutionDescribeResponse) GetProcessStartConfigOk() (*ProcessStartConfig, bool)`
-
-GetProcessStartConfigOk returns a tuple with the ProcessStartConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProcessStartConfig
-
-`func (o *ProcessExecutionDescribeResponse) SetProcessStartConfig(v ProcessStartConfig)`
-
-SetProcessStartConfig sets ProcessStartConfig field to given value.
-
-### HasProcessStartConfig
-
-`func (o *ProcessExecutionDescribeResponse) HasProcessStartConfig() bool`
-
-HasProcessStartConfig returns a boolean if a field has been set.
+HasStartTimestamp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

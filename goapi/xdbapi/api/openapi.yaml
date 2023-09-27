@@ -113,15 +113,10 @@ components:
       type: object
     ProcessExecutionDescribeResponse:
       example:
-        startStateConfig:
-          skipWaitUntil: true
         workerUrl: workerUrl
-        startStateId: startStateId
         processExecutionId: processExecutionId
-        processStartConfig:
-          timeoutSeconds: 0
-          idReusePolicy: null
         processType: processType
+        startTimestamp: 0
       properties:
         processExecutionId:
           type: string
@@ -131,13 +126,9 @@ components:
         workerUrl:
           description: the URL for XDB async service to make callback to worker
           type: string
-        startStateId:
-          description: StateId of the first AsyncState to start
-          type: string
-        startStateConfig:
-          $ref: '#/components/schemas/AsyncStateConfig'
-        processStartConfig:
-          $ref: '#/components/schemas/ProcessStartConfig'
+        startTimestamp:
+          description: start time of the process execution
+          type: integer
       type: object
     AsyncStateWaitUntilRequest:
       description: the input of the waitUntil API

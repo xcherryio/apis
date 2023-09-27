@@ -24,10 +24,8 @@ type ProcessExecutionDescribeResponse struct {
 	ProcessType *string `json:"processType,omitempty"`
 	// the URL for XDB async service to make callback to worker
 	WorkerUrl *string `json:"workerUrl,omitempty"`
-	// StateId of the first AsyncState to start
-	StartStateId       *string             `json:"startStateId,omitempty"`
-	StartStateConfig   *AsyncStateConfig   `json:"startStateConfig,omitempty"`
-	ProcessStartConfig *ProcessStartConfig `json:"processStartConfig,omitempty"`
+	// start time of the process execution
+	StartTimestamp *int32 `json:"startTimestamp,omitempty"`
 }
 
 // NewProcessExecutionDescribeResponse instantiates a new ProcessExecutionDescribeResponse object
@@ -143,100 +141,36 @@ func (o *ProcessExecutionDescribeResponse) SetWorkerUrl(v string) {
 	o.WorkerUrl = &v
 }
 
-// GetStartStateId returns the StartStateId field value if set, zero value otherwise.
-func (o *ProcessExecutionDescribeResponse) GetStartStateId() string {
-	if o == nil || IsNil(o.StartStateId) {
-		var ret string
+// GetStartTimestamp returns the StartTimestamp field value if set, zero value otherwise.
+func (o *ProcessExecutionDescribeResponse) GetStartTimestamp() int32 {
+	if o == nil || IsNil(o.StartTimestamp) {
+		var ret int32
 		return ret
 	}
-	return *o.StartStateId
+	return *o.StartTimestamp
 }
 
-// GetStartStateIdOk returns a tuple with the StartStateId field value if set, nil otherwise
+// GetStartTimestampOk returns a tuple with the StartTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionDescribeResponse) GetStartStateIdOk() (*string, bool) {
-	if o == nil || IsNil(o.StartStateId) {
+func (o *ProcessExecutionDescribeResponse) GetStartTimestampOk() (*int32, bool) {
+	if o == nil || IsNil(o.StartTimestamp) {
 		return nil, false
 	}
-	return o.StartStateId, true
+	return o.StartTimestamp, true
 }
 
-// HasStartStateId returns a boolean if a field has been set.
-func (o *ProcessExecutionDescribeResponse) HasStartStateId() bool {
-	if o != nil && !IsNil(o.StartStateId) {
+// HasStartTimestamp returns a boolean if a field has been set.
+func (o *ProcessExecutionDescribeResponse) HasStartTimestamp() bool {
+	if o != nil && !IsNil(o.StartTimestamp) {
 		return true
 	}
 
 	return false
 }
 
-// SetStartStateId gets a reference to the given string and assigns it to the StartStateId field.
-func (o *ProcessExecutionDescribeResponse) SetStartStateId(v string) {
-	o.StartStateId = &v
-}
-
-// GetStartStateConfig returns the StartStateConfig field value if set, zero value otherwise.
-func (o *ProcessExecutionDescribeResponse) GetStartStateConfig() AsyncStateConfig {
-	if o == nil || IsNil(o.StartStateConfig) {
-		var ret AsyncStateConfig
-		return ret
-	}
-	return *o.StartStateConfig
-}
-
-// GetStartStateConfigOk returns a tuple with the StartStateConfig field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProcessExecutionDescribeResponse) GetStartStateConfigOk() (*AsyncStateConfig, bool) {
-	if o == nil || IsNil(o.StartStateConfig) {
-		return nil, false
-	}
-	return o.StartStateConfig, true
-}
-
-// HasStartStateConfig returns a boolean if a field has been set.
-func (o *ProcessExecutionDescribeResponse) HasStartStateConfig() bool {
-	if o != nil && !IsNil(o.StartStateConfig) {
-		return true
-	}
-
-	return false
-}
-
-// SetStartStateConfig gets a reference to the given AsyncStateConfig and assigns it to the StartStateConfig field.
-func (o *ProcessExecutionDescribeResponse) SetStartStateConfig(v AsyncStateConfig) {
-	o.StartStateConfig = &v
-}
-
-// GetProcessStartConfig returns the ProcessStartConfig field value if set, zero value otherwise.
-func (o *ProcessExecutionDescribeResponse) GetProcessStartConfig() ProcessStartConfig {
-	if o == nil || IsNil(o.ProcessStartConfig) {
-		var ret ProcessStartConfig
-		return ret
-	}
-	return *o.ProcessStartConfig
-}
-
-// GetProcessStartConfigOk returns a tuple with the ProcessStartConfig field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProcessExecutionDescribeResponse) GetProcessStartConfigOk() (*ProcessStartConfig, bool) {
-	if o == nil || IsNil(o.ProcessStartConfig) {
-		return nil, false
-	}
-	return o.ProcessStartConfig, true
-}
-
-// HasProcessStartConfig returns a boolean if a field has been set.
-func (o *ProcessExecutionDescribeResponse) HasProcessStartConfig() bool {
-	if o != nil && !IsNil(o.ProcessStartConfig) {
-		return true
-	}
-
-	return false
-}
-
-// SetProcessStartConfig gets a reference to the given ProcessStartConfig and assigns it to the ProcessStartConfig field.
-func (o *ProcessExecutionDescribeResponse) SetProcessStartConfig(v ProcessStartConfig) {
-	o.ProcessStartConfig = &v
+// SetStartTimestamp gets a reference to the given int32 and assigns it to the StartTimestamp field.
+func (o *ProcessExecutionDescribeResponse) SetStartTimestamp(v int32) {
+	o.StartTimestamp = &v
 }
 
 func (o ProcessExecutionDescribeResponse) MarshalJSON() ([]byte, error) {
@@ -258,14 +192,8 @@ func (o ProcessExecutionDescribeResponse) ToMap() (map[string]interface{}, error
 	if !IsNil(o.WorkerUrl) {
 		toSerialize["workerUrl"] = o.WorkerUrl
 	}
-	if !IsNil(o.StartStateId) {
-		toSerialize["startStateId"] = o.StartStateId
-	}
-	if !IsNil(o.StartStateConfig) {
-		toSerialize["startStateConfig"] = o.StartStateConfig
-	}
-	if !IsNil(o.ProcessStartConfig) {
-		toSerialize["processStartConfig"] = o.ProcessStartConfig
+	if !IsNil(o.StartTimestamp) {
+		toSerialize["startTimestamp"] = o.StartTimestamp
 	}
 	return toSerialize, nil
 }

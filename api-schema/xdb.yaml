@@ -122,13 +122,9 @@ components:
         workerUrl:
           type: string
           description: the URL for XDB async service to make callback to worker
-        startStateId:
-          type: string
-          description: StateId of the first AsyncState to start
-        startStateConfig: # config for the startState
-          $ref: '#/components/schemas/AsyncStateConfig'
-        processStartConfig: # more configs for the process execution
-          $ref: '#/components/schemas/ProcessStartConfig'          
+        startTimestamp:
+          type: integer
+          description: start time of the process execution         
     AsyncStateWaitUntilRequest:
       type: object
       description: the input of the waitUntil API
