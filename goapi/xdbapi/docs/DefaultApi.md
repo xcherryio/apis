@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-    processExecutionDescribeRequest := *openapiclient.NewProcessExecutionDescribeRequest() // ProcessExecutionDescribeRequest |  (optional)
+    processExecutionDescribeRequest := *openapiclient.NewProcessExecutionDescribeRequest("Namespace_example", "ProcessId_example") // ProcessExecutionDescribeRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -94,7 +94,7 @@ import (
 )
 
 func main() {
-    processExecutionStartRequest := *openapiclient.NewProcessExecutionStartRequest("ProcessId_example", "ProcessType_example", "WorkerUrl_example") // ProcessExecutionStartRequest |  (optional)
+    processExecutionStartRequest := *openapiclient.NewProcessExecutionStartRequest("Namespace_example", "ProcessId_example", "ProcessType_example", "WorkerUrl_example") // ProcessExecutionStartRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

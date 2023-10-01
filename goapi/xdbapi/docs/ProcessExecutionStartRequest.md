@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Namespace** | **string** |  | 
 **ProcessId** | **string** | the user business identifier for the process, which can be used for multiple ProcessExecution based on ProcessIdReusePolicy | 
 **ProcessType** | **string** | the process type for SDK to lookup the process definition class | 
 **WorkerUrl** | **string** | the URL for XDB async service to make callback to worker | 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewProcessExecutionStartRequest
 
-`func NewProcessExecutionStartRequest(processId string, processType string, workerUrl string, ) *ProcessExecutionStartRequest`
+`func NewProcessExecutionStartRequest(namespace string, processId string, processType string, workerUrl string, ) *ProcessExecutionStartRequest`
 
 NewProcessExecutionStartRequest instantiates a new ProcessExecutionStartRequest object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +31,26 @@ will change when the set of required properties is changed
 NewProcessExecutionStartRequestWithDefaults instantiates a new ProcessExecutionStartRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetNamespace
+
+`func (o *ProcessExecutionStartRequest) GetNamespace() string`
+
+GetNamespace returns the Namespace field if non-nil, zero value otherwise.
+
+### GetNamespaceOk
+
+`func (o *ProcessExecutionStartRequest) GetNamespaceOk() (*string, bool)`
+
+GetNamespaceOk returns a tuple with the Namespace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNamespace
+
+`func (o *ProcessExecutionStartRequest) SetNamespace(v string)`
+
+SetNamespace sets Namespace field to given value.
+
 
 ### GetProcessId
 

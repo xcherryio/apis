@@ -19,6 +19,7 @@ var _ MappedNullable = &ProcessExecutionStartRequest{}
 
 // ProcessExecutionStartRequest the request for starting an process execution
 type ProcessExecutionStartRequest struct {
+	Namespace string `json:"namespace"`
 	// the user business identifier for the process, which can be used for multiple ProcessExecution based on ProcessIdReusePolicy
 	ProcessId string `json:"processId"`
 	// the process type for SDK to lookup the process definition class
@@ -36,8 +37,9 @@ type ProcessExecutionStartRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProcessExecutionStartRequest(processId string, processType string, workerUrl string) *ProcessExecutionStartRequest {
+func NewProcessExecutionStartRequest(namespace string, processId string, processType string, workerUrl string) *ProcessExecutionStartRequest {
 	this := ProcessExecutionStartRequest{}
+	this.Namespace = namespace
 	this.ProcessId = processId
 	this.ProcessType = processType
 	this.WorkerUrl = workerUrl
@@ -50,6 +52,30 @@ func NewProcessExecutionStartRequest(processId string, processType string, worke
 func NewProcessExecutionStartRequestWithDefaults() *ProcessExecutionStartRequest {
 	this := ProcessExecutionStartRequest{}
 	return &this
+}
+
+// GetNamespace returns the Namespace field value
+func (o *ProcessExecutionStartRequest) GetNamespace() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Namespace
+}
+
+// GetNamespaceOk returns a tuple with the Namespace field value
+// and a boolean to check if the value has been set.
+func (o *ProcessExecutionStartRequest) GetNamespaceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Namespace, true
+}
+
+// SetNamespace sets field value
+func (o *ProcessExecutionStartRequest) SetNamespace(v string) {
+	o.Namespace = v
 }
 
 // GetProcessId returns the ProcessId field value
@@ -262,6 +288,7 @@ func (o ProcessExecutionStartRequest) MarshalJSON() ([]byte, error) {
 
 func (o ProcessExecutionStartRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["namespace"] = o.Namespace
 	toSerialize["processId"] = o.ProcessId
 	toSerialize["processType"] = o.ProcessType
 	toSerialize["workerUrl"] = o.WorkerUrl
