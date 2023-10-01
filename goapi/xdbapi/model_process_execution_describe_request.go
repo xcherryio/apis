@@ -19,15 +19,18 @@ var _ MappedNullable = &ProcessExecutionDescribeRequest{}
 
 // ProcessExecutionDescribeRequest struct for ProcessExecutionDescribeRequest
 type ProcessExecutionDescribeRequest struct {
-	ProcessId *string `json:"processId,omitempty"`
+	Namespace string `json:"namespace"`
+	ProcessId string `json:"processId"`
 }
 
 // NewProcessExecutionDescribeRequest instantiates a new ProcessExecutionDescribeRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProcessExecutionDescribeRequest() *ProcessExecutionDescribeRequest {
+func NewProcessExecutionDescribeRequest(namespace string, processId string) *ProcessExecutionDescribeRequest {
 	this := ProcessExecutionDescribeRequest{}
+	this.Namespace = namespace
+	this.ProcessId = processId
 	return &this
 }
 
@@ -39,36 +42,52 @@ func NewProcessExecutionDescribeRequestWithDefaults() *ProcessExecutionDescribeR
 	return &this
 }
 
-// GetProcessId returns the ProcessId field value if set, zero value otherwise.
-func (o *ProcessExecutionDescribeRequest) GetProcessId() string {
-	if o == nil || IsNil(o.ProcessId) {
+// GetNamespace returns the Namespace field value
+func (o *ProcessExecutionDescribeRequest) GetNamespace() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProcessId
+
+	return o.Namespace
 }
 
-// GetProcessIdOk returns a tuple with the ProcessId field value if set, nil otherwise
+// GetNamespaceOk returns a tuple with the Namespace field value
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionDescribeRequest) GetProcessIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ProcessId) {
+func (o *ProcessExecutionDescribeRequest) GetNamespaceOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProcessId, true
+	return &o.Namespace, true
 }
 
-// HasProcessId returns a boolean if a field has been set.
-func (o *ProcessExecutionDescribeRequest) HasProcessId() bool {
-	if o != nil && !IsNil(o.ProcessId) {
-		return true
+// SetNamespace sets field value
+func (o *ProcessExecutionDescribeRequest) SetNamespace(v string) {
+	o.Namespace = v
+}
+
+// GetProcessId returns the ProcessId field value
+func (o *ProcessExecutionDescribeRequest) GetProcessId() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.ProcessId
 }
 
-// SetProcessId gets a reference to the given string and assigns it to the ProcessId field.
+// GetProcessIdOk returns a tuple with the ProcessId field value
+// and a boolean to check if the value has been set.
+func (o *ProcessExecutionDescribeRequest) GetProcessIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProcessId, true
+}
+
+// SetProcessId sets field value
 func (o *ProcessExecutionDescribeRequest) SetProcessId(v string) {
-	o.ProcessId = &v
+	o.ProcessId = v
 }
 
 func (o ProcessExecutionDescribeRequest) MarshalJSON() ([]byte, error) {
@@ -81,9 +100,8 @@ func (o ProcessExecutionDescribeRequest) MarshalJSON() ([]byte, error) {
 
 func (o ProcessExecutionDescribeRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ProcessId) {
-		toSerialize["processId"] = o.ProcessId
-	}
+	toSerialize["namespace"] = o.Namespace
+	toSerialize["processId"] = o.ProcessId
 	return toSerialize, nil
 }
 

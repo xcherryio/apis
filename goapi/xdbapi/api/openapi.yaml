@@ -107,9 +107,15 @@ components:
     ProcessExecutionDescribeRequest:
       example:
         processId: processId
+        namespace: namespace
       properties:
+        namespace:
+          type: string
         processId:
           type: string
+      required:
+      - namespace
+      - processId
       type: object
     ProcessExecutionDescribeResponse:
       example:
@@ -367,8 +373,11 @@ components:
         processStartConfig:
           timeoutSeconds: 0
           idReusePolicy: null
+        namespace: namespace
         processType: processType
       properties:
+        namespace:
+          type: string
         processId:
           description: "the user business identifier for the process, which can be\
             \ used for multiple ProcessExecution based on ProcessIdReusePolicy"
@@ -389,6 +398,7 @@ components:
         processStartConfig:
           $ref: '#/components/schemas/ProcessStartConfig'
       required:
+      - namespace
       - processId
       - processType
       - workerUrl
