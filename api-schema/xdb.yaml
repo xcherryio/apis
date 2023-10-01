@@ -107,8 +107,13 @@ paths:
 components:
   schemas:
     ProcessExecutionDescribeRequest:
+      required: 
+        - namespace
+        - processId
       type: object
-      properties: 
+      properties:
+        namespace:
+          type: string
         processId:
           type: string
     ProcessExecutionDescribeResponse:
@@ -259,10 +264,13 @@ components:
       type: object
       description: the request for starting an process execution
       required:
+        - namespace
         - processId
         - processType
         - workerUrl
       properties:
+        namespace:
+          type: string
         processId:
           type: string
           description: the user business identifier for the process, which can be used for multiple ProcessExecution based on ProcessIdReusePolicy
