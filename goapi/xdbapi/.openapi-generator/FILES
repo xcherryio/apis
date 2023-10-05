@@ -23,6 +23,7 @@ docs/ProcessExecutionStartRequest.md
 docs/ProcessExecutionStartResponse.md
 docs/ProcessIdReusePolicy.md
 docs/ProcessStartConfig.md
+docs/ProcessStatus.md
 docs/StateDecision.md
 docs/StateMovement.md
 docs/ThreadCloseDecision.md
@@ -47,6 +48,7 @@ model_process_execution_start_request.go
 model_process_execution_start_response.go
 model_process_id_reuse_policy.go
 model_process_start_config.go
+model_process_status.go
 model_state_decision.go
 model_state_movement.go
 model_thread_close_decision.go

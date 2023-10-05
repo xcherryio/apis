@@ -25,7 +25,8 @@ type ProcessExecutionDescribeResponse struct {
 	// the URL for XDB async service to make callback to worker
 	WorkerUrl *string `json:"workerUrl,omitempty"`
 	// start time of the process execution
-	StartTimestamp *int32 `json:"startTimestamp,omitempty"`
+	StartTimestamp *int32         `json:"startTimestamp,omitempty"`
+	Status         *ProcessStatus `json:"status,omitempty"`
 }
 
 // NewProcessExecutionDescribeResponse instantiates a new ProcessExecutionDescribeResponse object
@@ -173,6 +174,38 @@ func (o *ProcessExecutionDescribeResponse) SetStartTimestamp(v int32) {
 	o.StartTimestamp = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ProcessExecutionDescribeResponse) GetStatus() ProcessStatus {
+	if o == nil || IsNil(o.Status) {
+		var ret ProcessStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProcessExecutionDescribeResponse) GetStatusOk() (*ProcessStatus, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ProcessExecutionDescribeResponse) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given ProcessStatus and assigns it to the Status field.
+func (o *ProcessExecutionDescribeResponse) SetStatus(v ProcessStatus) {
+	o.Status = &v
+}
+
 func (o ProcessExecutionDescribeResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -194,6 +227,9 @@ func (o ProcessExecutionDescribeResponse) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.StartTimestamp) {
 		toSerialize["startTimestamp"] = o.StartTimestamp
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil
 }

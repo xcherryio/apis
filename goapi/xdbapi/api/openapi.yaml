@@ -123,6 +123,7 @@ components:
         processExecutionId: processExecutionId
         processType: processType
         startTimestamp: 0
+        status: null
       properties:
         processExecutionId:
           type: string
@@ -135,7 +136,17 @@ components:
         startTimestamp:
           description: start time of the process execution
           type: integer
+        status:
+          $ref: '#/components/schemas/ProcessStatus'
       type: object
+    ProcessStatus:
+      enum:
+      - RUNNING
+      - COMPLETED
+      - FAILED
+      - TIMEOUT
+      - TERMINATED
+      type: string
     AsyncStateWaitUntilRequest:
       description: the input of the waitUntil API
       example:

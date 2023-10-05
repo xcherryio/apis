@@ -129,7 +129,17 @@ components:
           description: the URL for XDB async service to make callback to worker
         startTimestamp:
           type: integer
-          description: start time of the process execution         
+          description: start time of the process execution
+        status:
+          $ref: '#/components/schemas/ProcessStatus'
+    ProcessStatus:
+      type: string
+      enum:
+        - RUNNING
+        - COMPLETED
+        - FAILED
+        - TIMEOUT
+        - TERMINATED
     AsyncStateWaitUntilRequest:
       type: object
       description: the input of the waitUntil API

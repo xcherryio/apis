@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ProcessType** | Pointer to **string** | the process type for SDK to lookup the process definition class | [optional] 
 **WorkerUrl** | Pointer to **string** | the URL for XDB async service to make callback to worker | [optional] 
 **StartTimestamp** | Pointer to **int32** | start time of the process execution | [optional] 
+**Status** | Pointer to [**ProcessStatus**](ProcessStatus.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetStartTimestamp sets StartTimestamp field to given value.
 `func (o *ProcessExecutionDescribeResponse) HasStartTimestamp() bool`
 
 HasStartTimestamp returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *ProcessExecutionDescribeResponse) GetStatus() ProcessStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ProcessExecutionDescribeResponse) GetStatusOk() (*ProcessStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ProcessExecutionDescribeResponse) SetStatus(v ProcessStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *ProcessExecutionDescribeResponse) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

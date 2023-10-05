@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
  - [ProcessStartConfig](docs/ProcessStartConfig.md)
+ - [ProcessStatus](docs/ProcessStatus.md)
  - [StateDecision](docs/StateDecision.md)
  - [StateMovement](docs/StateMovement.md)
  - [ThreadCloseDecision](docs/ThreadCloseDecision.md)
