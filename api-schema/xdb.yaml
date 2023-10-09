@@ -143,6 +143,10 @@ components:
     AsyncStateWaitUntilRequest:
       type: object
       description: the input of the waitUntil API
+      required: 
+        - context
+        - processType
+        - stateId
       properties:
         context:
           $ref: '#/components/schemas/Context'
@@ -155,11 +159,15 @@ components:
     AsyncStateWaitUntilResponse:
       type: object
       description: the output of the waitUntil API
+      required: 
+        - commandRequest
       properties:
         commandRequest:
           $ref: '#/components/schemas/CommandRequest'
     CommandRequest:
       type: object
+      required: 
+        - commandType
       properties: 
         waitingType: 
           $ref: '#/components/schemas/CommandWaitingType'
@@ -172,6 +180,10 @@ components:
     AsyncStateExecuteRequest:
       type: object
       description: the input of the execute API
+      required: 
+        - context
+        - processType
+        - stateId
       properties:
         context:
           $ref: '#/components/schemas/Context'
@@ -184,6 +196,8 @@ components:
     AsyncStateExecuteResponse:
       type: object
       description: the output of the execute API
+      required: 
+        - stateDecision
       properties:
         stateDecision:
           $ref: '#/components/schemas/StateDecision'
@@ -199,6 +213,8 @@ components:
           $ref: '#/components/schemas/ThreadCloseDecision'
     ThreadCloseDecision:
       type: object
+      required: 
+        - closeType
       properties:
         closeType:
           $ref: '#/components/schemas/ThreadCloseType'
@@ -238,6 +254,7 @@ components:
           format: int64
         stateExecutionId:
           type: string
+          description: stateExecutionId is for async state API only
         firstAttemptTimestamp:
           description: for async state API only(during backoff retry)
           type: integer
@@ -247,6 +264,8 @@ components:
           type: integer
     WorkerErrorResponse:
       type: object
+      required: 
+        - errorType
       properties:
         detail:
           type: string
@@ -254,6 +273,9 @@ components:
           type: string
     EncodedObject:
       type: object
+      required: 
+        - encoding
+        - data
       properties:
         encoding:
           type: string
