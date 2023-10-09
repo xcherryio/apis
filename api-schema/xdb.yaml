@@ -219,7 +219,6 @@ components:
     TimerResult:
       type: object
       required:
-        - commandId
         - timerStatus
       properties:
         commandId:

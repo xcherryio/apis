@@ -289,7 +289,6 @@ components:
         timerStatus:
           $ref: '#/components/schemas/TimerStatus'
       required:
-      - commandId
       - timerStatus
       type: object
     TimerStatus:
