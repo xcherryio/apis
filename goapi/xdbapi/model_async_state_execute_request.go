@@ -19,10 +19,11 @@ var _ MappedNullable = &AsyncStateExecuteRequest{}
 
 // AsyncStateExecuteRequest the input of the execute API
 type AsyncStateExecuteRequest struct {
-	Context     Context        `json:"context"`
-	ProcessType string         `json:"processType"`
-	StateId     string         `json:"stateId"`
-	StateInput  *EncodedObject `json:"stateInput,omitempty"`
+	Context        Context         `json:"context"`
+	ProcessType    string          `json:"processType"`
+	StateId        string          `json:"stateId"`
+	StateInput     *EncodedObject  `json:"stateInput,omitempty"`
+	CommandResults *CommandResults `json:"commandResults,omitempty"`
 }
 
 // NewAsyncStateExecuteRequest instantiates a new AsyncStateExecuteRequest object
@@ -149,6 +150,38 @@ func (o *AsyncStateExecuteRequest) SetStateInput(v EncodedObject) {
 	o.StateInput = &v
 }
 
+// GetCommandResults returns the CommandResults field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetCommandResults() CommandResults {
+	if o == nil || IsNil(o.CommandResults) {
+		var ret CommandResults
+		return ret
+	}
+	return *o.CommandResults
+}
+
+// GetCommandResultsOk returns a tuple with the CommandResults field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteRequest) GetCommandResultsOk() (*CommandResults, bool) {
+	if o == nil || IsNil(o.CommandResults) {
+		return nil, false
+	}
+	return o.CommandResults, true
+}
+
+// HasCommandResults returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasCommandResults() bool {
+	if o != nil && !IsNil(o.CommandResults) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommandResults gets a reference to the given CommandResults and assigns it to the CommandResults field.
+func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults) {
+	o.CommandResults = &v
+}
+
 func (o AsyncStateExecuteRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -164,6 +197,9 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["stateId"] = o.StateId
 	if !IsNil(o.StateInput) {
 		toSerialize["stateInput"] = o.StateInput
+	}
+	if !IsNil(o.CommandResults) {
+		toSerialize["commandResults"] = o.CommandResults
 	}
 	return toSerialize, nil
 }

@@ -207,6 +207,31 @@ components:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
+        commandResults:
+          $ref: '#/components/schemas/CommandResults'
+    CommandResults:
+      type: object
+      properties:
+        timerResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerResult'
+    TimerResult:
+      type: object
+      required:
+        - commandId
+        - timerStatus
+      properties:
+        commandId:
+          type: string
+        timerStatus:
+          $ref: '#/components/schemas/TimerStatus'
+    TimerStatus:
+      type: string
+      enum:
+        - SCHEDULED_TIMER
+        - FIRED_TIMER
+        - SKIPPED_TIMER
     AsyncStateExecuteResponse:
       type: object
       description: the output of the execute API

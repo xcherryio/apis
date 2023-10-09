@@ -92,6 +92,7 @@ Class | Method | HTTP request | Description
  - [AsyncStateWaitUntilRequest](docs/AsyncStateWaitUntilRequest.md)
  - [AsyncStateWaitUntilResponse](docs/AsyncStateWaitUntilResponse.md)
  - [CommandRequest](docs/CommandRequest.md)
+ - [CommandResults](docs/CommandResults.md)
  - [CommandWaitingType](docs/CommandWaitingType.md)
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
@@ -108,6 +109,8 @@ Class | Method | HTTP request | Description
  - [ThreadCloseDecision](docs/ThreadCloseDecision.md)
  - [ThreadCloseType](docs/ThreadCloseType.md)
  - [TimerCommand](docs/TimerCommand.md)
+ - [TimerResult](docs/TimerResult.md)
+ - [TimerStatus](docs/TimerStatus.md)
  - [WorkerErrorResponse](docs/WorkerErrorResponse.md)
 
 

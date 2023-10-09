@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ProcessType** | **string** |  | 
 **StateId** | **string** |  | 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
+**CommandResults** | Pointer to [**CommandResults**](CommandResults.md) |  | [optional] 
 
 ## Methods
 
@@ -112,6 +113,31 @@ SetStateInput sets StateInput field to given value.
 `func (o *AsyncStateExecuteRequest) HasStateInput() bool`
 
 HasStateInput returns a boolean if a field has been set.
+
+### GetCommandResults
+
+`func (o *AsyncStateExecuteRequest) GetCommandResults() CommandResults`
+
+GetCommandResults returns the CommandResults field if non-nil, zero value otherwise.
+
+### GetCommandResultsOk
+
+`func (o *AsyncStateExecuteRequest) GetCommandResultsOk() (*CommandResults, bool)`
+
+GetCommandResultsOk returns a tuple with the CommandResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommandResults
+
+`func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults)`
+
+SetCommandResults sets CommandResults field to given value.
+
+### HasCommandResults
+
+`func (o *AsyncStateExecuteRequest) HasCommandResults() bool`
+
+HasCommandResults returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

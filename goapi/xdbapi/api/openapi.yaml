@@ -232,6 +232,12 @@ components:
     AsyncStateExecuteRequest:
       description: the input of the execute API
       example:
+        commandResults:
+          timerResults:
+          - timerStatus: null
+            commandId: commandId
+          - timerStatus: null
+            commandId: commandId
         stateId: stateId
         context:
           processStartedTimestamp: 0
@@ -253,11 +259,45 @@ components:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
+        commandResults:
+          $ref: '#/components/schemas/CommandResults'
       required:
       - context
       - processType
       - stateId
       type: object
+    CommandResults:
+      example:
+        timerResults:
+        - timerStatus: null
+          commandId: commandId
+        - timerStatus: null
+          commandId: commandId
+      properties:
+        timerResults:
+          items:
+            $ref: '#/components/schemas/TimerResult'
+          type: array
+      type: object
+    TimerResult:
+      example:
+        timerStatus: null
+        commandId: commandId
+      properties:
+        commandId:
+          type: string
+        timerStatus:
+          $ref: '#/components/schemas/TimerStatus'
+      required:
+      - commandId
+      - timerStatus
+      type: object
+    TimerStatus:
+      enum:
+      - SCHEDULED_TIMER
+      - FIRED_TIMER
+      - SKIPPED_TIMER
+      type: string
     AsyncStateExecuteResponse:
       description: the output of the execute API
       example:
