@@ -102,10 +102,12 @@ Class | Method | HTTP request | Description
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
  - [ProcessStartConfig](docs/ProcessStartConfig.md)
  - [ProcessStatus](docs/ProcessStatus.md)
+ - [RetryPolicy](docs/RetryPolicy.md)
  - [StateDecision](docs/StateDecision.md)
  - [StateMovement](docs/StateMovement.md)
  - [ThreadCloseDecision](docs/ThreadCloseDecision.md)
  - [ThreadCloseType](docs/ThreadCloseType.md)
+ - [TimerCommand](docs/TimerCommand.md)
  - [WorkerErrorResponse](docs/WorkerErrorResponse.md)
 
 

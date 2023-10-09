@@ -171,6 +171,20 @@ components:
       properties: 
         waitingType: 
           $ref: '#/components/schemas/CommandWaitingType'
+        timerCommands:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerCommand'
+    TimerCommand:
+      type: object
+      required:
+        - firingUnixTimestampSeconds
+      properties:
+        commandId:
+          type: string
+        firingUnixTimestampSeconds:
+          type: integer
+          format: int64
     CommandWaitingType:
       type: string
       enum:
@@ -340,6 +354,35 @@ components:
       properties:
         skipWaitUntil:
           type: boolean
+        waitUntilApiTimeoutSeconds: 
+          type: integer
+          description: the timeout for the single attempt of AsyncState.waitUntil API
+        executeApiTimeoutSeconds: 
+          type: integer
+          description: the timeout for the single attempt of AsyncState.execute API
+        waitUntilApiRetryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+        executeApiRetryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+    RetryPolicy:
+      type: object
+      properties:
+        initialIntervalSeconds: 
+          type: integer
+          description: the initial interval for the first retry, default to 1 second
+        backoffCoefficient: 
+          type: number
+          format: float
+          description: the backoff coefficient for the next retry, default to 2
+        maximumIntervalSeconds: 
+          type: integer
+          description: the maximum interval for the next retry, default to 100x of initial interval
+        maximumAttempts: 
+          type: integer
+          description: the maximum number of attempts, default to 0, means unlimited
+        maximumAttemptsDurationSeconds: 
+          type: integer
+          description: the maximum duration of all attempts, default to 0, means unlimited
     ProcessExecutionStartResponse:
       type: object
       description: response of ProcessExecutionStartRequest

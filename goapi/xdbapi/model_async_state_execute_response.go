@@ -19,15 +19,16 @@ var _ MappedNullable = &AsyncStateExecuteResponse{}
 
 // AsyncStateExecuteResponse the output of the execute API
 type AsyncStateExecuteResponse struct {
-	StateDecision *StateDecision `json:"stateDecision,omitempty"`
+	StateDecision StateDecision `json:"stateDecision"`
 }
 
 // NewAsyncStateExecuteResponse instantiates a new AsyncStateExecuteResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAsyncStateExecuteResponse() *AsyncStateExecuteResponse {
+func NewAsyncStateExecuteResponse(stateDecision StateDecision) *AsyncStateExecuteResponse {
 	this := AsyncStateExecuteResponse{}
+	this.StateDecision = stateDecision
 	return &this
 }
 
@@ -39,36 +40,28 @@ func NewAsyncStateExecuteResponseWithDefaults() *AsyncStateExecuteResponse {
 	return &this
 }
 
-// GetStateDecision returns the StateDecision field value if set, zero value otherwise.
+// GetStateDecision returns the StateDecision field value
 func (o *AsyncStateExecuteResponse) GetStateDecision() StateDecision {
-	if o == nil || IsNil(o.StateDecision) {
+	if o == nil {
 		var ret StateDecision
 		return ret
 	}
-	return *o.StateDecision
+
+	return o.StateDecision
 }
 
-// GetStateDecisionOk returns a tuple with the StateDecision field value if set, nil otherwise
+// GetStateDecisionOk returns a tuple with the StateDecision field value
 // and a boolean to check if the value has been set.
 func (o *AsyncStateExecuteResponse) GetStateDecisionOk() (*StateDecision, bool) {
-	if o == nil || IsNil(o.StateDecision) {
+	if o == nil {
 		return nil, false
 	}
-	return o.StateDecision, true
+	return &o.StateDecision, true
 }
 
-// HasStateDecision returns a boolean if a field has been set.
-func (o *AsyncStateExecuteResponse) HasStateDecision() bool {
-	if o != nil && !IsNil(o.StateDecision) {
-		return true
-	}
-
-	return false
-}
-
-// SetStateDecision gets a reference to the given StateDecision and assigns it to the StateDecision field.
+// SetStateDecision sets field value
 func (o *AsyncStateExecuteResponse) SetStateDecision(v StateDecision) {
-	o.StateDecision = &v
+	o.StateDecision = v
 }
 
 func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
@@ -81,9 +74,7 @@ func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
 
 func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.StateDecision) {
-		toSerialize["stateDecision"] = o.StateDecision
-	}
+	toSerialize["stateDecision"] = o.StateDecision
 	return toSerialize, nil
 }
 

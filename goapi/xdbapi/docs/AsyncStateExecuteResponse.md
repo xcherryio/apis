@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StateDecision** | Pointer to [**StateDecision**](StateDecision.md) |  | [optional] 
+**StateDecision** | [**StateDecision**](StateDecision.md) |  | 
 
 ## Methods
 
 ### NewAsyncStateExecuteResponse
 
-`func NewAsyncStateExecuteResponse() *AsyncStateExecuteResponse`
+`func NewAsyncStateExecuteResponse(stateDecision StateDecision, ) *AsyncStateExecuteResponse`
 
 NewAsyncStateExecuteResponse instantiates a new AsyncStateExecuteResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetStateDecision sets StateDecision field to given value.
 
-### HasStateDecision
-
-`func (o *AsyncStateExecuteResponse) HasStateDecision() bool`
-
-HasStateDecision returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

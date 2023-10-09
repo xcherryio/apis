@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Encoding** | Pointer to **string** |  | [optional] 
-**Data** | Pointer to **string** |  | [optional] 
+**Encoding** | **string** |  | 
+**Data** | **string** |  | 
 
 ## Methods
 
 ### NewEncodedObject
 
-`func NewEncodedObject() *EncodedObject`
+`func NewEncodedObject(encoding string, data string, ) *EncodedObject`
 
 NewEncodedObject instantiates a new EncodedObject object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetEncoding sets Encoding field to given value.
 
-### HasEncoding
-
-`func (o *EncodedObject) HasEncoding() bool`
-
-HasEncoding returns a boolean if a field has been set.
 
 ### GetData
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
-### HasData
-
-`func (o *EncodedObject) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

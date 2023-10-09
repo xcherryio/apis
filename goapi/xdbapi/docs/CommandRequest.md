@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **WaitingType** | Pointer to [**CommandWaitingType**](CommandWaitingType.md) |  | [optional] 
+**TimerCommands** | Pointer to [**[]TimerCommand**](TimerCommand.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetWaitingType sets WaitingType field to given value.
 `func (o *CommandRequest) HasWaitingType() bool`
 
 HasWaitingType returns a boolean if a field has been set.
+
+### GetTimerCommands
+
+`func (o *CommandRequest) GetTimerCommands() []TimerCommand`
+
+GetTimerCommands returns the TimerCommands field if non-nil, zero value otherwise.
+
+### GetTimerCommandsOk
+
+`func (o *CommandRequest) GetTimerCommandsOk() (*[]TimerCommand, bool)`
+
+GetTimerCommandsOk returns a tuple with the TimerCommands field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimerCommands
+
+`func (o *CommandRequest) SetTimerCommands(v []TimerCommand)`
+
+SetTimerCommands sets TimerCommands field to given value.
+
+### HasTimerCommands
+
+`func (o *CommandRequest) HasTimerCommands() bool`
+
+HasTimerCommands returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

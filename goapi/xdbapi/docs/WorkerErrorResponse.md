@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Detail** | Pointer to **string** |  | [optional] 
-**ErrorType** | Pointer to **string** |  | [optional] 
+**ErrorType** | **string** |  | 
 
 ## Methods
 
 ### NewWorkerErrorResponse
 
-`func NewWorkerErrorResponse() *WorkerErrorResponse`
+`func NewWorkerErrorResponse(errorType string, ) *WorkerErrorResponse`
 
 NewWorkerErrorResponse instantiates a new WorkerErrorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -70,11 +70,6 @@ and a boolean to check if the value has been set.
 
 SetErrorType sets ErrorType field to given value.
 
-### HasErrorType
-
-`func (o *WorkerErrorResponse) HasErrorType() bool`
-
-HasErrorType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

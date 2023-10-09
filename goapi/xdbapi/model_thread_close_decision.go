@@ -19,16 +19,17 @@ var _ MappedNullable = &ThreadCloseDecision{}
 
 // ThreadCloseDecision struct for ThreadCloseDecision
 type ThreadCloseDecision struct {
-	CloseType  *ThreadCloseType `json:"closeType,omitempty"`
-	CloseInput *EncodedObject   `json:"closeInput,omitempty"`
+	CloseType  ThreadCloseType `json:"closeType"`
+	CloseInput *EncodedObject  `json:"closeInput,omitempty"`
 }
 
 // NewThreadCloseDecision instantiates a new ThreadCloseDecision object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewThreadCloseDecision() *ThreadCloseDecision {
+func NewThreadCloseDecision(closeType ThreadCloseType) *ThreadCloseDecision {
 	this := ThreadCloseDecision{}
+	this.CloseType = closeType
 	return &this
 }
 
@@ -40,36 +41,28 @@ func NewThreadCloseDecisionWithDefaults() *ThreadCloseDecision {
 	return &this
 }
 
-// GetCloseType returns the CloseType field value if set, zero value otherwise.
+// GetCloseType returns the CloseType field value
 func (o *ThreadCloseDecision) GetCloseType() ThreadCloseType {
-	if o == nil || IsNil(o.CloseType) {
+	if o == nil {
 		var ret ThreadCloseType
 		return ret
 	}
-	return *o.CloseType
+
+	return o.CloseType
 }
 
-// GetCloseTypeOk returns a tuple with the CloseType field value if set, nil otherwise
+// GetCloseTypeOk returns a tuple with the CloseType field value
 // and a boolean to check if the value has been set.
 func (o *ThreadCloseDecision) GetCloseTypeOk() (*ThreadCloseType, bool) {
-	if o == nil || IsNil(o.CloseType) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CloseType, true
+	return &o.CloseType, true
 }
 
-// HasCloseType returns a boolean if a field has been set.
-func (o *ThreadCloseDecision) HasCloseType() bool {
-	if o != nil && !IsNil(o.CloseType) {
-		return true
-	}
-
-	return false
-}
-
-// SetCloseType gets a reference to the given ThreadCloseType and assigns it to the CloseType field.
+// SetCloseType sets field value
 func (o *ThreadCloseDecision) SetCloseType(v ThreadCloseType) {
-	o.CloseType = &v
+	o.CloseType = v
 }
 
 // GetCloseInput returns the CloseInput field value if set, zero value otherwise.
@@ -114,9 +107,7 @@ func (o ThreadCloseDecision) MarshalJSON() ([]byte, error) {
 
 func (o ThreadCloseDecision) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CloseType) {
-		toSerialize["closeType"] = o.CloseType
-	}
+	toSerialize["closeType"] = o.CloseType
 	if !IsNil(o.CloseInput) {
 		toSerialize["closeInput"] = o.CloseInput
 	}

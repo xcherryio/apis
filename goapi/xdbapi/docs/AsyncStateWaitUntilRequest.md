@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Context** | Pointer to [**Context**](Context.md) |  | [optional] 
-**ProcessType** | Pointer to **string** |  | [optional] 
-**StateId** | Pointer to **string** |  | [optional] 
+**Context** | [**Context**](Context.md) |  | 
+**ProcessType** | **string** |  | 
+**StateId** | **string** |  | 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 
 ## Methods
 
 ### NewAsyncStateWaitUntilRequest
 
-`func NewAsyncStateWaitUntilRequest() *AsyncStateWaitUntilRequest`
+`func NewAsyncStateWaitUntilRequest(context Context, processType string, stateId string, ) *AsyncStateWaitUntilRequest`
 
 NewAsyncStateWaitUntilRequest instantiates a new AsyncStateWaitUntilRequest object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetContext sets Context field to given value.
 
-### HasContext
-
-`func (o *AsyncStateWaitUntilRequest) HasContext() bool`
-
-HasContext returns a boolean if a field has been set.
 
 ### GetProcessType
 
@@ -72,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetProcessType sets ProcessType field to given value.
 
-### HasProcessType
-
-`func (o *AsyncStateWaitUntilRequest) HasProcessType() bool`
-
-HasProcessType returns a boolean if a field has been set.
 
 ### GetStateId
 
@@ -97,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetStateId sets StateId field to given value.
 
-### HasStateId
-
-`func (o *AsyncStateWaitUntilRequest) HasStateId() bool`
-
-HasStateId returns a boolean if a field has been set.
 
 ### GetStateInput
 

@@ -171,22 +171,57 @@ components:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
+      required:
+      - context
+      - processType
+      - stateId
       type: object
     AsyncStateWaitUntilResponse:
       description: the output of the waitUntil API
       example:
         commandRequest:
+          timerCommands:
+          - firingUnixTimestampSeconds: 0
+            commandId: commandId
+          - firingUnixTimestampSeconds: 0
+            commandId: commandId
           waitingType: null
       properties:
         commandRequest:
           $ref: '#/components/schemas/CommandRequest'
+      required:
+      - commandRequest
       type: object
     CommandRequest:
       example:
+        timerCommands:
+        - firingUnixTimestampSeconds: 0
+          commandId: commandId
+        - firingUnixTimestampSeconds: 0
+          commandId: commandId
         waitingType: null
       properties:
         waitingType:
           $ref: '#/components/schemas/CommandWaitingType'
+        timerCommands:
+          items:
+            $ref: '#/components/schemas/TimerCommand'
+          type: array
+      required:
+      - commandType
+      type: object
+    TimerCommand:
+      example:
+        firingUnixTimestampSeconds: 0
+        commandId: commandId
+      properties:
+        commandId:
+          type: string
+        firingUnixTimestampSeconds:
+          format: int64
+          type: integer
+      required:
+      - firingUnixTimestampSeconds
       type: object
     CommandWaitingType:
       enum:
@@ -218,6 +253,10 @@ components:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
+      required:
+      - context
+      - processType
+      - stateId
       type: object
     AsyncStateExecuteResponse:
       description: the output of the execute API
@@ -225,13 +264,41 @@ components:
         stateDecision:
           nextStates:
           - stateConfig:
+              executeApiTimeoutSeconds: 6
               skipWaitUntil: true
+              waitUntilApiRetryPolicy:
+                maximumAttemptsDurationSeconds: 7
+                maximumAttempts: 2
+                initialIntervalSeconds: 1
+                maximumIntervalSeconds: 5
+                backoffCoefficient: 5.962134
+              waitUntilApiTimeoutSeconds: 0
+              executeApiRetryPolicy:
+                maximumAttemptsDurationSeconds: 7
+                maximumAttempts: 2
+                initialIntervalSeconds: 1
+                maximumIntervalSeconds: 5
+                backoffCoefficient: 5.962134
             stateId: stateId
             stateInput:
               data: data
               encoding: encoding
           - stateConfig:
+              executeApiTimeoutSeconds: 6
               skipWaitUntil: true
+              waitUntilApiRetryPolicy:
+                maximumAttemptsDurationSeconds: 7
+                maximumAttempts: 2
+                initialIntervalSeconds: 1
+                maximumIntervalSeconds: 5
+                backoffCoefficient: 5.962134
+              waitUntilApiTimeoutSeconds: 0
+              executeApiRetryPolicy:
+                maximumAttemptsDurationSeconds: 7
+                maximumAttempts: 2
+                initialIntervalSeconds: 1
+                maximumIntervalSeconds: 5
+                backoffCoefficient: 5.962134
             stateId: stateId
             stateInput:
               data: data
@@ -244,6 +311,8 @@ components:
       properties:
         stateDecision:
           $ref: '#/components/schemas/StateDecision'
+      required:
+      - stateDecision
       type: object
     StateDecision:
       description: "the decision at the end of state execution, either nextStates\
@@ -251,13 +320,41 @@ components:
       example:
         nextStates:
         - stateConfig:
+            executeApiTimeoutSeconds: 6
             skipWaitUntil: true
+            waitUntilApiRetryPolicy:
+              maximumAttemptsDurationSeconds: 7
+              maximumAttempts: 2
+              initialIntervalSeconds: 1
+              maximumIntervalSeconds: 5
+              backoffCoefficient: 5.962134
+            waitUntilApiTimeoutSeconds: 0
+            executeApiRetryPolicy:
+              maximumAttemptsDurationSeconds: 7
+              maximumAttempts: 2
+              initialIntervalSeconds: 1
+              maximumIntervalSeconds: 5
+              backoffCoefficient: 5.962134
           stateId: stateId
           stateInput:
             data: data
             encoding: encoding
         - stateConfig:
+            executeApiTimeoutSeconds: 6
             skipWaitUntil: true
+            waitUntilApiRetryPolicy:
+              maximumAttemptsDurationSeconds: 7
+              maximumAttempts: 2
+              initialIntervalSeconds: 1
+              maximumIntervalSeconds: 5
+              backoffCoefficient: 5.962134
+            waitUntilApiTimeoutSeconds: 0
+            executeApiRetryPolicy:
+              maximumAttemptsDurationSeconds: 7
+              maximumAttempts: 2
+              initialIntervalSeconds: 1
+              maximumIntervalSeconds: 5
+              backoffCoefficient: 5.962134
           stateId: stateId
           stateInput:
             data: data
@@ -286,6 +383,8 @@ components:
           $ref: '#/components/schemas/ThreadCloseType'
         closeInput:
           $ref: '#/components/schemas/EncodedObject'
+      required:
+      - closeType
       type: object
     ThreadCloseType:
       enum:
@@ -297,7 +396,21 @@ components:
     StateMovement:
       example:
         stateConfig:
+          executeApiTimeoutSeconds: 6
           skipWaitUntil: true
+          waitUntilApiRetryPolicy:
+            maximumAttemptsDurationSeconds: 7
+            maximumAttempts: 2
+            initialIntervalSeconds: 1
+            maximumIntervalSeconds: 5
+            backoffCoefficient: 5.962134
+          waitUntilApiTimeoutSeconds: 0
+          executeApiRetryPolicy:
+            maximumAttemptsDurationSeconds: 7
+            maximumAttempts: 2
+            initialIntervalSeconds: 1
+            maximumIntervalSeconds: 5
+            backoffCoefficient: 5.962134
         stateId: stateId
         stateInput:
           data: data
@@ -329,6 +442,7 @@ components:
           format: int64
           type: integer
         stateExecutionId:
+          description: stateExecutionId is for async state API only
           type: string
         firstAttemptTimestamp:
           description: for async state API only(during backoff retry)
@@ -348,6 +462,8 @@ components:
           type: string
         errorType:
           type: string
+      required:
+      - errorType
       type: object
     EncodedObject:
       example:
@@ -358,6 +474,9 @@ components:
           type: string
         data:
           type: string
+      required:
+      - data
+      - encoding
       type: object
     ApiErrorResponse:
       properties:
@@ -374,7 +493,21 @@ components:
       description: the request for starting an process execution
       example:
         startStateConfig:
+          executeApiTimeoutSeconds: 6
           skipWaitUntil: true
+          waitUntilApiRetryPolicy:
+            maximumAttemptsDurationSeconds: 7
+            maximumAttempts: 2
+            initialIntervalSeconds: 1
+            maximumIntervalSeconds: 5
+            backoffCoefficient: 5.962134
+          waitUntilApiTimeoutSeconds: 0
+          executeApiRetryPolicy:
+            maximumAttemptsDurationSeconds: 7
+            maximumAttempts: 2
+            initialIntervalSeconds: 1
+            maximumIntervalSeconds: 5
+            backoffCoefficient: 5.962134
         startStateInput:
           data: data
           encoding: encoding
@@ -382,7 +515,7 @@ components:
         startStateId: startStateId
         processId: processId
         processStartConfig:
-          timeoutSeconds: 0
+          timeoutSeconds: 9
           idReusePolicy: null
         namespace: namespace
         processType: processType
@@ -416,7 +549,7 @@ components:
       type: object
     ProcessStartConfig:
       example:
-        timeoutSeconds: 0
+        timeoutSeconds: 9
         idReusePolicy: null
       properties:
         timeoutSeconds:
@@ -433,10 +566,62 @@ components:
       type: string
     AsyncStateConfig:
       example:
+        executeApiTimeoutSeconds: 6
         skipWaitUntil: true
+        waitUntilApiRetryPolicy:
+          maximumAttemptsDurationSeconds: 7
+          maximumAttempts: 2
+          initialIntervalSeconds: 1
+          maximumIntervalSeconds: 5
+          backoffCoefficient: 5.962134
+        waitUntilApiTimeoutSeconds: 0
+        executeApiRetryPolicy:
+          maximumAttemptsDurationSeconds: 7
+          maximumAttempts: 2
+          initialIntervalSeconds: 1
+          maximumIntervalSeconds: 5
+          backoffCoefficient: 5.962134
       properties:
         skipWaitUntil:
           type: boolean
+        waitUntilApiTimeoutSeconds:
+          description: the timeout for the single attempt of AsyncState.waitUntil
+            API
+          type: integer
+        executeApiTimeoutSeconds:
+          description: the timeout for the single attempt of AsyncState.execute API
+          type: integer
+        waitUntilApiRetryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+        executeApiRetryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+      type: object
+    RetryPolicy:
+      example:
+        maximumAttemptsDurationSeconds: 7
+        maximumAttempts: 2
+        initialIntervalSeconds: 1
+        maximumIntervalSeconds: 5
+        backoffCoefficient: 5.962134
+      properties:
+        initialIntervalSeconds:
+          description: "the initial interval for the first retry, default to 1 second"
+          type: integer
+        backoffCoefficient:
+          description: "the backoff coefficient for the next retry, default to 2"
+          format: float
+          type: number
+        maximumIntervalSeconds:
+          description: "the maximum interval for the next retry, default to 100x of\
+            \ initial interval"
+          type: integer
+        maximumAttempts:
+          description: "the maximum number of attempts, default to 0, means unlimited"
+          type: integer
+        maximumAttemptsDurationSeconds:
+          description: "the maximum duration of all attempts, default to 0, means\
+            \ unlimited"
+          type: integer
       type: object
     ProcessExecutionStartResponse:
       description: response of ProcessExecutionStartRequest

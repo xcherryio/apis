@@ -158,7 +158,7 @@ import (
 )
 
 func main() {
-    asyncStateExecuteRequest := *openapiclient.NewAsyncStateExecuteRequest() // AsyncStateExecuteRequest |  (optional)
+    asyncStateExecuteRequest := *openapiclient.NewAsyncStateExecuteRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "StateId_example") // AsyncStateExecuteRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -222,7 +222,7 @@ import (
 )
 
 func main() {
-    asyncStateWaitUntilRequest := *openapiclient.NewAsyncStateWaitUntilRequest() // AsyncStateWaitUntilRequest |  (optional)
+    asyncStateWaitUntilRequest := *openapiclient.NewAsyncStateWaitUntilRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "StateId_example") // AsyncStateWaitUntilRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

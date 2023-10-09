@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ProcessId** | **string** |  | 
 **ProcessExecutionId** | **string** |  | 
 **ProcessStartedTimestamp** | **int64** |  | 
-**StateExecutionId** | Pointer to **string** |  | [optional] 
+**StateExecutionId** | Pointer to **string** | stateExecutionId is for async state API only | [optional] 
 **FirstAttemptTimestamp** | Pointer to **int64** | for async state API only(during backoff retry) | [optional] 
 **Attempt** | Pointer to **int32** | for async state API only(during backoff retry) | [optional] 
 

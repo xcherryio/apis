@@ -19,10 +19,11 @@ var _ MappedNullable = &Context{}
 
 // Context struct for Context
 type Context struct {
-	ProcessId               string  `json:"processId"`
-	ProcessExecutionId      string  `json:"processExecutionId"`
-	ProcessStartedTimestamp int64   `json:"processStartedTimestamp"`
-	StateExecutionId        *string `json:"stateExecutionId,omitempty"`
+	ProcessId               string `json:"processId"`
+	ProcessExecutionId      string `json:"processExecutionId"`
+	ProcessStartedTimestamp int64  `json:"processStartedTimestamp"`
+	// stateExecutionId is for async state API only
+	StateExecutionId *string `json:"stateExecutionId,omitempty"`
 	// for async state API only(during backoff retry)
 	FirstAttemptTimestamp *int64 `json:"firstAttemptTimestamp,omitempty"`
 	// for async state API only(during backoff retry)

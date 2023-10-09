@@ -19,9 +19,9 @@ var _ MappedNullable = &AsyncStateExecuteRequest{}
 
 // AsyncStateExecuteRequest the input of the execute API
 type AsyncStateExecuteRequest struct {
-	Context     *Context       `json:"context,omitempty"`
-	ProcessType *string        `json:"processType,omitempty"`
-	StateId     *string        `json:"stateId,omitempty"`
+	Context     Context        `json:"context"`
+	ProcessType string         `json:"processType"`
+	StateId     string         `json:"stateId"`
 	StateInput  *EncodedObject `json:"stateInput,omitempty"`
 }
 
@@ -29,8 +29,11 @@ type AsyncStateExecuteRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAsyncStateExecuteRequest() *AsyncStateExecuteRequest {
+func NewAsyncStateExecuteRequest(context Context, processType string, stateId string) *AsyncStateExecuteRequest {
 	this := AsyncStateExecuteRequest{}
+	this.Context = context
+	this.ProcessType = processType
+	this.StateId = stateId
 	return &this
 }
 
@@ -42,100 +45,76 @@ func NewAsyncStateExecuteRequestWithDefaults() *AsyncStateExecuteRequest {
 	return &this
 }
 
-// GetContext returns the Context field value if set, zero value otherwise.
+// GetContext returns the Context field value
 func (o *AsyncStateExecuteRequest) GetContext() Context {
-	if o == nil || IsNil(o.Context) {
+	if o == nil {
 		var ret Context
 		return ret
 	}
-	return *o.Context
+
+	return o.Context
 }
 
-// GetContextOk returns a tuple with the Context field value if set, nil otherwise
+// GetContextOk returns a tuple with the Context field value
 // and a boolean to check if the value has been set.
 func (o *AsyncStateExecuteRequest) GetContextOk() (*Context, bool) {
-	if o == nil || IsNil(o.Context) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Context, true
+	return &o.Context, true
 }
 
-// HasContext returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasContext() bool {
-	if o != nil && !IsNil(o.Context) {
-		return true
-	}
-
-	return false
-}
-
-// SetContext gets a reference to the given Context and assigns it to the Context field.
+// SetContext sets field value
 func (o *AsyncStateExecuteRequest) SetContext(v Context) {
-	o.Context = &v
+	o.Context = v
 }
 
-// GetProcessType returns the ProcessType field value if set, zero value otherwise.
+// GetProcessType returns the ProcessType field value
 func (o *AsyncStateExecuteRequest) GetProcessType() string {
-	if o == nil || IsNil(o.ProcessType) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProcessType
+
+	return o.ProcessType
 }
 
-// GetProcessTypeOk returns a tuple with the ProcessType field value if set, nil otherwise
+// GetProcessTypeOk returns a tuple with the ProcessType field value
 // and a boolean to check if the value has been set.
 func (o *AsyncStateExecuteRequest) GetProcessTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.ProcessType) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProcessType, true
+	return &o.ProcessType, true
 }
 
-// HasProcessType returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasProcessType() bool {
-	if o != nil && !IsNil(o.ProcessType) {
-		return true
-	}
-
-	return false
-}
-
-// SetProcessType gets a reference to the given string and assigns it to the ProcessType field.
+// SetProcessType sets field value
 func (o *AsyncStateExecuteRequest) SetProcessType(v string) {
-	o.ProcessType = &v
+	o.ProcessType = v
 }
 
-// GetStateId returns the StateId field value if set, zero value otherwise.
+// GetStateId returns the StateId field value
 func (o *AsyncStateExecuteRequest) GetStateId() string {
-	if o == nil || IsNil(o.StateId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.StateId
+
+	return o.StateId
 }
 
-// GetStateIdOk returns a tuple with the StateId field value if set, nil otherwise
+// GetStateIdOk returns a tuple with the StateId field value
 // and a boolean to check if the value has been set.
 func (o *AsyncStateExecuteRequest) GetStateIdOk() (*string, bool) {
-	if o == nil || IsNil(o.StateId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.StateId, true
+	return &o.StateId, true
 }
 
-// HasStateId returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasStateId() bool {
-	if o != nil && !IsNil(o.StateId) {
-		return true
-	}
-
-	return false
-}
-
-// SetStateId gets a reference to the given string and assigns it to the StateId field.
+// SetStateId sets field value
 func (o *AsyncStateExecuteRequest) SetStateId(v string) {
-	o.StateId = &v
+	o.StateId = v
 }
 
 // GetStateInput returns the StateInput field value if set, zero value otherwise.
@@ -180,15 +159,9 @@ func (o AsyncStateExecuteRequest) MarshalJSON() ([]byte, error) {
 
 func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Context) {
-		toSerialize["context"] = o.Context
-	}
-	if !IsNil(o.ProcessType) {
-		toSerialize["processType"] = o.ProcessType
-	}
-	if !IsNil(o.StateId) {
-		toSerialize["stateId"] = o.StateId
-	}
+	toSerialize["context"] = o.Context
+	toSerialize["processType"] = o.ProcessType
+	toSerialize["stateId"] = o.StateId
 	if !IsNil(o.StateInput) {
 		toSerialize["stateInput"] = o.StateInput
 	}

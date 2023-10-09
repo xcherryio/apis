@@ -24,10 +24,12 @@ docs/ProcessExecutionStartResponse.md
 docs/ProcessIdReusePolicy.md
 docs/ProcessStartConfig.md
 docs/ProcessStatus.md
+docs/RetryPolicy.md
 docs/StateDecision.md
 docs/StateMovement.md
 docs/ThreadCloseDecision.md
 docs/ThreadCloseType.md
+docs/TimerCommand.md
 docs/WorkerErrorResponse.md
 git_push.sh
 go.mod
@@ -49,10 +51,12 @@ model_process_execution_start_response.go
 model_process_id_reuse_policy.go
 model_process_start_config.go
 model_process_status.go
+model_retry_policy.go
 model_state_decision.go
 model_state_movement.go
 model_thread_close_decision.go
 model_thread_close_type.go
+model_timer_command.go
 model_worker_error_response.go
 response.go
 test/api_default_test.go
