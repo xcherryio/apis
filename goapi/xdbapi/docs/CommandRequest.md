@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WaitingType** | Pointer to [**CommandWaitingType**](CommandWaitingType.md) |  | [optional] 
+**WaitingType** | [**CommandWaitingType**](CommandWaitingType.md) |  | 
 **TimerCommands** | Pointer to [**[]TimerCommand**](TimerCommand.md) |  | [optional] 
 
 ## Methods
 
 ### NewCommandRequest
 
-`func NewCommandRequest() *CommandRequest`
+`func NewCommandRequest(waitingType CommandWaitingType, ) *CommandRequest`
 
 NewCommandRequest instantiates a new CommandRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetWaitingType sets WaitingType field to given value.
 
-### HasWaitingType
-
-`func (o *CommandRequest) HasWaitingType() bool`
-
-HasWaitingType returns a boolean if a field has been set.
 
 ### GetTimerCommands
 

@@ -208,7 +208,7 @@ components:
             $ref: '#/components/schemas/TimerCommand'
           type: array
       required:
-      - commandType
+      - waitingType
       type: object
     TimerCommand:
       example:

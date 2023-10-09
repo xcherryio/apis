@@ -167,7 +167,7 @@ components:
     CommandRequest:
       type: object
       required: 
-        - commandType
+        - waitingType
       properties: 
         waitingType: 
           $ref: '#/components/schemas/CommandWaitingType'
