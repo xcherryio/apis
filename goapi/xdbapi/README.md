@@ -81,6 +81,8 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStartPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstartpost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstatewaituntilpost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
+*DefaultAPI* | [**InternalApiV1XdbNotifyTimerTasksPost**](docs/DefaultAPI.md#internalapiv1xdbnotifytimertaskspost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
+*DefaultAPI* | [**InternalApiV1XdbNotifyWorkerTasksPost**](docs/DefaultAPI.md#internalapiv1xdbnotifyworkertaskspost) | **Post** /internal/api/v1/xdb/notify-worker-tasks | for api service to tell async service that there are new worker tasks added to the queue
 
 
 ## Documentation For Models
@@ -96,6 +98,8 @@ Class | Method | HTTP request | Description
  - [CommandWaitingType](docs/CommandWaitingType.md)
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
+ - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
+ - [NotifyWorkerTasksRequest](docs/NotifyWorkerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
  - [ProcessExecutionDescribeResponse](docs/ProcessExecutionDescribeResponse.md)
  - [ProcessExecutionStartRequest](docs/ProcessExecutionStartRequest.md)

@@ -18,6 +18,8 @@ docs/CommandWaitingType.md
 docs/Context.md
 docs/DefaultAPI.md
 docs/EncodedObject.md
+docs/NotifyTimerTasksRequest.md
+docs/NotifyWorkerTasksRequest.md
 docs/ProcessExecutionDescribeRequest.md
 docs/ProcessExecutionDescribeResponse.md
 docs/ProcessExecutionStartRequest.md
@@ -48,6 +50,8 @@ model_command_results.go
 model_command_waiting_type.go
 model_context.go
 model_encoded_object.go
+model_notify_timer_tasks_request.go
+model_notify_worker_tasks_request.go
 model_process_execution_describe_request.go
 model_process_execution_describe_response.go
 model_process_execution_start_request.go

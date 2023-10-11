@@ -102,6 +102,32 @@ paths:
                 $ref: '#/components/schemas/WorkerErrorResponse'
           description: worker execution failure
       summary: invoking AsyncState.execute API
+  /internal/api/v1/xdb/notify-worker-tasks:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyWorkerTasksRequest'
+      responses:
+        "200":
+          content: {}
+          description: successful operation
+      summary: for api service to tell async service that there are new worker tasks
+        added to the queue
+  /internal/api/v1/xdb/notify-timer-tasks:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyTimerTasksRequest'
+      responses:
+        "200":
+          content: {}
+          description: successful operation
+      summary: for api service to tell async service that there are new timer tasks
+        added to the queue
 components:
   schemas:
     ProcessExecutionDescribeRequest:
@@ -672,4 +698,51 @@ components:
           type: string
       required:
       - processExecutionId
+      type: object
+    NotifyWorkerTasksRequest:
+      example:
+        processExecutionId: processExecutionId
+        processId: processId
+        namespace: namespace
+        shardId: 0
+      properties:
+        shardId:
+          type: integer
+        namespace:
+          type: string
+        processId:
+          type: string
+        processExecutionId:
+          type: string
+      required:
+      - namespace
+      - processExecutionId
+      - processId
+      - shardId
+      type: object
+    NotifyTimerTasksRequest:
+      example:
+        processExecutionId: processExecutionId
+        processId: processId
+        namespace: namespace
+        shardId: 0
+        minTaskTimestampSeconds: 6
+      properties:
+        shardId:
+          type: integer
+        namespace:
+          type: string
+        processId:
+          type: string
+        processExecutionId:
+          type: string
+        minTaskTimestampSeconds:
+          format: int64
+          type: integer
+      required:
+      - minTaskTimestampSeconds
+      - namespace
+      - processExecutionId
+      - processId
+      - shardId
       type: object
