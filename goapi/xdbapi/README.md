@@ -79,6 +79,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionDescribePost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutiondescribepost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStartPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstartpost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
+*DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStopPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstoppost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstatewaituntilpost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 
@@ -99,6 +100,8 @@ Class | Method | HTTP request | Description
  - [ProcessExecutionDescribeResponse](docs/ProcessExecutionDescribeResponse.md)
  - [ProcessExecutionStartRequest](docs/ProcessExecutionStartRequest.md)
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
+ - [ProcessExecutionStopRequest](docs/ProcessExecutionStopRequest.md)
+ - [ProcessExecutionStopType](docs/ProcessExecutionStopType.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
  - [ProcessStartConfig](docs/ProcessStartConfig.md)
  - [ProcessStatus](docs/ProcessStatus.md)

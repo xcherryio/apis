@@ -17,7 +17,7 @@ import (
 // checks if the ProcessExecutionStartRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProcessExecutionStartRequest{}
 
-// ProcessExecutionStartRequest the request for starting an process execution
+// ProcessExecutionStartRequest the request for starting a process execution
 type ProcessExecutionStartRequest struct {
 	Namespace string `json:"namespace"`
 	// the user business identifier for the process, which can be used for multiple ProcessExecution based on ProcessIdReusePolicy
