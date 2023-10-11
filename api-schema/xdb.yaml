@@ -103,7 +103,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkerErrorResponse'
-
+  # internal APIs are for internal communication within the services of xdb server 
+  /internal/api/v1/xdb/notify-worker-tasks:
+    post:
+      summary: "for api service to tell async service that there are new worker tasks added to the queue"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyWorkerTasksRequest'
+      responses:
+        '200':
+          description: successful operation
+          content: {}
+  /internal/api/v1/xdb/notify-timer-tasks:
+    post:
+      summary: "for api service to tell async service that there are new timer tasks added to the queue"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyTimerTasksRequest'
+      responses:
+        '200':
+          description: successful operation
+          content: {}              
 components:
   schemas:
     ProcessExecutionDescribeRequest:
@@ -416,3 +440,39 @@ components:
         processExecutionId:
           type: string
           description: a UUID as the unique identifier of a process execution
+    NotifyWorkerTasksRequest:
+      required:
+        - shardId
+        - namespace
+        - processId
+        - processExecutionId
+      type: object
+      properties:
+        shardId:
+          type: integer
+        namespace:
+          type: string
+        processId:
+          type: string
+        processExecutionId:
+          type: string
+    NotifyTimerTasksRequest:
+      required:
+        - shardId
+        - namespace
+        - processId
+        - processExecutionId
+        - minTaskTimestampSeconds
+      type: object
+      properties:
+        shardId:
+          type: integer
+        namespace:
+          type: string
+        processId:
+          type: string
+        processExecutionId:
+          type: string   
+        minTaskTimestampSeconds:
+          type: integer
+          format: int64  
