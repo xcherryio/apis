@@ -443,36 +443,37 @@ components:
     NotifyWorkerTasksRequest:
       required:
         - shardId
-        - namespace
-        - processId
-        - processExecutionId
       type: object
       properties:
         shardId:
           type: integer
         namespace:
           type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
         processId:
           type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
         processExecutionId:
           type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
     NotifyTimerTasksRequest:
       required:
         - shardId
-        - namespace
-        - processId
-        - processExecutionId
         - minTaskTimestampSeconds
       type: object
       properties:
         shardId:
           type: integer
-        namespace:
-          type: string
-        processId:
-          type: string
-        processExecutionId:
-          type: string   
         minTaskTimestampSeconds:
           type: integer
-          format: int64  
+          format: int64
+          description: the minimum timestamp of the timer task to pull
+        namespace:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+        processId:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+        processExecutionId:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page

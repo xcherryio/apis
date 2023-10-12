@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ShardId** | **int32** |  | 
-**Namespace** | **string** |  | 
-**ProcessId** | **string** |  | 
-**ProcessExecutionId** | **string** |  | 
-**MinTaskTimestampSeconds** | **int64** |  | 
+**MinTaskTimestampSeconds** | **int64** | the minimum timestamp of the timer task to pull | 
+**Namespace** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
+**ProcessId** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
+**ProcessExecutionId** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
 
 ## Methods
 
 ### NewNotifyTimerTasksRequest
 
-`func NewNotifyTimerTasksRequest(shardId int32, namespace string, processId string, processExecutionId string, minTaskTimestampSeconds int64, ) *NotifyTimerTasksRequest`
+`func NewNotifyTimerTasksRequest(shardId int32, minTaskTimestampSeconds int64, ) *NotifyTimerTasksRequest`
 
 NewNotifyTimerTasksRequest instantiates a new NotifyTimerTasksRequest object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,26 @@ and a boolean to check if the value has been set.
 SetShardId sets ShardId field to given value.
 
 
+### GetMinTaskTimestampSeconds
+
+`func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSeconds() int64`
+
+GetMinTaskTimestampSeconds returns the MinTaskTimestampSeconds field if non-nil, zero value otherwise.
+
+### GetMinTaskTimestampSecondsOk
+
+`func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSecondsOk() (*int64, bool)`
+
+GetMinTaskTimestampSecondsOk returns a tuple with the MinTaskTimestampSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinTaskTimestampSeconds
+
+`func (o *NotifyTimerTasksRequest) SetMinTaskTimestampSeconds(v int64)`
+
+SetMinTaskTimestampSeconds sets MinTaskTimestampSeconds field to given value.
+
+
 ### GetNamespace
 
 `func (o *NotifyTimerTasksRequest) GetNamespace() string`
@@ -68,6 +88,11 @@ and a boolean to check if the value has been set.
 
 SetNamespace sets Namespace field to given value.
 
+### HasNamespace
+
+`func (o *NotifyTimerTasksRequest) HasNamespace() bool`
+
+HasNamespace returns a boolean if a field has been set.
 
 ### GetProcessId
 
@@ -88,6 +113,11 @@ and a boolean to check if the value has been set.
 
 SetProcessId sets ProcessId field to given value.
 
+### HasProcessId
+
+`func (o *NotifyTimerTasksRequest) HasProcessId() bool`
+
+HasProcessId returns a boolean if a field has been set.
 
 ### GetProcessExecutionId
 
@@ -108,26 +138,11 @@ and a boolean to check if the value has been set.
 
 SetProcessExecutionId sets ProcessExecutionId field to given value.
 
+### HasProcessExecutionId
 
-### GetMinTaskTimestampSeconds
+`func (o *NotifyTimerTasksRequest) HasProcessExecutionId() bool`
 
-`func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSeconds() int64`
-
-GetMinTaskTimestampSeconds returns the MinTaskTimestampSeconds field if non-nil, zero value otherwise.
-
-### GetMinTaskTimestampSecondsOk
-
-`func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSecondsOk() (*int64, bool)`
-
-GetMinTaskTimestampSecondsOk returns a tuple with the MinTaskTimestampSeconds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMinTaskTimestampSeconds
-
-`func (o *NotifyTimerTasksRequest) SetMinTaskTimestampSeconds(v int64)`
-
-SetMinTaskTimestampSeconds sets MinTaskTimestampSeconds field to given value.
-
+HasProcessExecutionId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ShardId** | **int32** |  | 
-**Namespace** | **string** |  | 
-**ProcessId** | **string** |  | 
-**ProcessExecutionId** | **string** |  | 
+**Namespace** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
+**ProcessId** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
+**ProcessExecutionId** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
 
 ## Methods
 
 ### NewNotifyWorkerTasksRequest
 
-`func NewNotifyWorkerTasksRequest(shardId int32, namespace string, processId string, processExecutionId string, ) *NotifyWorkerTasksRequest`
+`func NewNotifyWorkerTasksRequest(shardId int32, ) *NotifyWorkerTasksRequest`
 
 NewNotifyWorkerTasksRequest instantiates a new NotifyWorkerTasksRequest object
 This constructor will assign default values to properties that have it defined,
@@ -67,6 +67,11 @@ and a boolean to check if the value has been set.
 
 SetNamespace sets Namespace field to given value.
 
+### HasNamespace
+
+`func (o *NotifyWorkerTasksRequest) HasNamespace() bool`
+
+HasNamespace returns a boolean if a field has been set.
 
 ### GetProcessId
 
@@ -87,6 +92,11 @@ and a boolean to check if the value has been set.
 
 SetProcessId sets ProcessId field to given value.
 
+### HasProcessId
+
+`func (o *NotifyWorkerTasksRequest) HasProcessId() bool`
+
+HasProcessId returns a boolean if a field has been set.
 
 ### GetProcessExecutionId
 
@@ -107,6 +117,11 @@ and a boolean to check if the value has been set.
 
 SetProcessExecutionId sets ProcessExecutionId field to given value.
 
+### HasProcessExecutionId
+
+`func (o *NotifyWorkerTasksRequest) HasProcessExecutionId() bool`
+
+HasProcessExecutionId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

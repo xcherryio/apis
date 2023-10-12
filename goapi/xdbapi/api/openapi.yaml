@@ -709,15 +709,18 @@ components:
         shardId:
           type: integer
         namespace:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
           type: string
         processId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
           type: string
         processExecutionId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
           type: string
       required:
-      - namespace
-      - processExecutionId
-      - processId
       - shardId
       type: object
     NotifyTimerTasksRequest:
@@ -730,19 +733,23 @@ components:
       properties:
         shardId:
           type: integer
-        namespace:
-          type: string
-        processId:
-          type: string
-        processExecutionId:
-          type: string
         minTaskTimestampSeconds:
+          description: the minimum timestamp of the timer task to pull
           format: int64
           type: integer
+        namespace:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+        processId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+        processExecutionId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
       required:
       - minTaskTimestampSeconds
-      - namespace
-      - processExecutionId
-      - processId
       - shardId
       type: object

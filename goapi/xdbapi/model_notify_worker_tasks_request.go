@@ -19,22 +19,22 @@ var _ MappedNullable = &NotifyWorkerTasksRequest{}
 
 // NotifyWorkerTasksRequest struct for NotifyWorkerTasksRequest
 type NotifyWorkerTasksRequest struct {
-	ShardId            int32  `json:"shardId"`
-	Namespace          string `json:"namespace"`
-	ProcessId          string `json:"processId"`
-	ProcessExecutionId string `json:"processExecutionId"`
+	ShardId int32 `json:"shardId"`
+	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
+	Namespace *string `json:"namespace,omitempty"`
+	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
+	ProcessId *string `json:"processId,omitempty"`
+	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
+	ProcessExecutionId *string `json:"processExecutionId,omitempty"`
 }
 
 // NewNotifyWorkerTasksRequest instantiates a new NotifyWorkerTasksRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNotifyWorkerTasksRequest(shardId int32, namespace string, processId string, processExecutionId string) *NotifyWorkerTasksRequest {
+func NewNotifyWorkerTasksRequest(shardId int32) *NotifyWorkerTasksRequest {
 	this := NotifyWorkerTasksRequest{}
 	this.ShardId = shardId
-	this.Namespace = namespace
-	this.ProcessId = processId
-	this.ProcessExecutionId = processExecutionId
 	return &this
 }
 
@@ -70,76 +70,100 @@ func (o *NotifyWorkerTasksRequest) SetShardId(v int32) {
 	o.ShardId = v
 }
 
-// GetNamespace returns the Namespace field value
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *NotifyWorkerTasksRequest) GetNamespace() string {
-	if o == nil {
+	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
 	}
-
-	return o.Namespace
+	return *o.Namespace
 }
 
-// GetNamespaceOk returns a tuple with the Namespace field value
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotifyWorkerTasksRequest) GetNamespaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
-	return &o.Namespace, true
+	return o.Namespace, true
 }
 
-// SetNamespace sets field value
+// HasNamespace returns a boolean if a field has been set.
+func (o *NotifyWorkerTasksRequest) HasNamespace() bool {
+	if o != nil && !IsNil(o.Namespace) {
+		return true
+	}
+
+	return false
+}
+
+// SetNamespace gets a reference to the given string and assigns it to the Namespace field.
 func (o *NotifyWorkerTasksRequest) SetNamespace(v string) {
-	o.Namespace = v
+	o.Namespace = &v
 }
 
-// GetProcessId returns the ProcessId field value
+// GetProcessId returns the ProcessId field value if set, zero value otherwise.
 func (o *NotifyWorkerTasksRequest) GetProcessId() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProcessId) {
 		var ret string
 		return ret
 	}
-
-	return o.ProcessId
+	return *o.ProcessId
 }
 
-// GetProcessIdOk returns a tuple with the ProcessId field value
+// GetProcessIdOk returns a tuple with the ProcessId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotifyWorkerTasksRequest) GetProcessIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProcessId) {
 		return nil, false
 	}
-	return &o.ProcessId, true
+	return o.ProcessId, true
 }
 
-// SetProcessId sets field value
+// HasProcessId returns a boolean if a field has been set.
+func (o *NotifyWorkerTasksRequest) HasProcessId() bool {
+	if o != nil && !IsNil(o.ProcessId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessId gets a reference to the given string and assigns it to the ProcessId field.
 func (o *NotifyWorkerTasksRequest) SetProcessId(v string) {
-	o.ProcessId = v
+	o.ProcessId = &v
 }
 
-// GetProcessExecutionId returns the ProcessExecutionId field value
+// GetProcessExecutionId returns the ProcessExecutionId field value if set, zero value otherwise.
 func (o *NotifyWorkerTasksRequest) GetProcessExecutionId() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProcessExecutionId) {
 		var ret string
 		return ret
 	}
-
-	return o.ProcessExecutionId
+	return *o.ProcessExecutionId
 }
 
-// GetProcessExecutionIdOk returns a tuple with the ProcessExecutionId field value
+// GetProcessExecutionIdOk returns a tuple with the ProcessExecutionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotifyWorkerTasksRequest) GetProcessExecutionIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProcessExecutionId) {
 		return nil, false
 	}
-	return &o.ProcessExecutionId, true
+	return o.ProcessExecutionId, true
 }
 
-// SetProcessExecutionId sets field value
+// HasProcessExecutionId returns a boolean if a field has been set.
+func (o *NotifyWorkerTasksRequest) HasProcessExecutionId() bool {
+	if o != nil && !IsNil(o.ProcessExecutionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessExecutionId gets a reference to the given string and assigns it to the ProcessExecutionId field.
 func (o *NotifyWorkerTasksRequest) SetProcessExecutionId(v string) {
-	o.ProcessExecutionId = v
+	o.ProcessExecutionId = &v
 }
 
 func (o NotifyWorkerTasksRequest) MarshalJSON() ([]byte, error) {
@@ -153,9 +177,15 @@ func (o NotifyWorkerTasksRequest) MarshalJSON() ([]byte, error) {
 func (o NotifyWorkerTasksRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["shardId"] = o.ShardId
-	toSerialize["namespace"] = o.Namespace
-	toSerialize["processId"] = o.ProcessId
-	toSerialize["processExecutionId"] = o.ProcessExecutionId
+	if !IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
+	}
+	if !IsNil(o.ProcessId) {
+		toSerialize["processId"] = o.ProcessId
+	}
+	if !IsNil(o.ProcessExecutionId) {
+		toSerialize["processExecutionId"] = o.ProcessExecutionId
+	}
 	return toSerialize, nil
 }
 

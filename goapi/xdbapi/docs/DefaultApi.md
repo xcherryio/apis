@@ -288,7 +288,7 @@ import (
 )
 
 func main() {
-    notifyTimerTasksRequest := *openapiclient.NewNotifyTimerTasksRequest(int32(123), "Namespace_example", "ProcessId_example", "ProcessExecutionId_example", int64(123)) // NotifyTimerTasksRequest |  (optional)
+    notifyTimerTasksRequest := *openapiclient.NewNotifyTimerTasksRequest(int32(123), int64(123)) // NotifyTimerTasksRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -350,7 +350,7 @@ import (
 )
 
 func main() {
-    notifyWorkerTasksRequest := *openapiclient.NewNotifyWorkerTasksRequest(int32(123), "Namespace_example", "ProcessId_example", "ProcessExecutionId_example") // NotifyWorkerTasksRequest |  (optional)
+    notifyWorkerTasksRequest := *openapiclient.NewNotifyWorkerTasksRequest(int32(123)) // NotifyWorkerTasksRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

@@ -19,23 +19,24 @@ var _ MappedNullable = &NotifyTimerTasksRequest{}
 
 // NotifyTimerTasksRequest struct for NotifyTimerTasksRequest
 type NotifyTimerTasksRequest struct {
-	ShardId                 int32  `json:"shardId"`
-	Namespace               string `json:"namespace"`
-	ProcessId               string `json:"processId"`
-	ProcessExecutionId      string `json:"processExecutionId"`
-	MinTaskTimestampSeconds int64  `json:"minTaskTimestampSeconds"`
+	ShardId int32 `json:"shardId"`
+	// the minimum timestamp of the timer task to pull
+	MinTaskTimestampSeconds int64 `json:"minTaskTimestampSeconds"`
+	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
+	Namespace *string `json:"namespace,omitempty"`
+	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
+	ProcessId *string `json:"processId,omitempty"`
+	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
+	ProcessExecutionId *string `json:"processExecutionId,omitempty"`
 }
 
 // NewNotifyTimerTasksRequest instantiates a new NotifyTimerTasksRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNotifyTimerTasksRequest(shardId int32, namespace string, processId string, processExecutionId string, minTaskTimestampSeconds int64) *NotifyTimerTasksRequest {
+func NewNotifyTimerTasksRequest(shardId int32, minTaskTimestampSeconds int64) *NotifyTimerTasksRequest {
 	this := NotifyTimerTasksRequest{}
 	this.ShardId = shardId
-	this.Namespace = namespace
-	this.ProcessId = processId
-	this.ProcessExecutionId = processExecutionId
 	this.MinTaskTimestampSeconds = minTaskTimestampSeconds
 	return &this
 }
@@ -72,78 +73,6 @@ func (o *NotifyTimerTasksRequest) SetShardId(v int32) {
 	o.ShardId = v
 }
 
-// GetNamespace returns the Namespace field value
-func (o *NotifyTimerTasksRequest) GetNamespace() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Namespace
-}
-
-// GetNamespaceOk returns a tuple with the Namespace field value
-// and a boolean to check if the value has been set.
-func (o *NotifyTimerTasksRequest) GetNamespaceOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Namespace, true
-}
-
-// SetNamespace sets field value
-func (o *NotifyTimerTasksRequest) SetNamespace(v string) {
-	o.Namespace = v
-}
-
-// GetProcessId returns the ProcessId field value
-func (o *NotifyTimerTasksRequest) GetProcessId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProcessId
-}
-
-// GetProcessIdOk returns a tuple with the ProcessId field value
-// and a boolean to check if the value has been set.
-func (o *NotifyTimerTasksRequest) GetProcessIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProcessId, true
-}
-
-// SetProcessId sets field value
-func (o *NotifyTimerTasksRequest) SetProcessId(v string) {
-	o.ProcessId = v
-}
-
-// GetProcessExecutionId returns the ProcessExecutionId field value
-func (o *NotifyTimerTasksRequest) GetProcessExecutionId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProcessExecutionId
-}
-
-// GetProcessExecutionIdOk returns a tuple with the ProcessExecutionId field value
-// and a boolean to check if the value has been set.
-func (o *NotifyTimerTasksRequest) GetProcessExecutionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProcessExecutionId, true
-}
-
-// SetProcessExecutionId sets field value
-func (o *NotifyTimerTasksRequest) SetProcessExecutionId(v string) {
-	o.ProcessExecutionId = v
-}
-
 // GetMinTaskTimestampSeconds returns the MinTaskTimestampSeconds field value
 func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSeconds() int64 {
 	if o == nil {
@@ -168,6 +97,102 @@ func (o *NotifyTimerTasksRequest) SetMinTaskTimestampSeconds(v int64) {
 	o.MinTaskTimestampSeconds = v
 }
 
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
+func (o *NotifyTimerTasksRequest) GetNamespace() string {
+	if o == nil || IsNil(o.Namespace) {
+		var ret string
+		return ret
+	}
+	return *o.Namespace
+}
+
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotifyTimerTasksRequest) GetNamespaceOk() (*string, bool) {
+	if o == nil || IsNil(o.Namespace) {
+		return nil, false
+	}
+	return o.Namespace, true
+}
+
+// HasNamespace returns a boolean if a field has been set.
+func (o *NotifyTimerTasksRequest) HasNamespace() bool {
+	if o != nil && !IsNil(o.Namespace) {
+		return true
+	}
+
+	return false
+}
+
+// SetNamespace gets a reference to the given string and assigns it to the Namespace field.
+func (o *NotifyTimerTasksRequest) SetNamespace(v string) {
+	o.Namespace = &v
+}
+
+// GetProcessId returns the ProcessId field value if set, zero value otherwise.
+func (o *NotifyTimerTasksRequest) GetProcessId() string {
+	if o == nil || IsNil(o.ProcessId) {
+		var ret string
+		return ret
+	}
+	return *o.ProcessId
+}
+
+// GetProcessIdOk returns a tuple with the ProcessId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotifyTimerTasksRequest) GetProcessIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ProcessId) {
+		return nil, false
+	}
+	return o.ProcessId, true
+}
+
+// HasProcessId returns a boolean if a field has been set.
+func (o *NotifyTimerTasksRequest) HasProcessId() bool {
+	if o != nil && !IsNil(o.ProcessId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessId gets a reference to the given string and assigns it to the ProcessId field.
+func (o *NotifyTimerTasksRequest) SetProcessId(v string) {
+	o.ProcessId = &v
+}
+
+// GetProcessExecutionId returns the ProcessExecutionId field value if set, zero value otherwise.
+func (o *NotifyTimerTasksRequest) GetProcessExecutionId() string {
+	if o == nil || IsNil(o.ProcessExecutionId) {
+		var ret string
+		return ret
+	}
+	return *o.ProcessExecutionId
+}
+
+// GetProcessExecutionIdOk returns a tuple with the ProcessExecutionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotifyTimerTasksRequest) GetProcessExecutionIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ProcessExecutionId) {
+		return nil, false
+	}
+	return o.ProcessExecutionId, true
+}
+
+// HasProcessExecutionId returns a boolean if a field has been set.
+func (o *NotifyTimerTasksRequest) HasProcessExecutionId() bool {
+	if o != nil && !IsNil(o.ProcessExecutionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessExecutionId gets a reference to the given string and assigns it to the ProcessExecutionId field.
+func (o *NotifyTimerTasksRequest) SetProcessExecutionId(v string) {
+	o.ProcessExecutionId = &v
+}
+
 func (o NotifyTimerTasksRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -179,10 +204,16 @@ func (o NotifyTimerTasksRequest) MarshalJSON() ([]byte, error) {
 func (o NotifyTimerTasksRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["shardId"] = o.ShardId
-	toSerialize["namespace"] = o.Namespace
-	toSerialize["processId"] = o.ProcessId
-	toSerialize["processExecutionId"] = o.ProcessExecutionId
 	toSerialize["minTaskTimestampSeconds"] = o.MinTaskTimestampSeconds
+	if !IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
+	}
+	if !IsNil(o.ProcessId) {
+		toSerialize["processId"] = o.ProcessId
+	}
+	if !IsNil(o.ProcessExecutionId) {
+		toSerialize["processExecutionId"] = o.ProcessExecutionId
+	}
 	return toSerialize, nil
 }
 
