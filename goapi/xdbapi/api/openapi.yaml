@@ -33,6 +33,30 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Process already started
       summary: start a process execution
+  /api/v1/xdb/service/process-execution/stop:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionStopRequest'
+      responses:
+        "200":
+          content: {}
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: invalid request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Process execution not exists
+      summary: stop a process execution
   /api/v1/xdb/service/process-execution/describe:
     post:
       requestBody:
@@ -371,7 +395,7 @@ components:
           type: integer
       type: object
     ProcessExecutionStartRequest:
-      description: the request for starting an process execution
+      description: the request for starting a process execution
       example:
         startStateConfig:
           skipWaitUntil: true
@@ -449,3 +473,25 @@ components:
       required:
       - processExecutionId
       type: object
+    ProcessExecutionStopRequest:
+      description: the request for stopping a process execution
+      example:
+        processId: processId
+        namespace: namespace
+        stopType: null
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        stopType:
+          $ref: '#/components/schemas/ProcessExecutionStopType'
+      required:
+      - namespace
+      - processId
+      type: object
+    ProcessExecutionStopType:
+      enum:
+      - TERMINATE
+      - FAIL
+      type: string

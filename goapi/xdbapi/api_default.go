@@ -45,6 +45,17 @@ type DefaultAPI interface {
 	ApiV1XdbServiceProcessExecutionStartPostExecute(r ApiApiV1XdbServiceProcessExecutionStartPostRequest) (*ProcessExecutionStartResponse, *http.Response, error)
 
 	/*
+		ApiV1XdbServiceProcessExecutionStopPost stop a process execution
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiApiV1XdbServiceProcessExecutionStopPostRequest
+	*/
+	ApiV1XdbServiceProcessExecutionStopPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStopPostRequest
+
+	// ApiV1XdbServiceProcessExecutionStopPostExecute executes the request
+	ApiV1XdbServiceProcessExecutionStopPostExecute(r ApiApiV1XdbServiceProcessExecutionStopPostRequest) (*http.Response, error)
+
+	/*
 		ApiV1XdbWorkerAsyncStateExecutePost invoking AsyncState.execute API
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -324,6 +335,121 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStartPostExecute(r Ap
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiApiV1XdbServiceProcessExecutionStopPostRequest struct {
+	ctx                         context.Context
+	ApiService                  DefaultAPI
+	processExecutionStopRequest *ProcessExecutionStopRequest
+}
+
+func (r ApiApiV1XdbServiceProcessExecutionStopPostRequest) ProcessExecutionStopRequest(processExecutionStopRequest ProcessExecutionStopRequest) ApiApiV1XdbServiceProcessExecutionStopPostRequest {
+	r.processExecutionStopRequest = &processExecutionStopRequest
+	return r
+}
+
+func (r ApiApiV1XdbServiceProcessExecutionStopPostRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ApiV1XdbServiceProcessExecutionStopPostExecute(r)
+}
+
+/*
+ApiV1XdbServiceProcessExecutionStopPost stop a process execution
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiApiV1XdbServiceProcessExecutionStopPostRequest
+*/
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStopPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStopPostRequest {
+	return ApiApiV1XdbServiceProcessExecutionStopPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStopPostExecute(r ApiApiV1XdbServiceProcessExecutionStopPostRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionStopPost")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/xdb/service/process-execution/stop"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.processExecutionStopRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ApiApiV1XdbWorkerAsyncStateExecutePostRequest struct {

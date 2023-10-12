@@ -32,7 +32,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiErrorResponse'  
+                $ref: '#/components/schemas/ApiErrorResponse'
+  /api/v1/xdb/service/process-execution/stop:
+    post:
+      summary: stop a process execution
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionStopRequest'
+      responses:
+        '200':
+          description: successful operation
+          content: {}
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: Process execution not exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
   /api/v1/xdb/service/process-execution/describe:
     post:
       summary: describe a process execution
@@ -272,7 +296,7 @@ components:
           type: integer
     ProcessExecutionStartRequest:
       type: object
-      description: the request for starting an process execution
+      description: the request for starting a process execution
       required:
         - namespace
         - processId
@@ -327,3 +351,21 @@ components:
         processExecutionId:
           type: string
           description: a UUID as the unique identifier of a process execution
+    ProcessExecutionStopRequest:
+      type: object
+      description: the request for stopping a process execution
+      required:
+        - namespace
+        - processId
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        stopType:
+          $ref: '#/components/schemas/ProcessExecutionStopType'
+    ProcessExecutionStopType:
+      type: string
+      enum:
+        - TERMINATE # default behaviour. ProcessStatus becomes TERMINATED
+        - FAIL # ProcessStatus becomes FAILED
