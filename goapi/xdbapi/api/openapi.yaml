@@ -50,6 +50,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: invalid request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Process execution not exists
       summary: stop a process execution
   /api/v1/xdb/service/process-execution/describe:
     post:
