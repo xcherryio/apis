@@ -459,15 +459,17 @@ components:
     NotifyTimerTasksRequest:
       required:
         - shardId
-        - minTaskTimestampSeconds
+        - fireTimestamps
       type: object
       properties:
         shardId:
           type: integer
-        minTaskTimestampSeconds:
-          type: integer
-          format: int64
-          description: the minimum timestamp of the timer task to pull
+        fireTimestamps:
+          type: array
+          items:
+              type: integer
+              format: int64
+          description: the fire timestamp of all timer tasks to pull
         namespace:
           type: string
           description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
