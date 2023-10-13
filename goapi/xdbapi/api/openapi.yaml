@@ -725,18 +725,22 @@ components:
       type: object
     NotifyTimerTasksRequest:
       example:
+        fireTimestamps:
+        - 6
+        - 6
         processExecutionId: processExecutionId
         processId: processId
         namespace: namespace
         shardId: 0
-        minTaskTimestampSeconds: 6
       properties:
         shardId:
           type: integer
-        minTaskTimestampSeconds:
-          description: the minimum timestamp of the timer task to pull
-          format: int64
-          type: integer
+        fireTimestamps:
+          description: the fire timestamp of all timer tasks to pull
+          items:
+            format: int64
+            type: integer
+          type: array
         namespace:
           description: "optional field for distributed database without global secondary\
             \ index, to pull for specific task rather than a page"
@@ -750,6 +754,6 @@ components:
             \ index, to pull for specific task rather than a page"
           type: string
       required:
-      - minTaskTimestampSeconds
+      - fireTimestamps
       - shardId
       type: object

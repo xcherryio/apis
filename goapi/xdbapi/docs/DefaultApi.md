@@ -288,7 +288,7 @@ import (
 )
 
 func main() {
-    notifyTimerTasksRequest := *openapiclient.NewNotifyTimerTasksRequest(int32(123), int64(123)) // NotifyTimerTasksRequest |  (optional)
+    notifyTimerTasksRequest := *openapiclient.NewNotifyTimerTasksRequest(int32(123), []int64{int64(123)}) // NotifyTimerTasksRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

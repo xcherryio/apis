@@ -20,8 +20,8 @@ var _ MappedNullable = &NotifyTimerTasksRequest{}
 // NotifyTimerTasksRequest struct for NotifyTimerTasksRequest
 type NotifyTimerTasksRequest struct {
 	ShardId int32 `json:"shardId"`
-	// the minimum timestamp of the timer task to pull
-	MinTaskTimestampSeconds int64 `json:"minTaskTimestampSeconds"`
+	// the fire timestamp of all timer tasks to pull
+	FireTimestamps []int64 `json:"fireTimestamps"`
 	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
 	Namespace *string `json:"namespace,omitempty"`
 	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
@@ -34,10 +34,10 @@ type NotifyTimerTasksRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNotifyTimerTasksRequest(shardId int32, minTaskTimestampSeconds int64) *NotifyTimerTasksRequest {
+func NewNotifyTimerTasksRequest(shardId int32, fireTimestamps []int64) *NotifyTimerTasksRequest {
 	this := NotifyTimerTasksRequest{}
 	this.ShardId = shardId
-	this.MinTaskTimestampSeconds = minTaskTimestampSeconds
+	this.FireTimestamps = fireTimestamps
 	return &this
 }
 
@@ -73,28 +73,28 @@ func (o *NotifyTimerTasksRequest) SetShardId(v int32) {
 	o.ShardId = v
 }
 
-// GetMinTaskTimestampSeconds returns the MinTaskTimestampSeconds field value
-func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSeconds() int64 {
+// GetFireTimestamps returns the FireTimestamps field value
+func (o *NotifyTimerTasksRequest) GetFireTimestamps() []int64 {
 	if o == nil {
-		var ret int64
+		var ret []int64
 		return ret
 	}
 
-	return o.MinTaskTimestampSeconds
+	return o.FireTimestamps
 }
 
-// GetMinTaskTimestampSecondsOk returns a tuple with the MinTaskTimestampSeconds field value
+// GetFireTimestampsOk returns a tuple with the FireTimestamps field value
 // and a boolean to check if the value has been set.
-func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSecondsOk() (*int64, bool) {
+func (o *NotifyTimerTasksRequest) GetFireTimestampsOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.MinTaskTimestampSeconds, true
+	return o.FireTimestamps, true
 }
 
-// SetMinTaskTimestampSeconds sets field value
-func (o *NotifyTimerTasksRequest) SetMinTaskTimestampSeconds(v int64) {
-	o.MinTaskTimestampSeconds = v
+// SetFireTimestamps sets field value
+func (o *NotifyTimerTasksRequest) SetFireTimestamps(v []int64) {
+	o.FireTimestamps = v
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
@@ -204,7 +204,7 @@ func (o NotifyTimerTasksRequest) MarshalJSON() ([]byte, error) {
 func (o NotifyTimerTasksRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["shardId"] = o.ShardId
-	toSerialize["minTaskTimestampSeconds"] = o.MinTaskTimestampSeconds
+	toSerialize["fireTimestamps"] = o.FireTimestamps
 	if !IsNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ShardId** | **int32** |  | 
-**MinTaskTimestampSeconds** | **int64** | the minimum timestamp of the timer task to pull | 
+**FireTimestamps** | **[]int64** | the fire timestamp of all timer tasks to pull | 
 **Namespace** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
 **ProcessId** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
 **ProcessExecutionId** | Pointer to **string** | optional field for distributed database without global secondary index, to pull for specific task rather than a page | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewNotifyTimerTasksRequest
 
-`func NewNotifyTimerTasksRequest(shardId int32, minTaskTimestampSeconds int64, ) *NotifyTimerTasksRequest`
+`func NewNotifyTimerTasksRequest(shardId int32, fireTimestamps []int64, ) *NotifyTimerTasksRequest`
 
 NewNotifyTimerTasksRequest instantiates a new NotifyTimerTasksRequest object
 This constructor will assign default values to properties that have it defined,
@@ -49,24 +49,24 @@ and a boolean to check if the value has been set.
 SetShardId sets ShardId field to given value.
 
 
-### GetMinTaskTimestampSeconds
+### GetFireTimestamps
 
-`func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSeconds() int64`
+`func (o *NotifyTimerTasksRequest) GetFireTimestamps() []int64`
 
-GetMinTaskTimestampSeconds returns the MinTaskTimestampSeconds field if non-nil, zero value otherwise.
+GetFireTimestamps returns the FireTimestamps field if non-nil, zero value otherwise.
 
-### GetMinTaskTimestampSecondsOk
+### GetFireTimestampsOk
 
-`func (o *NotifyTimerTasksRequest) GetMinTaskTimestampSecondsOk() (*int64, bool)`
+`func (o *NotifyTimerTasksRequest) GetFireTimestampsOk() (*[]int64, bool)`
 
-GetMinTaskTimestampSecondsOk returns a tuple with the MinTaskTimestampSeconds field if it's non-nil, zero value otherwise
+GetFireTimestampsOk returns a tuple with the FireTimestamps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMinTaskTimestampSeconds
+### SetFireTimestamps
 
-`func (o *NotifyTimerTasksRequest) SetMinTaskTimestampSeconds(v int64)`
+`func (o *NotifyTimerTasksRequest) SetFireTimestamps(v []int64)`
 
-SetMinTaskTimestampSeconds sets MinTaskTimestampSeconds field to given value.
+SetFireTimestamps sets FireTimestamps field to given value.
 
 
 ### GetNamespace
