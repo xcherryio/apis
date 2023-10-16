@@ -723,4 +723,83 @@ components:
       required:
       - processExecutionId
       type: object
-
+    NotifyWorkerTasksRequest:
+      example:
+        processExecutionId: processExecutionId
+        processId: processId
+        namespace: namespace
+        shardId: 0
+      properties:
+        shardId:
+          type: integer
+        namespace:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+        processId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+        processExecutionId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+      required:
+      - shardId
+      type: object
+    NotifyTimerTasksRequest:
+      example:
+        fireTimestamps:
+        - 6
+        - 6
+        processExecutionId: processExecutionId
+        processId: processId
+        namespace: namespace
+        shardId: 0
+      properties:
+        shardId:
+          type: integer
+        fireTimestamps:
+          description: the fire timestamp of all timer tasks to pull
+          items:
+            format: int64
+            type: integer
+          type: array
+        namespace:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+        processId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+        processExecutionId:
+          description: "optional field for distributed database without global secondary\
+            \ index, to pull for specific task rather than a page"
+          type: string
+      required:
+      - fireTimestamps
+      - shardId
+      type: object
+    ProcessExecutionStopRequest:
+      description: the request for stopping a process execution
+      example:
+        processId: processId
+        namespace: namespace
+        stopType: null
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        stopType:
+          $ref: '#/components/schemas/ProcessExecutionStopType'
+      required:
+      - namespace
+      - processId
+      type: object
+    ProcessExecutionStopType:
+      enum:
+      - TERMINATE
+      - FAIL
+      type: string
