@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ApiV1XdbServiceProcessExecutionDescribePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionDescribePost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
 [**ApiV1XdbServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStartPost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
+[**ApiV1XdbServiceProcessExecutionStopPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStopPost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 [**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 [**InternalApiV1XdbNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyTimerTasksPost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
@@ -126,6 +127,68 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ProcessExecutionStartResponse**](ProcessExecutionStartResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApiV1XdbServiceProcessExecutionStopPost
+
+> ApiV1XdbServiceProcessExecutionStopPost(ctx).ProcessExecutionStopRequest(processExecutionStopRequest).Execute()
+
+stop a process execution
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xdblab/xdb-apis"
+)
+
+func main() {
+    processExecutionStopRequest := *openapiclient.NewProcessExecutionStopRequest("Namespace_example", "ProcessId_example") // ProcessExecutionStopRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionStopPost(context.Background()).ProcessExecutionStopRequest(processExecutionStopRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionStopPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExecutionStopPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processExecutionStopRequest** | [**ProcessExecutionStopRequest**](ProcessExecutionStopRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

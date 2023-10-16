@@ -33,6 +33,30 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Process already started
       summary: start a process execution
+  /api/v1/xdb/service/process-execution/stop:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionStopRequest'
+      responses:
+        "200":
+          content: {}
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: invalid request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Process execution not exists
+      summary: stop a process execution
   /api/v1/xdb/service/process-execution/describe:
     post:
       requestBody:
@@ -555,7 +579,7 @@ components:
           type: integer
       type: object
     ProcessExecutionStartRequest:
-      description: the request for starting an process execution
+      description: the request for starting a process execution
       example:
         startStateConfig:
           executeApiTimeoutSeconds: 6
@@ -699,61 +723,4 @@ components:
       required:
       - processExecutionId
       type: object
-    NotifyWorkerTasksRequest:
-      example:
-        processExecutionId: processExecutionId
-        processId: processId
-        namespace: namespace
-        shardId: 0
-      properties:
-        shardId:
-          type: integer
-        namespace:
-          description: "optional field for distributed database without global secondary\
-            \ index, to pull for specific task rather than a page"
-          type: string
-        processId:
-          description: "optional field for distributed database without global secondary\
-            \ index, to pull for specific task rather than a page"
-          type: string
-        processExecutionId:
-          description: "optional field for distributed database without global secondary\
-            \ index, to pull for specific task rather than a page"
-          type: string
-      required:
-      - shardId
-      type: object
-    NotifyTimerTasksRequest:
-      example:
-        fireTimestamps:
-        - 6
-        - 6
-        processExecutionId: processExecutionId
-        processId: processId
-        namespace: namespace
-        shardId: 0
-      properties:
-        shardId:
-          type: integer
-        fireTimestamps:
-          description: the fire timestamp of all timer tasks to pull
-          items:
-            format: int64
-            type: integer
-          type: array
-        namespace:
-          description: "optional field for distributed database without global secondary\
-            \ index, to pull for specific task rather than a page"
-          type: string
-        processId:
-          description: "optional field for distributed database without global secondary\
-            \ index, to pull for specific task rather than a page"
-          type: string
-        processExecutionId:
-          description: "optional field for distributed database without global secondary\
-            \ index, to pull for specific task rather than a page"
-          type: string
-      required:
-      - fireTimestamps
-      - shardId
-      type: object
+

@@ -24,6 +24,8 @@ docs/ProcessExecutionDescribeRequest.md
 docs/ProcessExecutionDescribeResponse.md
 docs/ProcessExecutionStartRequest.md
 docs/ProcessExecutionStartResponse.md
+docs/ProcessExecutionStopRequest.md
+docs/ProcessExecutionStopType.md
 docs/ProcessIdReusePolicy.md
 docs/ProcessStartConfig.md
 docs/ProcessStatus.md
@@ -56,6 +58,8 @@ model_process_execution_describe_request.go
 model_process_execution_describe_response.go
 model_process_execution_start_request.go
 model_process_execution_start_response.go
+model_process_execution_stop_request.go
+model_process_execution_stop_type.go
 model_process_id_reuse_policy.go
 model_process_start_config.go
 model_process_status.go
