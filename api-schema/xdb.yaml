@@ -127,7 +127,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkerErrorResponse'
-
+  # internal APIs are for internal communication within the services of xdb server 
+  /internal/api/v1/xdb/notify-worker-tasks:
+    post:
+      summary: "for api service to tell async service that there are new worker tasks added to the queue"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyWorkerTasksRequest'
+      responses:
+        '200':
+          description: successful operation
+          content: {}
+  /internal/api/v1/xdb/notify-timer-tasks:
+    post:
+      summary: "for api service to tell async service that there are new timer tasks added to the queue"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyTimerTasksRequest'
+      responses:
+        '200':
+          description: successful operation
+          content: {}              
 components:
   schemas:
     ProcessExecutionDescribeRequest:
@@ -167,6 +191,10 @@ components:
     AsyncStateWaitUntilRequest:
       type: object
       description: the input of the waitUntil API
+      required: 
+        - context
+        - processType
+        - stateId
       properties:
         context:
           $ref: '#/components/schemas/Context'
@@ -179,14 +207,32 @@ components:
     AsyncStateWaitUntilResponse:
       type: object
       description: the output of the waitUntil API
+      required: 
+        - commandRequest
       properties:
         commandRequest:
           $ref: '#/components/schemas/CommandRequest'
     CommandRequest:
       type: object
+      required: 
+        - waitingType
       properties: 
         waitingType: 
           $ref: '#/components/schemas/CommandWaitingType'
+        timerCommands:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerCommand'
+    TimerCommand:
+      type: object
+      required:
+        - firingUnixTimestampSeconds
+      properties:
+        commandId:
+          type: string
+        firingUnixTimestampSeconds:
+          type: integer
+          format: int64
     CommandWaitingType:
       type: string
       enum:
@@ -196,6 +242,10 @@ components:
     AsyncStateExecuteRequest:
       type: object
       description: the input of the execute API
+      required: 
+        - context
+        - processType
+        - stateId
       properties:
         context:
           $ref: '#/components/schemas/Context'
@@ -205,9 +255,35 @@ components:
           type: string
         stateInput:
           $ref: '#/components/schemas/EncodedObject'
+        commandResults:
+          $ref: '#/components/schemas/CommandResults'
+    CommandResults:
+      type: object
+      properties:
+        timerResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerResult'
+    TimerResult:
+      type: object
+      required:
+        - timerStatus
+      properties:
+        commandId:
+          type: string
+        timerStatus:
+          $ref: '#/components/schemas/TimerStatus'
+    TimerStatus:
+      type: string
+      enum:
+        - SCHEDULED_TIMER
+        - FIRED_TIMER
+        - SKIPPED_TIMER
     AsyncStateExecuteResponse:
       type: object
       description: the output of the execute API
+      required: 
+        - stateDecision
       properties:
         stateDecision:
           $ref: '#/components/schemas/StateDecision'
@@ -223,6 +299,8 @@ components:
           $ref: '#/components/schemas/ThreadCloseDecision'
     ThreadCloseDecision:
       type: object
+      required: 
+        - closeType
       properties:
         closeType:
           $ref: '#/components/schemas/ThreadCloseType'
@@ -262,6 +340,7 @@ components:
           format: int64
         stateExecutionId:
           type: string
+          description: stateExecutionId is for async state API only
         firstAttemptTimestamp:
           description: for async state API only(during backoff retry)
           type: integer
@@ -271,6 +350,8 @@ components:
           type: integer
     WorkerErrorResponse:
       type: object
+      required: 
+        - errorType
       properties:
         detail:
           type: string
@@ -278,6 +359,9 @@ components:
           type: string
     EncodedObject:
       type: object
+      required: 
+        - encoding
+        - data
       properties:
         encoding:
           type: string
@@ -342,6 +426,35 @@ components:
       properties:
         skipWaitUntil:
           type: boolean
+        waitUntilApiTimeoutSeconds: 
+          type: integer
+          description: the timeout for the single attempt of AsyncState.waitUntil API
+        executeApiTimeoutSeconds: 
+          type: integer
+          description: the timeout for the single attempt of AsyncState.execute API
+        waitUntilApiRetryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+        executeApiRetryPolicy:
+          $ref: '#/components/schemas/RetryPolicy'
+    RetryPolicy:
+      type: object
+      properties:
+        initialIntervalSeconds: 
+          type: integer
+          description: the initial interval for the first retry, default to 1 second
+        backoffCoefficient: 
+          type: number
+          format: float
+          description: the backoff coefficient for the next retry, default to 2
+        maximumIntervalSeconds: 
+          type: integer
+          description: the maximum interval for the next retry, default to 100x of initial interval
+        maximumAttempts: 
+          type: integer
+          description: the maximum number of attempts, default to 0, means unlimited
+        maximumAttemptsDurationSeconds: 
+          type: integer
+          description: the maximum duration of all attempts, default to 0, means unlimited
     ProcessExecutionStartResponse:
       type: object
       description: response of ProcessExecutionStartRequest
@@ -351,6 +464,45 @@ components:
         processExecutionId:
           type: string
           description: a UUID as the unique identifier of a process execution
+    NotifyWorkerTasksRequest:
+      required:
+        - shardId
+      type: object
+      properties:
+        shardId:
+          type: integer
+        namespace:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+        processId:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+        processExecutionId:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+    NotifyTimerTasksRequest:
+      required:
+        - shardId
+        - fireTimestamps
+      type: object
+      properties:
+        shardId:
+          type: integer
+        fireTimestamps:
+          type: array
+          items:
+              type: integer
+              format: int64
+          description: the fire timestamp of all timer tasks to pull
+        namespace:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+        processId:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+        processExecutionId:
+          type: string
+          description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
     ProcessExecutionStopRequest:
       type: object
       description: the request for stopping a process execution
@@ -369,3 +521,4 @@ components:
       enum:
         - TERMINATE # default behaviour. ProcessStatus becomes TERMINATED
         - FAIL # ProcessStatus becomes FAILED
+

@@ -19,15 +19,16 @@ var _ MappedNullable = &AsyncStateWaitUntilResponse{}
 
 // AsyncStateWaitUntilResponse the output of the waitUntil API
 type AsyncStateWaitUntilResponse struct {
-	CommandRequest *CommandRequest `json:"commandRequest,omitempty"`
+	CommandRequest CommandRequest `json:"commandRequest"`
 }
 
 // NewAsyncStateWaitUntilResponse instantiates a new AsyncStateWaitUntilResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAsyncStateWaitUntilResponse() *AsyncStateWaitUntilResponse {
+func NewAsyncStateWaitUntilResponse(commandRequest CommandRequest) *AsyncStateWaitUntilResponse {
 	this := AsyncStateWaitUntilResponse{}
+	this.CommandRequest = commandRequest
 	return &this
 }
 
@@ -39,36 +40,28 @@ func NewAsyncStateWaitUntilResponseWithDefaults() *AsyncStateWaitUntilResponse {
 	return &this
 }
 
-// GetCommandRequest returns the CommandRequest field value if set, zero value otherwise.
+// GetCommandRequest returns the CommandRequest field value
 func (o *AsyncStateWaitUntilResponse) GetCommandRequest() CommandRequest {
-	if o == nil || IsNil(o.CommandRequest) {
+	if o == nil {
 		var ret CommandRequest
 		return ret
 	}
-	return *o.CommandRequest
+
+	return o.CommandRequest
 }
 
-// GetCommandRequestOk returns a tuple with the CommandRequest field value if set, nil otherwise
+// GetCommandRequestOk returns a tuple with the CommandRequest field value
 // and a boolean to check if the value has been set.
 func (o *AsyncStateWaitUntilResponse) GetCommandRequestOk() (*CommandRequest, bool) {
-	if o == nil || IsNil(o.CommandRequest) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CommandRequest, true
+	return &o.CommandRequest, true
 }
 
-// HasCommandRequest returns a boolean if a field has been set.
-func (o *AsyncStateWaitUntilResponse) HasCommandRequest() bool {
-	if o != nil && !IsNil(o.CommandRequest) {
-		return true
-	}
-
-	return false
-}
-
-// SetCommandRequest gets a reference to the given CommandRequest and assigns it to the CommandRequest field.
+// SetCommandRequest sets field value
 func (o *AsyncStateWaitUntilResponse) SetCommandRequest(v CommandRequest) {
-	o.CommandRequest = &v
+	o.CommandRequest = v
 }
 
 func (o AsyncStateWaitUntilResponse) MarshalJSON() ([]byte, error) {
@@ -81,9 +74,7 @@ func (o AsyncStateWaitUntilResponse) MarshalJSON() ([]byte, error) {
 
 func (o AsyncStateWaitUntilResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CommandRequest) {
-		toSerialize["commandRequest"] = o.CommandRequest
-	}
+	toSerialize["commandRequest"] = o.CommandRequest
 	return toSerialize, nil
 }
 

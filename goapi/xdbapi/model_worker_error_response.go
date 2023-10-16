@@ -20,15 +20,16 @@ var _ MappedNullable = &WorkerErrorResponse{}
 // WorkerErrorResponse struct for WorkerErrorResponse
 type WorkerErrorResponse struct {
 	Detail    *string `json:"detail,omitempty"`
-	ErrorType *string `json:"errorType,omitempty"`
+	ErrorType string  `json:"errorType"`
 }
 
 // NewWorkerErrorResponse instantiates a new WorkerErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkerErrorResponse() *WorkerErrorResponse {
+func NewWorkerErrorResponse(errorType string) *WorkerErrorResponse {
 	this := WorkerErrorResponse{}
+	this.ErrorType = errorType
 	return &this
 }
 
@@ -72,36 +73,28 @@ func (o *WorkerErrorResponse) SetDetail(v string) {
 	o.Detail = &v
 }
 
-// GetErrorType returns the ErrorType field value if set, zero value otherwise.
+// GetErrorType returns the ErrorType field value
 func (o *WorkerErrorResponse) GetErrorType() string {
-	if o == nil || IsNil(o.ErrorType) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ErrorType
+
+	return o.ErrorType
 }
 
-// GetErrorTypeOk returns a tuple with the ErrorType field value if set, nil otherwise
+// GetErrorTypeOk returns a tuple with the ErrorType field value
 // and a boolean to check if the value has been set.
 func (o *WorkerErrorResponse) GetErrorTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.ErrorType) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ErrorType, true
+	return &o.ErrorType, true
 }
 
-// HasErrorType returns a boolean if a field has been set.
-func (o *WorkerErrorResponse) HasErrorType() bool {
-	if o != nil && !IsNil(o.ErrorType) {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorType gets a reference to the given string and assigns it to the ErrorType field.
+// SetErrorType sets field value
 func (o *WorkerErrorResponse) SetErrorType(v string) {
-	o.ErrorType = &v
+	o.ErrorType = v
 }
 
 func (o WorkerErrorResponse) MarshalJSON() ([]byte, error) {
@@ -117,9 +110,7 @@ func (o WorkerErrorResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
 	}
-	if !IsNil(o.ErrorType) {
-		toSerialize["errorType"] = o.ErrorType
-	}
+	toSerialize["errorType"] = o.ErrorType
 	return toSerialize, nil
 }
 

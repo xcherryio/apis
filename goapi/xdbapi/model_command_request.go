@@ -19,15 +19,17 @@ var _ MappedNullable = &CommandRequest{}
 
 // CommandRequest struct for CommandRequest
 type CommandRequest struct {
-	WaitingType *CommandWaitingType `json:"waitingType,omitempty"`
+	WaitingType   CommandWaitingType `json:"waitingType"`
+	TimerCommands []TimerCommand     `json:"timerCommands,omitempty"`
 }
 
 // NewCommandRequest instantiates a new CommandRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCommandRequest() *CommandRequest {
+func NewCommandRequest(waitingType CommandWaitingType) *CommandRequest {
 	this := CommandRequest{}
+	this.WaitingType = waitingType
 	return &this
 }
 
@@ -39,36 +41,60 @@ func NewCommandRequestWithDefaults() *CommandRequest {
 	return &this
 }
 
-// GetWaitingType returns the WaitingType field value if set, zero value otherwise.
+// GetWaitingType returns the WaitingType field value
 func (o *CommandRequest) GetWaitingType() CommandWaitingType {
-	if o == nil || IsNil(o.WaitingType) {
+	if o == nil {
 		var ret CommandWaitingType
 		return ret
 	}
-	return *o.WaitingType
+
+	return o.WaitingType
 }
 
-// GetWaitingTypeOk returns a tuple with the WaitingType field value if set, nil otherwise
+// GetWaitingTypeOk returns a tuple with the WaitingType field value
 // and a boolean to check if the value has been set.
 func (o *CommandRequest) GetWaitingTypeOk() (*CommandWaitingType, bool) {
-	if o == nil || IsNil(o.WaitingType) {
+	if o == nil {
 		return nil, false
 	}
-	return o.WaitingType, true
+	return &o.WaitingType, true
 }
 
-// HasWaitingType returns a boolean if a field has been set.
-func (o *CommandRequest) HasWaitingType() bool {
-	if o != nil && !IsNil(o.WaitingType) {
+// SetWaitingType sets field value
+func (o *CommandRequest) SetWaitingType(v CommandWaitingType) {
+	o.WaitingType = v
+}
+
+// GetTimerCommands returns the TimerCommands field value if set, zero value otherwise.
+func (o *CommandRequest) GetTimerCommands() []TimerCommand {
+	if o == nil || IsNil(o.TimerCommands) {
+		var ret []TimerCommand
+		return ret
+	}
+	return o.TimerCommands
+}
+
+// GetTimerCommandsOk returns a tuple with the TimerCommands field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommandRequest) GetTimerCommandsOk() ([]TimerCommand, bool) {
+	if o == nil || IsNil(o.TimerCommands) {
+		return nil, false
+	}
+	return o.TimerCommands, true
+}
+
+// HasTimerCommands returns a boolean if a field has been set.
+func (o *CommandRequest) HasTimerCommands() bool {
+	if o != nil && !IsNil(o.TimerCommands) {
 		return true
 	}
 
 	return false
 }
 
-// SetWaitingType gets a reference to the given CommandWaitingType and assigns it to the WaitingType field.
-func (o *CommandRequest) SetWaitingType(v CommandWaitingType) {
-	o.WaitingType = &v
+// SetTimerCommands gets a reference to the given []TimerCommand and assigns it to the TimerCommands field.
+func (o *CommandRequest) SetTimerCommands(v []TimerCommand) {
+	o.TimerCommands = v
 }
 
 func (o CommandRequest) MarshalJSON() ([]byte, error) {
@@ -81,8 +107,9 @@ func (o CommandRequest) MarshalJSON() ([]byte, error) {
 
 func (o CommandRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.WaitingType) {
-		toSerialize["waitingType"] = o.WaitingType
+	toSerialize["waitingType"] = o.WaitingType
+	if !IsNil(o.TimerCommands) {
+		toSerialize["timerCommands"] = o.TimerCommands
 	}
 	return toSerialize, nil
 }

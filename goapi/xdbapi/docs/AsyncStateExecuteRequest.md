@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Context** | Pointer to [**Context**](Context.md) |  | [optional] 
-**ProcessType** | Pointer to **string** |  | [optional] 
-**StateId** | Pointer to **string** |  | [optional] 
+**Context** | [**Context**](Context.md) |  | 
+**ProcessType** | **string** |  | 
+**StateId** | **string** |  | 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
+**CommandResults** | Pointer to [**CommandResults**](CommandResults.md) |  | [optional] 
 
 ## Methods
 
 ### NewAsyncStateExecuteRequest
 
-`func NewAsyncStateExecuteRequest() *AsyncStateExecuteRequest`
+`func NewAsyncStateExecuteRequest(context Context, processType string, stateId string, ) *AsyncStateExecuteRequest`
 
 NewAsyncStateExecuteRequest instantiates a new AsyncStateExecuteRequest object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetContext sets Context field to given value.
 
-### HasContext
-
-`func (o *AsyncStateExecuteRequest) HasContext() bool`
-
-HasContext returns a boolean if a field has been set.
 
 ### GetProcessType
 
@@ -72,11 +68,6 @@ and a boolean to check if the value has been set.
 
 SetProcessType sets ProcessType field to given value.
 
-### HasProcessType
-
-`func (o *AsyncStateExecuteRequest) HasProcessType() bool`
-
-HasProcessType returns a boolean if a field has been set.
 
 ### GetStateId
 
@@ -97,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetStateId sets StateId field to given value.
 
-### HasStateId
-
-`func (o *AsyncStateExecuteRequest) HasStateId() bool`
-
-HasStateId returns a boolean if a field has been set.
 
 ### GetStateInput
 
@@ -127,6 +113,31 @@ SetStateInput sets StateInput field to given value.
 `func (o *AsyncStateExecuteRequest) HasStateInput() bool`
 
 HasStateInput returns a boolean if a field has been set.
+
+### GetCommandResults
+
+`func (o *AsyncStateExecuteRequest) GetCommandResults() CommandResults`
+
+GetCommandResults returns the CommandResults field if non-nil, zero value otherwise.
+
+### GetCommandResultsOk
+
+`func (o *AsyncStateExecuteRequest) GetCommandResultsOk() (*CommandResults, bool)`
+
+GetCommandResultsOk returns a tuple with the CommandResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommandResults
+
+`func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults)`
+
+SetCommandResults sets CommandResults field to given value.
+
+### HasCommandResults
+
+`func (o *AsyncStateExecuteRequest) HasCommandResults() bool`
+
+HasCommandResults returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

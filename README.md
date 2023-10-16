@@ -1,7 +1,7 @@
 # xdb-apis
 API protocol between xdb SDKs and [xdb service](https://github.com/xdblab/xdb)
 
-It's based on OpenAPI 3.1, see [specification](https://spec.openapis.org/oas/v3.0.3)
+It's based on OpenAPI 3.0.3, see [specification](https://spec.openapis.org/oas/v3.0.3)
 
 ## Development
 

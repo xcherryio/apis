@@ -78,6 +78,28 @@ type DefaultAPI interface {
 	// ApiV1XdbWorkerAsyncStateWaitUntilPostExecute executes the request
 	//  @return AsyncStateWaitUntilResponse
 	ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error)
+
+	/*
+		InternalApiV1XdbNotifyTimerTasksPost for api service to tell async service that there are new timer tasks added to the queue
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiInternalApiV1XdbNotifyTimerTasksPostRequest
+	*/
+	InternalApiV1XdbNotifyTimerTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyTimerTasksPostRequest
+
+	// InternalApiV1XdbNotifyTimerTasksPostExecute executes the request
+	InternalApiV1XdbNotifyTimerTasksPostExecute(r ApiInternalApiV1XdbNotifyTimerTasksPostRequest) (*http.Response, error)
+
+	/*
+		InternalApiV1XdbNotifyWorkerTasksPost for api service to tell async service that there are new worker tasks added to the queue
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiInternalApiV1XdbNotifyWorkerTasksPostRequest
+	*/
+	InternalApiV1XdbNotifyWorkerTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyWorkerTasksPostRequest
+
+	// InternalApiV1XdbNotifyWorkerTasksPostExecute executes the request
+	InternalApiV1XdbNotifyWorkerTasksPostExecute(r ApiInternalApiV1XdbNotifyWorkerTasksPostRequest) (*http.Response, error)
 }
 
 // DefaultAPIService DefaultAPI service
@@ -678,4 +700,192 @@ func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiAp
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiInternalApiV1XdbNotifyTimerTasksPostRequest struct {
+	ctx                     context.Context
+	ApiService              DefaultAPI
+	notifyTimerTasksRequest *NotifyTimerTasksRequest
+}
+
+func (r ApiInternalApiV1XdbNotifyTimerTasksPostRequest) NotifyTimerTasksRequest(notifyTimerTasksRequest NotifyTimerTasksRequest) ApiInternalApiV1XdbNotifyTimerTasksPostRequest {
+	r.notifyTimerTasksRequest = &notifyTimerTasksRequest
+	return r
+}
+
+func (r ApiInternalApiV1XdbNotifyTimerTasksPostRequest) Execute() (*http.Response, error) {
+	return r.ApiService.InternalApiV1XdbNotifyTimerTasksPostExecute(r)
+}
+
+/*
+InternalApiV1XdbNotifyTimerTasksPost for api service to tell async service that there are new timer tasks added to the queue
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInternalApiV1XdbNotifyTimerTasksPostRequest
+*/
+func (a *DefaultAPIService) InternalApiV1XdbNotifyTimerTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyTimerTasksPostRequest {
+	return ApiInternalApiV1XdbNotifyTimerTasksPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) InternalApiV1XdbNotifyTimerTasksPostExecute(r ApiInternalApiV1XdbNotifyTimerTasksPostRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.InternalApiV1XdbNotifyTimerTasksPost")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/internal/api/v1/xdb/notify-timer-tasks"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.notifyTimerTasksRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiInternalApiV1XdbNotifyWorkerTasksPostRequest struct {
+	ctx                      context.Context
+	ApiService               DefaultAPI
+	notifyWorkerTasksRequest *NotifyWorkerTasksRequest
+}
+
+func (r ApiInternalApiV1XdbNotifyWorkerTasksPostRequest) NotifyWorkerTasksRequest(notifyWorkerTasksRequest NotifyWorkerTasksRequest) ApiInternalApiV1XdbNotifyWorkerTasksPostRequest {
+	r.notifyWorkerTasksRequest = &notifyWorkerTasksRequest
+	return r
+}
+
+func (r ApiInternalApiV1XdbNotifyWorkerTasksPostRequest) Execute() (*http.Response, error) {
+	return r.ApiService.InternalApiV1XdbNotifyWorkerTasksPostExecute(r)
+}
+
+/*
+InternalApiV1XdbNotifyWorkerTasksPost for api service to tell async service that there are new worker tasks added to the queue
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInternalApiV1XdbNotifyWorkerTasksPostRequest
+*/
+func (a *DefaultAPIService) InternalApiV1XdbNotifyWorkerTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyWorkerTasksPostRequest {
+	return ApiInternalApiV1XdbNotifyWorkerTasksPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+func (a *DefaultAPIService) InternalApiV1XdbNotifyWorkerTasksPostExecute(r ApiInternalApiV1XdbNotifyWorkerTasksPostRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.InternalApiV1XdbNotifyWorkerTasksPost")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/internal/api/v1/xdb/notify-worker-tasks"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.notifyWorkerTasksRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

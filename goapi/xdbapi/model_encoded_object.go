@@ -19,16 +19,18 @@ var _ MappedNullable = &EncodedObject{}
 
 // EncodedObject struct for EncodedObject
 type EncodedObject struct {
-	Encoding *string `json:"encoding,omitempty"`
-	Data     *string `json:"data,omitempty"`
+	Encoding string `json:"encoding"`
+	Data     string `json:"data"`
 }
 
 // NewEncodedObject instantiates a new EncodedObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEncodedObject() *EncodedObject {
+func NewEncodedObject(encoding string, data string) *EncodedObject {
 	this := EncodedObject{}
+	this.Encoding = encoding
+	this.Data = data
 	return &this
 }
 
@@ -40,68 +42,52 @@ func NewEncodedObjectWithDefaults() *EncodedObject {
 	return &this
 }
 
-// GetEncoding returns the Encoding field value if set, zero value otherwise.
+// GetEncoding returns the Encoding field value
 func (o *EncodedObject) GetEncoding() string {
-	if o == nil || IsNil(o.Encoding) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Encoding
+
+	return o.Encoding
 }
 
-// GetEncodingOk returns a tuple with the Encoding field value if set, nil otherwise
+// GetEncodingOk returns a tuple with the Encoding field value
 // and a boolean to check if the value has been set.
 func (o *EncodedObject) GetEncodingOk() (*string, bool) {
-	if o == nil || IsNil(o.Encoding) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Encoding, true
+	return &o.Encoding, true
 }
 
-// HasEncoding returns a boolean if a field has been set.
-func (o *EncodedObject) HasEncoding() bool {
-	if o != nil && !IsNil(o.Encoding) {
-		return true
-	}
-
-	return false
-}
-
-// SetEncoding gets a reference to the given string and assigns it to the Encoding field.
+// SetEncoding sets field value
 func (o *EncodedObject) SetEncoding(v string) {
-	o.Encoding = &v
+	o.Encoding = v
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
+// GetData returns the Data field value
 func (o *EncodedObject) GetData() string {
-	if o == nil || IsNil(o.Data) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Data
+
+	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *EncodedObject) GetDataOk() (*string, bool) {
-	if o == nil || IsNil(o.Data) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *EncodedObject) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given string and assigns it to the Data field.
+// SetData sets field value
 func (o *EncodedObject) SetData(v string) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o EncodedObject) MarshalJSON() ([]byte, error) {
@@ -114,12 +100,8 @@ func (o EncodedObject) MarshalJSON() ([]byte, error) {
 
 func (o EncodedObject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Encoding) {
-		toSerialize["encoding"] = o.Encoding
-	}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["encoding"] = o.Encoding
+	toSerialize["data"] = o.Data
 	return toSerialize, nil
 }
 

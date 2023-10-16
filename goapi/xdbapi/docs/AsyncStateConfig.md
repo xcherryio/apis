@@ -5,6 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SkipWaitUntil** | Pointer to **bool** |  | [optional] 
+**WaitUntilApiTimeoutSeconds** | Pointer to **int32** | the timeout for the single attempt of AsyncState.waitUntil API | [optional] 
+**ExecuteApiTimeoutSeconds** | Pointer to **int32** | the timeout for the single attempt of AsyncState.execute API | [optional] 
+**WaitUntilApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
+**ExecuteApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +53,106 @@ SetSkipWaitUntil sets SkipWaitUntil field to given value.
 `func (o *AsyncStateConfig) HasSkipWaitUntil() bool`
 
 HasSkipWaitUntil returns a boolean if a field has been set.
+
+### GetWaitUntilApiTimeoutSeconds
+
+`func (o *AsyncStateConfig) GetWaitUntilApiTimeoutSeconds() int32`
+
+GetWaitUntilApiTimeoutSeconds returns the WaitUntilApiTimeoutSeconds field if non-nil, zero value otherwise.
+
+### GetWaitUntilApiTimeoutSecondsOk
+
+`func (o *AsyncStateConfig) GetWaitUntilApiTimeoutSecondsOk() (*int32, bool)`
+
+GetWaitUntilApiTimeoutSecondsOk returns a tuple with the WaitUntilApiTimeoutSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWaitUntilApiTimeoutSeconds
+
+`func (o *AsyncStateConfig) SetWaitUntilApiTimeoutSeconds(v int32)`
+
+SetWaitUntilApiTimeoutSeconds sets WaitUntilApiTimeoutSeconds field to given value.
+
+### HasWaitUntilApiTimeoutSeconds
+
+`func (o *AsyncStateConfig) HasWaitUntilApiTimeoutSeconds() bool`
+
+HasWaitUntilApiTimeoutSeconds returns a boolean if a field has been set.
+
+### GetExecuteApiTimeoutSeconds
+
+`func (o *AsyncStateConfig) GetExecuteApiTimeoutSeconds() int32`
+
+GetExecuteApiTimeoutSeconds returns the ExecuteApiTimeoutSeconds field if non-nil, zero value otherwise.
+
+### GetExecuteApiTimeoutSecondsOk
+
+`func (o *AsyncStateConfig) GetExecuteApiTimeoutSecondsOk() (*int32, bool)`
+
+GetExecuteApiTimeoutSecondsOk returns a tuple with the ExecuteApiTimeoutSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecuteApiTimeoutSeconds
+
+`func (o *AsyncStateConfig) SetExecuteApiTimeoutSeconds(v int32)`
+
+SetExecuteApiTimeoutSeconds sets ExecuteApiTimeoutSeconds field to given value.
+
+### HasExecuteApiTimeoutSeconds
+
+`func (o *AsyncStateConfig) HasExecuteApiTimeoutSeconds() bool`
+
+HasExecuteApiTimeoutSeconds returns a boolean if a field has been set.
+
+### GetWaitUntilApiRetryPolicy
+
+`func (o *AsyncStateConfig) GetWaitUntilApiRetryPolicy() RetryPolicy`
+
+GetWaitUntilApiRetryPolicy returns the WaitUntilApiRetryPolicy field if non-nil, zero value otherwise.
+
+### GetWaitUntilApiRetryPolicyOk
+
+`func (o *AsyncStateConfig) GetWaitUntilApiRetryPolicyOk() (*RetryPolicy, bool)`
+
+GetWaitUntilApiRetryPolicyOk returns a tuple with the WaitUntilApiRetryPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWaitUntilApiRetryPolicy
+
+`func (o *AsyncStateConfig) SetWaitUntilApiRetryPolicy(v RetryPolicy)`
+
+SetWaitUntilApiRetryPolicy sets WaitUntilApiRetryPolicy field to given value.
+
+### HasWaitUntilApiRetryPolicy
+
+`func (o *AsyncStateConfig) HasWaitUntilApiRetryPolicy() bool`
+
+HasWaitUntilApiRetryPolicy returns a boolean if a field has been set.
+
+### GetExecuteApiRetryPolicy
+
+`func (o *AsyncStateConfig) GetExecuteApiRetryPolicy() RetryPolicy`
+
+GetExecuteApiRetryPolicy returns the ExecuteApiRetryPolicy field if non-nil, zero value otherwise.
+
+### GetExecuteApiRetryPolicyOk
+
+`func (o *AsyncStateConfig) GetExecuteApiRetryPolicyOk() (*RetryPolicy, bool)`
+
+GetExecuteApiRetryPolicyOk returns a tuple with the ExecuteApiRetryPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecuteApiRetryPolicy
+
+`func (o *AsyncStateConfig) SetExecuteApiRetryPolicy(v RetryPolicy)`
+
+SetExecuteApiRetryPolicy sets ExecuteApiRetryPolicy field to given value.
+
+### HasExecuteApiRetryPolicy
+
+`func (o *AsyncStateConfig) HasExecuteApiRetryPolicy() bool`
+
+HasExecuteApiRetryPolicy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

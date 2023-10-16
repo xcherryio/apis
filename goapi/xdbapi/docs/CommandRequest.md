@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WaitingType** | Pointer to [**CommandWaitingType**](CommandWaitingType.md) |  | [optional] 
+**WaitingType** | [**CommandWaitingType**](CommandWaitingType.md) |  | 
+**TimerCommands** | Pointer to [**[]TimerCommand**](TimerCommand.md) |  | [optional] 
 
 ## Methods
 
 ### NewCommandRequest
 
-`func NewCommandRequest() *CommandRequest`
+`func NewCommandRequest(waitingType CommandWaitingType, ) *CommandRequest`
 
 NewCommandRequest instantiates a new CommandRequest object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +45,31 @@ and a boolean to check if the value has been set.
 
 SetWaitingType sets WaitingType field to given value.
 
-### HasWaitingType
 
-`func (o *CommandRequest) HasWaitingType() bool`
+### GetTimerCommands
 
-HasWaitingType returns a boolean if a field has been set.
+`func (o *CommandRequest) GetTimerCommands() []TimerCommand`
+
+GetTimerCommands returns the TimerCommands field if non-nil, zero value otherwise.
+
+### GetTimerCommandsOk
+
+`func (o *CommandRequest) GetTimerCommandsOk() (*[]TimerCommand, bool)`
+
+GetTimerCommandsOk returns a tuple with the TimerCommands field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimerCommands
+
+`func (o *CommandRequest) SetTimerCommands(v []TimerCommand)`
+
+SetTimerCommands sets TimerCommands field to given value.
+
+### HasTimerCommands
+
+`func (o *CommandRequest) HasTimerCommands() bool`
+
+HasTimerCommands returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

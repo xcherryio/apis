@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CloseType** | Pointer to [**ThreadCloseType**](ThreadCloseType.md) |  | [optional] 
+**CloseType** | [**ThreadCloseType**](ThreadCloseType.md) |  | 
 **CloseInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 
 ## Methods
 
 ### NewThreadCloseDecision
 
-`func NewThreadCloseDecision() *ThreadCloseDecision`
+`func NewThreadCloseDecision(closeType ThreadCloseType, ) *ThreadCloseDecision`
 
 NewThreadCloseDecision instantiates a new ThreadCloseDecision object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetCloseType sets CloseType field to given value.
 
-### HasCloseType
-
-`func (o *ThreadCloseDecision) HasCloseType() bool`
-
-HasCloseType returns a boolean if a field has been set.
 
 ### GetCloseInput
 

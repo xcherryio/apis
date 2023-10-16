@@ -82,6 +82,8 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStopPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstoppost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstatewaituntilpost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
+*DefaultAPI* | [**InternalApiV1XdbNotifyTimerTasksPost**](docs/DefaultAPI.md#internalapiv1xdbnotifytimertaskspost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
+*DefaultAPI* | [**InternalApiV1XdbNotifyWorkerTasksPost**](docs/DefaultAPI.md#internalapiv1xdbnotifyworkertaskspost) | **Post** /internal/api/v1/xdb/notify-worker-tasks | for api service to tell async service that there are new worker tasks added to the queue
 
 
 ## Documentation For Models
@@ -93,9 +95,12 @@ Class | Method | HTTP request | Description
  - [AsyncStateWaitUntilRequest](docs/AsyncStateWaitUntilRequest.md)
  - [AsyncStateWaitUntilResponse](docs/AsyncStateWaitUntilResponse.md)
  - [CommandRequest](docs/CommandRequest.md)
+ - [CommandResults](docs/CommandResults.md)
  - [CommandWaitingType](docs/CommandWaitingType.md)
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
+ - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
+ - [NotifyWorkerTasksRequest](docs/NotifyWorkerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
  - [ProcessExecutionDescribeResponse](docs/ProcessExecutionDescribeResponse.md)
  - [ProcessExecutionStartRequest](docs/ProcessExecutionStartRequest.md)
@@ -105,10 +110,14 @@ Class | Method | HTTP request | Description
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
  - [ProcessStartConfig](docs/ProcessStartConfig.md)
  - [ProcessStatus](docs/ProcessStatus.md)
+ - [RetryPolicy](docs/RetryPolicy.md)
  - [StateDecision](docs/StateDecision.md)
  - [StateMovement](docs/StateMovement.md)
  - [ThreadCloseDecision](docs/ThreadCloseDecision.md)
  - [ThreadCloseType](docs/ThreadCloseType.md)
+ - [TimerCommand](docs/TimerCommand.md)
+ - [TimerResult](docs/TimerResult.md)
+ - [TimerStatus](docs/TimerStatus.md)
  - [WorkerErrorResponse](docs/WorkerErrorResponse.md)
 
 

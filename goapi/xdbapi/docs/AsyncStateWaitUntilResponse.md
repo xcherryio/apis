@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CommandRequest** | Pointer to [**CommandRequest**](CommandRequest.md) |  | [optional] 
+**CommandRequest** | [**CommandRequest**](CommandRequest.md) |  | 
 
 ## Methods
 
 ### NewAsyncStateWaitUntilResponse
 
-`func NewAsyncStateWaitUntilResponse() *AsyncStateWaitUntilResponse`
+`func NewAsyncStateWaitUntilResponse(commandRequest CommandRequest, ) *AsyncStateWaitUntilResponse`
 
 NewAsyncStateWaitUntilResponse instantiates a new AsyncStateWaitUntilResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetCommandRequest sets CommandRequest field to given value.
 
-### HasCommandRequest
-
-`func (o *AsyncStateWaitUntilResponse) HasCommandRequest() bool`
-
-HasCommandRequest returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
