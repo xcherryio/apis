@@ -19,8 +19,8 @@ var _ MappedNullable = &LocalQueueMessage{}
 
 // LocalQueueMessage struct for LocalQueueMessage
 type LocalQueueMessage struct {
-	QueueName *string        `json:"queueName,omitempty"`
-	DedupId   *string        `json:"dedupId,omitempty"`
+	QueueName string         `json:"queueName"`
+	DedupId   string         `json:"dedupId"`
 	Payload   *EncodedObject `json:"payload,omitempty"`
 }
 
@@ -28,8 +28,10 @@ type LocalQueueMessage struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLocalQueueMessage() *LocalQueueMessage {
+func NewLocalQueueMessage(queueName string, dedupId string) *LocalQueueMessage {
 	this := LocalQueueMessage{}
+	this.QueueName = queueName
+	this.DedupId = dedupId
 	return &this
 }
 
@@ -41,68 +43,52 @@ func NewLocalQueueMessageWithDefaults() *LocalQueueMessage {
 	return &this
 }
 
-// GetQueueName returns the QueueName field value if set, zero value otherwise.
+// GetQueueName returns the QueueName field value
 func (o *LocalQueueMessage) GetQueueName() string {
-	if o == nil || IsNil(o.QueueName) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.QueueName
+
+	return o.QueueName
 }
 
-// GetQueueNameOk returns a tuple with the QueueName field value if set, nil otherwise
+// GetQueueNameOk returns a tuple with the QueueName field value
 // and a boolean to check if the value has been set.
 func (o *LocalQueueMessage) GetQueueNameOk() (*string, bool) {
-	if o == nil || IsNil(o.QueueName) {
+	if o == nil {
 		return nil, false
 	}
-	return o.QueueName, true
+	return &o.QueueName, true
 }
 
-// HasQueueName returns a boolean if a field has been set.
-func (o *LocalQueueMessage) HasQueueName() bool {
-	if o != nil && !IsNil(o.QueueName) {
-		return true
-	}
-
-	return false
-}
-
-// SetQueueName gets a reference to the given string and assigns it to the QueueName field.
+// SetQueueName sets field value
 func (o *LocalQueueMessage) SetQueueName(v string) {
-	o.QueueName = &v
+	o.QueueName = v
 }
 
-// GetDedupId returns the DedupId field value if set, zero value otherwise.
+// GetDedupId returns the DedupId field value
 func (o *LocalQueueMessage) GetDedupId() string {
-	if o == nil || IsNil(o.DedupId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DedupId
+
+	return o.DedupId
 }
 
-// GetDedupIdOk returns a tuple with the DedupId field value if set, nil otherwise
+// GetDedupIdOk returns a tuple with the DedupId field value
 // and a boolean to check if the value has been set.
 func (o *LocalQueueMessage) GetDedupIdOk() (*string, bool) {
-	if o == nil || IsNil(o.DedupId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DedupId, true
+	return &o.DedupId, true
 }
 
-// HasDedupId returns a boolean if a field has been set.
-func (o *LocalQueueMessage) HasDedupId() bool {
-	if o != nil && !IsNil(o.DedupId) {
-		return true
-	}
-
-	return false
-}
-
-// SetDedupId gets a reference to the given string and assigns it to the DedupId field.
+// SetDedupId sets field value
 func (o *LocalQueueMessage) SetDedupId(v string) {
-	o.DedupId = &v
+	o.DedupId = v
 }
 
 // GetPayload returns the Payload field value if set, zero value otherwise.
@@ -147,12 +133,8 @@ func (o LocalQueueMessage) MarshalJSON() ([]byte, error) {
 
 func (o LocalQueueMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.QueueName) {
-		toSerialize["queueName"] = o.QueueName
-	}
-	if !IsNil(o.DedupId) {
-		toSerialize["dedupId"] = o.DedupId
-	}
+	toSerialize["queueName"] = o.QueueName
+	toSerialize["dedupId"] = o.DedupId
 	if !IsNil(o.Payload) {
 		toSerialize["payload"] = o.Payload
 	}

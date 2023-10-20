@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**QueueName** | Pointer to **string** |  | [optional] 
-**DedupId** | Pointer to **string** |  | [optional] 
+**QueueName** | **string** |  | 
+**DedupId** | **string** |  | 
 **Payload** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 
 ## Methods
 
 ### NewLocalQueueMessage
 
-`func NewLocalQueueMessage() *LocalQueueMessage`
+`func NewLocalQueueMessage(queueName string, dedupId string, ) *LocalQueueMessage`
 
 NewLocalQueueMessage instantiates a new LocalQueueMessage object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetQueueName sets QueueName field to given value.
 
-### HasQueueName
-
-`func (o *LocalQueueMessage) HasQueueName() bool`
-
-HasQueueName returns a boolean if a field has been set.
 
 ### GetDedupId
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetDedupId sets DedupId field to given value.
 
-### HasDedupId
-
-`func (o *LocalQueueMessage) HasDedupId() bool`
-
-HasDedupId returns a boolean if a field has been set.
 
 ### GetPayload
 

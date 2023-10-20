@@ -482,6 +482,9 @@ components:
           type: string
         payload:
           $ref: '#/components/schemas/EncodedObject'
+      required:
+      - dedupId
+      - queueName
       type: object
     AsyncStateExecuteResponse:
       description: the output of the execute API
