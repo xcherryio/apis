@@ -576,7 +576,7 @@ components:
           type: string
         dedupId:
           type: string
-          description: UUID to uniquely distinguish different messages
+          description: UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead.
         payload:
           $ref: '#/components/schemas/EncodedObject'
 

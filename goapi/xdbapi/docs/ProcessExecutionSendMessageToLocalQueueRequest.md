@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Namespace** | **string** |  | 
 **ProcessId** | **string** |  | 
 **QueueName** | **string** |  | 
-**DedupId** | Pointer to **string** | UUID to uniquely distinguish different messages | [optional] 
+**DedupId** | Pointer to **string** | UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead. | [optional] 
 **Payload** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 
 ## Methods

@@ -22,7 +22,7 @@ type ProcessExecutionSendMessageToLocalQueueRequest struct {
 	Namespace string `json:"namespace"`
 	ProcessId string `json:"processId"`
 	QueueName string `json:"queueName"`
-	// UUID to uniquely distinguish different messages
+	// UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead.
 	DedupId *string        `json:"dedupId,omitempty"`
 	Payload *EncodedObject `json:"payload,omitempty"`
 }

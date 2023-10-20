@@ -874,7 +874,8 @@ components:
         queueName:
           type: string
         dedupId:
-          description: UUID to uniquely distinguish different messages
+          description: "UUID to uniquely distinguish different messages. If not specified,\
+            \ the server will generate a UUID instead."
           type: string
         payload:
           $ref: '#/components/schemas/EncodedObject'
