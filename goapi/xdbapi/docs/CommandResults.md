@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TimerResults** | Pointer to [**[]TimerResult**](TimerResult.md) |  | [optional] 
+**LocalQueueResults** | Pointer to [**[]LocalQueueResult**](LocalQueueResult.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetTimerResults sets TimerResults field to given value.
 `func (o *CommandResults) HasTimerResults() bool`
 
 HasTimerResults returns a boolean if a field has been set.
+
+### GetLocalQueueResults
+
+`func (o *CommandResults) GetLocalQueueResults() []LocalQueueResult`
+
+GetLocalQueueResults returns the LocalQueueResults field if non-nil, zero value otherwise.
+
+### GetLocalQueueResultsOk
+
+`func (o *CommandResults) GetLocalQueueResultsOk() (*[]LocalQueueResult, bool)`
+
+GetLocalQueueResultsOk returns a tuple with the LocalQueueResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalQueueResults
+
+`func (o *CommandResults) SetLocalQueueResults(v []LocalQueueResult)`
+
+SetLocalQueueResults sets LocalQueueResults field to given value.
+
+### HasLocalQueueResults
+
+`func (o *CommandResults) HasLocalQueueResults() bool`
+
+HasLocalQueueResults returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

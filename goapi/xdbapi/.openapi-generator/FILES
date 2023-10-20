@@ -19,6 +19,8 @@ docs/Context.md
 docs/DefaultAPI.md
 docs/EncodedObject.md
 docs/LocalQueueCommand.md
+docs/LocalQueueMessage.md
+docs/LocalQueueResult.md
 docs/NotifyImmediateTasksRequest.md
 docs/NotifyTimerTasksRequest.md
 docs/ProcessExecutionDescribeRequest.md
@@ -55,6 +57,8 @@ model_command_waiting_type.go
 model_context.go
 model_encoded_object.go
 model_local_queue_command.go
+model_local_queue_message.go
+model_local_queue_result.go
 model_notify_immediate_tasks_request.go
 model_notify_timer_tasks_request.go
 model_process_execution_describe_request.go

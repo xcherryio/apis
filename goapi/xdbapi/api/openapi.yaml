@@ -335,6 +335,29 @@ components:
       description: the input of the execute API
       example:
         commandResults:
+          localQueueResults:
+          - messages:
+            - queueName: queueName
+              payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
+            - queueName: queueName
+              payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
+          - messages:
+            - queueName: queueName
+              payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
+            - queueName: queueName
+              payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
           timerResults:
           - timerStatus: null
             commandId: commandId
@@ -370,6 +393,29 @@ components:
       type: object
     CommandResults:
       example:
+        localQueueResults:
+        - messages:
+          - queueName: queueName
+            payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+          - queueName: queueName
+            payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+        - messages:
+          - queueName: queueName
+            payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+          - queueName: queueName
+            payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
         timerResults:
         - timerStatus: null
           commandId: commandId
@@ -379,6 +425,10 @@ components:
         timerResults:
           items:
             $ref: '#/components/schemas/TimerResult'
+          type: array
+        localQueueResults:
+          items:
+            $ref: '#/components/schemas/LocalQueueResult'
           type: array
       type: object
     TimerResult:
@@ -399,6 +449,40 @@ components:
       - FIRED_TIMER
       - SKIPPED_TIMER
       type: string
+    LocalQueueResult:
+      example:
+        messages:
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
+          type: array
+      type: object
+    LocalQueueMessage:
+      example:
+        queueName: queueName
+        payload:
+          data: data
+          encoding: encoding
+        dedupId: dedupId
+      properties:
+        queueName:
+          type: string
+        dedupId:
+          type: string
+        payload:
+          $ref: '#/components/schemas/EncodedObject'
+      type: object
     AsyncStateExecuteResponse:
       description: the output of the execute API
       example:

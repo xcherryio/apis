@@ -303,6 +303,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimerResult'
+        localQueueResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueResult'
     TimerResult:
       type: object
       required:
@@ -318,6 +322,22 @@ components:
         - SCHEDULED_TIMER
         - FIRED_TIMER
         - SKIPPED_TIMER
+    LocalQueueResult:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
+    LocalQueueMessage:
+      type: object
+      properties:
+        queueName:
+          type: string
+        dedupId:
+          type: string
+        payload:
+          $ref: '#/components/schemas/EncodedObject'
     AsyncStateExecuteResponse:
       type: object
       description: the output of the execute API

@@ -101,6 +101,8 @@ Class | Method | HTTP request | Description
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
  - [LocalQueueCommand](docs/LocalQueueCommand.md)
+ - [LocalQueueMessage](docs/LocalQueueMessage.md)
+ - [LocalQueueResult](docs/LocalQueueResult.md)
  - [NotifyImmediateTasksRequest](docs/NotifyImmediateTasksRequest.md)
  - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
