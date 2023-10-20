@@ -25,7 +25,7 @@ docs/NotifyImmediateTasksRequest.md
 docs/NotifyTimerTasksRequest.md
 docs/ProcessExecutionDescribeRequest.md
 docs/ProcessExecutionDescribeResponse.md
-docs/ProcessExecutionSendMessageToLocalQueueRequest.md
+docs/ProcessExecutionPublishToLocalQueueRequest.md
 docs/ProcessExecutionStartRequest.md
 docs/ProcessExecutionStartResponse.md
 docs/ProcessExecutionStopRequest.md
@@ -63,7 +63,7 @@ model_notify_immediate_tasks_request.go
 model_notify_timer_tasks_request.go
 model_process_execution_describe_request.go
 model_process_execution_describe_response.go
-model_process_execution_send_message_to_local_queue_request.go
+model_process_execution_publish_to_local_queue_request.go
 model_process_execution_start_request.go
 model_process_execution_start_response.go
 model_process_execution_stop_request.go

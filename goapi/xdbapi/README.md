@@ -78,7 +78,7 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionDescribePost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutiondescribepost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
-*DefaultAPI* | [**ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionsendmessagetolocalqueuepost) | **Post** /api/v1/xdb/service/process-execution/send-message-to-local-queue | send message(s) to be consumed within a single process execution
+*DefaultAPI* | [**ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionpublishtolocalqueuepost) | **Post** /api/v1/xdb/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStartPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstartpost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStopPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstoppost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
@@ -107,7 +107,7 @@ Class | Method | HTTP request | Description
  - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
  - [ProcessExecutionDescribeResponse](docs/ProcessExecutionDescribeResponse.md)
- - [ProcessExecutionSendMessageToLocalQueueRequest](docs/ProcessExecutionSendMessageToLocalQueueRequest.md)
+ - [ProcessExecutionPublishToLocalQueueRequest](docs/ProcessExecutionPublishToLocalQueueRequest.md)
  - [ProcessExecutionStartRequest](docs/ProcessExecutionStartRequest.md)
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
  - [ProcessExecutionStopRequest](docs/ProcessExecutionStopRequest.md)

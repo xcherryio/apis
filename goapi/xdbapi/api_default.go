@@ -33,15 +33,15 @@ type DefaultAPI interface {
 	ApiV1XdbServiceProcessExecutionDescribePostExecute(r ApiApiV1XdbServiceProcessExecutionDescribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error)
 
 	/*
-		ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost send message(s) to be consumed within a single process execution
+		ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost send message(s) to be consumed within a single process execution
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest
+		@return ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest
 	*/
-	ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest
+	ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest
 
-	// ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostExecute executes the request
-	ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostExecute(r ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest) (*http.Response, error)
+	// ApiV1XdbServiceProcessExecutionPublishToLocalQueuePostExecute executes the request
+	ApiV1XdbServiceProcessExecutionPublishToLocalQueuePostExecute(r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) (*http.Response, error)
 
 	/*
 		ApiV1XdbServiceProcessExecutionStartPost start a process execution
@@ -243,48 +243,48 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDescribePostExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest struct {
-	ctx                                            context.Context
-	ApiService                                     DefaultAPI
-	processExecutionSendMessageToLocalQueueRequest *ProcessExecutionSendMessageToLocalQueueRequest
+type ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest struct {
+	ctx                                        context.Context
+	ApiService                                 DefaultAPI
+	processExecutionPublishToLocalQueueRequest *ProcessExecutionPublishToLocalQueueRequest
 }
 
-func (r ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest) ProcessExecutionSendMessageToLocalQueueRequest(processExecutionSendMessageToLocalQueueRequest ProcessExecutionSendMessageToLocalQueueRequest) ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest {
-	r.processExecutionSendMessageToLocalQueueRequest = &processExecutionSendMessageToLocalQueueRequest
+func (r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) ProcessExecutionPublishToLocalQueueRequest(processExecutionPublishToLocalQueueRequest ProcessExecutionPublishToLocalQueueRequest) ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest {
+	r.processExecutionPublishToLocalQueueRequest = &processExecutionPublishToLocalQueueRequest
 	return r
 }
 
-func (r ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostExecute(r)
+func (r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePostExecute(r)
 }
 
 /*
-ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost send message(s) to be consumed within a single process execution
+ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost send message(s) to be consumed within a single process execution
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest
+	@return ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest
 */
-func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest {
-	return ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest{
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest {
+	return ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostExecute(r ApiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest) (*http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePostExecute(r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/xdb/service/process-execution/send-message-to-local-queue"
+	localVarPath := localBasePath + "/api/v1/xdb/service/process-execution/publish-to-local-queue"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -308,7 +308,7 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionSendMessageToLocalQue
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.processExecutionSendMessageToLocalQueueRequest
+	localVarPostBody = r.processExecutionPublishToLocalQueueRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

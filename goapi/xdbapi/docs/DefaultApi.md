@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ApiV1XdbServiceProcessExecutionDescribePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionDescribePost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
-[**ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost) | **Post** /api/v1/xdb/service/process-execution/send-message-to-local-queue | send message(s) to be consumed within a single process execution
+[**ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost) | **Post** /api/v1/xdb/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
 [**ApiV1XdbServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStartPost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
 [**ApiV1XdbServiceProcessExecutionStopPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStopPost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 [**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
@@ -79,9 +79,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost
+## ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost
 
-> ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost(ctx).ProcessExecutionSendMessageToLocalQueueRequest(processExecutionSendMessageToLocalQueueRequest).Execute()
+> ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx).ProcessExecutionPublishToLocalQueueRequest(processExecutionPublishToLocalQueueRequest).Execute()
 
 send message(s) to be consumed within a single process execution
 
@@ -98,13 +98,13 @@ import (
 )
 
 func main() {
-    processExecutionSendMessageToLocalQueueRequest := *openapiclient.NewProcessExecutionSendMessageToLocalQueueRequest("Namespace_example", "ProcessId_example", "QueueName_example") // ProcessExecutionSendMessageToLocalQueueRequest |  (optional)
+    processExecutionPublishToLocalQueueRequest := *openapiclient.NewProcessExecutionPublishToLocalQueueRequest("Namespace_example", "ProcessId_example", "QueueName_example") // ProcessExecutionPublishToLocalQueueRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost(context.Background()).ProcessExecutionSendMessageToLocalQueueRequest(processExecutionSendMessageToLocalQueueRequest).Execute()
+    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(context.Background()).ProcessExecutionPublishToLocalQueueRequest(processExecutionPublishToLocalQueueRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -116,12 +116,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExecutionSendMessageToLocalQueuePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **processExecutionSendMessageToLocalQueueRequest** | [**ProcessExecutionSendMessageToLocalQueueRequest**](ProcessExecutionSendMessageToLocalQueueRequest.md) |  | 
+ **processExecutionPublishToLocalQueueRequest** | [**ProcessExecutionPublishToLocalQueueRequest**](ProcessExecutionPublishToLocalQueueRequest.md) |  | 
 
 ### Return type
 

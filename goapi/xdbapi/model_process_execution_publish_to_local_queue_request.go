@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the ProcessExecutionSendMessageToLocalQueueRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProcessExecutionSendMessageToLocalQueueRequest{}
+// checks if the ProcessExecutionPublishToLocalQueueRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProcessExecutionPublishToLocalQueueRequest{}
 
-// ProcessExecutionSendMessageToLocalQueueRequest the request for sending message(s) to be consumed within a single process execution
-type ProcessExecutionSendMessageToLocalQueueRequest struct {
+// ProcessExecutionPublishToLocalQueueRequest the request for sending message(s) to be consumed within a single process execution
+type ProcessExecutionPublishToLocalQueueRequest struct {
 	Namespace string `json:"namespace"`
 	ProcessId string `json:"processId"`
 	QueueName string `json:"queueName"`
@@ -27,28 +27,28 @@ type ProcessExecutionSendMessageToLocalQueueRequest struct {
 	Payload *EncodedObject `json:"payload,omitempty"`
 }
 
-// NewProcessExecutionSendMessageToLocalQueueRequest instantiates a new ProcessExecutionSendMessageToLocalQueueRequest object
+// NewProcessExecutionPublishToLocalQueueRequest instantiates a new ProcessExecutionPublishToLocalQueueRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProcessExecutionSendMessageToLocalQueueRequest(namespace string, processId string, queueName string) *ProcessExecutionSendMessageToLocalQueueRequest {
-	this := ProcessExecutionSendMessageToLocalQueueRequest{}
+func NewProcessExecutionPublishToLocalQueueRequest(namespace string, processId string, queueName string) *ProcessExecutionPublishToLocalQueueRequest {
+	this := ProcessExecutionPublishToLocalQueueRequest{}
 	this.Namespace = namespace
 	this.ProcessId = processId
 	this.QueueName = queueName
 	return &this
 }
 
-// NewProcessExecutionSendMessageToLocalQueueRequestWithDefaults instantiates a new ProcessExecutionSendMessageToLocalQueueRequest object
+// NewProcessExecutionPublishToLocalQueueRequestWithDefaults instantiates a new ProcessExecutionPublishToLocalQueueRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProcessExecutionSendMessageToLocalQueueRequestWithDefaults() *ProcessExecutionSendMessageToLocalQueueRequest {
-	this := ProcessExecutionSendMessageToLocalQueueRequest{}
+func NewProcessExecutionPublishToLocalQueueRequestWithDefaults() *ProcessExecutionPublishToLocalQueueRequest {
+	this := ProcessExecutionPublishToLocalQueueRequest{}
 	return &this
 }
 
 // GetNamespace returns the Namespace field value
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetNamespace() string {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetNamespace() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -59,7 +59,7 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetNamespace() string {
 
 // GetNamespaceOk returns a tuple with the Namespace field value
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetNamespaceOk() (*string, bool) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetNamespaceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -67,12 +67,12 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetNamespaceOk() (*stri
 }
 
 // SetNamespace sets field value
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) SetNamespace(v string) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) SetNamespace(v string) {
 	o.Namespace = v
 }
 
 // GetProcessId returns the ProcessId field value
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetProcessId() string {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetProcessId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetProcessId() string {
 
 // GetProcessIdOk returns a tuple with the ProcessId field value
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetProcessIdOk() (*string, bool) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetProcessIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,12 +91,12 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetProcessIdOk() (*stri
 }
 
 // SetProcessId sets field value
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) SetProcessId(v string) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) SetProcessId(v string) {
 	o.ProcessId = v
 }
 
 // GetQueueName returns the QueueName field value
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetQueueName() string {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetQueueName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -107,7 +107,7 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetQueueName() string {
 
 // GetQueueNameOk returns a tuple with the QueueName field value
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetQueueNameOk() (*string, bool) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetQueueNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,12 +115,12 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetQueueNameOk() (*stri
 }
 
 // SetQueueName sets field value
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) SetQueueName(v string) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) SetQueueName(v string) {
 	o.QueueName = v
 }
 
 // GetDedupId returns the DedupId field value if set, zero value otherwise.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetDedupId() string {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetDedupId() string {
 	if o == nil || IsNil(o.DedupId) {
 		var ret string
 		return ret
@@ -130,7 +130,7 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetDedupId() string {
 
 // GetDedupIdOk returns a tuple with the DedupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetDedupIdOk() (*string, bool) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetDedupIdOk() (*string, bool) {
 	if o == nil || IsNil(o.DedupId) {
 		return nil, false
 	}
@@ -138,7 +138,7 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetDedupIdOk() (*string
 }
 
 // HasDedupId returns a boolean if a field has been set.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) HasDedupId() bool {
+func (o *ProcessExecutionPublishToLocalQueueRequest) HasDedupId() bool {
 	if o != nil && !IsNil(o.DedupId) {
 		return true
 	}
@@ -147,12 +147,12 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) HasDedupId() bool {
 }
 
 // SetDedupId gets a reference to the given string and assigns it to the DedupId field.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) SetDedupId(v string) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) SetDedupId(v string) {
 	o.DedupId = &v
 }
 
 // GetPayload returns the Payload field value if set, zero value otherwise.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetPayload() EncodedObject {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetPayload() EncodedObject {
 	if o == nil || IsNil(o.Payload) {
 		var ret EncodedObject
 		return ret
@@ -162,7 +162,7 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetPayload() EncodedObj
 
 // GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetPayloadOk() (*EncodedObject, bool) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) GetPayloadOk() (*EncodedObject, bool) {
 	if o == nil || IsNil(o.Payload) {
 		return nil, false
 	}
@@ -170,7 +170,7 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) GetPayloadOk() (*Encode
 }
 
 // HasPayload returns a boolean if a field has been set.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) HasPayload() bool {
+func (o *ProcessExecutionPublishToLocalQueueRequest) HasPayload() bool {
 	if o != nil && !IsNil(o.Payload) {
 		return true
 	}
@@ -179,11 +179,11 @@ func (o *ProcessExecutionSendMessageToLocalQueueRequest) HasPayload() bool {
 }
 
 // SetPayload gets a reference to the given EncodedObject and assigns it to the Payload field.
-func (o *ProcessExecutionSendMessageToLocalQueueRequest) SetPayload(v EncodedObject) {
+func (o *ProcessExecutionPublishToLocalQueueRequest) SetPayload(v EncodedObject) {
 	o.Payload = &v
 }
 
-func (o ProcessExecutionSendMessageToLocalQueueRequest) MarshalJSON() ([]byte, error) {
+func (o ProcessExecutionPublishToLocalQueueRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -191,7 +191,7 @@ func (o ProcessExecutionSendMessageToLocalQueueRequest) MarshalJSON() ([]byte, e
 	return json.Marshal(toSerialize)
 }
 
-func (o ProcessExecutionSendMessageToLocalQueueRequest) ToMap() (map[string]interface{}, error) {
+func (o ProcessExecutionPublishToLocalQueueRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["namespace"] = o.Namespace
 	toSerialize["processId"] = o.ProcessId
@@ -205,38 +205,38 @@ func (o ProcessExecutionSendMessageToLocalQueueRequest) ToMap() (map[string]inte
 	return toSerialize, nil
 }
 
-type NullableProcessExecutionSendMessageToLocalQueueRequest struct {
-	value *ProcessExecutionSendMessageToLocalQueueRequest
+type NullableProcessExecutionPublishToLocalQueueRequest struct {
+	value *ProcessExecutionPublishToLocalQueueRequest
 	isSet bool
 }
 
-func (v NullableProcessExecutionSendMessageToLocalQueueRequest) Get() *ProcessExecutionSendMessageToLocalQueueRequest {
+func (v NullableProcessExecutionPublishToLocalQueueRequest) Get() *ProcessExecutionPublishToLocalQueueRequest {
 	return v.value
 }
 
-func (v *NullableProcessExecutionSendMessageToLocalQueueRequest) Set(val *ProcessExecutionSendMessageToLocalQueueRequest) {
+func (v *NullableProcessExecutionPublishToLocalQueueRequest) Set(val *ProcessExecutionPublishToLocalQueueRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProcessExecutionSendMessageToLocalQueueRequest) IsSet() bool {
+func (v NullableProcessExecutionPublishToLocalQueueRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProcessExecutionSendMessageToLocalQueueRequest) Unset() {
+func (v *NullableProcessExecutionPublishToLocalQueueRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProcessExecutionSendMessageToLocalQueueRequest(val *ProcessExecutionSendMessageToLocalQueueRequest) *NullableProcessExecutionSendMessageToLocalQueueRequest {
-	return &NullableProcessExecutionSendMessageToLocalQueueRequest{value: val, isSet: true}
+func NewNullableProcessExecutionPublishToLocalQueueRequest(val *ProcessExecutionPublishToLocalQueueRequest) *NullableProcessExecutionPublishToLocalQueueRequest {
+	return &NullableProcessExecutionPublishToLocalQueueRequest{value: val, isSet: true}
 }
 
-func (v NullableProcessExecutionSendMessageToLocalQueueRequest) MarshalJSON() ([]byte, error) {
+func (v NullableProcessExecutionPublishToLocalQueueRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProcessExecutionSendMessageToLocalQueueRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableProcessExecutionPublishToLocalQueueRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
