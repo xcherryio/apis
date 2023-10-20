@@ -19,8 +19,9 @@ var _ MappedNullable = &CommandRequest{}
 
 // CommandRequest struct for CommandRequest
 type CommandRequest struct {
-	WaitingType   CommandWaitingType `json:"waitingType"`
-	TimerCommands []TimerCommand     `json:"timerCommands,omitempty"`
+	WaitingType        CommandWaitingType  `json:"waitingType"`
+	TimerCommands      []TimerCommand      `json:"timerCommands,omitempty"`
+	LocalQueueCommands []LocalQueueCommand `json:"localQueueCommands,omitempty"`
 }
 
 // NewCommandRequest instantiates a new CommandRequest object
@@ -97,6 +98,38 @@ func (o *CommandRequest) SetTimerCommands(v []TimerCommand) {
 	o.TimerCommands = v
 }
 
+// GetLocalQueueCommands returns the LocalQueueCommands field value if set, zero value otherwise.
+func (o *CommandRequest) GetLocalQueueCommands() []LocalQueueCommand {
+	if o == nil || IsNil(o.LocalQueueCommands) {
+		var ret []LocalQueueCommand
+		return ret
+	}
+	return o.LocalQueueCommands
+}
+
+// GetLocalQueueCommandsOk returns a tuple with the LocalQueueCommands field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommandRequest) GetLocalQueueCommandsOk() ([]LocalQueueCommand, bool) {
+	if o == nil || IsNil(o.LocalQueueCommands) {
+		return nil, false
+	}
+	return o.LocalQueueCommands, true
+}
+
+// HasLocalQueueCommands returns a boolean if a field has been set.
+func (o *CommandRequest) HasLocalQueueCommands() bool {
+	if o != nil && !IsNil(o.LocalQueueCommands) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalQueueCommands gets a reference to the given []LocalQueueCommand and assigns it to the LocalQueueCommands field.
+func (o *CommandRequest) SetLocalQueueCommands(v []LocalQueueCommand) {
+	o.LocalQueueCommands = v
+}
+
 func (o CommandRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -110,6 +143,9 @@ func (o CommandRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["waitingType"] = o.WaitingType
 	if !IsNil(o.TimerCommands) {
 		toSerialize["timerCommands"] = o.TimerCommands
+	}
+	if !IsNil(o.LocalQueueCommands) {
+		toSerialize["localQueueCommands"] = o.LocalQueueCommands
 	}
 	return toSerialize, nil
 }

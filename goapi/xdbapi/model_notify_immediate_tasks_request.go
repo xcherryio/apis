@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the NotifyWorkerTasksRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &NotifyWorkerTasksRequest{}
+// checks if the NotifyImmediateTasksRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NotifyImmediateTasksRequest{}
 
-// NotifyWorkerTasksRequest struct for NotifyWorkerTasksRequest
-type NotifyWorkerTasksRequest struct {
+// NotifyImmediateTasksRequest struct for NotifyImmediateTasksRequest
+type NotifyImmediateTasksRequest struct {
 	ShardId int32 `json:"shardId"`
 	// optional field for distributed database without global secondary index, to pull for specific task rather than a page
 	Namespace *string `json:"namespace,omitempty"`
@@ -28,26 +28,26 @@ type NotifyWorkerTasksRequest struct {
 	ProcessExecutionId *string `json:"processExecutionId,omitempty"`
 }
 
-// NewNotifyWorkerTasksRequest instantiates a new NotifyWorkerTasksRequest object
+// NewNotifyImmediateTasksRequest instantiates a new NotifyImmediateTasksRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNotifyWorkerTasksRequest(shardId int32) *NotifyWorkerTasksRequest {
-	this := NotifyWorkerTasksRequest{}
+func NewNotifyImmediateTasksRequest(shardId int32) *NotifyImmediateTasksRequest {
+	this := NotifyImmediateTasksRequest{}
 	this.ShardId = shardId
 	return &this
 }
 
-// NewNotifyWorkerTasksRequestWithDefaults instantiates a new NotifyWorkerTasksRequest object
+// NewNotifyImmediateTasksRequestWithDefaults instantiates a new NotifyImmediateTasksRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNotifyWorkerTasksRequestWithDefaults() *NotifyWorkerTasksRequest {
-	this := NotifyWorkerTasksRequest{}
+func NewNotifyImmediateTasksRequestWithDefaults() *NotifyImmediateTasksRequest {
+	this := NotifyImmediateTasksRequest{}
 	return &this
 }
 
 // GetShardId returns the ShardId field value
-func (o *NotifyWorkerTasksRequest) GetShardId() int32 {
+func (o *NotifyImmediateTasksRequest) GetShardId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -58,7 +58,7 @@ func (o *NotifyWorkerTasksRequest) GetShardId() int32 {
 
 // GetShardIdOk returns a tuple with the ShardId field value
 // and a boolean to check if the value has been set.
-func (o *NotifyWorkerTasksRequest) GetShardIdOk() (*int32, bool) {
+func (o *NotifyImmediateTasksRequest) GetShardIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *NotifyWorkerTasksRequest) GetShardIdOk() (*int32, bool) {
 }
 
 // SetShardId sets field value
-func (o *NotifyWorkerTasksRequest) SetShardId(v int32) {
+func (o *NotifyImmediateTasksRequest) SetShardId(v int32) {
 	o.ShardId = v
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *NotifyWorkerTasksRequest) GetNamespace() string {
+func (o *NotifyImmediateTasksRequest) GetNamespace() string {
 	if o == nil || IsNil(o.Namespace) {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *NotifyWorkerTasksRequest) GetNamespace() string {
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotifyWorkerTasksRequest) GetNamespaceOk() (*string, bool) {
+func (o *NotifyImmediateTasksRequest) GetNamespaceOk() (*string, bool) {
 	if o == nil || IsNil(o.Namespace) {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *NotifyWorkerTasksRequest) GetNamespaceOk() (*string, bool) {
 }
 
 // HasNamespace returns a boolean if a field has been set.
-func (o *NotifyWorkerTasksRequest) HasNamespace() bool {
+func (o *NotifyImmediateTasksRequest) HasNamespace() bool {
 	if o != nil && !IsNil(o.Namespace) {
 		return true
 	}
@@ -98,12 +98,12 @@ func (o *NotifyWorkerTasksRequest) HasNamespace() bool {
 }
 
 // SetNamespace gets a reference to the given string and assigns it to the Namespace field.
-func (o *NotifyWorkerTasksRequest) SetNamespace(v string) {
+func (o *NotifyImmediateTasksRequest) SetNamespace(v string) {
 	o.Namespace = &v
 }
 
 // GetProcessId returns the ProcessId field value if set, zero value otherwise.
-func (o *NotifyWorkerTasksRequest) GetProcessId() string {
+func (o *NotifyImmediateTasksRequest) GetProcessId() string {
 	if o == nil || IsNil(o.ProcessId) {
 		var ret string
 		return ret
@@ -113,7 +113,7 @@ func (o *NotifyWorkerTasksRequest) GetProcessId() string {
 
 // GetProcessIdOk returns a tuple with the ProcessId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotifyWorkerTasksRequest) GetProcessIdOk() (*string, bool) {
+func (o *NotifyImmediateTasksRequest) GetProcessIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ProcessId) {
 		return nil, false
 	}
@@ -121,7 +121,7 @@ func (o *NotifyWorkerTasksRequest) GetProcessIdOk() (*string, bool) {
 }
 
 // HasProcessId returns a boolean if a field has been set.
-func (o *NotifyWorkerTasksRequest) HasProcessId() bool {
+func (o *NotifyImmediateTasksRequest) HasProcessId() bool {
 	if o != nil && !IsNil(o.ProcessId) {
 		return true
 	}
@@ -130,12 +130,12 @@ func (o *NotifyWorkerTasksRequest) HasProcessId() bool {
 }
 
 // SetProcessId gets a reference to the given string and assigns it to the ProcessId field.
-func (o *NotifyWorkerTasksRequest) SetProcessId(v string) {
+func (o *NotifyImmediateTasksRequest) SetProcessId(v string) {
 	o.ProcessId = &v
 }
 
 // GetProcessExecutionId returns the ProcessExecutionId field value if set, zero value otherwise.
-func (o *NotifyWorkerTasksRequest) GetProcessExecutionId() string {
+func (o *NotifyImmediateTasksRequest) GetProcessExecutionId() string {
 	if o == nil || IsNil(o.ProcessExecutionId) {
 		var ret string
 		return ret
@@ -145,7 +145,7 @@ func (o *NotifyWorkerTasksRequest) GetProcessExecutionId() string {
 
 // GetProcessExecutionIdOk returns a tuple with the ProcessExecutionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotifyWorkerTasksRequest) GetProcessExecutionIdOk() (*string, bool) {
+func (o *NotifyImmediateTasksRequest) GetProcessExecutionIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ProcessExecutionId) {
 		return nil, false
 	}
@@ -153,7 +153,7 @@ func (o *NotifyWorkerTasksRequest) GetProcessExecutionIdOk() (*string, bool) {
 }
 
 // HasProcessExecutionId returns a boolean if a field has been set.
-func (o *NotifyWorkerTasksRequest) HasProcessExecutionId() bool {
+func (o *NotifyImmediateTasksRequest) HasProcessExecutionId() bool {
 	if o != nil && !IsNil(o.ProcessExecutionId) {
 		return true
 	}
@@ -162,11 +162,11 @@ func (o *NotifyWorkerTasksRequest) HasProcessExecutionId() bool {
 }
 
 // SetProcessExecutionId gets a reference to the given string and assigns it to the ProcessExecutionId field.
-func (o *NotifyWorkerTasksRequest) SetProcessExecutionId(v string) {
+func (o *NotifyImmediateTasksRequest) SetProcessExecutionId(v string) {
 	o.ProcessExecutionId = &v
 }
 
-func (o NotifyWorkerTasksRequest) MarshalJSON() ([]byte, error) {
+func (o NotifyImmediateTasksRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -174,7 +174,7 @@ func (o NotifyWorkerTasksRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o NotifyWorkerTasksRequest) ToMap() (map[string]interface{}, error) {
+func (o NotifyImmediateTasksRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["shardId"] = o.ShardId
 	if !IsNil(o.Namespace) {
@@ -189,38 +189,38 @@ func (o NotifyWorkerTasksRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableNotifyWorkerTasksRequest struct {
-	value *NotifyWorkerTasksRequest
+type NullableNotifyImmediateTasksRequest struct {
+	value *NotifyImmediateTasksRequest
 	isSet bool
 }
 
-func (v NullableNotifyWorkerTasksRequest) Get() *NotifyWorkerTasksRequest {
+func (v NullableNotifyImmediateTasksRequest) Get() *NotifyImmediateTasksRequest {
 	return v.value
 }
 
-func (v *NullableNotifyWorkerTasksRequest) Set(val *NotifyWorkerTasksRequest) {
+func (v *NullableNotifyImmediateTasksRequest) Set(val *NotifyImmediateTasksRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNotifyWorkerTasksRequest) IsSet() bool {
+func (v NullableNotifyImmediateTasksRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNotifyWorkerTasksRequest) Unset() {
+func (v *NullableNotifyImmediateTasksRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNotifyWorkerTasksRequest(val *NotifyWorkerTasksRequest) *NullableNotifyWorkerTasksRequest {
-	return &NullableNotifyWorkerTasksRequest{value: val, isSet: true}
+func NewNullableNotifyImmediateTasksRequest(val *NotifyImmediateTasksRequest) *NullableNotifyImmediateTasksRequest {
+	return &NullableNotifyImmediateTasksRequest{value: val, isSet: true}
 }
 
-func (v NullableNotifyWorkerTasksRequest) MarshalJSON() ([]byte, error) {
+func (v NullableNotifyImmediateTasksRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNotifyWorkerTasksRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableNotifyImmediateTasksRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

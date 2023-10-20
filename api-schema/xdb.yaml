@@ -84,7 +84,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-  # xdb workers APIs are hosted by iWF applications via SDKs, for iWF server to call back
+  /api/v1/xdb/service/process-execution/send-message-to-local-queue:
+    post:
+      summary: send message(s) to be consumed within a single process execution
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionSendMessageToLocalQueueRequest'
+      responses:
+        '200':
+          description: successful operation
+          content: {}
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: Process execution not exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+  # xdb workers APIs are hosted by xdb applications via SDKs, for xdb server to call back
   /api/v1/xdb/worker/async-state/wait-until:
     post:
       summary: "invoking AsyncState.waitUntil API"
@@ -128,14 +152,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkerErrorResponse'
   # internal APIs are for internal communication within the services of xdb server 
-  /internal/api/v1/xdb/notify-worker-tasks:
+  /internal/api/v1/xdb/notify-immediate-tasks:
     post:
-      summary: "for api service to tell async service that there are new worker tasks added to the queue"
+      summary: "for api service to tell async service that there are new immediate tasks added to the queue"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NotifyWorkerTasksRequest'
+              $ref: '#/components/schemas/NotifyImmediateTasksRequest'
       responses:
         '200':
           description: successful operation
@@ -223,6 +247,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TimerCommand'
+        localQueueCommands:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueCommand'
     TimerCommand:
       type: object
       required:
@@ -233,6 +261,17 @@ components:
         firingUnixTimestampSeconds:
           type: integer
           format: int64
+    LocalQueueCommand:
+      type: object
+      required:
+        - queueName
+      properties:
+        queueName:
+          type: string
+        count:
+          type: integer
+          default: 1
+          description: the number of identical messages to await
     CommandWaitingType:
       type: string
       enum:
@@ -464,7 +503,7 @@ components:
         processExecutionId:
           type: string
           description: a UUID as the unique identifier of a process execution
-    NotifyWorkerTasksRequest:
+    NotifyImmediateTasksRequest:
       required:
         - shardId
       type: object
@@ -521,4 +560,23 @@ components:
       enum:
         - TERMINATE # default behaviour. ProcessStatus becomes TERMINATED
         - FAIL # ProcessStatus becomes FAILED
+    ProcessExecutionSendMessageToLocalQueueRequest:
+      type: object
+      description: the request for sending message(s) to be consumed within a single process execution
+      required:
+        - namespace
+        - processId
+        - queueName
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        queueName:
+          type: string
+        dedupId:
+          type: string
+          description: UUID to uniquely distinguish different messages
+        payload:
+          $ref: '#/components/schemas/EncodedObject'
 

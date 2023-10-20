@@ -18,10 +18,12 @@ docs/CommandWaitingType.md
 docs/Context.md
 docs/DefaultAPI.md
 docs/EncodedObject.md
+docs/LocalQueueCommand.md
+docs/NotifyImmediateTasksRequest.md
 docs/NotifyTimerTasksRequest.md
-docs/NotifyWorkerTasksRequest.md
 docs/ProcessExecutionDescribeRequest.md
 docs/ProcessExecutionDescribeResponse.md
+docs/ProcessExecutionSendMessageToLocalQueueRequest.md
 docs/ProcessExecutionStartRequest.md
 docs/ProcessExecutionStartResponse.md
 docs/ProcessExecutionStopRequest.md
@@ -52,10 +54,12 @@ model_command_results.go
 model_command_waiting_type.go
 model_context.go
 model_encoded_object.go
+model_local_queue_command.go
+model_notify_immediate_tasks_request.go
 model_notify_timer_tasks_request.go
-model_notify_worker_tasks_request.go
 model_process_execution_describe_request.go
 model_process_execution_describe_response.go
+model_process_execution_send_message_to_local_queue_request.go
 model_process_execution_start_request.go
 model_process_execution_start_response.go
 model_process_execution_stop_request.go

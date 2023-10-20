@@ -84,6 +84,30 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Process execution not exists
       summary: describe a process execution
+  /api/v1/xdb/service/process-execution/send-message-to-local-queue:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionSendMessageToLocalQueueRequest'
+      responses:
+        "200":
+          content: {}
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: invalid request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Process execution not exists
+      summary: send message(s) to be consumed within a single process execution
   /api/v1/xdb/worker/async-state/wait-until:
     post:
       requestBody:
@@ -126,19 +150,19 @@ paths:
                 $ref: '#/components/schemas/WorkerErrorResponse'
           description: worker execution failure
       summary: invoking AsyncState.execute API
-  /internal/api/v1/xdb/notify-worker-tasks:
+  /internal/api/v1/xdb/notify-immediate-tasks:
     post:
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NotifyWorkerTasksRequest'
+              $ref: '#/components/schemas/NotifyImmediateTasksRequest'
       responses:
         "200":
           content: {}
           description: successful operation
-      summary: for api service to tell async service that there are new worker tasks
-        added to the queue
+      summary: for api service to tell async service that there are new immediate
+        tasks added to the queue
   /internal/api/v1/xdb/notify-timer-tasks:
     post:
       requestBody:
@@ -236,6 +260,11 @@ components:
           - firingUnixTimestampSeconds: 0
             commandId: commandId
           waitingType: null
+          localQueueCommands:
+          - queueName: queueName
+            count: 6
+          - queueName: queueName
+            count: 6
       properties:
         commandRequest:
           $ref: '#/components/schemas/CommandRequest'
@@ -250,12 +279,21 @@ components:
         - firingUnixTimestampSeconds: 0
           commandId: commandId
         waitingType: null
+        localQueueCommands:
+        - queueName: queueName
+          count: 6
+        - queueName: queueName
+          count: 6
       properties:
         waitingType:
           $ref: '#/components/schemas/CommandWaitingType'
         timerCommands:
           items:
             $ref: '#/components/schemas/TimerCommand'
+          type: array
+        localQueueCommands:
+          items:
+            $ref: '#/components/schemas/LocalQueueCommand'
           type: array
       required:
       - waitingType
@@ -272,6 +310,20 @@ components:
           type: integer
       required:
       - firingUnixTimestampSeconds
+      type: object
+    LocalQueueCommand:
+      example:
+        queueName: queueName
+        count: 6
+      properties:
+        queueName:
+          type: string
+        count:
+          default: 1
+          description: the number of identical messages to await
+          type: integer
+      required:
+      - queueName
       type: object
     CommandWaitingType:
       enum:
@@ -723,7 +775,7 @@ components:
       required:
       - processExecutionId
       type: object
-    NotifyWorkerTasksRequest:
+    NotifyImmediateTasksRequest:
       example:
         processExecutionId: processExecutionId
         processId: processId
@@ -803,3 +855,31 @@ components:
       - TERMINATE
       - FAIL
       type: string
+    ProcessExecutionSendMessageToLocalQueueRequest:
+      description: the request for sending message(s) to be consumed within a single
+        process execution
+      example:
+        queueName: queueName
+        processId: processId
+        payload:
+          data: data
+          encoding: encoding
+        namespace: namespace
+        dedupId: dedupId
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        queueName:
+          type: string
+        dedupId:
+          description: UUID to uniquely distinguish different messages
+          type: string
+        payload:
+          $ref: '#/components/schemas/EncodedObject'
+      required:
+      - namespace
+      - processId
+      - queueName
+      type: object
