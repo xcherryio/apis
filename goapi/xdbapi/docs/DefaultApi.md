@@ -81,7 +81,7 @@ No authorization required
 
 ## ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost
 
-> ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx).ProcessExecutionPublishToLocalQueueRequest(processExecutionPublishToLocalQueueRequest).Execute()
+> ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
 
 send message(s) to be consumed within a single process execution
 
@@ -98,11 +98,11 @@ import (
 )
 
 func main() {
-    processExecutionPublishToLocalQueueRequest := *openapiclient.NewProcessExecutionPublishToLocalQueueRequest("Namespace_example", "ProcessId_example", "QueueName_example") // ProcessExecutionPublishToLocalQueueRequest |  (optional)
+    publishToLocalQueueRequest := *openapiclient.NewPublishToLocalQueueRequest("Namespace_example", "ProcessId_example") // PublishToLocalQueueRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(context.Background()).ProcessExecutionPublishToLocalQueueRequest(processExecutionPublishToLocalQueueRequest).Execute()
+    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(context.Background()).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExec
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **processExecutionPublishToLocalQueueRequest** | [**ProcessExecutionPublishToLocalQueueRequest**](ProcessExecutionPublishToLocalQueueRequest.md) |  | 
+ **publishToLocalQueueRequest** | [**PublishToLocalQueueRequest**](PublishToLocalQueueRequest.md) |  | 
 
 ### Return type
 

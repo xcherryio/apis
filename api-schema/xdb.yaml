@@ -91,7 +91,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/ProcessExecutionPublishToLocalQueueRequest'
+              $ref: '#/components/schemas/PublishToLocalQueueRequest'
       responses:
         '200':
           description: successful operation
@@ -236,6 +236,10 @@ components:
       properties:
         commandRequest:
           $ref: '#/components/schemas/CommandRequest'
+        publishToLocalQueue:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
     CommandRequest:
       type: object
       required: 
@@ -306,7 +310,7 @@ components:
         localQueueResults:
           type: array
           items:
-            $ref: '#/components/schemas/LocalQueueResult'
+            $ref: '#/components/schemas/LocalQueueMessage'
     TimerResult:
       type: object
       required:
@@ -322,23 +326,16 @@ components:
         - SCHEDULED_TIMER
         - FIRED_TIMER
         - SKIPPED_TIMER
-    LocalQueueResult:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalQueueMessage'
     LocalQueueMessage:
       type: object
       required:
         - queueName
-        - dedupId
       properties:
         queueName:
           type: string
         dedupId:
           type: string
+          description: UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead.
         payload:
           $ref: '#/components/schemas/EncodedObject'
     AsyncStateExecuteResponse:
@@ -349,6 +346,10 @@ components:
       properties:
         stateDecision:
           $ref: '#/components/schemas/StateDecision'
+        publishToLocalQueue:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
     StateDecision:
       type: object
       description: the decision at the end of state execution, either nextStates or threadCloseDecision is needed
@@ -583,23 +584,19 @@ components:
       enum:
         - TERMINATE # default behaviour. ProcessStatus becomes TERMINATED
         - FAIL # ProcessStatus becomes FAILED
-    ProcessExecutionPublishToLocalQueueRequest:
+    PublishToLocalQueueRequest:
       type: object
-      description: the request for sending message(s) to be consumed within a single process execution
+      description: the request for sending messages to be consumed within a single process execution
       required:
         - namespace
         - processId
-        - queueName
       properties:
         namespace:
           type: string
         processId:
           type: string
-        queueName:
-          type: string
-        dedupId:
-          type: string
-          description: UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead.
-        payload:
-          $ref: '#/components/schemas/EncodedObject'
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
 

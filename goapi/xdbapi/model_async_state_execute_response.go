@@ -19,7 +19,8 @@ var _ MappedNullable = &AsyncStateExecuteResponse{}
 
 // AsyncStateExecuteResponse the output of the execute API
 type AsyncStateExecuteResponse struct {
-	StateDecision StateDecision `json:"stateDecision"`
+	StateDecision       StateDecision       `json:"stateDecision"`
+	PublishToLocalQueue []LocalQueueMessage `json:"publishToLocalQueue,omitempty"`
 }
 
 // NewAsyncStateExecuteResponse instantiates a new AsyncStateExecuteResponse object
@@ -64,6 +65,38 @@ func (o *AsyncStateExecuteResponse) SetStateDecision(v StateDecision) {
 	o.StateDecision = v
 }
 
+// GetPublishToLocalQueue returns the PublishToLocalQueue field value if set, zero value otherwise.
+func (o *AsyncStateExecuteResponse) GetPublishToLocalQueue() []LocalQueueMessage {
+	if o == nil || IsNil(o.PublishToLocalQueue) {
+		var ret []LocalQueueMessage
+		return ret
+	}
+	return o.PublishToLocalQueue
+}
+
+// GetPublishToLocalQueueOk returns a tuple with the PublishToLocalQueue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteResponse) GetPublishToLocalQueueOk() ([]LocalQueueMessage, bool) {
+	if o == nil || IsNil(o.PublishToLocalQueue) {
+		return nil, false
+	}
+	return o.PublishToLocalQueue, true
+}
+
+// HasPublishToLocalQueue returns a boolean if a field has been set.
+func (o *AsyncStateExecuteResponse) HasPublishToLocalQueue() bool {
+	if o != nil && !IsNil(o.PublishToLocalQueue) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublishToLocalQueue gets a reference to the given []LocalQueueMessage and assigns it to the PublishToLocalQueue field.
+func (o *AsyncStateExecuteResponse) SetPublishToLocalQueue(v []LocalQueueMessage) {
+	o.PublishToLocalQueue = v
+}
+
 func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -75,6 +108,9 @@ func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
 func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["stateDecision"] = o.StateDecision
+	if !IsNil(o.PublishToLocalQueue) {
+		toSerialize["publishToLocalQueue"] = o.PublishToLocalQueue
+	}
 	return toSerialize, nil
 }
 

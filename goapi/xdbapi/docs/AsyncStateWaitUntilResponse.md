@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CommandRequest** | [**CommandRequest**](CommandRequest.md) |  | 
+**PublishToLocalQueue** | Pointer to [**[]LocalQueueMessage**](LocalQueueMessage.md) |  | [optional] 
 
 ## Methods
 
@@ -44,6 +45,31 @@ and a boolean to check if the value has been set.
 
 SetCommandRequest sets CommandRequest field to given value.
 
+
+### GetPublishToLocalQueue
+
+`func (o *AsyncStateWaitUntilResponse) GetPublishToLocalQueue() []LocalQueueMessage`
+
+GetPublishToLocalQueue returns the PublishToLocalQueue field if non-nil, zero value otherwise.
+
+### GetPublishToLocalQueueOk
+
+`func (o *AsyncStateWaitUntilResponse) GetPublishToLocalQueueOk() (*[]LocalQueueMessage, bool)`
+
+GetPublishToLocalQueueOk returns a tuple with the PublishToLocalQueue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublishToLocalQueue
+
+`func (o *AsyncStateWaitUntilResponse) SetPublishToLocalQueue(v []LocalQueueMessage)`
+
+SetPublishToLocalQueue sets PublishToLocalQueue field to given value.
+
+### HasPublishToLocalQueue
+
+`func (o *AsyncStateWaitUntilResponse) HasPublishToLocalQueue() bool`
+
+HasPublishToLocalQueue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

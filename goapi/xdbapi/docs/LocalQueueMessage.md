@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **QueueName** | **string** |  | 
-**DedupId** | **string** |  | 
+**DedupId** | Pointer to **string** | UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead. | [optional] 
 **Payload** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 
 ## Methods
 
 ### NewLocalQueueMessage
 
-`func NewLocalQueueMessage(queueName string, dedupId string, ) *LocalQueueMessage`
+`func NewLocalQueueMessage(queueName string, ) *LocalQueueMessage`
 
 NewLocalQueueMessage instantiates a new LocalQueueMessage object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +66,11 @@ and a boolean to check if the value has been set.
 
 SetDedupId sets DedupId field to given value.
 
+### HasDedupId
+
+`func (o *LocalQueueMessage) HasDedupId() bool`
+
+HasDedupId returns a boolean if a field has been set.
 
 ### GetPayload
 

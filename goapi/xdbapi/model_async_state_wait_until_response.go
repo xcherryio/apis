@@ -19,7 +19,8 @@ var _ MappedNullable = &AsyncStateWaitUntilResponse{}
 
 // AsyncStateWaitUntilResponse the output of the waitUntil API
 type AsyncStateWaitUntilResponse struct {
-	CommandRequest CommandRequest `json:"commandRequest"`
+	CommandRequest      CommandRequest      `json:"commandRequest"`
+	PublishToLocalQueue []LocalQueueMessage `json:"publishToLocalQueue,omitempty"`
 }
 
 // NewAsyncStateWaitUntilResponse instantiates a new AsyncStateWaitUntilResponse object
@@ -64,6 +65,38 @@ func (o *AsyncStateWaitUntilResponse) SetCommandRequest(v CommandRequest) {
 	o.CommandRequest = v
 }
 
+// GetPublishToLocalQueue returns the PublishToLocalQueue field value if set, zero value otherwise.
+func (o *AsyncStateWaitUntilResponse) GetPublishToLocalQueue() []LocalQueueMessage {
+	if o == nil || IsNil(o.PublishToLocalQueue) {
+		var ret []LocalQueueMessage
+		return ret
+	}
+	return o.PublishToLocalQueue
+}
+
+// GetPublishToLocalQueueOk returns a tuple with the PublishToLocalQueue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateWaitUntilResponse) GetPublishToLocalQueueOk() ([]LocalQueueMessage, bool) {
+	if o == nil || IsNil(o.PublishToLocalQueue) {
+		return nil, false
+	}
+	return o.PublishToLocalQueue, true
+}
+
+// HasPublishToLocalQueue returns a boolean if a field has been set.
+func (o *AsyncStateWaitUntilResponse) HasPublishToLocalQueue() bool {
+	if o != nil && !IsNil(o.PublishToLocalQueue) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublishToLocalQueue gets a reference to the given []LocalQueueMessage and assigns it to the PublishToLocalQueue field.
+func (o *AsyncStateWaitUntilResponse) SetPublishToLocalQueue(v []LocalQueueMessage) {
+	o.PublishToLocalQueue = v
+}
+
 func (o AsyncStateWaitUntilResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -75,6 +108,9 @@ func (o AsyncStateWaitUntilResponse) MarshalJSON() ([]byte, error) {
 func (o AsyncStateWaitUntilResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["commandRequest"] = o.CommandRequest
+	if !IsNil(o.PublishToLocalQueue) {
+		toSerialize["publishToLocalQueue"] = o.PublishToLocalQueue
+	}
 	return toSerialize, nil
 }
 

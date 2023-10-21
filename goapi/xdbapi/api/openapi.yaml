@@ -90,7 +90,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProcessExecutionPublishToLocalQueueRequest'
+              $ref: '#/components/schemas/PublishToLocalQueueRequest'
       responses:
         "200":
           content: {}
@@ -265,9 +265,24 @@ components:
             count: 6
           - queueName: queueName
             count: 6
+        publishToLocalQueue:
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
       properties:
         commandRequest:
           $ref: '#/components/schemas/CommandRequest'
+        publishToLocalQueue:
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
+          type: array
       required:
       - commandRequest
       type: object
@@ -336,28 +351,16 @@ components:
       example:
         commandResults:
           localQueueResults:
-          - messages:
-            - queueName: queueName
-              payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
-            - queueName: queueName
-              payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
-          - messages:
-            - queueName: queueName
-              payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
-            - queueName: queueName
-              payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
+          - queueName: queueName
+            payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+          - queueName: queueName
+            payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
           timerResults:
           - timerStatus: null
             commandId: commandId
@@ -394,28 +397,16 @@ components:
     CommandResults:
       example:
         localQueueResults:
-        - messages:
-          - queueName: queueName
-            payload:
-              data: data
-              encoding: encoding
-            dedupId: dedupId
-          - queueName: queueName
-            payload:
-              data: data
-              encoding: encoding
-            dedupId: dedupId
-        - messages:
-          - queueName: queueName
-            payload:
-              data: data
-              encoding: encoding
-            dedupId: dedupId
-          - queueName: queueName
-            payload:
-              data: data
-              encoding: encoding
-            dedupId: dedupId
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
         timerResults:
         - timerStatus: null
           commandId: commandId
@@ -428,7 +419,7 @@ components:
           type: array
         localQueueResults:
           items:
-            $ref: '#/components/schemas/LocalQueueResult'
+            $ref: '#/components/schemas/LocalQueueMessage'
           type: array
       type: object
     TimerResult:
@@ -449,25 +440,6 @@ components:
       - FIRED_TIMER
       - SKIPPED_TIMER
       type: string
-    LocalQueueResult:
-      example:
-        messages:
-        - queueName: queueName
-          payload:
-            data: data
-            encoding: encoding
-          dedupId: dedupId
-        - queueName: queueName
-          payload:
-            data: data
-            encoding: encoding
-          dedupId: dedupId
-      properties:
-        messages:
-          items:
-            $ref: '#/components/schemas/LocalQueueMessage'
-          type: array
-      type: object
     LocalQueueMessage:
       example:
         queueName: queueName
@@ -479,11 +451,12 @@ components:
         queueName:
           type: string
         dedupId:
+          description: "UUID to uniquely distinguish different messages. If not specified,\
+            \ the server will generate a UUID instead."
           type: string
         payload:
           $ref: '#/components/schemas/EncodedObject'
       required:
-      - dedupId
       - queueName
       type: object
     AsyncStateExecuteResponse:
@@ -536,9 +509,24 @@ components:
               data: data
               encoding: encoding
             closeType: null
+        publishToLocalQueue:
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
       properties:
         stateDecision:
           $ref: '#/components/schemas/StateDecision'
+        publishToLocalQueue:
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
+          type: array
       required:
       - stateDecision
       type: object
@@ -942,32 +930,33 @@ components:
       - TERMINATE
       - FAIL
       type: string
-    ProcessExecutionPublishToLocalQueueRequest:
-      description: the request for sending message(s) to be consumed within a single
+    PublishToLocalQueueRequest:
+      description: the request for sending messages to be consumed within a single
         process execution
       example:
-        queueName: queueName
         processId: processId
-        payload:
-          data: data
-          encoding: encoding
         namespace: namespace
-        dedupId: dedupId
+        messages:
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+        - queueName: queueName
+          payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
       properties:
         namespace:
           type: string
         processId:
           type: string
-        queueName:
-          type: string
-        dedupId:
-          description: "UUID to uniquely distinguish different messages. If not specified,\
-            \ the server will generate a UUID instead."
-          type: string
-        payload:
-          $ref: '#/components/schemas/EncodedObject'
+        messages:
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
+          type: array
       required:
       - namespace
       - processId
-      - queueName
       type: object

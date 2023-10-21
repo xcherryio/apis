@@ -244,13 +244,13 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDescribePostExecute(r
 }
 
 type ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest struct {
-	ctx                                        context.Context
-	ApiService                                 DefaultAPI
-	processExecutionPublishToLocalQueueRequest *ProcessExecutionPublishToLocalQueueRequest
+	ctx                        context.Context
+	ApiService                 DefaultAPI
+	publishToLocalQueueRequest *PublishToLocalQueueRequest
 }
 
-func (r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) ProcessExecutionPublishToLocalQueueRequest(processExecutionPublishToLocalQueueRequest ProcessExecutionPublishToLocalQueueRequest) ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest {
-	r.processExecutionPublishToLocalQueueRequest = &processExecutionPublishToLocalQueueRequest
+func (r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) PublishToLocalQueueRequest(publishToLocalQueueRequest PublishToLocalQueueRequest) ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest {
+	r.publishToLocalQueueRequest = &publishToLocalQueueRequest
 	return r
 }
 
@@ -308,7 +308,7 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.processExecutionPublishToLocalQueueRequest
+	localVarPostBody = r.publishToLocalQueueRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

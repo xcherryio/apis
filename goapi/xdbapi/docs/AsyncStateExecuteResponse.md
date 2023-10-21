@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StateDecision** | [**StateDecision**](StateDecision.md) |  | 
+**PublishToLocalQueue** | Pointer to [**[]LocalQueueMessage**](LocalQueueMessage.md) |  | [optional] 
 
 ## Methods
 
@@ -44,6 +45,31 @@ and a boolean to check if the value has been set.
 
 SetStateDecision sets StateDecision field to given value.
 
+
+### GetPublishToLocalQueue
+
+`func (o *AsyncStateExecuteResponse) GetPublishToLocalQueue() []LocalQueueMessage`
+
+GetPublishToLocalQueue returns the PublishToLocalQueue field if non-nil, zero value otherwise.
+
+### GetPublishToLocalQueueOk
+
+`func (o *AsyncStateExecuteResponse) GetPublishToLocalQueueOk() (*[]LocalQueueMessage, bool)`
+
+GetPublishToLocalQueueOk returns a tuple with the PublishToLocalQueue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublishToLocalQueue
+
+`func (o *AsyncStateExecuteResponse) SetPublishToLocalQueue(v []LocalQueueMessage)`
+
+SetPublishToLocalQueue sets PublishToLocalQueue field to given value.
+
+### HasPublishToLocalQueue
+
+`func (o *AsyncStateExecuteResponse) HasPublishToLocalQueue() bool`
+
+HasPublishToLocalQueue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
