@@ -5,12 +5,13 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ApiV1XdbServiceProcessExecutionDescribePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionDescribePost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
+[**ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost) | **Post** /api/v1/xdb/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
 [**ApiV1XdbServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStartPost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
 [**ApiV1XdbServiceProcessExecutionStopPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStopPost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 [**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
+[**InternalApiV1XdbNotifyImmediateTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyImmediateTasksPost) | **Post** /internal/api/v1/xdb/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 [**InternalApiV1XdbNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyTimerTasksPost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
-[**InternalApiV1XdbNotifyWorkerTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyWorkerTasksPost) | **Post** /internal/api/v1/xdb/notify-worker-tasks | for api service to tell async service that there are new worker tasks added to the queue
 
 
 
@@ -63,6 +64,68 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ProcessExecutionDescribeResponse**](ProcessExecutionDescribeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost
+
+> ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
+
+send message(s) to be consumed within a single process execution
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xdblab/xdb-apis"
+)
+
+func main() {
+    publishToLocalQueueRequest := *openapiclient.NewPublishToLocalQueueRequest("Namespace_example", "ProcessId_example") // PublishToLocalQueueRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(context.Background()).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **publishToLocalQueueRequest** | [**PublishToLocalQueueRequest**](PublishToLocalQueueRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 
@@ -332,6 +395,68 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## InternalApiV1XdbNotifyImmediateTasksPost
+
+> InternalApiV1XdbNotifyImmediateTasksPost(ctx).NotifyImmediateTasksRequest(notifyImmediateTasksRequest).Execute()
+
+for api service to tell async service that there are new immediate tasks added to the queue
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xdblab/xdb-apis"
+)
+
+func main() {
+    notifyImmediateTasksRequest := *openapiclient.NewNotifyImmediateTasksRequest(int32(123)) // NotifyImmediateTasksRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultAPI.InternalApiV1XdbNotifyImmediateTasksPost(context.Background()).NotifyImmediateTasksRequest(notifyImmediateTasksRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XdbNotifyImmediateTasksPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInternalApiV1XdbNotifyImmediateTasksPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **notifyImmediateTasksRequest** | [**NotifyImmediateTasksRequest**](NotifyImmediateTasksRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## InternalApiV1XdbNotifyTimerTasksPost
 
 > InternalApiV1XdbNotifyTimerTasksPost(ctx).NotifyTimerTasksRequest(notifyTimerTasksRequest).Execute()
@@ -375,68 +500,6 @@ Other parameters are passed through a pointer to a apiInternalApiV1XdbNotifyTime
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **notifyTimerTasksRequest** | [**NotifyTimerTasksRequest**](NotifyTimerTasksRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## InternalApiV1XdbNotifyWorkerTasksPost
-
-> InternalApiV1XdbNotifyWorkerTasksPost(ctx).NotifyWorkerTasksRequest(notifyWorkerTasksRequest).Execute()
-
-for api service to tell async service that there are new worker tasks added to the queue
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xdblab/xdb-apis"
-)
-
-func main() {
-    notifyWorkerTasksRequest := *openapiclient.NewNotifyWorkerTasksRequest(int32(123)) // NotifyWorkerTasksRequest |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.InternalApiV1XdbNotifyWorkerTasksPost(context.Background()).NotifyWorkerTasksRequest(notifyWorkerTasksRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XdbNotifyWorkerTasksPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiInternalApiV1XdbNotifyWorkerTasksPostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **notifyWorkerTasksRequest** | [**NotifyWorkerTasksRequest**](NotifyWorkerTasksRequest.md) |  | 
 
 ### Return type
 

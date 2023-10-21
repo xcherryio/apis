@@ -19,7 +19,8 @@ var _ MappedNullable = &CommandResults{}
 
 // CommandResults struct for CommandResults
 type CommandResults struct {
-	TimerResults []TimerResult `json:"timerResults,omitempty"`
+	TimerResults      []TimerResult       `json:"timerResults,omitempty"`
+	LocalQueueResults []LocalQueueMessage `json:"localQueueResults,omitempty"`
 }
 
 // NewCommandResults instantiates a new CommandResults object
@@ -71,6 +72,38 @@ func (o *CommandResults) SetTimerResults(v []TimerResult) {
 	o.TimerResults = v
 }
 
+// GetLocalQueueResults returns the LocalQueueResults field value if set, zero value otherwise.
+func (o *CommandResults) GetLocalQueueResults() []LocalQueueMessage {
+	if o == nil || IsNil(o.LocalQueueResults) {
+		var ret []LocalQueueMessage
+		return ret
+	}
+	return o.LocalQueueResults
+}
+
+// GetLocalQueueResultsOk returns a tuple with the LocalQueueResults field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommandResults) GetLocalQueueResultsOk() ([]LocalQueueMessage, bool) {
+	if o == nil || IsNil(o.LocalQueueResults) {
+		return nil, false
+	}
+	return o.LocalQueueResults, true
+}
+
+// HasLocalQueueResults returns a boolean if a field has been set.
+func (o *CommandResults) HasLocalQueueResults() bool {
+	if o != nil && !IsNil(o.LocalQueueResults) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalQueueResults gets a reference to the given []LocalQueueMessage and assigns it to the LocalQueueResults field.
+func (o *CommandResults) SetLocalQueueResults(v []LocalQueueMessage) {
+	o.LocalQueueResults = v
+}
+
 func (o CommandResults) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -83,6 +116,9 @@ func (o CommandResults) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.TimerResults) {
 		toSerialize["timerResults"] = o.TimerResults
+	}
+	if !IsNil(o.LocalQueueResults) {
+		toSerialize["localQueueResults"] = o.LocalQueueResults
 	}
 	return toSerialize, nil
 }

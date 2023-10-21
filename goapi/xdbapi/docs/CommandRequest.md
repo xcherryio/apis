@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **WaitingType** | [**CommandWaitingType**](CommandWaitingType.md) |  | 
 **TimerCommands** | Pointer to [**[]TimerCommand**](TimerCommand.md) |  | [optional] 
+**LocalQueueCommands** | Pointer to [**[]LocalQueueCommand**](LocalQueueCommand.md) |  | [optional] 
 
 ## Methods
 
@@ -70,6 +71,31 @@ SetTimerCommands sets TimerCommands field to given value.
 `func (o *CommandRequest) HasTimerCommands() bool`
 
 HasTimerCommands returns a boolean if a field has been set.
+
+### GetLocalQueueCommands
+
+`func (o *CommandRequest) GetLocalQueueCommands() []LocalQueueCommand`
+
+GetLocalQueueCommands returns the LocalQueueCommands field if non-nil, zero value otherwise.
+
+### GetLocalQueueCommandsOk
+
+`func (o *CommandRequest) GetLocalQueueCommandsOk() (*[]LocalQueueCommand, bool)`
+
+GetLocalQueueCommandsOk returns a tuple with the LocalQueueCommands field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalQueueCommands
+
+`func (o *CommandRequest) SetLocalQueueCommands(v []LocalQueueCommand)`
+
+SetLocalQueueCommands sets LocalQueueCommands field to given value.
+
+### HasLocalQueueCommands
+
+`func (o *CommandRequest) HasLocalQueueCommands() bool`
+
+HasLocalQueueCommands returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
