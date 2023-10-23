@@ -499,6 +499,10 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         executeApiRetryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
+        stateFailureRecoveryPolicy:
+          $ref: '#/components/schemas/StateFailureRecoveryPolicy'
+        stateFailureProceedStateConfig:
+          $ref: '#/components/schemas/AsyncStateConfig'
     RetryPolicy:
       type: object
       properties:
@@ -518,6 +522,11 @@ components:
         maximumAttemptsDurationSeconds: 
           type: integer
           description: the maximum duration of all attempts, default to 0, means unlimited
+    StateFailureRecoveryPolicy:
+      type: string
+      enum:
+        - FAIL_WORKFLOW_ON_STATE_FAILURE
+        - PROCEED_TO_CONFIGURED_STATE
     ProcessExecutionStartResponse:
       type: object
       description: response of ProcessExecutionStartRequest
