@@ -510,9 +510,19 @@ components:
         executeApiRetryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryPolicy:
-          oneof:
-            - $ref: '#/components/schemas/FailProcessOnStateFailureRecoveryPolicy'
-            - $ref: '#/components/schemas/ProceedToConfiguredStateRecoveryPolicy'
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              enum:
+                - FAIL_PROCESS_ON_STATE_FAILURE
+                - PROCEED_TO_CONFIGURED_STATE
+            stateFailureProceedStateId: # only valid when name is PROCEED_TO_CONFIGURED_STATE
+              type: string
+            stateFailureProceedStateConfig: # only valid when name is PROCEED_TO_CONFIGURED_STATE
+              $ref: '#/components/schemas/AsyncStateConfig'
         stateFailureProceedStateId:
           type: string
         stateFailureProceedStateConfig:
@@ -536,30 +546,6 @@ components:
         maximumAttemptsDurationSeconds: 
           type: integer
           description: the maximum duration of all attempts, default to 0, means unlimited
-    FailProcessOnStateFailureRecoveryPolicy:
-      type: object
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          enum:
-            - FAIL_PROCESS_ON_STATE_FAILURE
-    ProceedToConfiguredStateRecoveryPolicy:
-      type: object
-      required:
-        - name
-        - stateId
-        - stateConfig
-      properties:
-        name:
-          type: string
-          enum:
-            - PROCEED_TO_CONFIGURED_STATE
-        stateId:
-          type: string
-        stateConfig:
-          $ref: '#/components/schemas/AsyncStateConfig'
     ProcessExecutionStartResponse:
       type: object
       description: response of ProcessExecutionStartRequest
