@@ -501,6 +501,8 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryPolicy:
           $ref: '#/components/schemas/StateFailureRecoveryPolicy'
+        stateFailureProceedStateId:
+          type: string
         stateFailureProceedStateConfig:
           $ref: '#/components/schemas/AsyncStateConfig'
     RetryPolicy:
