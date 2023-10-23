@@ -523,10 +523,6 @@ components:
               type: string
             stateFailureProceedStateConfig: # only valid when name is PROCEED_TO_CONFIGURED_STATE
               $ref: '#/components/schemas/AsyncStateConfig'
-        stateFailureProceedStateId:
-          type: string
-        stateFailureProceedStateConfig:
-          $ref: '#/components/schemas/AsyncStateConfig'
     RetryPolicy:
       type: object
       properties:
