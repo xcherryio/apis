@@ -414,14 +414,13 @@ components:
         lastFailedStateExecutionId:
           description: for async state API only, state id + sequence number
           type: string
-          nullable: true
         lastFailedApi:
           description: for async state API only
           type: string
-          nullable: true
           enum:
             - WAIT_UNTIL
             - EXECUTE
+            - NONE
     WorkerErrorResponse:
       type: object
       required: 
