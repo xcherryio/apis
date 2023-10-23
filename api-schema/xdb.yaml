@@ -411,6 +411,15 @@ components:
         attempt:
           description: for async state API only(during backoff retry)
           type: integer
+        lastFailedStateExecutionId:
+          description: for async state API only, state id + sequence number
+          type: string
+        lastFailedApi:
+          description: for async state API only
+          type: string
+          enum:
+            - WAIT_UNTIL
+            - EXECUTE
     WorkerErrorResponse:
       type: object
       required: 
@@ -500,7 +509,9 @@ components:
         executeApiRetryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryPolicy:
-          $ref: '#/components/schemas/StateFailureRecoveryPolicy'
+          oneof:
+            - $ref: '#/components/schemas/FailProcessOnStateFailureRecoveryPolicy'
+            - $ref: '#/components/schemas/ProceedToConfiguredStateRecoveryPolicy'
         stateFailureProceedStateId:
           type: string
         stateFailureProceedStateConfig:
@@ -524,11 +535,30 @@ components:
         maximumAttemptsDurationSeconds: 
           type: integer
           description: the maximum duration of all attempts, default to 0, means unlimited
-    StateFailureRecoveryPolicy:
-      type: string
-      enum:
-        - FAIL_WORKFLOW_ON_STATE_FAILURE
-        - PROCEED_TO_CONFIGURED_STATE
+    FailProcessOnStateFailureRecoveryPolicy:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          enum:
+            - FAIL_PROCESS_ON_STATE_FAILURE
+    ProceedToConfiguredStateRecoveryPolicy:
+      type: object
+      required:
+        - name
+        - stateId
+        - stateConfig
+      properties:
+        name:
+          type: string
+          enum:
+            - PROCEED_TO_CONFIGURED_STATE
+        stateId:
+          type: string
+        stateConfig:
+          $ref: '#/components/schemas/AsyncStateConfig'
     ProcessExecutionStartResponse:
       type: object
       description: response of ProcessExecutionStartRequest
