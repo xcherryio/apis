@@ -415,7 +415,7 @@ components:
           description: for async state API only, state id + sequence number
           type: string
         lastFailedApi:
-          description: for async state API only
+          description: if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
           type: string
           enum:
             - WAIT_UNTIL
