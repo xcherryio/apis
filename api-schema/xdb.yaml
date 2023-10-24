@@ -416,7 +416,7 @@ components:
           type: string
         recoverFromApi:
           description: if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
-          $ref: '#/components/schemas/RecoverFromApiFailureType'
+          $ref: '#/components/schemas/ApiFailureType'
     ApiFailureType:
       type: string
       enum:
