@@ -411,6 +411,17 @@ components:
         attempt:
           description: for async state API only(during backoff retry)
           type: integer
+        recoverFromStateExecutionId:
+          description: for async state API only, state id + sequence number
+          type: string
+        recoverFromApi:
+          description: if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
+          $ref: '#/components/schemas/StateApiType'
+    StateApiType:
+      type: string
+      enum:
+        - WAIT_UNTIL_API
+        - EXECUTE_API
     WorkerErrorResponse:
       type: object
       required: 
@@ -499,6 +510,22 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         executeApiRetryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
+        stateFailureRecoveryInfo:
+          type: object
+          required:
+            - policy
+          properties:
+            policy:
+              $ref: '#/components/schemas/StateFailureRecoveryPolicy'
+            stateFailureProceedStateId: # only valid when name is PROCEED_TO_CONFIGURED_STATE
+              type: string
+            stateFailureProceedStateConfig: # only valid when name is PROCEED_TO_CONFIGURED_STATE
+              $ref: '#/components/schemas/AsyncStateConfig'
+    StateFailureRecoveryPolicy:
+      type: string
+      enum:
+        - FAIL_PROCESS_ON_STATE_FAILURE
+        - PROCEED_TO_CONFIGURED_STATE
     RetryPolicy:
       type: object
       properties:
