@@ -416,13 +416,12 @@ components:
           type: string
         recoverFromApi:
           description: if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
-          $ref: '#/components/schemas/ApiFailureType'
-    ApiFailureType:
+          $ref: '#/components/schemas/ApiType'
+    ApiType:
       type: string
       enum:
         - WAIT_UNTIL_API
         - EXECUTE_API
-        - NO_API_FAILURE
     WorkerErrorResponse:
       type: object
       required: 
