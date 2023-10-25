@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **StateExecutionId** | Pointer to **string** | stateExecutionId is for async state API only | [optional] 
 **FirstAttemptTimestamp** | Pointer to **int64** | for async state API only(during backoff retry) | [optional] 
 **Attempt** | Pointer to **int32** | for async state API only(during backoff retry) | [optional] 
+**RecoverFromStateExecutionId** | Pointer to **string** | for async state API only, state id + sequence number | [optional] 
+**RecoverFromApi** | Pointer to [**StateApiType**](StateApiType.md) |  | [optional] 
 
 ## Methods
 
@@ -164,6 +166,56 @@ SetAttempt sets Attempt field to given value.
 `func (o *Context) HasAttempt() bool`
 
 HasAttempt returns a boolean if a field has been set.
+
+### GetRecoverFromStateExecutionId
+
+`func (o *Context) GetRecoverFromStateExecutionId() string`
+
+GetRecoverFromStateExecutionId returns the RecoverFromStateExecutionId field if non-nil, zero value otherwise.
+
+### GetRecoverFromStateExecutionIdOk
+
+`func (o *Context) GetRecoverFromStateExecutionIdOk() (*string, bool)`
+
+GetRecoverFromStateExecutionIdOk returns a tuple with the RecoverFromStateExecutionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRecoverFromStateExecutionId
+
+`func (o *Context) SetRecoverFromStateExecutionId(v string)`
+
+SetRecoverFromStateExecutionId sets RecoverFromStateExecutionId field to given value.
+
+### HasRecoverFromStateExecutionId
+
+`func (o *Context) HasRecoverFromStateExecutionId() bool`
+
+HasRecoverFromStateExecutionId returns a boolean if a field has been set.
+
+### GetRecoverFromApi
+
+`func (o *Context) GetRecoverFromApi() StateApiType`
+
+GetRecoverFromApi returns the RecoverFromApi field if non-nil, zero value otherwise.
+
+### GetRecoverFromApiOk
+
+`func (o *Context) GetRecoverFromApiOk() (*StateApiType, bool)`
+
+GetRecoverFromApiOk returns a tuple with the RecoverFromApi field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRecoverFromApi
+
+`func (o *Context) SetRecoverFromApi(v StateApiType)`
+
+SetRecoverFromApi sets RecoverFromApi field to given value.
+
+### HasRecoverFromApi
+
+`func (o *Context) HasRecoverFromApi() bool`
+
+HasRecoverFromApi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -226,9 +226,11 @@ components:
       example:
         stateId: stateId
         context:
+          recoverFromApi: null
           processStartedTimestamp: 0
           processExecutionId: processExecutionId
           processId: processId
+          recoverFromStateExecutionId: recoverFromStateExecutionId
           firstAttemptTimestamp: 6
           attempt: 1
           stateExecutionId: stateExecutionId
@@ -368,9 +370,11 @@ components:
             commandId: commandId
         stateId: stateId
         context:
+          recoverFromApi: null
           processStartedTimestamp: 0
           processExecutionId: processExecutionId
           processId: processId
+          recoverFromStateExecutionId: recoverFromStateExecutionId
           firstAttemptTimestamp: 6
           attempt: 1
           stateExecutionId: stateExecutionId
@@ -466,6 +470,10 @@ components:
           nextStates:
           - stateConfig:
               executeApiTimeoutSeconds: 6
+              stateFailureRecoveryInfo:
+                stateFailureProceedStateId: stateFailureProceedStateId
+                stateFailureProceedStateConfig: null
+                policy: null
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
@@ -486,6 +494,10 @@ components:
               encoding: encoding
           - stateConfig:
               executeApiTimeoutSeconds: 6
+              stateFailureRecoveryInfo:
+                stateFailureProceedStateId: stateFailureProceedStateId
+                stateFailureProceedStateConfig: null
+                policy: null
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
@@ -537,6 +549,10 @@ components:
         nextStates:
         - stateConfig:
             executeApiTimeoutSeconds: 6
+            stateFailureRecoveryInfo:
+              stateFailureProceedStateId: stateFailureProceedStateId
+              stateFailureProceedStateConfig: null
+              policy: null
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
               maximumAttemptsDurationSeconds: 7
@@ -557,6 +573,10 @@ components:
             encoding: encoding
         - stateConfig:
             executeApiTimeoutSeconds: 6
+            stateFailureRecoveryInfo:
+              stateFailureProceedStateId: stateFailureProceedStateId
+              stateFailureProceedStateConfig: null
+              policy: null
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
               maximumAttemptsDurationSeconds: 7
@@ -613,6 +633,10 @@ components:
       example:
         stateConfig:
           executeApiTimeoutSeconds: 6
+          stateFailureRecoveryInfo:
+            stateFailureProceedStateId: stateFailureProceedStateId
+            stateFailureProceedStateConfig: null
+            policy: null
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
             maximumAttemptsDurationSeconds: 7
@@ -643,9 +667,11 @@ components:
       type: object
     Context:
       example:
+        recoverFromApi: null
         processStartedTimestamp: 0
         processExecutionId: processExecutionId
         processId: processId
+        recoverFromStateExecutionId: recoverFromStateExecutionId
         firstAttemptTimestamp: 6
         attempt: 1
         stateExecutionId: stateExecutionId
@@ -667,11 +693,21 @@ components:
         attempt:
           description: for async state API only(during backoff retry)
           type: integer
+        recoverFromStateExecutionId:
+          description: "for async state API only, state id + sequence number"
+          type: string
+        recoverFromApi:
+          $ref: '#/components/schemas/StateApiType'
       required:
       - processExecutionId
       - processId
       - processStartedTimestamp
       type: object
+    StateApiType:
+      enum:
+      - WAIT_UNTIL_API
+      - EXECUTE_API
+      type: string
     WorkerErrorResponse:
       properties:
         detail:
@@ -710,6 +746,10 @@ components:
       example:
         startStateConfig:
           executeApiTimeoutSeconds: 6
+          stateFailureRecoveryInfo:
+            stateFailureProceedStateId: stateFailureProceedStateId
+            stateFailureProceedStateConfig: null
+            policy: null
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
             maximumAttemptsDurationSeconds: 7
@@ -783,6 +823,10 @@ components:
     AsyncStateConfig:
       example:
         executeApiTimeoutSeconds: 6
+        stateFailureRecoveryInfo:
+          stateFailureProceedStateId: stateFailureProceedStateId
+          stateFailureProceedStateConfig: null
+          policy: null
         skipWaitUntil: true
         waitUntilApiRetryPolicy:
           maximumAttemptsDurationSeconds: 7
@@ -811,7 +855,14 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         executeApiRetryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
+        stateFailureRecoveryInfo:
+          $ref: '#/components/schemas/AsyncStateConfig_stateFailureRecoveryInfo'
       type: object
+    StateFailureRecoveryPolicy:
+      enum:
+      - FAIL_PROCESS_ON_STATE_FAILURE
+      - PROCEED_TO_CONFIGURED_STATE
+      type: string
     RetryPolicy:
       example:
         maximumAttemptsDurationSeconds: 7
@@ -959,4 +1010,19 @@ components:
       required:
       - namespace
       - processId
+      type: object
+    AsyncStateConfig_stateFailureRecoveryInfo:
+      example:
+        stateFailureProceedStateId: stateFailureProceedStateId
+        stateFailureProceedStateConfig: null
+        policy: null
+      properties:
+        policy:
+          $ref: '#/components/schemas/StateFailureRecoveryPolicy'
+        stateFailureProceedStateId:
+          type: string
+        stateFailureProceedStateConfig:
+          $ref: '#/components/schemas/AsyncStateConfig'
+      required:
+      - policy
       type: object
