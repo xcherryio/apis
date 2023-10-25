@@ -28,6 +28,9 @@ type Context struct {
 	FirstAttemptTimestamp *int64 `json:"firstAttemptTimestamp,omitempty"`
 	// for async state API only(during backoff retry)
 	Attempt *int32 `json:"attempt,omitempty"`
+	// for async state API only, state id + sequence number
+	RecoverFromStateExecutionId *string       `json:"recoverFromStateExecutionId,omitempty"`
+	RecoverFromApi              *StateApiType `json:"recoverFromApi,omitempty"`
 }
 
 // NewContext instantiates a new Context object
@@ -218,6 +221,70 @@ func (o *Context) SetAttempt(v int32) {
 	o.Attempt = &v
 }
 
+// GetRecoverFromStateExecutionId returns the RecoverFromStateExecutionId field value if set, zero value otherwise.
+func (o *Context) GetRecoverFromStateExecutionId() string {
+	if o == nil || IsNil(o.RecoverFromStateExecutionId) {
+		var ret string
+		return ret
+	}
+	return *o.RecoverFromStateExecutionId
+}
+
+// GetRecoverFromStateExecutionIdOk returns a tuple with the RecoverFromStateExecutionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Context) GetRecoverFromStateExecutionIdOk() (*string, bool) {
+	if o == nil || IsNil(o.RecoverFromStateExecutionId) {
+		return nil, false
+	}
+	return o.RecoverFromStateExecutionId, true
+}
+
+// HasRecoverFromStateExecutionId returns a boolean if a field has been set.
+func (o *Context) HasRecoverFromStateExecutionId() bool {
+	if o != nil && !IsNil(o.RecoverFromStateExecutionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecoverFromStateExecutionId gets a reference to the given string and assigns it to the RecoverFromStateExecutionId field.
+func (o *Context) SetRecoverFromStateExecutionId(v string) {
+	o.RecoverFromStateExecutionId = &v
+}
+
+// GetRecoverFromApi returns the RecoverFromApi field value if set, zero value otherwise.
+func (o *Context) GetRecoverFromApi() StateApiType {
+	if o == nil || IsNil(o.RecoverFromApi) {
+		var ret StateApiType
+		return ret
+	}
+	return *o.RecoverFromApi
+}
+
+// GetRecoverFromApiOk returns a tuple with the RecoverFromApi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Context) GetRecoverFromApiOk() (*StateApiType, bool) {
+	if o == nil || IsNil(o.RecoverFromApi) {
+		return nil, false
+	}
+	return o.RecoverFromApi, true
+}
+
+// HasRecoverFromApi returns a boolean if a field has been set.
+func (o *Context) HasRecoverFromApi() bool {
+	if o != nil && !IsNil(o.RecoverFromApi) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecoverFromApi gets a reference to the given StateApiType and assigns it to the RecoverFromApi field.
+func (o *Context) SetRecoverFromApi(v StateApiType) {
+	o.RecoverFromApi = &v
+}
+
 func (o Context) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -239,6 +306,12 @@ func (o Context) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Attempt) {
 		toSerialize["attempt"] = o.Attempt
+	}
+	if !IsNil(o.RecoverFromStateExecutionId) {
+		toSerialize["recoverFromStateExecutionId"] = o.RecoverFromStateExecutionId
+	}
+	if !IsNil(o.RecoverFromApi) {
+		toSerialize["recoverFromApi"] = o.RecoverFromApi
 	}
 	return toSerialize, nil
 }

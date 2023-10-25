@@ -23,9 +23,10 @@ type AsyncStateConfig struct {
 	// the timeout for the single attempt of AsyncState.waitUntil API
 	WaitUntilApiTimeoutSeconds *int32 `json:"waitUntilApiTimeoutSeconds,omitempty"`
 	// the timeout for the single attempt of AsyncState.execute API
-	ExecuteApiTimeoutSeconds *int32       `json:"executeApiTimeoutSeconds,omitempty"`
-	WaitUntilApiRetryPolicy  *RetryPolicy `json:"waitUntilApiRetryPolicy,omitempty"`
-	ExecuteApiRetryPolicy    *RetryPolicy `json:"executeApiRetryPolicy,omitempty"`
+	ExecuteApiTimeoutSeconds *int32                                    `json:"executeApiTimeoutSeconds,omitempty"`
+	WaitUntilApiRetryPolicy  *RetryPolicy                              `json:"waitUntilApiRetryPolicy,omitempty"`
+	ExecuteApiRetryPolicy    *RetryPolicy                              `json:"executeApiRetryPolicy,omitempty"`
+	StateFailureRecoveryInfo *AsyncStateConfigStateFailureRecoveryInfo `json:"stateFailureRecoveryInfo,omitempty"`
 }
 
 // NewAsyncStateConfig instantiates a new AsyncStateConfig object
@@ -205,6 +206,38 @@ func (o *AsyncStateConfig) SetExecuteApiRetryPolicy(v RetryPolicy) {
 	o.ExecuteApiRetryPolicy = &v
 }
 
+// GetStateFailureRecoveryInfo returns the StateFailureRecoveryInfo field value if set, zero value otherwise.
+func (o *AsyncStateConfig) GetStateFailureRecoveryInfo() AsyncStateConfigStateFailureRecoveryInfo {
+	if o == nil || IsNil(o.StateFailureRecoveryInfo) {
+		var ret AsyncStateConfigStateFailureRecoveryInfo
+		return ret
+	}
+	return *o.StateFailureRecoveryInfo
+}
+
+// GetStateFailureRecoveryInfoOk returns a tuple with the StateFailureRecoveryInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateConfig) GetStateFailureRecoveryInfoOk() (*AsyncStateConfigStateFailureRecoveryInfo, bool) {
+	if o == nil || IsNil(o.StateFailureRecoveryInfo) {
+		return nil, false
+	}
+	return o.StateFailureRecoveryInfo, true
+}
+
+// HasStateFailureRecoveryInfo returns a boolean if a field has been set.
+func (o *AsyncStateConfig) HasStateFailureRecoveryInfo() bool {
+	if o != nil && !IsNil(o.StateFailureRecoveryInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetStateFailureRecoveryInfo gets a reference to the given AsyncStateConfigStateFailureRecoveryInfo and assigns it to the StateFailureRecoveryInfo field.
+func (o *AsyncStateConfig) SetStateFailureRecoveryInfo(v AsyncStateConfigStateFailureRecoveryInfo) {
+	o.StateFailureRecoveryInfo = &v
+}
+
 func (o AsyncStateConfig) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -229,6 +262,9 @@ func (o AsyncStateConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ExecuteApiRetryPolicy) {
 		toSerialize["executeApiRetryPolicy"] = o.ExecuteApiRetryPolicy
+	}
+	if !IsNil(o.StateFailureRecoveryInfo) {
+		toSerialize["stateFailureRecoveryInfo"] = o.StateFailureRecoveryInfo
 	}
 	return toSerialize, nil
 }
