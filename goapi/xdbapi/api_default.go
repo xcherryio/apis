@@ -18,7 +18,7 @@ import (
 	"net/url"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 
 	/*
 		ApiV1XdbServiceProcessExecutionDescribePost describe a process execution
@@ -113,12 +113,12 @@ type DefaultApi interface {
 	InternalApiV1XdbNotifyTimerTasksPostExecute(r ApiInternalApiV1XdbNotifyTimerTasksPostRequest) (*http.Response, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type ApiApiV1XdbServiceProcessExecutionDescribePostRequest struct {
 	ctx                             context.Context
-	ApiService                      DefaultApi
+	ApiService                      DefaultAPI
 	processExecutionDescribeRequest *ProcessExecutionDescribeRequest
 }
 
@@ -137,7 +137,7 @@ ApiV1XdbServiceProcessExecutionDescribePost describe a process execution
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbServiceProcessExecutionDescribePostRequest
 */
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionDescribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDescribePostRequest {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDescribePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionDescribePostRequest {
 	return ApiApiV1XdbServiceProcessExecutionDescribePostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -147,7 +147,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionDescribePost(ctx cont
 // Execute executes the request
 //
 //	@return ProcessExecutionDescribeResponse
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionDescribePostExecute(r ApiApiV1XdbServiceProcessExecutionDescribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionDescribePostExecute(r ApiApiV1XdbServiceProcessExecutionDescribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -155,7 +155,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionDescribePostExecute(r
 		localVarReturnValue *ProcessExecutionDescribeResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbServiceProcessExecutionDescribePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionDescribePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -245,7 +245,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionDescribePostExecute(r
 
 type ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest struct {
 	ctx                        context.Context
-	ApiService                 DefaultApi
+	ApiService                 DefaultAPI
 	publishToLocalQueueRequest *PublishToLocalQueueRequest
 }
 
@@ -264,7 +264,7 @@ ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost send message(s) to be con
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest
 */
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest {
 	return ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -272,14 +272,14 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePo
 }
 
 // Execute executes the request
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePostExecute(r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) (*http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePostExecute(r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -360,7 +360,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePo
 
 type ApiApiV1XdbServiceProcessExecutionStartPostRequest struct {
 	ctx                          context.Context
-	ApiService                   DefaultApi
+	ApiService                   DefaultAPI
 	processExecutionStartRequest *ProcessExecutionStartRequest
 }
 
@@ -379,7 +379,7 @@ ApiV1XdbServiceProcessExecutionStartPost start a process execution
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbServiceProcessExecutionStartPostRequest
 */
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStartPostRequest {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStartPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStartPostRequest {
 	return ApiApiV1XdbServiceProcessExecutionStartPostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -389,7 +389,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPost(ctx context
 // Execute executes the request
 //
 //	@return ProcessExecutionStartResponse
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPostExecute(r ApiApiV1XdbServiceProcessExecutionStartPostRequest) (*ProcessExecutionStartResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStartPostExecute(r ApiApiV1XdbServiceProcessExecutionStartPostRequest) (*ProcessExecutionStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -397,7 +397,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPostExecute(r Ap
 		localVarReturnValue *ProcessExecutionStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbServiceProcessExecutionStartPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionStartPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -487,7 +487,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStartPostExecute(r Ap
 
 type ApiApiV1XdbServiceProcessExecutionStopPostRequest struct {
 	ctx                         context.Context
-	ApiService                  DefaultApi
+	ApiService                  DefaultAPI
 	processExecutionStopRequest *ProcessExecutionStopRequest
 }
 
@@ -506,7 +506,7 @@ ApiV1XdbServiceProcessExecutionStopPost stop a process execution
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbServiceProcessExecutionStopPostRequest
 */
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStopPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStopPostRequest {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStopPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionStopPostRequest {
 	return ApiApiV1XdbServiceProcessExecutionStopPostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -514,14 +514,14 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStopPost(ctx context.
 }
 
 // Execute executes the request
-func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStopPostExecute(r ApiApiV1XdbServiceProcessExecutionStopPostRequest) (*http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionStopPostExecute(r ApiApiV1XdbServiceProcessExecutionStopPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbServiceProcessExecutionStopPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionStopPost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -602,7 +602,7 @@ func (a *DefaultApiService) ApiV1XdbServiceProcessExecutionStopPostExecute(r Api
 
 type ApiApiV1XdbWorkerAsyncStateExecutePostRequest struct {
 	ctx                      context.Context
-	ApiService               DefaultApi
+	ApiService               DefaultAPI
 	asyncStateExecuteRequest *AsyncStateExecuteRequest
 }
 
@@ -621,7 +621,7 @@ ApiV1XdbWorkerAsyncStateExecutePost invoking AsyncState.execute API
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbWorkerAsyncStateExecutePostRequest
 */
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateExecutePostRequest {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateExecutePost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateExecutePostRequest {
 	return ApiApiV1XdbWorkerAsyncStateExecutePostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -631,7 +631,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePost(ctx context.Cont
 // Execute executes the request
 //
 //	@return AsyncStateExecuteResponse
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV1XdbWorkerAsyncStateExecutePostRequest) (*AsyncStateExecuteResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV1XdbWorkerAsyncStateExecutePostRequest) (*AsyncStateExecuteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -639,7 +639,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV
 		localVarReturnValue *AsyncStateExecuteResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbWorkerAsyncStateExecutePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbWorkerAsyncStateExecutePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -716,7 +716,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateExecutePostExecute(r ApiApiV
 
 type ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest struct {
 	ctx                        context.Context
-	ApiService                 DefaultApi
+	ApiService                 DefaultAPI
 	asyncStateWaitUntilRequest *AsyncStateWaitUntilRequest
 }
 
@@ -735,7 +735,7 @@ ApiV1XdbWorkerAsyncStateWaitUntilPost invoking AsyncState.waitUntil API
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest
 */
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateWaitUntilPost(ctx context.Context) ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest {
 	return ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -745,7 +745,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPost(ctx context.Co
 // Execute executes the request
 //
 //	@return AsyncStateWaitUntilResponse
-func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error) {
+func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -753,7 +753,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiAp
 		localVarReturnValue *AsyncStateWaitUntilResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApiV1XdbWorkerAsyncStateWaitUntilPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbWorkerAsyncStateWaitUntilPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -830,7 +830,7 @@ func (a *DefaultApiService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiAp
 
 type ApiInternalApiV1XdbNotifyImmediateTasksPostRequest struct {
 	ctx                         context.Context
-	ApiService                  DefaultApi
+	ApiService                  DefaultAPI
 	notifyImmediateTasksRequest *NotifyImmediateTasksRequest
 }
 
@@ -849,7 +849,7 @@ InternalApiV1XdbNotifyImmediateTasksPost for api service to tell async service t
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiInternalApiV1XdbNotifyImmediateTasksPostRequest
 */
-func (a *DefaultApiService) InternalApiV1XdbNotifyImmediateTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyImmediateTasksPostRequest {
+func (a *DefaultAPIService) InternalApiV1XdbNotifyImmediateTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyImmediateTasksPostRequest {
 	return ApiInternalApiV1XdbNotifyImmediateTasksPostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -857,14 +857,14 @@ func (a *DefaultApiService) InternalApiV1XdbNotifyImmediateTasksPost(ctx context
 }
 
 // Execute executes the request
-func (a *DefaultApiService) InternalApiV1XdbNotifyImmediateTasksPostExecute(r ApiInternalApiV1XdbNotifyImmediateTasksPostRequest) (*http.Response, error) {
+func (a *DefaultAPIService) InternalApiV1XdbNotifyImmediateTasksPostExecute(r ApiInternalApiV1XdbNotifyImmediateTasksPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InternalApiV1XdbNotifyImmediateTasksPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.InternalApiV1XdbNotifyImmediateTasksPost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -924,7 +924,7 @@ func (a *DefaultApiService) InternalApiV1XdbNotifyImmediateTasksPostExecute(r Ap
 
 type ApiInternalApiV1XdbNotifyTimerTasksPostRequest struct {
 	ctx                     context.Context
-	ApiService              DefaultApi
+	ApiService              DefaultAPI
 	notifyTimerTasksRequest *NotifyTimerTasksRequest
 }
 
@@ -943,7 +943,7 @@ InternalApiV1XdbNotifyTimerTasksPost for api service to tell async service that 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiInternalApiV1XdbNotifyTimerTasksPostRequest
 */
-func (a *DefaultApiService) InternalApiV1XdbNotifyTimerTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyTimerTasksPostRequest {
+func (a *DefaultAPIService) InternalApiV1XdbNotifyTimerTasksPost(ctx context.Context) ApiInternalApiV1XdbNotifyTimerTasksPostRequest {
 	return ApiInternalApiV1XdbNotifyTimerTasksPostRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -951,14 +951,14 @@ func (a *DefaultApiService) InternalApiV1XdbNotifyTimerTasksPost(ctx context.Con
 }
 
 // Execute executes the request
-func (a *DefaultApiService) InternalApiV1XdbNotifyTimerTasksPostExecute(r ApiInternalApiV1XdbNotifyTimerTasksPostRequest) (*http.Response, error) {
+func (a *DefaultAPIService) InternalApiV1XdbNotifyTimerTasksPostExecute(r ApiInternalApiV1XdbNotifyTimerTasksPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InternalApiV1XdbNotifyTimerTasksPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.InternalApiV1XdbNotifyTimerTasksPost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
