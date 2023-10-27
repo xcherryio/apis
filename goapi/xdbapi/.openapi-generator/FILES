@@ -17,7 +17,7 @@ docs/CommandRequest.md
 docs/CommandResults.md
 docs/CommandWaitingType.md
 docs/Context.md
-docs/DefaultApi.md
+docs/DefaultAPI.md
 docs/EncodedObject.md
 docs/LocalQueueCommand.md
 docs/LocalQueueMessage.md

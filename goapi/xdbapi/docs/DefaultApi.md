@@ -1,17 +1,17 @@
-# \DefaultApi
+# \DefaultAPI
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApiV1XdbServiceProcessExecutionDescribePost**](DefaultApi.md#ApiV1XdbServiceProcessExecutionDescribePost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
-[**ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost**](DefaultApi.md#ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost) | **Post** /api/v1/xdb/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
-[**ApiV1XdbServiceProcessExecutionStartPost**](DefaultApi.md#ApiV1XdbServiceProcessExecutionStartPost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
-[**ApiV1XdbServiceProcessExecutionStopPost**](DefaultApi.md#ApiV1XdbServiceProcessExecutionStopPost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
-[**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultApi.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
-[**ApiV1XdbWorkerAsyncStateWaitUntilPost**](DefaultApi.md#ApiV1XdbWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
-[**InternalApiV1XdbNotifyImmediateTasksPost**](DefaultApi.md#InternalApiV1XdbNotifyImmediateTasksPost) | **Post** /internal/api/v1/xdb/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
-[**InternalApiV1XdbNotifyTimerTasksPost**](DefaultApi.md#InternalApiV1XdbNotifyTimerTasksPost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
+[**ApiV1XdbServiceProcessExecutionDescribePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionDescribePost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
+[**ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost) | **Post** /api/v1/xdb/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
+[**ApiV1XdbServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStartPost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
+[**ApiV1XdbServiceProcessExecutionStopPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStopPost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
+[**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
+[**ApiV1XdbWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
+[**InternalApiV1XdbNotifyImmediateTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyImmediateTasksPost) | **Post** /internal/api/v1/xdb/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
+[**InternalApiV1XdbNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyTimerTasksPost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ApiV1XdbServiceProcessExecutionDescribePost(context.Background()).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionDescribePost(context.Background()).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ApiV1XdbServiceProcessExecutionDescribePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionDescribePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ApiV1XdbServiceProcessExecutionDescribePost`: ProcessExecutionDescribeResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ApiV1XdbServiceProcessExecutionDescribePost`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbServiceProcessExecutionDescribePost`: %v\n", resp)
 }
 ```
 
@@ -102,9 +102,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(context.Background()).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
+    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost(context.Background()).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -164,13 +164,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ApiV1XdbServiceProcessExecutionStartPost(context.Background()).ProcessExecutionStartRequest(processExecutionStartRequest).Execute()
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionStartPost(context.Background()).ProcessExecutionStartRequest(processExecutionStartRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ApiV1XdbServiceProcessExecutionStartPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionStartPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ApiV1XdbServiceProcessExecutionStartPost`: ProcessExecutionStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ApiV1XdbServiceProcessExecutionStartPost`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbServiceProcessExecutionStartPost`: %v\n", resp)
 }
 ```
 
@@ -228,9 +228,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.ApiV1XdbServiceProcessExecutionStopPost(context.Background()).ProcessExecutionStopRequest(processExecutionStopRequest).Execute()
+    r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionStopPost(context.Background()).ProcessExecutionStopRequest(processExecutionStopRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ApiV1XdbServiceProcessExecutionStopPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionStopPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -290,13 +290,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ApiV1XdbWorkerAsyncStateExecutePost(context.Background()).AsyncStateExecuteRequest(asyncStateExecuteRequest).Execute()
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbWorkerAsyncStateExecutePost(context.Background()).AsyncStateExecuteRequest(asyncStateExecuteRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ApiV1XdbWorkerAsyncStateExecutePost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbWorkerAsyncStateExecutePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ApiV1XdbWorkerAsyncStateExecutePost`: AsyncStateExecuteResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ApiV1XdbWorkerAsyncStateExecutePost`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbWorkerAsyncStateExecutePost`: %v\n", resp)
 }
 ```
 
@@ -354,13 +354,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ApiV1XdbWorkerAsyncStateWaitUntilPost(context.Background()).AsyncStateWaitUntilRequest(asyncStateWaitUntilRequest).Execute()
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbWorkerAsyncStateWaitUntilPost(context.Background()).AsyncStateWaitUntilRequest(asyncStateWaitUntilRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ApiV1XdbWorkerAsyncStateWaitUntilPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbWorkerAsyncStateWaitUntilPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ApiV1XdbWorkerAsyncStateWaitUntilPost`: AsyncStateWaitUntilResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ApiV1XdbWorkerAsyncStateWaitUntilPost`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbWorkerAsyncStateWaitUntilPost`: %v\n", resp)
 }
 ```
 
@@ -418,9 +418,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.InternalApiV1XdbNotifyImmediateTasksPost(context.Background()).NotifyImmediateTasksRequest(notifyImmediateTasksRequest).Execute()
+    r, err := apiClient.DefaultAPI.InternalApiV1XdbNotifyImmediateTasksPost(context.Background()).NotifyImmediateTasksRequest(notifyImmediateTasksRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InternalApiV1XdbNotifyImmediateTasksPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XdbNotifyImmediateTasksPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -480,9 +480,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.InternalApiV1XdbNotifyTimerTasksPost(context.Background()).NotifyTimerTasksRequest(notifyTimerTasksRequest).Execute()
+    r, err := apiClient.DefaultAPI.InternalApiV1XdbNotifyTimerTasksPost(context.Background()).NotifyTimerTasksRequest(notifyTimerTasksRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InternalApiV1XdbNotifyTimerTasksPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XdbNotifyTimerTasksPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
