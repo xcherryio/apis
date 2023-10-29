@@ -14,36 +14,36 @@ import (
 	"encoding/json"
 )
 
-// checks if the AsyncStateConfigStateFailureRecoveryInfo type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AsyncStateConfigStateFailureRecoveryInfo{}
+// checks if the StateFailureRecoveryOptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StateFailureRecoveryOptions{}
 
-// AsyncStateConfigStateFailureRecoveryInfo struct for AsyncStateConfigStateFailureRecoveryInfo
-type AsyncStateConfigStateFailureRecoveryInfo struct {
+// StateFailureRecoveryOptions struct for StateFailureRecoveryOptions
+type StateFailureRecoveryOptions struct {
 	Policy                         StateFailureRecoveryPolicy `json:"policy"`
 	StateFailureProceedStateId     *string                    `json:"stateFailureProceedStateId,omitempty"`
 	StateFailureProceedStateConfig *AsyncStateConfig          `json:"stateFailureProceedStateConfig,omitempty"`
 }
 
-// NewAsyncStateConfigStateFailureRecoveryInfo instantiates a new AsyncStateConfigStateFailureRecoveryInfo object
+// NewStateFailureRecoveryOptions instantiates a new StateFailureRecoveryOptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAsyncStateConfigStateFailureRecoveryInfo(policy StateFailureRecoveryPolicy) *AsyncStateConfigStateFailureRecoveryInfo {
-	this := AsyncStateConfigStateFailureRecoveryInfo{}
+func NewStateFailureRecoveryOptions(policy StateFailureRecoveryPolicy) *StateFailureRecoveryOptions {
+	this := StateFailureRecoveryOptions{}
 	this.Policy = policy
 	return &this
 }
 
-// NewAsyncStateConfigStateFailureRecoveryInfoWithDefaults instantiates a new AsyncStateConfigStateFailureRecoveryInfo object
+// NewStateFailureRecoveryOptionsWithDefaults instantiates a new StateFailureRecoveryOptions object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAsyncStateConfigStateFailureRecoveryInfoWithDefaults() *AsyncStateConfigStateFailureRecoveryInfo {
-	this := AsyncStateConfigStateFailureRecoveryInfo{}
+func NewStateFailureRecoveryOptionsWithDefaults() *StateFailureRecoveryOptions {
+	this := StateFailureRecoveryOptions{}
 	return &this
 }
 
 // GetPolicy returns the Policy field value
-func (o *AsyncStateConfigStateFailureRecoveryInfo) GetPolicy() StateFailureRecoveryPolicy {
+func (o *StateFailureRecoveryOptions) GetPolicy() StateFailureRecoveryPolicy {
 	if o == nil {
 		var ret StateFailureRecoveryPolicy
 		return ret
@@ -54,7 +54,7 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) GetPolicy() StateFailureRecov
 
 // GetPolicyOk returns a tuple with the Policy field value
 // and a boolean to check if the value has been set.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) GetPolicyOk() (*StateFailureRecoveryPolicy, bool) {
+func (o *StateFailureRecoveryOptions) GetPolicyOk() (*StateFailureRecoveryPolicy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) GetPolicyOk() (*StateFailureR
 }
 
 // SetPolicy sets field value
-func (o *AsyncStateConfigStateFailureRecoveryInfo) SetPolicy(v StateFailureRecoveryPolicy) {
+func (o *StateFailureRecoveryOptions) SetPolicy(v StateFailureRecoveryPolicy) {
 	o.Policy = v
 }
 
 // GetStateFailureProceedStateId returns the StateFailureProceedStateId field value if set, zero value otherwise.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateId() string {
+func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateId() string {
 	if o == nil || IsNil(o.StateFailureProceedStateId) {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateId
 
 // GetStateFailureProceedStateIdOk returns a tuple with the StateFailureProceedStateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateIdOk() (*string, bool) {
+func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateIdOk() (*string, bool) {
 	if o == nil || IsNil(o.StateFailureProceedStateId) {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateId
 }
 
 // HasStateFailureProceedStateId returns a boolean if a field has been set.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) HasStateFailureProceedStateId() bool {
+func (o *StateFailureRecoveryOptions) HasStateFailureProceedStateId() bool {
 	if o != nil && !IsNil(o.StateFailureProceedStateId) {
 		return true
 	}
@@ -94,12 +94,12 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) HasStateFailureProceedStateId
 }
 
 // SetStateFailureProceedStateId gets a reference to the given string and assigns it to the StateFailureProceedStateId field.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) SetStateFailureProceedStateId(v string) {
+func (o *StateFailureRecoveryOptions) SetStateFailureProceedStateId(v string) {
 	o.StateFailureProceedStateId = &v
 }
 
 // GetStateFailureProceedStateConfig returns the StateFailureProceedStateConfig field value if set, zero value otherwise.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateConfig() AsyncStateConfig {
+func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateConfig() AsyncStateConfig {
 	if o == nil || IsNil(o.StateFailureProceedStateConfig) {
 		var ret AsyncStateConfig
 		return ret
@@ -109,7 +109,7 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateCo
 
 // GetStateFailureProceedStateConfigOk returns a tuple with the StateFailureProceedStateConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateConfigOk() (*AsyncStateConfig, bool) {
+func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateConfigOk() (*AsyncStateConfig, bool) {
 	if o == nil || IsNil(o.StateFailureProceedStateConfig) {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateCo
 }
 
 // HasStateFailureProceedStateConfig returns a boolean if a field has been set.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) HasStateFailureProceedStateConfig() bool {
+func (o *StateFailureRecoveryOptions) HasStateFailureProceedStateConfig() bool {
 	if o != nil && !IsNil(o.StateFailureProceedStateConfig) {
 		return true
 	}
@@ -126,11 +126,11 @@ func (o *AsyncStateConfigStateFailureRecoveryInfo) HasStateFailureProceedStateCo
 }
 
 // SetStateFailureProceedStateConfig gets a reference to the given AsyncStateConfig and assigns it to the StateFailureProceedStateConfig field.
-func (o *AsyncStateConfigStateFailureRecoveryInfo) SetStateFailureProceedStateConfig(v AsyncStateConfig) {
+func (o *StateFailureRecoveryOptions) SetStateFailureProceedStateConfig(v AsyncStateConfig) {
 	o.StateFailureProceedStateConfig = &v
 }
 
-func (o AsyncStateConfigStateFailureRecoveryInfo) MarshalJSON() ([]byte, error) {
+func (o StateFailureRecoveryOptions) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -138,7 +138,7 @@ func (o AsyncStateConfigStateFailureRecoveryInfo) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-func (o AsyncStateConfigStateFailureRecoveryInfo) ToMap() (map[string]interface{}, error) {
+func (o StateFailureRecoveryOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["policy"] = o.Policy
 	if !IsNil(o.StateFailureProceedStateId) {
@@ -150,38 +150,38 @@ func (o AsyncStateConfigStateFailureRecoveryInfo) ToMap() (map[string]interface{
 	return toSerialize, nil
 }
 
-type NullableAsyncStateConfigStateFailureRecoveryInfo struct {
-	value *AsyncStateConfigStateFailureRecoveryInfo
+type NullableStateFailureRecoveryOptions struct {
+	value *StateFailureRecoveryOptions
 	isSet bool
 }
 
-func (v NullableAsyncStateConfigStateFailureRecoveryInfo) Get() *AsyncStateConfigStateFailureRecoveryInfo {
+func (v NullableStateFailureRecoveryOptions) Get() *StateFailureRecoveryOptions {
 	return v.value
 }
 
-func (v *NullableAsyncStateConfigStateFailureRecoveryInfo) Set(val *AsyncStateConfigStateFailureRecoveryInfo) {
+func (v *NullableStateFailureRecoveryOptions) Set(val *StateFailureRecoveryOptions) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAsyncStateConfigStateFailureRecoveryInfo) IsSet() bool {
+func (v NullableStateFailureRecoveryOptions) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAsyncStateConfigStateFailureRecoveryInfo) Unset() {
+func (v *NullableStateFailureRecoveryOptions) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAsyncStateConfigStateFailureRecoveryInfo(val *AsyncStateConfigStateFailureRecoveryInfo) *NullableAsyncStateConfigStateFailureRecoveryInfo {
-	return &NullableAsyncStateConfigStateFailureRecoveryInfo{value: val, isSet: true}
+func NewNullableStateFailureRecoveryOptions(val *StateFailureRecoveryOptions) *NullableStateFailureRecoveryOptions {
+	return &NullableStateFailureRecoveryOptions{value: val, isSet: true}
 }
 
-func (v NullableAsyncStateConfigStateFailureRecoveryInfo) MarshalJSON() ([]byte, error) {
+func (v NullableStateFailureRecoveryOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAsyncStateConfigStateFailureRecoveryInfo) UnmarshalJSON(src []byte) error {
+func (v *NullableStateFailureRecoveryOptions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

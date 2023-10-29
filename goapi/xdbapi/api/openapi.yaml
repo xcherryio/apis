@@ -470,7 +470,7 @@ components:
           nextStates:
           - stateConfig:
               executeApiTimeoutSeconds: 6
-              stateFailureRecoveryInfo:
+              stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
@@ -494,7 +494,7 @@ components:
               encoding: encoding
           - stateConfig:
               executeApiTimeoutSeconds: 6
-              stateFailureRecoveryInfo:
+              stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
@@ -549,7 +549,7 @@ components:
         nextStates:
         - stateConfig:
             executeApiTimeoutSeconds: 6
-            stateFailureRecoveryInfo:
+            stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
               stateFailureProceedStateConfig: null
               policy: null
@@ -573,7 +573,7 @@ components:
             encoding: encoding
         - stateConfig:
             executeApiTimeoutSeconds: 6
-            stateFailureRecoveryInfo:
+            stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
               stateFailureProceedStateConfig: null
               policy: null
@@ -633,7 +633,7 @@ components:
       example:
         stateConfig:
           executeApiTimeoutSeconds: 6
-          stateFailureRecoveryInfo:
+          stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
             stateFailureProceedStateConfig: null
             policy: null
@@ -746,7 +746,7 @@ components:
       example:
         startStateConfig:
           executeApiTimeoutSeconds: 6
-          stateFailureRecoveryInfo:
+          stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
             stateFailureProceedStateConfig: null
             policy: null
@@ -823,7 +823,7 @@ components:
     AsyncStateConfig:
       example:
         executeApiTimeoutSeconds: 6
-        stateFailureRecoveryInfo:
+        stateFailureRecoveryOptions:
           stateFailureProceedStateId: stateFailureProceedStateId
           stateFailureProceedStateConfig: null
           policy: null
@@ -855,14 +855,29 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         executeApiRetryPolicy:
           $ref: '#/components/schemas/RetryPolicy'
-        stateFailureRecoveryInfo:
-          $ref: '#/components/schemas/AsyncStateConfig_stateFailureRecoveryInfo'
+        stateFailureRecoveryOptions:
+          $ref: '#/components/schemas/StateFailureRecoveryOptions'
       type: object
     StateFailureRecoveryPolicy:
       enum:
       - FAIL_PROCESS_ON_STATE_FAILURE
       - PROCEED_TO_CONFIGURED_STATE
       type: string
+    StateFailureRecoveryOptions:
+      example:
+        stateFailureProceedStateId: stateFailureProceedStateId
+        stateFailureProceedStateConfig: null
+        policy: null
+      properties:
+        policy:
+          $ref: '#/components/schemas/StateFailureRecoveryPolicy'
+        stateFailureProceedStateId:
+          type: string
+        stateFailureProceedStateConfig:
+          $ref: '#/components/schemas/AsyncStateConfig'
+      required:
+      - policy
+      type: object
     RetryPolicy:
       example:
         maximumAttemptsDurationSeconds: 7
@@ -1010,19 +1025,4 @@ components:
       required:
       - namespace
       - processId
-      type: object
-    AsyncStateConfig_stateFailureRecoveryInfo:
-      example:
-        stateFailureProceedStateId: stateFailureProceedStateId
-        stateFailureProceedStateConfig: null
-        policy: null
-      properties:
-        policy:
-          $ref: '#/components/schemas/StateFailureRecoveryPolicy'
-        stateFailureProceedStateId:
-          type: string
-        stateFailureProceedStateConfig:
-          $ref: '#/components/schemas/AsyncStateConfig'
-      required:
-      - policy
       type: object

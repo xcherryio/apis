@@ -1,4 +1,4 @@
-# AsyncStateConfigStateFailureRecoveryInfo
+# StateFailureRecoveryOptions
 
 ## Properties
 
@@ -10,90 +10,90 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAsyncStateConfigStateFailureRecoveryInfo
+### NewStateFailureRecoveryOptions
 
-`func NewAsyncStateConfigStateFailureRecoveryInfo(policy StateFailureRecoveryPolicy, ) *AsyncStateConfigStateFailureRecoveryInfo`
+`func NewStateFailureRecoveryOptions(policy StateFailureRecoveryPolicy, ) *StateFailureRecoveryOptions`
 
-NewAsyncStateConfigStateFailureRecoveryInfo instantiates a new AsyncStateConfigStateFailureRecoveryInfo object
+NewStateFailureRecoveryOptions instantiates a new StateFailureRecoveryOptions object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAsyncStateConfigStateFailureRecoveryInfoWithDefaults
+### NewStateFailureRecoveryOptionsWithDefaults
 
-`func NewAsyncStateConfigStateFailureRecoveryInfoWithDefaults() *AsyncStateConfigStateFailureRecoveryInfo`
+`func NewStateFailureRecoveryOptionsWithDefaults() *StateFailureRecoveryOptions`
 
-NewAsyncStateConfigStateFailureRecoveryInfoWithDefaults instantiates a new AsyncStateConfigStateFailureRecoveryInfo object
+NewStateFailureRecoveryOptionsWithDefaults instantiates a new StateFailureRecoveryOptions object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetPolicy
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) GetPolicy() StateFailureRecoveryPolicy`
+`func (o *StateFailureRecoveryOptions) GetPolicy() StateFailureRecoveryPolicy`
 
 GetPolicy returns the Policy field if non-nil, zero value otherwise.
 
 ### GetPolicyOk
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) GetPolicyOk() (*StateFailureRecoveryPolicy, bool)`
+`func (o *StateFailureRecoveryOptions) GetPolicyOk() (*StateFailureRecoveryPolicy, bool)`
 
 GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPolicy
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) SetPolicy(v StateFailureRecoveryPolicy)`
+`func (o *StateFailureRecoveryOptions) SetPolicy(v StateFailureRecoveryPolicy)`
 
 SetPolicy sets Policy field to given value.
 
 
 ### GetStateFailureProceedStateId
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateId() string`
+`func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateId() string`
 
 GetStateFailureProceedStateId returns the StateFailureProceedStateId field if non-nil, zero value otherwise.
 
 ### GetStateFailureProceedStateIdOk
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateIdOk() (*string, bool)`
+`func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateIdOk() (*string, bool)`
 
 GetStateFailureProceedStateIdOk returns a tuple with the StateFailureProceedStateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStateFailureProceedStateId
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) SetStateFailureProceedStateId(v string)`
+`func (o *StateFailureRecoveryOptions) SetStateFailureProceedStateId(v string)`
 
 SetStateFailureProceedStateId sets StateFailureProceedStateId field to given value.
 
 ### HasStateFailureProceedStateId
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) HasStateFailureProceedStateId() bool`
+`func (o *StateFailureRecoveryOptions) HasStateFailureProceedStateId() bool`
 
 HasStateFailureProceedStateId returns a boolean if a field has been set.
 
 ### GetStateFailureProceedStateConfig
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateConfig() AsyncStateConfig`
+`func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateConfig() AsyncStateConfig`
 
 GetStateFailureProceedStateConfig returns the StateFailureProceedStateConfig field if non-nil, zero value otherwise.
 
 ### GetStateFailureProceedStateConfigOk
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) GetStateFailureProceedStateConfigOk() (*AsyncStateConfig, bool)`
+`func (o *StateFailureRecoveryOptions) GetStateFailureProceedStateConfigOk() (*AsyncStateConfig, bool)`
 
 GetStateFailureProceedStateConfigOk returns a tuple with the StateFailureProceedStateConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStateFailureProceedStateConfig
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) SetStateFailureProceedStateConfig(v AsyncStateConfig)`
+`func (o *StateFailureRecoveryOptions) SetStateFailureProceedStateConfig(v AsyncStateConfig)`
 
 SetStateFailureProceedStateConfig sets StateFailureProceedStateConfig field to given value.
 
 ### HasStateFailureProceedStateConfig
 
-`func (o *AsyncStateConfigStateFailureRecoveryInfo) HasStateFailureProceedStateConfig() bool`
+`func (o *StateFailureRecoveryOptions) HasStateFailureProceedStateConfig() bool`
 
 HasStateFailureProceedStateConfig returns a boolean if a field has been set.
 
