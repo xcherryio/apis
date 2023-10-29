@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ExecuteApiTimeoutSeconds** | Pointer to **int32** | the timeout for the single attempt of AsyncState.execute API | [optional] 
 **WaitUntilApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **ExecuteApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
-**StateFailureRecoveryInfo** | Pointer to [**AsyncStateConfigStateFailureRecoveryInfo**](AsyncStateConfigStateFailureRecoveryInfo.md) |  | [optional] 
+**StateFailureRecoveryOptions** | Pointer to [**StateFailureRecoveryOptions**](StateFailureRecoveryOptions.md) |  | [optional] 
 
 ## Methods
 
@@ -155,30 +155,30 @@ SetExecuteApiRetryPolicy sets ExecuteApiRetryPolicy field to given value.
 
 HasExecuteApiRetryPolicy returns a boolean if a field has been set.
 
-### GetStateFailureRecoveryInfo
+### GetStateFailureRecoveryOptions
 
-`func (o *AsyncStateConfig) GetStateFailureRecoveryInfo() AsyncStateConfigStateFailureRecoveryInfo`
+`func (o *AsyncStateConfig) GetStateFailureRecoveryOptions() StateFailureRecoveryOptions`
 
-GetStateFailureRecoveryInfo returns the StateFailureRecoveryInfo field if non-nil, zero value otherwise.
+GetStateFailureRecoveryOptions returns the StateFailureRecoveryOptions field if non-nil, zero value otherwise.
 
-### GetStateFailureRecoveryInfoOk
+### GetStateFailureRecoveryOptionsOk
 
-`func (o *AsyncStateConfig) GetStateFailureRecoveryInfoOk() (*AsyncStateConfigStateFailureRecoveryInfo, bool)`
+`func (o *AsyncStateConfig) GetStateFailureRecoveryOptionsOk() (*StateFailureRecoveryOptions, bool)`
 
-GetStateFailureRecoveryInfoOk returns a tuple with the StateFailureRecoveryInfo field if it's non-nil, zero value otherwise
+GetStateFailureRecoveryOptionsOk returns a tuple with the StateFailureRecoveryOptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStateFailureRecoveryInfo
+### SetStateFailureRecoveryOptions
 
-`func (o *AsyncStateConfig) SetStateFailureRecoveryInfo(v AsyncStateConfigStateFailureRecoveryInfo)`
+`func (o *AsyncStateConfig) SetStateFailureRecoveryOptions(v StateFailureRecoveryOptions)`
 
-SetStateFailureRecoveryInfo sets StateFailureRecoveryInfo field to given value.
+SetStateFailureRecoveryOptions sets StateFailureRecoveryOptions field to given value.
 
-### HasStateFailureRecoveryInfo
+### HasStateFailureRecoveryOptions
 
-`func (o *AsyncStateConfig) HasStateFailureRecoveryInfo() bool`
+`func (o *AsyncStateConfig) HasStateFailureRecoveryOptions() bool`
 
-HasStateFailureRecoveryInfo returns a boolean if a field has been set.
+HasStateFailureRecoveryOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

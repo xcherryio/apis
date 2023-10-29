@@ -91,7 +91,6 @@ Class | Method | HTTP request | Description
 
  - [ApiErrorResponse](docs/ApiErrorResponse.md)
  - [AsyncStateConfig](docs/AsyncStateConfig.md)
- - [AsyncStateConfigStateFailureRecoveryInfo](docs/AsyncStateConfigStateFailureRecoveryInfo.md)
  - [AsyncStateExecuteRequest](docs/AsyncStateExecuteRequest.md)
  - [AsyncStateExecuteResponse](docs/AsyncStateExecuteResponse.md)
  - [AsyncStateWaitUntilRequest](docs/AsyncStateWaitUntilRequest.md)
@@ -118,6 +117,7 @@ Class | Method | HTTP request | Description
  - [RetryPolicy](docs/RetryPolicy.md)
  - [StateApiType](docs/StateApiType.md)
  - [StateDecision](docs/StateDecision.md)
+ - [StateFailureRecoveryOptions](docs/StateFailureRecoveryOptions.md)
  - [StateFailureRecoveryPolicy](docs/StateFailureRecoveryPolicy.md)
  - [StateMovement](docs/StateMovement.md)
  - [ThreadCloseDecision](docs/ThreadCloseDecision.md)
