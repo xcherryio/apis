@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **StateId** | **string** |  | 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 **CommandResults** | Pointer to [**CommandResults**](CommandResults.md) |  | [optional] 
+**LoadedGlobalAttributes** | Pointer to [**LoadGlobalAttributeResponse**](LoadGlobalAttributeResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -138,6 +139,31 @@ SetCommandResults sets CommandResults field to given value.
 `func (o *AsyncStateExecuteRequest) HasCommandResults() bool`
 
 HasCommandResults returns a boolean if a field has been set.
+
+### GetLoadedGlobalAttributes
+
+`func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse`
+
+GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field if non-nil, zero value otherwise.
+
+### GetLoadedGlobalAttributesOk
+
+`func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool)`
+
+GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoadedGlobalAttributes
+
+`func (o *AsyncStateExecuteRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse)`
+
+SetLoadedGlobalAttributes sets LoadedGlobalAttributes field to given value.
+
+### HasLoadedGlobalAttributes
+
+`func (o *AsyncStateExecuteRequest) HasLoadedGlobalAttributes() bool`
+
+HasLoadedGlobalAttributes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

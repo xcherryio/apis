@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **WaitUntilApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **ExecuteApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **StateFailureRecoveryOptions** | Pointer to [**StateFailureRecoveryOptions**](StateFailureRecoveryOptions.md) |  | [optional] 
+**LoadGlobalAttributesRequest** | Pointer to [**LoadGlobalAttributesRequest**](LoadGlobalAttributesRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetStateFailureRecoveryOptions sets StateFailureRecoveryOptions field to given v
 `func (o *AsyncStateConfig) HasStateFailureRecoveryOptions() bool`
 
 HasStateFailureRecoveryOptions returns a boolean if a field has been set.
+
+### GetLoadGlobalAttributesRequest
+
+`func (o *AsyncStateConfig) GetLoadGlobalAttributesRequest() LoadGlobalAttributesRequest`
+
+GetLoadGlobalAttributesRequest returns the LoadGlobalAttributesRequest field if non-nil, zero value otherwise.
+
+### GetLoadGlobalAttributesRequestOk
+
+`func (o *AsyncStateConfig) GetLoadGlobalAttributesRequestOk() (*LoadGlobalAttributesRequest, bool)`
+
+GetLoadGlobalAttributesRequestOk returns a tuple with the LoadGlobalAttributesRequest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoadGlobalAttributesRequest
+
+`func (o *AsyncStateConfig) SetLoadGlobalAttributesRequest(v LoadGlobalAttributesRequest)`
+
+SetLoadGlobalAttributesRequest sets LoadGlobalAttributesRequest field to given value.
+
+### HasLoadGlobalAttributesRequest
+
+`func (o *AsyncStateConfig) HasLoadGlobalAttributesRequest() bool`
+
+HasLoadGlobalAttributesRequest returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -19,11 +19,12 @@ var _ MappedNullable = &AsyncStateExecuteRequest{}
 
 // AsyncStateExecuteRequest the input of the execute API
 type AsyncStateExecuteRequest struct {
-	Context        Context         `json:"context"`
-	ProcessType    string          `json:"processType"`
-	StateId        string          `json:"stateId"`
-	StateInput     *EncodedObject  `json:"stateInput,omitempty"`
-	CommandResults *CommandResults `json:"commandResults,omitempty"`
+	Context                Context                      `json:"context"`
+	ProcessType            string                       `json:"processType"`
+	StateId                string                       `json:"stateId"`
+	StateInput             *EncodedObject               `json:"stateInput,omitempty"`
+	CommandResults         *CommandResults              `json:"commandResults,omitempty"`
+	LoadedGlobalAttributes *LoadGlobalAttributeResponse `json:"loadedGlobalAttributes,omitempty"`
 }
 
 // NewAsyncStateExecuteRequest instantiates a new AsyncStateExecuteRequest object
@@ -182,6 +183,38 @@ func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults) {
 	o.CommandResults = &v
 }
 
+// GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse {
+	if o == nil || IsNil(o.LoadedGlobalAttributes) {
+		var ret LoadGlobalAttributeResponse
+		return ret
+	}
+	return *o.LoadedGlobalAttributes
+}
+
+// GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool) {
+	if o == nil || IsNil(o.LoadedGlobalAttributes) {
+		return nil, false
+	}
+	return o.LoadedGlobalAttributes, true
+}
+
+// HasLoadedGlobalAttributes returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasLoadedGlobalAttributes() bool {
+	if o != nil && !IsNil(o.LoadedGlobalAttributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoadedGlobalAttributes gets a reference to the given LoadGlobalAttributeResponse and assigns it to the LoadedGlobalAttributes field.
+func (o *AsyncStateExecuteRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse) {
+	o.LoadedGlobalAttributes = &v
+}
+
 func (o AsyncStateExecuteRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -200,6 +233,9 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CommandResults) {
 		toSerialize["commandResults"] = o.CommandResults
+	}
+	if !IsNil(o.LoadedGlobalAttributes) {
+		toSerialize["loadedGlobalAttributes"] = o.LoadedGlobalAttributes
 	}
 	return toSerialize, nil
 }

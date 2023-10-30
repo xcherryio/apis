@@ -19,8 +19,9 @@ var _ MappedNullable = &ProcessStartConfig{}
 
 // ProcessStartConfig struct for ProcessStartConfig
 type ProcessStartConfig struct {
-	TimeoutSeconds *int32                `json:"timeoutSeconds,omitempty"`
-	IdReusePolicy  *ProcessIdReusePolicy `json:"idReusePolicy,omitempty"`
+	TimeoutSeconds        *int32                 `json:"timeoutSeconds,omitempty"`
+	IdReusePolicy         *ProcessIdReusePolicy  `json:"idReusePolicy,omitempty"`
+	GlobalAttributeConfig *GlobalAttributeConfig `json:"globalAttributeConfig,omitempty"`
 }
 
 // NewProcessStartConfig instantiates a new ProcessStartConfig object
@@ -104,6 +105,38 @@ func (o *ProcessStartConfig) SetIdReusePolicy(v ProcessIdReusePolicy) {
 	o.IdReusePolicy = &v
 }
 
+// GetGlobalAttributeConfig returns the GlobalAttributeConfig field value if set, zero value otherwise.
+func (o *ProcessStartConfig) GetGlobalAttributeConfig() GlobalAttributeConfig {
+	if o == nil || IsNil(o.GlobalAttributeConfig) {
+		var ret GlobalAttributeConfig
+		return ret
+	}
+	return *o.GlobalAttributeConfig
+}
+
+// GetGlobalAttributeConfigOk returns a tuple with the GlobalAttributeConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProcessStartConfig) GetGlobalAttributeConfigOk() (*GlobalAttributeConfig, bool) {
+	if o == nil || IsNil(o.GlobalAttributeConfig) {
+		return nil, false
+	}
+	return o.GlobalAttributeConfig, true
+}
+
+// HasGlobalAttributeConfig returns a boolean if a field has been set.
+func (o *ProcessStartConfig) HasGlobalAttributeConfig() bool {
+	if o != nil && !IsNil(o.GlobalAttributeConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalAttributeConfig gets a reference to the given GlobalAttributeConfig and assigns it to the GlobalAttributeConfig field.
+func (o *ProcessStartConfig) SetGlobalAttributeConfig(v GlobalAttributeConfig) {
+	o.GlobalAttributeConfig = &v
+}
+
 func (o ProcessStartConfig) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -119,6 +152,9 @@ func (o ProcessStartConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IdReusePolicy) {
 		toSerialize["idReusePolicy"] = o.IdReusePolicy
+	}
+	if !IsNil(o.GlobalAttributeConfig) {
+		toSerialize["globalAttributeConfig"] = o.GlobalAttributeConfig
 	}
 	return toSerialize, nil
 }
