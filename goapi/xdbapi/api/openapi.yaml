@@ -351,6 +351,16 @@ components:
     AsyncStateExecuteRequest:
       description: the input of the execute API
       example:
+        globalAttributes:
+          attributes:
+          - dbQueryValue: dbQueryValue
+            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
+          - dbQueryValue: dbQueryValue
+            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
         commandResults:
           localQueueResults:
           - queueName: queueName
@@ -393,6 +403,8 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
+        globalAttributes:
+          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
       required:
       - context
       - processType
@@ -474,6 +486,20 @@ components:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
+              loadGlobalAttributesRequest:
+                defaultReadLockingType: null
+                tableReadLockingPolicyOverrides:
+                - readLockingType: null
+                  tableName: tableName
+                - readLockingType: null
+                  tableName: tableName
+                attributes:
+                - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                  dbColumn: dbColumn
+                  alternativeTable: alternativeTable
+                - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                  dbColumn: dbColumn
+                  alternativeTable: alternativeTable
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
@@ -498,6 +524,20 @@ components:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
+              loadGlobalAttributesRequest:
+                defaultReadLockingType: null
+                tableReadLockingPolicyOverrides:
+                - readLockingType: null
+                  tableName: tableName
+                - readLockingType: null
+                  tableName: tableName
+                attributes:
+                - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                  dbColumn: dbColumn
+                  alternativeTable: alternativeTable
+                - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                  dbColumn: dbColumn
+                  alternativeTable: alternativeTable
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
@@ -532,12 +572,25 @@ components:
             data: data
             encoding: encoding
           dedupId: dedupId
+        upsertGlobalAttributes:
+        - dbQueryValue: dbQueryValue
+          alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+        - dbQueryValue: dbQueryValue
+          alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
       properties:
         stateDecision:
           $ref: '#/components/schemas/StateDecision'
         publishToLocalQueue:
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
+          type: array
+        upsertGlobalAttributes:
+          items:
+            $ref: '#/components/schemas/GlobalAttributeValue'
           type: array
       required:
       - stateDecision
@@ -553,6 +606,20 @@ components:
               stateFailureProceedStateId: stateFailureProceedStateId
               stateFailureProceedStateConfig: null
               policy: null
+            loadGlobalAttributesRequest:
+              defaultReadLockingType: null
+              tableReadLockingPolicyOverrides:
+              - readLockingType: null
+                tableName: tableName
+              - readLockingType: null
+                tableName: tableName
+              attributes:
+              - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                dbColumn: dbColumn
+                alternativeTable: alternativeTable
+              - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                dbColumn: dbColumn
+                alternativeTable: alternativeTable
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
               maximumAttemptsDurationSeconds: 7
@@ -577,6 +644,20 @@ components:
               stateFailureProceedStateId: stateFailureProceedStateId
               stateFailureProceedStateConfig: null
               policy: null
+            loadGlobalAttributesRequest:
+              defaultReadLockingType: null
+              tableReadLockingPolicyOverrides:
+              - readLockingType: null
+                tableName: tableName
+              - readLockingType: null
+                tableName: tableName
+              attributes:
+              - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                dbColumn: dbColumn
+                alternativeTable: alternativeTable
+              - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+                dbColumn: dbColumn
+                alternativeTable: alternativeTable
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
               maximumAttemptsDurationSeconds: 7
@@ -637,6 +718,20 @@ components:
             stateFailureProceedStateId: stateFailureProceedStateId
             stateFailureProceedStateConfig: null
             policy: null
+          loadGlobalAttributesRequest:
+            defaultReadLockingType: null
+            tableReadLockingPolicyOverrides:
+            - readLockingType: null
+              tableName: tableName
+            - readLockingType: null
+              tableName: tableName
+            attributes:
+            - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+              dbColumn: dbColumn
+              alternativeTable: alternativeTable
+            - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+              dbColumn: dbColumn
+              alternativeTable: alternativeTable
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
             maximumAttemptsDurationSeconds: 7
@@ -750,6 +845,20 @@ components:
             stateFailureProceedStateId: stateFailureProceedStateId
             stateFailureProceedStateConfig: null
             policy: null
+          loadGlobalAttributesRequest:
+            defaultReadLockingType: null
+            tableReadLockingPolicyOverrides:
+            - readLockingType: null
+              tableName: tableName
+            - readLockingType: null
+              tableName: tableName
+            attributes:
+            - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+              dbColumn: dbColumn
+              alternativeTable: alternativeTable
+            - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+              dbColumn: dbColumn
+              alternativeTable: alternativeTable
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
             maximumAttemptsDurationSeconds: 7
@@ -773,6 +882,23 @@ components:
         processStartConfig:
           timeoutSeconds: 9
           idReusePolicy: null
+          globalAttributeConfig:
+            defaultDbTable: defaultDbTable
+            primaryGlobalAttribute:
+              dbQueryValue: dbQueryValue
+              alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+              dbColumn: dbColumn
+              alternativeTable: alternativeTable
+            initialGlobalAttributes:
+            - dbQueryValue: dbQueryValue
+              alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+              dbColumn: dbColumn
+              alternativeTable: alternativeTable
+            - dbQueryValue: dbQueryValue
+              alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+              dbColumn: dbColumn
+              alternativeTable: alternativeTable
+            initialGlobalAttributeWriteMode: null
         namespace: namespace
         processType: processType
       properties:
@@ -807,12 +933,185 @@ components:
       example:
         timeoutSeconds: 9
         idReusePolicy: null
+        globalAttributeConfig:
+          defaultDbTable: defaultDbTable
+          primaryGlobalAttribute:
+            dbQueryValue: dbQueryValue
+            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
+          initialGlobalAttributes:
+          - dbQueryValue: dbQueryValue
+            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
+          - dbQueryValue: dbQueryValue
+            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
+          initialGlobalAttributeWriteMode: null
       properties:
         timeoutSeconds:
           type: integer
         idReusePolicy:
           $ref: '#/components/schemas/ProcessIdReusePolicy'
+        globalAttributeConfig:
+          $ref: '#/components/schemas/GlobalAttributeConfig'
       type: object
+    GlobalAttributeConfig:
+      example:
+        defaultDbTable: defaultDbTable
+        primaryGlobalAttribute:
+          dbQueryValue: dbQueryValue
+          alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+        initialGlobalAttributes:
+        - dbQueryValue: dbQueryValue
+          alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+        - dbQueryValue: dbQueryValue
+          alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+        initialGlobalAttributeWriteMode: null
+      properties:
+        defaultDbTable:
+          type: string
+        primaryGlobalAttribute:
+          $ref: '#/components/schemas/GlobalAttributeValue'
+        initialGlobalAttributes:
+          items:
+            $ref: '#/components/schemas/GlobalAttributeValue'
+          type: array
+        initialGlobalAttributeWriteMode:
+          $ref: '#/components/schemas/AttributeWriteConflictMode'
+      type: object
+    AttributeWriteConflictMode:
+      enum:
+      - ReturnErrorOnConflict
+      - IgnoreConflict
+      - OverrideOnConflict
+      type: string
+    GlobalAttributeValue:
+      description: the value of a global attribute (from SDK to server or from server
+        to SDK)
+      example:
+        dbQueryValue: dbQueryValue
+        alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+        dbColumn: dbColumn
+        alternativeTable: alternativeTable
+      properties:
+        dbColumn:
+          description: "the column name that can be used in the database query, see\
+            \ below for example"
+          type: string
+        dbQueryValue:
+          description: the plain string value that can be used in the database query(e.g.
+            for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
+          type: string
+        alternativeTable:
+          description: "if not empty, the global attribute is mapped to a different\
+            \ table name than the default table. Must be used with alternativeTableForeignKeyColumn"
+          type: string
+        alternativeTableForeignKeyColumn:
+          description: Must present when alternativeTable is not empty. It means the
+            foreign key column to join with the primary key of the default table
+          type: string
+      required:
+      - dbColumn
+      - dbQueryValue
+      type: object
+    GlobalAttributeKey:
+      description: the definition(key) for getting value of a global attribute
+      example:
+        alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+        dbColumn: dbColumn
+        alternativeTable: alternativeTable
+      properties:
+        dbColumn:
+          description: "the column name that can be used in the database query, see\
+            \ below for example"
+          type: string
+        alternativeTable:
+          description: "if not empty, the global attribute is mapped to a different\
+            \ table name than the default table. Must be used with alternativeTableForeignKeyColumn"
+          type: string
+        alternativeTableForeignKeyColumn:
+          description: Must present when alternativeTable is not empty. It means the
+            foreign key column to join with the primary key of the default table
+          type: string
+      required:
+      - dbColumn
+      type: object
+    LoadGlobalAttributesRequest:
+      description: the request to load global attributes
+      example:
+        defaultReadLockingType: null
+        tableReadLockingPolicyOverrides:
+        - readLockingType: null
+          tableName: tableName
+        - readLockingType: null
+          tableName: tableName
+        attributes:
+        - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+        - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/GlobalAttributeKey'
+          type: array
+        defaultReadLockingType:
+          $ref: '#/components/schemas/AttributeReadLockingType'
+        tableReadLockingPolicyOverrides:
+          description: set a different read policy per table to override the default
+            locking type
+          items:
+            $ref: '#/components/schemas/TableReadLockingPolicy'
+          type: array
+      type: object
+    LoadGlobalAttributeResponse:
+      description: the response for loading global attributes
+      example:
+        attributes:
+        - dbQueryValue: dbQueryValue
+          alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+        - dbQueryValue: dbQueryValue
+          alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+          dbColumn: dbColumn
+          alternativeTable: alternativeTable
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/GlobalAttributeValue'
+          type: array
+      type: object
+    TableReadLockingPolicy:
+      example:
+        readLockingType: null
+        tableName: tableName
+      properties:
+        readLockingType:
+          $ref: '#/components/schemas/AttributeReadLockingType'
+        tableName:
+          type: string
+      required:
+      - readLockingType
+      - tableName
+      type: object
+    AttributeReadLockingType:
+      enum:
+      - NO_LOCKING
+      - SHARE_LOCK
+      - EXCLUSIVE_LOCK
+      type: string
     ProcessIdReusePolicy:
       enum:
       - ALLOW_IF_PREVIOUS_EXIT_ABNORMALLY
@@ -827,6 +1126,20 @@ components:
           stateFailureProceedStateId: stateFailureProceedStateId
           stateFailureProceedStateConfig: null
           policy: null
+        loadGlobalAttributesRequest:
+          defaultReadLockingType: null
+          tableReadLockingPolicyOverrides:
+          - readLockingType: null
+            tableName: tableName
+          - readLockingType: null
+            tableName: tableName
+          attributes:
+          - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
+          - alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
         skipWaitUntil: true
         waitUntilApiRetryPolicy:
           maximumAttemptsDurationSeconds: 7
@@ -857,6 +1170,8 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryOptions:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
+        loadGlobalAttributesRequest:
+          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
       type: object
     StateFailureRecoveryPolicy:
       enum:

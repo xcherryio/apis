@@ -19,8 +19,9 @@ var _ MappedNullable = &AsyncStateExecuteResponse{}
 
 // AsyncStateExecuteResponse the output of the execute API
 type AsyncStateExecuteResponse struct {
-	StateDecision       StateDecision       `json:"stateDecision"`
-	PublishToLocalQueue []LocalQueueMessage `json:"publishToLocalQueue,omitempty"`
+	StateDecision          StateDecision          `json:"stateDecision"`
+	PublishToLocalQueue    []LocalQueueMessage    `json:"publishToLocalQueue,omitempty"`
+	UpsertGlobalAttributes []GlobalAttributeValue `json:"upsertGlobalAttributes,omitempty"`
 }
 
 // NewAsyncStateExecuteResponse instantiates a new AsyncStateExecuteResponse object
@@ -97,6 +98,38 @@ func (o *AsyncStateExecuteResponse) SetPublishToLocalQueue(v []LocalQueueMessage
 	o.PublishToLocalQueue = v
 }
 
+// GetUpsertGlobalAttributes returns the UpsertGlobalAttributes field value if set, zero value otherwise.
+func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributes() []GlobalAttributeValue {
+	if o == nil || IsNil(o.UpsertGlobalAttributes) {
+		var ret []GlobalAttributeValue
+		return ret
+	}
+	return o.UpsertGlobalAttributes
+}
+
+// GetUpsertGlobalAttributesOk returns a tuple with the UpsertGlobalAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributesOk() ([]GlobalAttributeValue, bool) {
+	if o == nil || IsNil(o.UpsertGlobalAttributes) {
+		return nil, false
+	}
+	return o.UpsertGlobalAttributes, true
+}
+
+// HasUpsertGlobalAttributes returns a boolean if a field has been set.
+func (o *AsyncStateExecuteResponse) HasUpsertGlobalAttributes() bool {
+	if o != nil && !IsNil(o.UpsertGlobalAttributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpsertGlobalAttributes gets a reference to the given []GlobalAttributeValue and assigns it to the UpsertGlobalAttributes field.
+func (o *AsyncStateExecuteResponse) SetUpsertGlobalAttributes(v []GlobalAttributeValue) {
+	o.UpsertGlobalAttributes = v
+}
+
 func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -110,6 +143,9 @@ func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["stateDecision"] = o.StateDecision
 	if !IsNil(o.PublishToLocalQueue) {
 		toSerialize["publishToLocalQueue"] = o.PublishToLocalQueue
+	}
+	if !IsNil(o.UpsertGlobalAttributes) {
+		toSerialize["upsertGlobalAttributes"] = o.UpsertGlobalAttributes
 	}
 	return toSerialize, nil
 }

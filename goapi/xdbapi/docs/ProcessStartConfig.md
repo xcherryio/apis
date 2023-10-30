@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TimeoutSeconds** | Pointer to **int32** |  | [optional] 
 **IdReusePolicy** | Pointer to [**ProcessIdReusePolicy**](ProcessIdReusePolicy.md) |  | [optional] 
+**GlobalAttributeConfig** | Pointer to [**GlobalAttributeConfig**](GlobalAttributeConfig.md) |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetIdReusePolicy sets IdReusePolicy field to given value.
 `func (o *ProcessStartConfig) HasIdReusePolicy() bool`
 
 HasIdReusePolicy returns a boolean if a field has been set.
+
+### GetGlobalAttributeConfig
+
+`func (o *ProcessStartConfig) GetGlobalAttributeConfig() GlobalAttributeConfig`
+
+GetGlobalAttributeConfig returns the GlobalAttributeConfig field if non-nil, zero value otherwise.
+
+### GetGlobalAttributeConfigOk
+
+`func (o *ProcessStartConfig) GetGlobalAttributeConfigOk() (*GlobalAttributeConfig, bool)`
+
+GetGlobalAttributeConfigOk returns a tuple with the GlobalAttributeConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGlobalAttributeConfig
+
+`func (o *ProcessStartConfig) SetGlobalAttributeConfig(v GlobalAttributeConfig)`
+
+SetGlobalAttributeConfig sets GlobalAttributeConfig field to given value.
+
+### HasGlobalAttributeConfig
+
+`func (o *ProcessStartConfig) HasGlobalAttributeConfig() bool`
+
+HasGlobalAttributeConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

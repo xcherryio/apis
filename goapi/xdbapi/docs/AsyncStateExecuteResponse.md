@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StateDecision** | [**StateDecision**](StateDecision.md) |  | 
 **PublishToLocalQueue** | Pointer to [**[]LocalQueueMessage**](LocalQueueMessage.md) |  | [optional] 
+**UpsertGlobalAttributes** | Pointer to [**[]GlobalAttributeValue**](GlobalAttributeValue.md) |  | [optional] 
 
 ## Methods
 
@@ -70,6 +71,31 @@ SetPublishToLocalQueue sets PublishToLocalQueue field to given value.
 `func (o *AsyncStateExecuteResponse) HasPublishToLocalQueue() bool`
 
 HasPublishToLocalQueue returns a boolean if a field has been set.
+
+### GetUpsertGlobalAttributes
+
+`func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributes() []GlobalAttributeValue`
+
+GetUpsertGlobalAttributes returns the UpsertGlobalAttributes field if non-nil, zero value otherwise.
+
+### GetUpsertGlobalAttributesOk
+
+`func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributesOk() (*[]GlobalAttributeValue, bool)`
+
+GetUpsertGlobalAttributesOk returns a tuple with the UpsertGlobalAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpsertGlobalAttributes
+
+`func (o *AsyncStateExecuteResponse) SetUpsertGlobalAttributes(v []GlobalAttributeValue)`
+
+SetUpsertGlobalAttributes sets UpsertGlobalAttributes field to given value.
+
+### HasUpsertGlobalAttributes
+
+`func (o *AsyncStateExecuteResponse) HasUpsertGlobalAttributes() bool`
+
+HasUpsertGlobalAttributes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
