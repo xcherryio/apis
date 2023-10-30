@@ -351,16 +351,6 @@ components:
     AsyncStateExecuteRequest:
       description: the input of the execute API
       example:
-        globalAttributes:
-          attributes:
-          - dbQueryValue: dbQueryValue
-            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
-            dbColumn: dbColumn
-            alternativeTable: alternativeTable
-          - dbQueryValue: dbQueryValue
-            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
-            dbColumn: dbColumn
-            alternativeTable: alternativeTable
         commandResults:
           localQueueResults:
           - queueName: queueName
@@ -378,6 +368,16 @@ components:
             commandId: commandId
           - timerStatus: null
             commandId: commandId
+        loadedGlobalAttributes:
+          attributes:
+          - dbQueryValue: dbQueryValue
+            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
+          - dbQueryValue: dbQueryValue
+            alternativeTableForeignKeyColumn: alternativeTableForeignKeyColumn
+            dbColumn: dbColumn
+            alternativeTable: alternativeTable
         stateId: stateId
         context:
           recoverFromApi: null
@@ -403,7 +403,7 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        globalAttributes:
+        loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
       required:
       - context

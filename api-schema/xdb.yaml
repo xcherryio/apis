@@ -300,7 +300,7 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        globalAttributes:
+        loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
     CommandResults:
       type: object
@@ -420,8 +420,7 @@ components:
         recoverFromStateExecutionId:
           description: for async state API only, state id + sequence number
           type: string
-        recoverFromApi:
-          description: if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
+        recoverFromApi: # if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
           $ref: '#/components/schemas/StateApiType'
     StateApiType:
       type: string

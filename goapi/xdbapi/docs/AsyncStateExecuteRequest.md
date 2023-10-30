@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **StateId** | **string** |  | 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 **CommandResults** | Pointer to [**CommandResults**](CommandResults.md) |  | [optional] 
-**GlobalAttributes** | Pointer to [**LoadGlobalAttributeResponse**](LoadGlobalAttributeResponse.md) |  | [optional] 
+**LoadedGlobalAttributes** | Pointer to [**LoadGlobalAttributeResponse**](LoadGlobalAttributeResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -140,30 +140,30 @@ SetCommandResults sets CommandResults field to given value.
 
 HasCommandResults returns a boolean if a field has been set.
 
-### GetGlobalAttributes
+### GetLoadedGlobalAttributes
 
-`func (o *AsyncStateExecuteRequest) GetGlobalAttributes() LoadGlobalAttributeResponse`
+`func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse`
 
-GetGlobalAttributes returns the GlobalAttributes field if non-nil, zero value otherwise.
+GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field if non-nil, zero value otherwise.
 
-### GetGlobalAttributesOk
+### GetLoadedGlobalAttributesOk
 
-`func (o *AsyncStateExecuteRequest) GetGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool)`
+`func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool)`
 
-GetGlobalAttributesOk returns a tuple with the GlobalAttributes field if it's non-nil, zero value otherwise
+GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGlobalAttributes
+### SetLoadedGlobalAttributes
 
-`func (o *AsyncStateExecuteRequest) SetGlobalAttributes(v LoadGlobalAttributeResponse)`
+`func (o *AsyncStateExecuteRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse)`
 
-SetGlobalAttributes sets GlobalAttributes field to given value.
+SetLoadedGlobalAttributes sets LoadedGlobalAttributes field to given value.
 
-### HasGlobalAttributes
+### HasLoadedGlobalAttributes
 
-`func (o *AsyncStateExecuteRequest) HasGlobalAttributes() bool`
+`func (o *AsyncStateExecuteRequest) HasLoadedGlobalAttributes() bool`
 
-HasGlobalAttributes returns a boolean if a field has been set.
+HasLoadedGlobalAttributes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
