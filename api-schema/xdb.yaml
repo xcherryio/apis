@@ -258,11 +258,9 @@ components:
     TimerCommand:
       type: object
       required:
-        - firingUnixTimestampSeconds
+        - delayInSeconds
       properties:
-        commandId:
-          type: string
-        firingUnixTimestampSeconds:
+        delayInSeconds:
           type: integer
           format: int64
     LocalQueueCommand:
@@ -312,14 +310,12 @@ components:
         localQueueResults:
           type: array
           items:
-            $ref: '#/components/schemas/LocalQueueMessage'
+            $ref: '#/components/schemas/LocalQueueResult'
     TimerResult:
       type: object
       required:
         - timerStatus
       properties:
-        commandId:
-          type: string
         timerStatus:
           $ref: '#/components/schemas/TimerStatus'
     TimerStatus:
@@ -328,6 +324,26 @@ components:
         - SCHEDULED_TIMER
         - FIRED_TIMER
         - SKIPPED_TIMER
+    LocalQueueResult:
+      type: object
+      required:
+        - status
+        - queueName
+      properties:
+        status:
+          $ref: '#/components/schemas/LocalQueueStatus'
+        queueName:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueMessageResult'
+    LocalQueueStatus:
+      type: string
+      enum:
+        - WAITING_LOCAL_QUEUE
+        - COMPLETED_LOCAL_QUEUE
+        - SKIPPED_LOCAL_QUEUE   # in anyOfCompletion, set this status for other waiting local queues
     LocalQueueMessage:
       type: object
       required:
@@ -338,6 +354,16 @@ components:
         dedupId:
           type: string
           description: UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead.
+        payload:
+          $ref: '#/components/schemas/EncodedObject'
+    LocalQueueMessageResult:
+      type: object
+      required:
+        - dedupId
+      properties:
+        dedupId:
+          type: string
+          description: UUID to uniquely distinguish different messages.
         payload:
           $ref: '#/components/schemas/EncodedObject'
     AsyncStateExecuteResponse:

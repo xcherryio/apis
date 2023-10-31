@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TimerResults** | Pointer to [**[]TimerResult**](TimerResult.md) |  | [optional] 
-**LocalQueueResults** | Pointer to [**[]LocalQueueMessage**](LocalQueueMessage.md) |  | [optional] 
+**LocalQueueResults** | Pointer to [**[]LocalQueueResult**](LocalQueueResult.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasTimerResults returns a boolean if a field has been set.
 
 ### GetLocalQueueResults
 
-`func (o *CommandResults) GetLocalQueueResults() []LocalQueueMessage`
+`func (o *CommandResults) GetLocalQueueResults() []LocalQueueResult`
 
 GetLocalQueueResults returns the LocalQueueResults field if non-nil, zero value otherwise.
 
 ### GetLocalQueueResultsOk
 
-`func (o *CommandResults) GetLocalQueueResultsOk() (*[]LocalQueueMessage, bool)`
+`func (o *CommandResults) GetLocalQueueResultsOk() (*[]LocalQueueResult, bool)`
 
 GetLocalQueueResultsOk returns a tuple with the LocalQueueResults field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocalQueueResults
 
-`func (o *CommandResults) SetLocalQueueResults(v []LocalQueueMessage)`
+`func (o *CommandResults) SetLocalQueueResults(v []LocalQueueResult)`
 
 SetLocalQueueResults sets LocalQueueResults field to given value.
 
