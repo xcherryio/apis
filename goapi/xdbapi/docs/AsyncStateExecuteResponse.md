@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StateDecision** | [**StateDecision**](StateDecision.md) |  | 
 **PublishToLocalQueue** | Pointer to [**[]LocalQueueMessage**](LocalQueueMessage.md) |  | [optional] 
-**UpsertGlobalAttributes** | Pointer to [**[]GlobalAttributeValue**](GlobalAttributeValue.md) |  | [optional] 
+**WriteToGlobalAttributes** | Pointer to [**[]GlobalAttributeTableRowUpdate**](GlobalAttributeTableRowUpdate.md) |  | [optional] 
 
 ## Methods
 
@@ -72,30 +72,30 @@ SetPublishToLocalQueue sets PublishToLocalQueue field to given value.
 
 HasPublishToLocalQueue returns a boolean if a field has been set.
 
-### GetUpsertGlobalAttributes
+### GetWriteToGlobalAttributes
 
-`func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributes() []GlobalAttributeValue`
+`func (o *AsyncStateExecuteResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate`
 
-GetUpsertGlobalAttributes returns the UpsertGlobalAttributes field if non-nil, zero value otherwise.
+GetWriteToGlobalAttributes returns the WriteToGlobalAttributes field if non-nil, zero value otherwise.
 
-### GetUpsertGlobalAttributesOk
+### GetWriteToGlobalAttributesOk
 
-`func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributesOk() (*[]GlobalAttributeValue, bool)`
+`func (o *AsyncStateExecuteResponse) GetWriteToGlobalAttributesOk() (*[]GlobalAttributeTableRowUpdate, bool)`
 
-GetUpsertGlobalAttributesOk returns a tuple with the UpsertGlobalAttributes field if it's non-nil, zero value otherwise
+GetWriteToGlobalAttributesOk returns a tuple with the WriteToGlobalAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpsertGlobalAttributes
+### SetWriteToGlobalAttributes
 
-`func (o *AsyncStateExecuteResponse) SetUpsertGlobalAttributes(v []GlobalAttributeValue)`
+`func (o *AsyncStateExecuteResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate)`
 
-SetUpsertGlobalAttributes sets UpsertGlobalAttributes field to given value.
+SetWriteToGlobalAttributes sets WriteToGlobalAttributes field to given value.
 
-### HasUpsertGlobalAttributes
+### HasWriteToGlobalAttributes
 
-`func (o *AsyncStateExecuteResponse) HasUpsertGlobalAttributes() bool`
+`func (o *AsyncStateExecuteResponse) HasWriteToGlobalAttributes() bool`
 
-HasUpsertGlobalAttributes returns a boolean if a field has been set.
+HasWriteToGlobalAttributes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

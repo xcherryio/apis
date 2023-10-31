@@ -19,9 +19,9 @@ var _ MappedNullable = &AsyncStateExecuteResponse{}
 
 // AsyncStateExecuteResponse the output of the execute API
 type AsyncStateExecuteResponse struct {
-	StateDecision          StateDecision          `json:"stateDecision"`
-	PublishToLocalQueue    []LocalQueueMessage    `json:"publishToLocalQueue,omitempty"`
-	UpsertGlobalAttributes []GlobalAttributeValue `json:"upsertGlobalAttributes,omitempty"`
+	StateDecision           StateDecision                   `json:"stateDecision"`
+	PublishToLocalQueue     []LocalQueueMessage             `json:"publishToLocalQueue,omitempty"`
+	WriteToGlobalAttributes []GlobalAttributeTableRowUpdate `json:"writeToGlobalAttributes,omitempty"`
 }
 
 // NewAsyncStateExecuteResponse instantiates a new AsyncStateExecuteResponse object
@@ -98,36 +98,36 @@ func (o *AsyncStateExecuteResponse) SetPublishToLocalQueue(v []LocalQueueMessage
 	o.PublishToLocalQueue = v
 }
 
-// GetUpsertGlobalAttributes returns the UpsertGlobalAttributes field value if set, zero value otherwise.
-func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributes() []GlobalAttributeValue {
-	if o == nil || IsNil(o.UpsertGlobalAttributes) {
-		var ret []GlobalAttributeValue
+// GetWriteToGlobalAttributes returns the WriteToGlobalAttributes field value if set, zero value otherwise.
+func (o *AsyncStateExecuteResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate {
+	if o == nil || IsNil(o.WriteToGlobalAttributes) {
+		var ret []GlobalAttributeTableRowUpdate
 		return ret
 	}
-	return o.UpsertGlobalAttributes
+	return o.WriteToGlobalAttributes
 }
 
-// GetUpsertGlobalAttributesOk returns a tuple with the UpsertGlobalAttributes field value if set, nil otherwise
+// GetWriteToGlobalAttributesOk returns a tuple with the WriteToGlobalAttributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateExecuteResponse) GetUpsertGlobalAttributesOk() ([]GlobalAttributeValue, bool) {
-	if o == nil || IsNil(o.UpsertGlobalAttributes) {
+func (o *AsyncStateExecuteResponse) GetWriteToGlobalAttributesOk() ([]GlobalAttributeTableRowUpdate, bool) {
+	if o == nil || IsNil(o.WriteToGlobalAttributes) {
 		return nil, false
 	}
-	return o.UpsertGlobalAttributes, true
+	return o.WriteToGlobalAttributes, true
 }
 
-// HasUpsertGlobalAttributes returns a boolean if a field has been set.
-func (o *AsyncStateExecuteResponse) HasUpsertGlobalAttributes() bool {
-	if o != nil && !IsNil(o.UpsertGlobalAttributes) {
+// HasWriteToGlobalAttributes returns a boolean if a field has been set.
+func (o *AsyncStateExecuteResponse) HasWriteToGlobalAttributes() bool {
+	if o != nil && !IsNil(o.WriteToGlobalAttributes) {
 		return true
 	}
 
 	return false
 }
 
-// SetUpsertGlobalAttributes gets a reference to the given []GlobalAttributeValue and assigns it to the UpsertGlobalAttributes field.
-func (o *AsyncStateExecuteResponse) SetUpsertGlobalAttributes(v []GlobalAttributeValue) {
-	o.UpsertGlobalAttributes = v
+// SetWriteToGlobalAttributes gets a reference to the given []GlobalAttributeTableRowUpdate and assigns it to the WriteToGlobalAttributes field.
+func (o *AsyncStateExecuteResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate) {
+	o.WriteToGlobalAttributes = v
 }
 
 func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
@@ -144,8 +144,8 @@ func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PublishToLocalQueue) {
 		toSerialize["publishToLocalQueue"] = o.PublishToLocalQueue
 	}
-	if !IsNil(o.UpsertGlobalAttributes) {
-		toSerialize["upsertGlobalAttributes"] = o.UpsertGlobalAttributes
+	if !IsNil(o.WriteToGlobalAttributes) {
+		toSerialize["writeToGlobalAttributes"] = o.WriteToGlobalAttributes
 	}
 	return toSerialize, nil
 }

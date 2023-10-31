@@ -12,7 +12,6 @@ docs/AsyncStateExecuteRequest.md
 docs/AsyncStateExecuteResponse.md
 docs/AsyncStateWaitUntilRequest.md
 docs/AsyncStateWaitUntilResponse.md
-docs/AttributeReadLockingType.md
 docs/AttributeWriteConflictMode.md
 docs/CommandRequest.md
 docs/CommandResults.md
@@ -21,8 +20,8 @@ docs/Context.md
 docs/DefaultAPI.md
 docs/EncodedObject.md
 docs/GlobalAttributeConfig.md
-docs/GlobalAttributeKey.md
-docs/GlobalAttributeValue.md
+docs/GlobalAttributeTableConfig.md
+docs/GlobalAttributeTableRowUpdate.md
 docs/LoadGlobalAttributeResponse.md
 docs/LoadGlobalAttributesRequest.md
 docs/LocalQueueCommand.md
@@ -45,7 +44,11 @@ docs/StateDecision.md
 docs/StateFailureRecoveryOptions.md
 docs/StateFailureRecoveryPolicy.md
 docs/StateMovement.md
+docs/TableColumnDef.md
+docs/TableColumnValue.md
 docs/TableReadLockingPolicy.md
+docs/TableReadRequest.md
+docs/TableReadResponse.md
 docs/ThreadCloseDecision.md
 docs/ThreadCloseType.md
 docs/TimerCommand.md
@@ -61,7 +64,6 @@ model_async_state_execute_request.go
 model_async_state_execute_response.go
 model_async_state_wait_until_request.go
 model_async_state_wait_until_response.go
-model_attribute_read_locking_type.go
 model_attribute_write_conflict_mode.go
 model_command_request.go
 model_command_results.go
@@ -69,8 +71,8 @@ model_command_waiting_type.go
 model_context.go
 model_encoded_object.go
 model_global_attribute_config.go
-model_global_attribute_key.go
-model_global_attribute_value.go
+model_global_attribute_table_config.go
+model_global_attribute_table_row_update.go
 model_load_global_attribute_response.go
 model_load_global_attributes_request.go
 model_local_queue_command.go
@@ -93,7 +95,11 @@ model_state_decision.go
 model_state_failure_recovery_options.go
 model_state_failure_recovery_policy.go
 model_state_movement.go
+model_table_column_def.go
+model_table_column_value.go
 model_table_read_locking_policy.go
+model_table_read_request.go
+model_table_read_response.go
 model_thread_close_decision.go
 model_thread_close_type.go
 model_timer_command.go

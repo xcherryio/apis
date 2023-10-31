@@ -19,10 +19,7 @@ var _ MappedNullable = &GlobalAttributeConfig{}
 
 // GlobalAttributeConfig struct for GlobalAttributeConfig
 type GlobalAttributeConfig struct {
-	DefaultDbTable                  *string                     `json:"defaultDbTable,omitempty"`
-	PrimaryGlobalAttribute          *GlobalAttributeValue       `json:"primaryGlobalAttribute,omitempty"`
-	InitialGlobalAttributes         []GlobalAttributeValue      `json:"initialGlobalAttributes,omitempty"`
-	InitialGlobalAttributeWriteMode *AttributeWriteConflictMode `json:"initialGlobalAttributeWriteMode,omitempty"`
+	TableConfigs []GlobalAttributeTableConfig `json:"tableConfigs,omitempty"`
 }
 
 // NewGlobalAttributeConfig instantiates a new GlobalAttributeConfig object
@@ -42,132 +39,36 @@ func NewGlobalAttributeConfigWithDefaults() *GlobalAttributeConfig {
 	return &this
 }
 
-// GetDefaultDbTable returns the DefaultDbTable field value if set, zero value otherwise.
-func (o *GlobalAttributeConfig) GetDefaultDbTable() string {
-	if o == nil || IsNil(o.DefaultDbTable) {
-		var ret string
+// GetTableConfigs returns the TableConfigs field value if set, zero value otherwise.
+func (o *GlobalAttributeConfig) GetTableConfigs() []GlobalAttributeTableConfig {
+	if o == nil || IsNil(o.TableConfigs) {
+		var ret []GlobalAttributeTableConfig
 		return ret
 	}
-	return *o.DefaultDbTable
+	return o.TableConfigs
 }
 
-// GetDefaultDbTableOk returns a tuple with the DefaultDbTable field value if set, nil otherwise
+// GetTableConfigsOk returns a tuple with the TableConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GlobalAttributeConfig) GetDefaultDbTableOk() (*string, bool) {
-	if o == nil || IsNil(o.DefaultDbTable) {
+func (o *GlobalAttributeConfig) GetTableConfigsOk() ([]GlobalAttributeTableConfig, bool) {
+	if o == nil || IsNil(o.TableConfigs) {
 		return nil, false
 	}
-	return o.DefaultDbTable, true
+	return o.TableConfigs, true
 }
 
-// HasDefaultDbTable returns a boolean if a field has been set.
-func (o *GlobalAttributeConfig) HasDefaultDbTable() bool {
-	if o != nil && !IsNil(o.DefaultDbTable) {
+// HasTableConfigs returns a boolean if a field has been set.
+func (o *GlobalAttributeConfig) HasTableConfigs() bool {
+	if o != nil && !IsNil(o.TableConfigs) {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultDbTable gets a reference to the given string and assigns it to the DefaultDbTable field.
-func (o *GlobalAttributeConfig) SetDefaultDbTable(v string) {
-	o.DefaultDbTable = &v
-}
-
-// GetPrimaryGlobalAttribute returns the PrimaryGlobalAttribute field value if set, zero value otherwise.
-func (o *GlobalAttributeConfig) GetPrimaryGlobalAttribute() GlobalAttributeValue {
-	if o == nil || IsNil(o.PrimaryGlobalAttribute) {
-		var ret GlobalAttributeValue
-		return ret
-	}
-	return *o.PrimaryGlobalAttribute
-}
-
-// GetPrimaryGlobalAttributeOk returns a tuple with the PrimaryGlobalAttribute field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GlobalAttributeConfig) GetPrimaryGlobalAttributeOk() (*GlobalAttributeValue, bool) {
-	if o == nil || IsNil(o.PrimaryGlobalAttribute) {
-		return nil, false
-	}
-	return o.PrimaryGlobalAttribute, true
-}
-
-// HasPrimaryGlobalAttribute returns a boolean if a field has been set.
-func (o *GlobalAttributeConfig) HasPrimaryGlobalAttribute() bool {
-	if o != nil && !IsNil(o.PrimaryGlobalAttribute) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryGlobalAttribute gets a reference to the given GlobalAttributeValue and assigns it to the PrimaryGlobalAttribute field.
-func (o *GlobalAttributeConfig) SetPrimaryGlobalAttribute(v GlobalAttributeValue) {
-	o.PrimaryGlobalAttribute = &v
-}
-
-// GetInitialGlobalAttributes returns the InitialGlobalAttributes field value if set, zero value otherwise.
-func (o *GlobalAttributeConfig) GetInitialGlobalAttributes() []GlobalAttributeValue {
-	if o == nil || IsNil(o.InitialGlobalAttributes) {
-		var ret []GlobalAttributeValue
-		return ret
-	}
-	return o.InitialGlobalAttributes
-}
-
-// GetInitialGlobalAttributesOk returns a tuple with the InitialGlobalAttributes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GlobalAttributeConfig) GetInitialGlobalAttributesOk() ([]GlobalAttributeValue, bool) {
-	if o == nil || IsNil(o.InitialGlobalAttributes) {
-		return nil, false
-	}
-	return o.InitialGlobalAttributes, true
-}
-
-// HasInitialGlobalAttributes returns a boolean if a field has been set.
-func (o *GlobalAttributeConfig) HasInitialGlobalAttributes() bool {
-	if o != nil && !IsNil(o.InitialGlobalAttributes) {
-		return true
-	}
-
-	return false
-}
-
-// SetInitialGlobalAttributes gets a reference to the given []GlobalAttributeValue and assigns it to the InitialGlobalAttributes field.
-func (o *GlobalAttributeConfig) SetInitialGlobalAttributes(v []GlobalAttributeValue) {
-	o.InitialGlobalAttributes = v
-}
-
-// GetInitialGlobalAttributeWriteMode returns the InitialGlobalAttributeWriteMode field value if set, zero value otherwise.
-func (o *GlobalAttributeConfig) GetInitialGlobalAttributeWriteMode() AttributeWriteConflictMode {
-	if o == nil || IsNil(o.InitialGlobalAttributeWriteMode) {
-		var ret AttributeWriteConflictMode
-		return ret
-	}
-	return *o.InitialGlobalAttributeWriteMode
-}
-
-// GetInitialGlobalAttributeWriteModeOk returns a tuple with the InitialGlobalAttributeWriteMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GlobalAttributeConfig) GetInitialGlobalAttributeWriteModeOk() (*AttributeWriteConflictMode, bool) {
-	if o == nil || IsNil(o.InitialGlobalAttributeWriteMode) {
-		return nil, false
-	}
-	return o.InitialGlobalAttributeWriteMode, true
-}
-
-// HasInitialGlobalAttributeWriteMode returns a boolean if a field has been set.
-func (o *GlobalAttributeConfig) HasInitialGlobalAttributeWriteMode() bool {
-	if o != nil && !IsNil(o.InitialGlobalAttributeWriteMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetInitialGlobalAttributeWriteMode gets a reference to the given AttributeWriteConflictMode and assigns it to the InitialGlobalAttributeWriteMode field.
-func (o *GlobalAttributeConfig) SetInitialGlobalAttributeWriteMode(v AttributeWriteConflictMode) {
-	o.InitialGlobalAttributeWriteMode = &v
+// SetTableConfigs gets a reference to the given []GlobalAttributeTableConfig and assigns it to the TableConfigs field.
+func (o *GlobalAttributeConfig) SetTableConfigs(v []GlobalAttributeTableConfig) {
+	o.TableConfigs = v
 }
 
 func (o GlobalAttributeConfig) MarshalJSON() ([]byte, error) {
@@ -180,17 +81,8 @@ func (o GlobalAttributeConfig) MarshalJSON() ([]byte, error) {
 
 func (o GlobalAttributeConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DefaultDbTable) {
-		toSerialize["defaultDbTable"] = o.DefaultDbTable
-	}
-	if !IsNil(o.PrimaryGlobalAttribute) {
-		toSerialize["primaryGlobalAttribute"] = o.PrimaryGlobalAttribute
-	}
-	if !IsNil(o.InitialGlobalAttributes) {
-		toSerialize["initialGlobalAttributes"] = o.InitialGlobalAttributes
-	}
-	if !IsNil(o.InitialGlobalAttributeWriteMode) {
-		toSerialize["initialGlobalAttributeWriteMode"] = o.InitialGlobalAttributeWriteMode
+	if !IsNil(o.TableConfigs) {
+		toSerialize["tableConfigs"] = o.TableConfigs
 	}
 	return toSerialize, nil
 }

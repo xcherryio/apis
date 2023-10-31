@@ -352,10 +352,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
-        upsertGlobalAttributes:
+        writeToGlobalAttributes:
           type: array
           items:
-            $ref: '#/components/schemas/GlobalAttributeValue'
+            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
     StateDecision:
       type: object
       description: the decision at the end of state execution, either nextStates or threadCloseDecision is needed
@@ -498,25 +498,46 @@ components:
     GlobalAttributeConfig:
       type: object
       properties:
-        defaultDbTable:
-          type: string
-        primaryGlobalAttribute:
-          $ref: '#/components/schemas/GlobalAttributeValue'
-        initialGlobalAttributes: # initial upsert global attribute -- create the new row if not exists   
+        tableConfigs:
           type: array
           items:
-            $ref: '#/components/schemas/GlobalAttributeValue'
-        initialGlobalAttributeWriteMode:
+            $ref: '#/components/schemas/GlobalAttributeTableConfig'
+    GlobalAttributeTableConfig:
+      type: object
+      required: 
+        - tableName
+        - primaryKey
+      properties: 
+        tableName:
+          type: string
+        primaryKey:
+          $ref: '#/components/schemas/TableColumnValue'
+        initialWrite: # optional initial write -- create the new row if not exists   
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumnValue'
+        initialWriteMode:
           $ref: '#/components/schemas/AttributeWriteConflictMode'
+    GlobalAttributeTableRowUpdate:
+      type: object
+      required:
+        - tableName
+      properties:
+        tableName:
+          type: string
+        updateColumns:    
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumnValue'
     AttributeWriteConflictMode:
       type: string
       enum:
         - ReturnErrorOnConflict # default behavior for initial global attributes
         - IgnoreConflict
         - OverrideOnConflict
-    GlobalAttributeValue:
+    TableColumnValue:
       type: object
-      description: the value of a global attribute (from SDK to server or from server to SDK)
+      description: the value of a global attribute table (from SDK to server or from server to SDK)
       required:
         - dbColumn
         - dbQueryValue
@@ -527,67 +548,52 @@ components:
         dbQueryValue:
           type: string
           description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
-        alternativeTable:
-          type: string
-          description: if not empty, the global attribute is mapped to a different table name than the default table. Must be used with alternativeTableForeignKeyColumn
-        alternativeTableForeignKeyColumn:
-          type: string
-          description: Must present when alternativeTable is not empty. It means the foreign key column to join with the primary key of the default table
-    #        dbHint:
-    #          type: string
-    #          description: some additional info for how to use the dbColumn and dbQueryValue 
-    GlobalAttributeKey:
+    TableColumnDef:
       type: object
-      description: the definition(key) for getting value of a global attribute
+      description: the definition(key) for getting value of a global attribute table
       required:
         - dbColumn
       properties:
         dbColumn:
           type: string
-          description: the column name that can be used in the database query, see below for example
-        alternativeTable:
-          type: string
-          description: if not empty, the global attribute is mapped to a different table name than the default table. Must be used with alternativeTableForeignKeyColumn
-        alternativeTableForeignKeyColumn:
-          type: string
-          description: Must present when alternativeTable is not empty. It means the foreign key column to join with the primary key of the default table
-    #        dbHint:
-    #          type: string
-    #          description: some additional info for how to use the dbColumn and dbQueryValue     
+          description: the column name that can be used in the database query, see below for example   
     LoadGlobalAttributesRequest:
       type: object
       description: the request to load global attributes
       properties:
-        attributes:
+        tableRequests:
           type: array
           items:
-            $ref: '#/components/schemas/GlobalAttributeKey'
-        defaultReadLockingType:
-          $ref: '#/components/schemas/AttributeReadLockingType'
-        tableReadLockingPolicyOverrides:
+            $ref: '#/components/schemas/TableReadRequest'
+    TableReadRequest:
+      type: object
+      properties: 
+        tableName:
+          type: string
+        lockingPolicy:
+          $ref: '#/components/schemas/TableReadLockingPolicy'
+        columns:
           type: array
-          description: set a different read policy per table to override the default locking type
-          items:
-            $ref: '#/components/schemas/TableReadLockingPolicy'
+          items: 
+            $ref: '#/components/schemas/TableColumnDef'
     LoadGlobalAttributeResponse:
       type: object
       description: the response for loading global attributes
       properties:
-        attributes:
+        tableResponses:
           type: array
           items:
-            $ref: '#/components/schemas/GlobalAttributeValue'
-    TableReadLockingPolicy:
+            $ref: '#/components/schemas/TableReadResponse'
+    TableReadResponse:
       type: object
-      required:
-        - readLockingType
-        - tableName
       properties:
-        readLockingType:
-          $ref: '#/components/schemas/AttributeReadLockingType'
         tableName:
           type: string
-    AttributeReadLockingType:
+        columns:
+          type: array
+          items: 
+            $ref: '#/components/schemas/TableColumnValue'
+    TableReadLockingPolicy:
       type: string
       enum:
         - NO_LOCKING

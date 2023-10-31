@@ -19,7 +19,7 @@ var _ MappedNullable = &LoadGlobalAttributeResponse{}
 
 // LoadGlobalAttributeResponse the response for loading global attributes
 type LoadGlobalAttributeResponse struct {
-	Attributes []GlobalAttributeValue `json:"attributes,omitempty"`
+	TableResponses []TableReadResponse `json:"tableResponses,omitempty"`
 }
 
 // NewLoadGlobalAttributeResponse instantiates a new LoadGlobalAttributeResponse object
@@ -39,36 +39,36 @@ func NewLoadGlobalAttributeResponseWithDefaults() *LoadGlobalAttributeResponse {
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *LoadGlobalAttributeResponse) GetAttributes() []GlobalAttributeValue {
-	if o == nil || IsNil(o.Attributes) {
-		var ret []GlobalAttributeValue
+// GetTableResponses returns the TableResponses field value if set, zero value otherwise.
+func (o *LoadGlobalAttributeResponse) GetTableResponses() []TableReadResponse {
+	if o == nil || IsNil(o.TableResponses) {
+		var ret []TableReadResponse
 		return ret
 	}
-	return o.Attributes
+	return o.TableResponses
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetTableResponsesOk returns a tuple with the TableResponses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadGlobalAttributeResponse) GetAttributesOk() ([]GlobalAttributeValue, bool) {
-	if o == nil || IsNil(o.Attributes) {
+func (o *LoadGlobalAttributeResponse) GetTableResponsesOk() ([]TableReadResponse, bool) {
+	if o == nil || IsNil(o.TableResponses) {
 		return nil, false
 	}
-	return o.Attributes, true
+	return o.TableResponses, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *LoadGlobalAttributeResponse) HasAttributes() bool {
-	if o != nil && !IsNil(o.Attributes) {
+// HasTableResponses returns a boolean if a field has been set.
+func (o *LoadGlobalAttributeResponse) HasTableResponses() bool {
+	if o != nil && !IsNil(o.TableResponses) {
 		return true
 	}
 
 	return false
 }
 
-// SetAttributes gets a reference to the given []GlobalAttributeValue and assigns it to the Attributes field.
-func (o *LoadGlobalAttributeResponse) SetAttributes(v []GlobalAttributeValue) {
-	o.Attributes = v
+// SetTableResponses gets a reference to the given []TableReadResponse and assigns it to the TableResponses field.
+func (o *LoadGlobalAttributeResponse) SetTableResponses(v []TableReadResponse) {
+	o.TableResponses = v
 }
 
 func (o LoadGlobalAttributeResponse) MarshalJSON() ([]byte, error) {
@@ -81,8 +81,8 @@ func (o LoadGlobalAttributeResponse) MarshalJSON() ([]byte, error) {
 
 func (o LoadGlobalAttributeResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Attributes) {
-		toSerialize["attributes"] = o.Attributes
+	if !IsNil(o.TableResponses) {
+		toSerialize["tableResponses"] = o.TableResponses
 	}
 	return toSerialize, nil
 }

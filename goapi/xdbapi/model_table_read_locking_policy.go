@@ -12,97 +12,67 @@ package xdbapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the TableReadLockingPolicy type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &TableReadLockingPolicy{}
+// TableReadLockingPolicy the model 'TableReadLockingPolicy'
+type TableReadLockingPolicy string
 
-// TableReadLockingPolicy struct for TableReadLockingPolicy
-type TableReadLockingPolicy struct {
-	ReadLockingType AttributeReadLockingType `json:"readLockingType"`
-	TableName       string                   `json:"tableName"`
+// List of TableReadLockingPolicy
+const (
+	NO_LOCKING     TableReadLockingPolicy = "NO_LOCKING"
+	SHARE_LOCK     TableReadLockingPolicy = "SHARE_LOCK"
+	EXCLUSIVE_LOCK TableReadLockingPolicy = "EXCLUSIVE_LOCK"
+)
+
+// All allowed values of TableReadLockingPolicy enum
+var AllowedTableReadLockingPolicyEnumValues = []TableReadLockingPolicy{
+	"NO_LOCKING",
+	"SHARE_LOCK",
+	"EXCLUSIVE_LOCK",
 }
 
-// NewTableReadLockingPolicy instantiates a new TableReadLockingPolicy object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewTableReadLockingPolicy(readLockingType AttributeReadLockingType, tableName string) *TableReadLockingPolicy {
-	this := TableReadLockingPolicy{}
-	this.ReadLockingType = readLockingType
-	this.TableName = tableName
-	return &this
-}
-
-// NewTableReadLockingPolicyWithDefaults instantiates a new TableReadLockingPolicy object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewTableReadLockingPolicyWithDefaults() *TableReadLockingPolicy {
-	this := TableReadLockingPolicy{}
-	return &this
-}
-
-// GetReadLockingType returns the ReadLockingType field value
-func (o *TableReadLockingPolicy) GetReadLockingType() AttributeReadLockingType {
-	if o == nil {
-		var ret AttributeReadLockingType
-		return ret
-	}
-
-	return o.ReadLockingType
-}
-
-// GetReadLockingTypeOk returns a tuple with the ReadLockingType field value
-// and a boolean to check if the value has been set.
-func (o *TableReadLockingPolicy) GetReadLockingTypeOk() (*AttributeReadLockingType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ReadLockingType, true
-}
-
-// SetReadLockingType sets field value
-func (o *TableReadLockingPolicy) SetReadLockingType(v AttributeReadLockingType) {
-	o.ReadLockingType = v
-}
-
-// GetTableName returns the TableName field value
-func (o *TableReadLockingPolicy) GetTableName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TableName
-}
-
-// GetTableNameOk returns a tuple with the TableName field value
-// and a boolean to check if the value has been set.
-func (o *TableReadLockingPolicy) GetTableNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TableName, true
-}
-
-// SetTableName sets field value
-func (o *TableReadLockingPolicy) SetTableName(v string) {
-	o.TableName = v
-}
-
-func (o TableReadLockingPolicy) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+func (v *TableReadLockingPolicy) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
 	if err != nil {
-		return []byte{}, err
+		return err
 	}
-	return json.Marshal(toSerialize)
+	enumTypeValue := TableReadLockingPolicy(value)
+	for _, existing := range AllowedTableReadLockingPolicyEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid TableReadLockingPolicy", value)
 }
 
-func (o TableReadLockingPolicy) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["readLockingType"] = o.ReadLockingType
-	toSerialize["tableName"] = o.TableName
-	return toSerialize, nil
+// NewTableReadLockingPolicyFromValue returns a pointer to a valid TableReadLockingPolicy
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewTableReadLockingPolicyFromValue(v string) (*TableReadLockingPolicy, error) {
+	ev := TableReadLockingPolicy(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for TableReadLockingPolicy: valid values are %v", v, AllowedTableReadLockingPolicyEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v TableReadLockingPolicy) IsValid() bool {
+	for _, existing := range AllowedTableReadLockingPolicyEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TableReadLockingPolicy value
+func (v TableReadLockingPolicy) Ptr() *TableReadLockingPolicy {
+	return &v
 }
 
 type NullableTableReadLockingPolicy struct {
