@@ -492,16 +492,12 @@ components:
                 policy: null
               loadGlobalAttributesRequest:
                 tableRequests:
-                - lockingPolicy:
-                    readLockingType: null
-                    tableName: tableName
+                - lockingPolicy: null
                   columns:
                   - dbColumn: dbColumn
                   - dbColumn: dbColumn
                   tableName: tableName
-                - lockingPolicy:
-                    readLockingType: null
-                    tableName: tableName
+                - lockingPolicy: null
                   columns:
                   - dbColumn: dbColumn
                   - dbColumn: dbColumn
@@ -532,16 +528,12 @@ components:
                 policy: null
               loadGlobalAttributesRequest:
                 tableRequests:
-                - lockingPolicy:
-                    readLockingType: null
-                    tableName: tableName
+                - lockingPolicy: null
                   columns:
                   - dbColumn: dbColumn
                   - dbColumn: dbColumn
                   tableName: tableName
-                - lockingPolicy:
-                    readLockingType: null
-                    tableName: tableName
+                - lockingPolicy: null
                   columns:
                   - dbColumn: dbColumn
                   - dbColumn: dbColumn
@@ -620,16 +612,12 @@ components:
               policy: null
             loadGlobalAttributesRequest:
               tableRequests:
-              - lockingPolicy:
-                  readLockingType: null
-                  tableName: tableName
+              - lockingPolicy: null
                 columns:
                 - dbColumn: dbColumn
                 - dbColumn: dbColumn
                 tableName: tableName
-              - lockingPolicy:
-                  readLockingType: null
-                  tableName: tableName
+              - lockingPolicy: null
                 columns:
                 - dbColumn: dbColumn
                 - dbColumn: dbColumn
@@ -660,16 +648,12 @@ components:
               policy: null
             loadGlobalAttributesRequest:
               tableRequests:
-              - lockingPolicy:
-                  readLockingType: null
-                  tableName: tableName
+              - lockingPolicy: null
                 columns:
                 - dbColumn: dbColumn
                 - dbColumn: dbColumn
                 tableName: tableName
-              - lockingPolicy:
-                  readLockingType: null
-                  tableName: tableName
+              - lockingPolicy: null
                 columns:
                 - dbColumn: dbColumn
                 - dbColumn: dbColumn
@@ -736,16 +720,12 @@ components:
             policy: null
           loadGlobalAttributesRequest:
             tableRequests:
-            - lockingPolicy:
-                readLockingType: null
-                tableName: tableName
+            - lockingPolicy: null
               columns:
               - dbColumn: dbColumn
               - dbColumn: dbColumn
               tableName: tableName
-            - lockingPolicy:
-                readLockingType: null
-                tableName: tableName
+            - lockingPolicy: null
               columns:
               - dbColumn: dbColumn
               - dbColumn: dbColumn
@@ -865,16 +845,12 @@ components:
             policy: null
           loadGlobalAttributesRequest:
             tableRequests:
-            - lockingPolicy:
-                readLockingType: null
-                tableName: tableName
+            - lockingPolicy: null
               columns:
               - dbColumn: dbColumn
               - dbColumn: dbColumn
               tableName: tableName
-            - lockingPolicy:
-                readLockingType: null
-                tableName: tableName
+            - lockingPolicy: null
               columns:
               - dbColumn: dbColumn
               - dbColumn: dbColumn
@@ -1103,16 +1079,12 @@ components:
       description: the request to load global attributes
       example:
         tableRequests:
-        - lockingPolicy:
-            readLockingType: null
-            tableName: tableName
+        - lockingPolicy: null
           columns:
           - dbColumn: dbColumn
           - dbColumn: dbColumn
           tableName: tableName
-        - lockingPolicy:
-            readLockingType: null
-            tableName: tableName
+        - lockingPolicy: null
           columns:
           - dbColumn: dbColumn
           - dbColumn: dbColumn
@@ -1125,9 +1097,7 @@ components:
       type: object
     TableReadRequest:
       example:
-        lockingPolicy:
-          readLockingType: null
-          tableName: tableName
+        lockingPolicy: null
         columns:
         - dbColumn: dbColumn
         - dbColumn: dbColumn
@@ -1181,19 +1151,6 @@ components:
           type: array
       type: object
     TableReadLockingPolicy:
-      example:
-        readLockingType: null
-        tableName: tableName
-      properties:
-        readLockingType:
-          $ref: '#/components/schemas/AttributeReadLockingType'
-        tableName:
-          type: string
-      required:
-      - readLockingType
-      - tableName
-      type: object
-    AttributeReadLockingType:
       enum:
       - NO_LOCKING
       - SHARE_LOCK
@@ -1215,16 +1172,12 @@ components:
           policy: null
         loadGlobalAttributesRequest:
           tableRequests:
-          - lockingPolicy:
-              readLockingType: null
-              tableName: tableName
+          - lockingPolicy: null
             columns:
             - dbColumn: dbColumn
             - dbColumn: dbColumn
             tableName: tableName
-          - lockingPolicy:
-              readLockingType: null
-              tableName: tableName
+          - lockingPolicy: null
             columns:
             - dbColumn: dbColumn
             - dbColumn: dbColumn

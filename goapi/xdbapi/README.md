@@ -95,7 +95,6 @@ Class | Method | HTTP request | Description
  - [AsyncStateExecuteResponse](docs/AsyncStateExecuteResponse.md)
  - [AsyncStateWaitUntilRequest](docs/AsyncStateWaitUntilRequest.md)
  - [AsyncStateWaitUntilResponse](docs/AsyncStateWaitUntilResponse.md)
- - [AttributeReadLockingType](docs/AttributeReadLockingType.md)
  - [AttributeWriteConflictMode](docs/AttributeWriteConflictMode.md)
  - [CommandRequest](docs/CommandRequest.md)
  - [CommandResults](docs/CommandResults.md)

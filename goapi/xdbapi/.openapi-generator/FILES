@@ -12,7 +12,6 @@ docs/AsyncStateExecuteRequest.md
 docs/AsyncStateExecuteResponse.md
 docs/AsyncStateWaitUntilRequest.md
 docs/AsyncStateWaitUntilResponse.md
-docs/AttributeReadLockingType.md
 docs/AttributeWriteConflictMode.md
 docs/CommandRequest.md
 docs/CommandResults.md
@@ -65,7 +64,6 @@ model_async_state_execute_request.go
 model_async_state_execute_response.go
 model_async_state_wait_until_request.go
 model_async_state_wait_until_response.go
-model_attribute_read_locking_type.go
 model_attribute_write_conflict_mode.go
 model_command_request.go
 model_command_results.go

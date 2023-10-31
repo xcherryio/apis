@@ -594,16 +594,6 @@ components:
           items: 
             $ref: '#/components/schemas/TableColumnValue'
     TableReadLockingPolicy:
-      type: object
-      required:
-        - readLockingType
-        - tableName
-      properties:
-        readLockingType:
-          $ref: '#/components/schemas/AttributeReadLockingType'
-        tableName:
-          type: string
-    AttributeReadLockingType:
       type: string
       enum:
         - NO_LOCKING
