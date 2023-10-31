@@ -19,10 +19,7 @@ var _ MappedNullable = &LoadGlobalAttributesRequest{}
 
 // LoadGlobalAttributesRequest the request to load global attributes
 type LoadGlobalAttributesRequest struct {
-	Attributes             []GlobalAttributeKey      `json:"attributes,omitempty"`
-	DefaultReadLockingType *AttributeReadLockingType `json:"defaultReadLockingType,omitempty"`
-	// set a different read policy per table to override the default locking type
-	TableReadLockingPolicyOverrides []TableReadLockingPolicy `json:"tableReadLockingPolicyOverrides,omitempty"`
+	TableRequests []TableReadRequest `json:"tableRequests,omitempty"`
 }
 
 // NewLoadGlobalAttributesRequest instantiates a new LoadGlobalAttributesRequest object
@@ -42,100 +39,36 @@ func NewLoadGlobalAttributesRequestWithDefaults() *LoadGlobalAttributesRequest {
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *LoadGlobalAttributesRequest) GetAttributes() []GlobalAttributeKey {
-	if o == nil || IsNil(o.Attributes) {
-		var ret []GlobalAttributeKey
+// GetTableRequests returns the TableRequests field value if set, zero value otherwise.
+func (o *LoadGlobalAttributesRequest) GetTableRequests() []TableReadRequest {
+	if o == nil || IsNil(o.TableRequests) {
+		var ret []TableReadRequest
 		return ret
 	}
-	return o.Attributes
+	return o.TableRequests
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetTableRequestsOk returns a tuple with the TableRequests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadGlobalAttributesRequest) GetAttributesOk() ([]GlobalAttributeKey, bool) {
-	if o == nil || IsNil(o.Attributes) {
+func (o *LoadGlobalAttributesRequest) GetTableRequestsOk() ([]TableReadRequest, bool) {
+	if o == nil || IsNil(o.TableRequests) {
 		return nil, false
 	}
-	return o.Attributes, true
+	return o.TableRequests, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *LoadGlobalAttributesRequest) HasAttributes() bool {
-	if o != nil && !IsNil(o.Attributes) {
+// HasTableRequests returns a boolean if a field has been set.
+func (o *LoadGlobalAttributesRequest) HasTableRequests() bool {
+	if o != nil && !IsNil(o.TableRequests) {
 		return true
 	}
 
 	return false
 }
 
-// SetAttributes gets a reference to the given []GlobalAttributeKey and assigns it to the Attributes field.
-func (o *LoadGlobalAttributesRequest) SetAttributes(v []GlobalAttributeKey) {
-	o.Attributes = v
-}
-
-// GetDefaultReadLockingType returns the DefaultReadLockingType field value if set, zero value otherwise.
-func (o *LoadGlobalAttributesRequest) GetDefaultReadLockingType() AttributeReadLockingType {
-	if o == nil || IsNil(o.DefaultReadLockingType) {
-		var ret AttributeReadLockingType
-		return ret
-	}
-	return *o.DefaultReadLockingType
-}
-
-// GetDefaultReadLockingTypeOk returns a tuple with the DefaultReadLockingType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LoadGlobalAttributesRequest) GetDefaultReadLockingTypeOk() (*AttributeReadLockingType, bool) {
-	if o == nil || IsNil(o.DefaultReadLockingType) {
-		return nil, false
-	}
-	return o.DefaultReadLockingType, true
-}
-
-// HasDefaultReadLockingType returns a boolean if a field has been set.
-func (o *LoadGlobalAttributesRequest) HasDefaultReadLockingType() bool {
-	if o != nil && !IsNil(o.DefaultReadLockingType) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultReadLockingType gets a reference to the given AttributeReadLockingType and assigns it to the DefaultReadLockingType field.
-func (o *LoadGlobalAttributesRequest) SetDefaultReadLockingType(v AttributeReadLockingType) {
-	o.DefaultReadLockingType = &v
-}
-
-// GetTableReadLockingPolicyOverrides returns the TableReadLockingPolicyOverrides field value if set, zero value otherwise.
-func (o *LoadGlobalAttributesRequest) GetTableReadLockingPolicyOverrides() []TableReadLockingPolicy {
-	if o == nil || IsNil(o.TableReadLockingPolicyOverrides) {
-		var ret []TableReadLockingPolicy
-		return ret
-	}
-	return o.TableReadLockingPolicyOverrides
-}
-
-// GetTableReadLockingPolicyOverridesOk returns a tuple with the TableReadLockingPolicyOverrides field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LoadGlobalAttributesRequest) GetTableReadLockingPolicyOverridesOk() ([]TableReadLockingPolicy, bool) {
-	if o == nil || IsNil(o.TableReadLockingPolicyOverrides) {
-		return nil, false
-	}
-	return o.TableReadLockingPolicyOverrides, true
-}
-
-// HasTableReadLockingPolicyOverrides returns a boolean if a field has been set.
-func (o *LoadGlobalAttributesRequest) HasTableReadLockingPolicyOverrides() bool {
-	if o != nil && !IsNil(o.TableReadLockingPolicyOverrides) {
-		return true
-	}
-
-	return false
-}
-
-// SetTableReadLockingPolicyOverrides gets a reference to the given []TableReadLockingPolicy and assigns it to the TableReadLockingPolicyOverrides field.
-func (o *LoadGlobalAttributesRequest) SetTableReadLockingPolicyOverrides(v []TableReadLockingPolicy) {
-	o.TableReadLockingPolicyOverrides = v
+// SetTableRequests gets a reference to the given []TableReadRequest and assigns it to the TableRequests field.
+func (o *LoadGlobalAttributesRequest) SetTableRequests(v []TableReadRequest) {
+	o.TableRequests = v
 }
 
 func (o LoadGlobalAttributesRequest) MarshalJSON() ([]byte, error) {
@@ -148,14 +81,8 @@ func (o LoadGlobalAttributesRequest) MarshalJSON() ([]byte, error) {
 
 func (o LoadGlobalAttributesRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Attributes) {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if !IsNil(o.DefaultReadLockingType) {
-		toSerialize["defaultReadLockingType"] = o.DefaultReadLockingType
-	}
-	if !IsNil(o.TableReadLockingPolicyOverrides) {
-		toSerialize["tableReadLockingPolicyOverrides"] = o.TableReadLockingPolicyOverrides
+	if !IsNil(o.TableRequests) {
+		toSerialize["tableRequests"] = o.TableRequests
 	}
 	return toSerialize, nil
 }

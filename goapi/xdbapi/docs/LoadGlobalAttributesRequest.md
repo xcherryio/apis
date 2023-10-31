@@ -4,9 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**[]GlobalAttributeKey**](GlobalAttributeKey.md) |  | [optional] 
-**DefaultReadLockingType** | Pointer to [**AttributeReadLockingType**](AttributeReadLockingType.md) |  | [optional] 
-**TableReadLockingPolicyOverrides** | Pointer to [**[]TableReadLockingPolicy**](TableReadLockingPolicy.md) | set a different read policy per table to override the default locking type | [optional] 
+**TableRequests** | Pointer to [**[]TableReadRequest**](TableReadRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -27,80 +25,30 @@ NewLoadGlobalAttributesRequestWithDefaults instantiates a new LoadGlobalAttribut
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAttributes
+### GetTableRequests
 
-`func (o *LoadGlobalAttributesRequest) GetAttributes() []GlobalAttributeKey`
+`func (o *LoadGlobalAttributesRequest) GetTableRequests() []TableReadRequest`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetTableRequests returns the TableRequests field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetTableRequestsOk
 
-`func (o *LoadGlobalAttributesRequest) GetAttributesOk() (*[]GlobalAttributeKey, bool)`
+`func (o *LoadGlobalAttributesRequest) GetTableRequestsOk() (*[]TableReadRequest, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetTableRequestsOk returns a tuple with the TableRequests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttributes
+### SetTableRequests
 
-`func (o *LoadGlobalAttributesRequest) SetAttributes(v []GlobalAttributeKey)`
+`func (o *LoadGlobalAttributesRequest) SetTableRequests(v []TableReadRequest)`
 
-SetAttributes sets Attributes field to given value.
+SetTableRequests sets TableRequests field to given value.
 
-### HasAttributes
+### HasTableRequests
 
-`func (o *LoadGlobalAttributesRequest) HasAttributes() bool`
+`func (o *LoadGlobalAttributesRequest) HasTableRequests() bool`
 
-HasAttributes returns a boolean if a field has been set.
-
-### GetDefaultReadLockingType
-
-`func (o *LoadGlobalAttributesRequest) GetDefaultReadLockingType() AttributeReadLockingType`
-
-GetDefaultReadLockingType returns the DefaultReadLockingType field if non-nil, zero value otherwise.
-
-### GetDefaultReadLockingTypeOk
-
-`func (o *LoadGlobalAttributesRequest) GetDefaultReadLockingTypeOk() (*AttributeReadLockingType, bool)`
-
-GetDefaultReadLockingTypeOk returns a tuple with the DefaultReadLockingType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultReadLockingType
-
-`func (o *LoadGlobalAttributesRequest) SetDefaultReadLockingType(v AttributeReadLockingType)`
-
-SetDefaultReadLockingType sets DefaultReadLockingType field to given value.
-
-### HasDefaultReadLockingType
-
-`func (o *LoadGlobalAttributesRequest) HasDefaultReadLockingType() bool`
-
-HasDefaultReadLockingType returns a boolean if a field has been set.
-
-### GetTableReadLockingPolicyOverrides
-
-`func (o *LoadGlobalAttributesRequest) GetTableReadLockingPolicyOverrides() []TableReadLockingPolicy`
-
-GetTableReadLockingPolicyOverrides returns the TableReadLockingPolicyOverrides field if non-nil, zero value otherwise.
-
-### GetTableReadLockingPolicyOverridesOk
-
-`func (o *LoadGlobalAttributesRequest) GetTableReadLockingPolicyOverridesOk() (*[]TableReadLockingPolicy, bool)`
-
-GetTableReadLockingPolicyOverridesOk returns a tuple with the TableReadLockingPolicyOverrides field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTableReadLockingPolicyOverrides
-
-`func (o *LoadGlobalAttributesRequest) SetTableReadLockingPolicyOverrides(v []TableReadLockingPolicy)`
-
-SetTableReadLockingPolicyOverrides sets TableReadLockingPolicyOverrides field to given value.
-
-### HasTableReadLockingPolicyOverrides
-
-`func (o *LoadGlobalAttributesRequest) HasTableReadLockingPolicyOverrides() bool`
-
-HasTableReadLockingPolicyOverrides returns a boolean if a field has been set.
+HasTableRequests returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

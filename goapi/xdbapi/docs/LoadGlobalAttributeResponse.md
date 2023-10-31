@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**[]GlobalAttributeValue**](GlobalAttributeValue.md) |  | [optional] 
+**TableResponses** | Pointer to [**[]TableReadResponse**](TableReadResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewLoadGlobalAttributeResponseWithDefaults instantiates a new LoadGlobalAttribut
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAttributes
+### GetTableResponses
 
-`func (o *LoadGlobalAttributeResponse) GetAttributes() []GlobalAttributeValue`
+`func (o *LoadGlobalAttributeResponse) GetTableResponses() []TableReadResponse`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetTableResponses returns the TableResponses field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetTableResponsesOk
 
-`func (o *LoadGlobalAttributeResponse) GetAttributesOk() (*[]GlobalAttributeValue, bool)`
+`func (o *LoadGlobalAttributeResponse) GetTableResponsesOk() (*[]TableReadResponse, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetTableResponsesOk returns a tuple with the TableResponses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttributes
+### SetTableResponses
 
-`func (o *LoadGlobalAttributeResponse) SetAttributes(v []GlobalAttributeValue)`
+`func (o *LoadGlobalAttributeResponse) SetTableResponses(v []TableReadResponse)`
 
-SetAttributes sets Attributes field to given value.
+SetTableResponses sets TableResponses field to given value.
 
-### HasAttributes
+### HasTableResponses
 
-`func (o *LoadGlobalAttributeResponse) HasAttributes() bool`
+`func (o *LoadGlobalAttributeResponse) HasTableResponses() bool`
 
-HasAttributes returns a boolean if a field has been set.
+HasTableResponses returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
