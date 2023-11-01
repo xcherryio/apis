@@ -369,8 +369,8 @@ components:
               dedupId: dedupId
             status: null
           timerResults:
-          - timerStatus: null
-          - timerStatus: null
+          - status: null
+          - status: null
         loadedGlobalAttributes:
           attributes:
           - dbQueryValue: dbQueryValue
@@ -439,8 +439,8 @@ components:
             dedupId: dedupId
           status: null
         timerResults:
-        - timerStatus: null
-        - timerStatus: null
+        - status: null
+        - status: null
       properties:
         timerResults:
           items:
@@ -453,19 +453,13 @@ components:
       type: object
     TimerResult:
       example:
-        timerStatus: null
+        status: null
       properties:
-        timerStatus:
-          $ref: '#/components/schemas/TimerStatus'
+        status:
+          $ref: '#/components/schemas/CommandStatus'
       required:
-      - timerStatus
+      - status
       type: object
-    TimerStatus:
-      enum:
-      - SCHEDULED_TIMER
-      - FIRED_TIMER
-      - SKIPPED_TIMER
-      type: string
     LocalQueueResult:
       example:
         queueName: queueName
@@ -481,7 +475,7 @@ components:
         status: null
       properties:
         status:
-          $ref: '#/components/schemas/LocalQueueStatus'
+          $ref: '#/components/schemas/CommandStatus'
         queueName:
           type: string
         messages:
@@ -492,11 +486,11 @@ components:
       - queueName
       - status
       type: object
-    LocalQueueStatus:
+    CommandStatus:
       enum:
-      - WAITING_LOCAL_QUEUE
-      - COMPLETED_LOCAL_QUEUE
-      - SKIPPED_LOCAL_QUEUE
+      - WAITING_COMMAND
+      - COMPLETED_COMMAND
+      - SKIPPED_COMMAND
       type: string
     LocalQueueMessage:
       example:

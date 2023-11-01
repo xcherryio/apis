@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TimerStatus** | [**TimerStatus**](TimerStatus.md) |  | 
+**Status** | [**CommandStatus**](CommandStatus.md) |  | 
 
 ## Methods
 
 ### NewTimerResult
 
-`func NewTimerResult(timerStatus TimerStatus, ) *TimerResult`
+`func NewTimerResult(status CommandStatus, ) *TimerResult`
 
 NewTimerResult instantiates a new TimerResult object
 This constructor will assign default values to properties that have it defined,
@@ -25,24 +25,24 @@ NewTimerResultWithDefaults instantiates a new TimerResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTimerStatus
+### GetStatus
 
-`func (o *TimerResult) GetTimerStatus() TimerStatus`
+`func (o *TimerResult) GetStatus() CommandStatus`
 
-GetTimerStatus returns the TimerStatus field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetTimerStatusOk
+### GetStatusOk
 
-`func (o *TimerResult) GetTimerStatusOk() (*TimerStatus, bool)`
+`func (o *TimerResult) GetStatusOk() (*CommandStatus, bool)`
 
-GetTimerStatusOk returns a tuple with the TimerStatus field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimerStatus
+### SetStatus
 
-`func (o *TimerResult) SetTimerStatus(v TimerStatus)`
+`func (o *TimerResult) SetStatus(v CommandStatus)`
 
-SetTimerStatus sets TimerStatus field to given value.
+SetStatus sets Status field to given value.
 
 
 

@@ -19,7 +19,7 @@ var _ MappedNullable = &LocalQueueResult{}
 
 // LocalQueueResult struct for LocalQueueResult
 type LocalQueueResult struct {
-	Status    LocalQueueStatus          `json:"status"`
+	Status    CommandStatus             `json:"status"`
 	QueueName string                    `json:"queueName"`
 	Messages  []LocalQueueMessageResult `json:"messages,omitempty"`
 }
@@ -28,7 +28,7 @@ type LocalQueueResult struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLocalQueueResult(status LocalQueueStatus, queueName string) *LocalQueueResult {
+func NewLocalQueueResult(status CommandStatus, queueName string) *LocalQueueResult {
 	this := LocalQueueResult{}
 	this.Status = status
 	this.QueueName = queueName
@@ -44,9 +44,9 @@ func NewLocalQueueResultWithDefaults() *LocalQueueResult {
 }
 
 // GetStatus returns the Status field value
-func (o *LocalQueueResult) GetStatus() LocalQueueStatus {
+func (o *LocalQueueResult) GetStatus() CommandStatus {
 	if o == nil {
-		var ret LocalQueueStatus
+		var ret CommandStatus
 		return ret
 	}
 
@@ -55,7 +55,7 @@ func (o *LocalQueueResult) GetStatus() LocalQueueStatus {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *LocalQueueResult) GetStatusOk() (*LocalQueueStatus, bool) {
+func (o *LocalQueueResult) GetStatusOk() (*CommandStatus, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *LocalQueueResult) GetStatusOk() (*LocalQueueStatus, bool) {
 }
 
 // SetStatus sets field value
-func (o *LocalQueueResult) SetStatus(v LocalQueueStatus) {
+func (o *LocalQueueResult) SetStatus(v CommandStatus) {
 	o.Status = v
 }
 

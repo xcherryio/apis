@@ -314,16 +314,10 @@ components:
     TimerResult:
       type: object
       required:
-        - timerStatus
+        - status
       properties:
-        timerStatus:
-          $ref: '#/components/schemas/TimerStatus'
-    TimerStatus:
-      type: string
-      enum:
-        - SCHEDULED_TIMER
-        - FIRED_TIMER
-        - SKIPPED_TIMER
+        status:
+          $ref: '#/components/schemas/CommandStatus'
     LocalQueueResult:
       type: object
       required:
@@ -331,19 +325,19 @@ components:
         - queueName
       properties:
         status:
-          $ref: '#/components/schemas/LocalQueueStatus'
+          $ref: '#/components/schemas/CommandStatus'
         queueName:
           type: string
         messages:
           type: array
           items:
             $ref: '#/components/schemas/LocalQueueMessageResult'
-    LocalQueueStatus:
+    CommandStatus:
       type: string
       enum:
-        - WAITING_LOCAL_QUEUE
-        - COMPLETED_LOCAL_QUEUE
-        - SKIPPED_LOCAL_QUEUE   # in anyOfCompletion, set this status for other waiting local queues
+        - WAITING_COMMAND
+        - COMPLETED_COMMAND
+        - SKIPPED_COMMAND
     LocalQueueMessage:
       type: object
       required:
