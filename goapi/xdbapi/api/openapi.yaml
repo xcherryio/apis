@@ -257,10 +257,8 @@ components:
       example:
         commandRequest:
           timerCommands:
-          - firingUnixTimestampSeconds: 0
-            commandId: commandId
-          - firingUnixTimestampSeconds: 0
-            commandId: commandId
+          - delayInSeconds: 0
+          - delayInSeconds: 0
           waitingType: null
           localQueueCommands:
           - queueName: queueName
@@ -291,10 +289,8 @@ components:
     CommandRequest:
       example:
         timerCommands:
-        - firingUnixTimestampSeconds: 0
-          commandId: commandId
-        - firingUnixTimestampSeconds: 0
-          commandId: commandId
+        - delayInSeconds: 0
+        - delayInSeconds: 0
         waitingType: null
         localQueueCommands:
         - queueName: queueName
@@ -317,16 +313,13 @@ components:
       type: object
     TimerCommand:
       example:
-        firingUnixTimestampSeconds: 0
-        commandId: commandId
+        delayInSeconds: 0
       properties:
-        commandId:
-          type: string
-        firingUnixTimestampSeconds:
+        delayInSeconds:
           format: int64
           type: integer
       required:
-      - firingUnixTimestampSeconds
+      - delayInSeconds
       type: object
     LocalQueueCommand:
       example:
@@ -354,20 +347,30 @@ components:
         commandResults:
           localQueueResults:
           - queueName: queueName
-            payload:
-              data: data
-              encoding: encoding
-            dedupId: dedupId
+            messages:
+            - payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
+            - payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
+            status: null
           - queueName: queueName
-            payload:
-              data: data
-              encoding: encoding
-            dedupId: dedupId
+            messages:
+            - payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
+            - payload:
+                data: data
+                encoding: encoding
+              dedupId: dedupId
+            status: null
           timerResults:
-          - timerStatus: null
-            commandId: commandId
-          - timerStatus: null
-            commandId: commandId
+          - status: null
+          - status: null
         loadedGlobalAttributes:
           tableResponses:
           - columns:
@@ -418,20 +421,30 @@ components:
       example:
         localQueueResults:
         - queueName: queueName
-          payload:
-            data: data
-            encoding: encoding
-          dedupId: dedupId
+          messages:
+          - payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+          - payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+          status: null
         - queueName: queueName
-          payload:
-            data: data
-            encoding: encoding
-          dedupId: dedupId
+          messages:
+          - payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+          - payload:
+              data: data
+              encoding: encoding
+            dedupId: dedupId
+          status: null
         timerResults:
-        - timerStatus: null
-          commandId: commandId
-        - timerStatus: null
-          commandId: commandId
+        - status: null
+        - status: null
       properties:
         timerResults:
           items:
@@ -439,26 +452,49 @@ components:
           type: array
         localQueueResults:
           items:
-            $ref: '#/components/schemas/LocalQueueMessage'
+            $ref: '#/components/schemas/LocalQueueResult'
           type: array
       type: object
     TimerResult:
       example:
-        timerStatus: null
-        commandId: commandId
+        status: null
       properties:
-        commandId:
-          type: string
-        timerStatus:
-          $ref: '#/components/schemas/TimerStatus'
+        status:
+          $ref: '#/components/schemas/CommandStatus'
       required:
-      - timerStatus
+      - status
       type: object
-    TimerStatus:
+    LocalQueueResult:
+      example:
+        queueName: queueName
+        messages:
+        - payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+        - payload:
+            data: data
+            encoding: encoding
+          dedupId: dedupId
+        status: null
+      properties:
+        status:
+          $ref: '#/components/schemas/CommandStatus'
+        queueName:
+          type: string
+        messages:
+          items:
+            $ref: '#/components/schemas/LocalQueueMessageResult'
+          type: array
+      required:
+      - queueName
+      - status
+      type: object
+    CommandStatus:
       enum:
-      - SCHEDULED_TIMER
-      - FIRED_TIMER
-      - SKIPPED_TIMER
+      - WAITING_COMMAND
+      - COMPLETED_COMMAND
+      - SKIPPED_COMMAND
       type: string
     LocalQueueMessage:
       example:
@@ -478,6 +514,21 @@ components:
           $ref: '#/components/schemas/EncodedObject'
       required:
       - queueName
+      type: object
+    LocalQueueMessageResult:
+      example:
+        payload:
+          data: data
+          encoding: encoding
+        dedupId: dedupId
+      properties:
+        dedupId:
+          description: UUID to uniquely distinguish different messages.
+          type: string
+        payload:
+          $ref: '#/components/schemas/EncodedObject'
+      required:
+      - dedupId
       type: object
     AsyncStateExecuteResponse:
       description: the output of the execute API
