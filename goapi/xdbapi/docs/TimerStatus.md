@@ -1,13 +1,13 @@
-# CommandStatus
+# TimerStatus
 
 ## Enum
 
 
-* `WAITING_COMMAND` (value: `"WAITING_COMMAND"`)
+* `SCHEDULED_TIMER` (value: `"SCHEDULED_TIMER"`)
 
-* `COMPLETED_COMMAND` (value: `"COMPLETED_COMMAND"`)
+* `FIRED_TIMER` (value: `"FIRED_TIMER"`)
 
-* `SKIPPED_COMMAND` (value: `"SKIPPED_COMMAND"`)
+* `SKIPPED_TIMER` (value: `"SKIPPED_TIMER"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

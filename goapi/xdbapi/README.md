@@ -98,7 +98,6 @@ Class | Method | HTTP request | Description
  - [AttributeWriteConflictMode](docs/AttributeWriteConflictMode.md)
  - [CommandRequest](docs/CommandRequest.md)
  - [CommandResults](docs/CommandResults.md)
- - [CommandStatus](docs/CommandStatus.md)
  - [CommandWaitingType](docs/CommandWaitingType.md)
  - [Context](docs/Context.md)
  - [EncodedObject](docs/EncodedObject.md)
@@ -109,8 +108,6 @@ Class | Method | HTTP request | Description
  - [LoadGlobalAttributesRequest](docs/LoadGlobalAttributesRequest.md)
  - [LocalQueueCommand](docs/LocalQueueCommand.md)
  - [LocalQueueMessage](docs/LocalQueueMessage.md)
- - [LocalQueueMessageResult](docs/LocalQueueMessageResult.md)
- - [LocalQueueResult](docs/LocalQueueResult.md)
  - [NotifyImmediateTasksRequest](docs/NotifyImmediateTasksRequest.md)
  - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
@@ -138,6 +135,7 @@ Class | Method | HTTP request | Description
  - [ThreadCloseType](docs/ThreadCloseType.md)
  - [TimerCommand](docs/TimerCommand.md)
  - [TimerResult](docs/TimerResult.md)
+ - [TimerStatus](docs/TimerStatus.md)
  - [WorkerErrorResponse](docs/WorkerErrorResponse.md)
 
 

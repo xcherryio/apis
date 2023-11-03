@@ -264,9 +264,11 @@ components:
     TimerCommand:
       type: object
       required:
-        - delayInSeconds
+        - firingUnixTimestampSeconds
       properties:
-        delayInSeconds:
+        commandId:
+          type: string
+        firingUnixTimestampSeconds:
           type: integer
           format: int64
     LocalQueueCommand:
@@ -316,34 +318,22 @@ components:
         localQueueResults:
           type: array
           items:
-            $ref: '#/components/schemas/LocalQueueResult'
+            $ref: '#/components/schemas/LocalQueueMessage'
     TimerResult:
       type: object
       required:
-        - status
+        - timerStatus
       properties:
-        status:
-          $ref: '#/components/schemas/CommandStatus'
-    LocalQueueResult:
-      type: object
-      required:
-        - status
-        - queueName
-      properties:
-        status:
-          $ref: '#/components/schemas/CommandStatus'
-        queueName:
+        commandId:
           type: string
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalQueueMessageResult'
-    CommandStatus:
+        timerStatus:
+          $ref: '#/components/schemas/TimerStatus'
+    TimerStatus:
       type: string
       enum:
-        - WAITING_COMMAND
-        - COMPLETED_COMMAND
-        - SKIPPED_COMMAND
+        - SCHEDULED_TIMER
+        - FIRED_TIMER
+        - SKIPPED_TIMER
     LocalQueueMessage:
       type: object
       required:
@@ -354,16 +344,6 @@ components:
         dedupId:
           type: string
           description: UUID to uniquely distinguish different messages. If not specified, the server will generate a UUID instead.
-        payload:
-          $ref: '#/components/schemas/EncodedObject'
-    LocalQueueMessageResult:
-      type: object
-      required:
-        - dedupId
-      properties:
-        dedupId:
-          type: string
-          description: UUID to uniquely distinguish different messages.
         payload:
           $ref: '#/components/schemas/EncodedObject'
     AsyncStateExecuteResponse:

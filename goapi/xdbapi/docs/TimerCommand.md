@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DelayInSeconds** | **int64** |  | 
+**CommandId** | Pointer to **string** |  | [optional] 
+**FiringUnixTimestampSeconds** | **int64** |  | 
 
 ## Methods
 
 ### NewTimerCommand
 
-`func NewTimerCommand(delayInSeconds int64, ) *TimerCommand`
+`func NewTimerCommand(firingUnixTimestampSeconds int64, ) *TimerCommand`
 
 NewTimerCommand instantiates a new TimerCommand object
 This constructor will assign default values to properties that have it defined,
@@ -25,24 +26,49 @@ NewTimerCommandWithDefaults instantiates a new TimerCommand object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDelayInSeconds
+### GetCommandId
 
-`func (o *TimerCommand) GetDelayInSeconds() int64`
+`func (o *TimerCommand) GetCommandId() string`
 
-GetDelayInSeconds returns the DelayInSeconds field if non-nil, zero value otherwise.
+GetCommandId returns the CommandId field if non-nil, zero value otherwise.
 
-### GetDelayInSecondsOk
+### GetCommandIdOk
 
-`func (o *TimerCommand) GetDelayInSecondsOk() (*int64, bool)`
+`func (o *TimerCommand) GetCommandIdOk() (*string, bool)`
 
-GetDelayInSecondsOk returns a tuple with the DelayInSeconds field if it's non-nil, zero value otherwise
+GetCommandIdOk returns a tuple with the CommandId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelayInSeconds
+### SetCommandId
 
-`func (o *TimerCommand) SetDelayInSeconds(v int64)`
+`func (o *TimerCommand) SetCommandId(v string)`
 
-SetDelayInSeconds sets DelayInSeconds field to given value.
+SetCommandId sets CommandId field to given value.
+
+### HasCommandId
+
+`func (o *TimerCommand) HasCommandId() bool`
+
+HasCommandId returns a boolean if a field has been set.
+
+### GetFiringUnixTimestampSeconds
+
+`func (o *TimerCommand) GetFiringUnixTimestampSeconds() int64`
+
+GetFiringUnixTimestampSeconds returns the FiringUnixTimestampSeconds field if non-nil, zero value otherwise.
+
+### GetFiringUnixTimestampSecondsOk
+
+`func (o *TimerCommand) GetFiringUnixTimestampSecondsOk() (*int64, bool)`
+
+GetFiringUnixTimestampSecondsOk returns a tuple with the FiringUnixTimestampSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFiringUnixTimestampSeconds
+
+`func (o *TimerCommand) SetFiringUnixTimestampSeconds(v int64)`
+
+SetFiringUnixTimestampSeconds sets FiringUnixTimestampSeconds field to given value.
 
 
 

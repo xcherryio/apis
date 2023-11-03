@@ -19,8 +19,8 @@ var _ MappedNullable = &CommandResults{}
 
 // CommandResults struct for CommandResults
 type CommandResults struct {
-	TimerResults      []TimerResult      `json:"timerResults,omitempty"`
-	LocalQueueResults []LocalQueueResult `json:"localQueueResults,omitempty"`
+	TimerResults      []TimerResult       `json:"timerResults,omitempty"`
+	LocalQueueResults []LocalQueueMessage `json:"localQueueResults,omitempty"`
 }
 
 // NewCommandResults instantiates a new CommandResults object
@@ -73,9 +73,9 @@ func (o *CommandResults) SetTimerResults(v []TimerResult) {
 }
 
 // GetLocalQueueResults returns the LocalQueueResults field value if set, zero value otherwise.
-func (o *CommandResults) GetLocalQueueResults() []LocalQueueResult {
+func (o *CommandResults) GetLocalQueueResults() []LocalQueueMessage {
 	if o == nil || IsNil(o.LocalQueueResults) {
-		var ret []LocalQueueResult
+		var ret []LocalQueueMessage
 		return ret
 	}
 	return o.LocalQueueResults
@@ -83,7 +83,7 @@ func (o *CommandResults) GetLocalQueueResults() []LocalQueueResult {
 
 // GetLocalQueueResultsOk returns a tuple with the LocalQueueResults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommandResults) GetLocalQueueResultsOk() ([]LocalQueueResult, bool) {
+func (o *CommandResults) GetLocalQueueResultsOk() ([]LocalQueueMessage, bool) {
 	if o == nil || IsNil(o.LocalQueueResults) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *CommandResults) HasLocalQueueResults() bool {
 	return false
 }
 
-// SetLocalQueueResults gets a reference to the given []LocalQueueResult and assigns it to the LocalQueueResults field.
-func (o *CommandResults) SetLocalQueueResults(v []LocalQueueResult) {
+// SetLocalQueueResults gets a reference to the given []LocalQueueMessage and assigns it to the LocalQueueResults field.
+func (o *CommandResults) SetLocalQueueResults(v []LocalQueueMessage) {
 	o.LocalQueueResults = v
 }
 
