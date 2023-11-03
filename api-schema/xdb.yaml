@@ -33,6 +33,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
+        '424':
+          description: global attributes write failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'                
   /api/v1/xdb/service/process-execution/stop:
     post:
       summary: stop a process execution
