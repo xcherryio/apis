@@ -1097,9 +1097,9 @@ components:
       type: object
     AttributeWriteConflictMode:
       enum:
-      - ReturnErrorOnConflict
-      - IgnoreConflict
-      - OverrideOnConflict
+      - RETURN_ERROR_ON_CONFLICT
+      - IGNORE_CONFLICT
+      - OVERRIDE_ON_CONFLICT
       type: string
     TableColumnValue:
       description: the value of a global attribute table (from SDK to server or from

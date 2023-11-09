@@ -20,16 +20,16 @@ type AttributeWriteConflictMode string
 
 // List of AttributeWriteConflictMode
 const (
-	RETURN_ERROR_ON_CONFLICT AttributeWriteConflictMode = "ReturnErrorOnConflict"
-	IGNORE_CONFLICT          AttributeWriteConflictMode = "IgnoreConflict"
-	OVERRIDE_ON_CONFLICT     AttributeWriteConflictMode = "OverrideOnConflict"
+	RETURN_ERROR_ON_CONFLICT AttributeWriteConflictMode = "RETURN_ERROR_ON_CONFLICT"
+	IGNORE_CONFLICT          AttributeWriteConflictMode = "IGNORE_CONFLICT"
+	OVERRIDE_ON_CONFLICT     AttributeWriteConflictMode = "OVERRIDE_ON_CONFLICT"
 )
 
 // All allowed values of AttributeWriteConflictMode enum
 var AllowedAttributeWriteConflictModeEnumValues = []AttributeWriteConflictMode{
-	"ReturnErrorOnConflict",
-	"IgnoreConflict",
-	"OverrideOnConflict",
+	"RETURN_ERROR_ON_CONFLICT",
+	"IGNORE_CONFLICT",
+	"OVERRIDE_ON_CONFLICT",
 }
 
 func (v *AttributeWriteConflictMode) UnmarshalJSON(src []byte) error {
