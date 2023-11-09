@@ -1,0 +1,23 @@
+{
+  "name": "xdb-ts-api",
+  "version": "1.0.0",
+  "description": "ts apis for xdb ts sdk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xdblab/xdb-apis.git"
+  },
+  "author": "Quanzheng Long",
+  "license": "Apache-2.0+",
+  "bugs": {
+    "url": "https://github.com/xdblab/xdb-apis/issues"
+  },
+  "homepage": "https://github.com/xdblab/xdb-apis#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
