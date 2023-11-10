@@ -1,1 +1,9 @@
 .idea
+/xdb-ts-api/node_modules
+
+# Ignore test-related files
+/xdb-ts-api/coverage.data
+/xdb-ts-api/coverage/
+
+# Build files
+/xdb-ts-api/dist
