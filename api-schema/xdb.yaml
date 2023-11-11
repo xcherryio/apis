@@ -306,6 +306,8 @@ components:
           $ref: '#/components/schemas/CommandResults'
         loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        loadedLocalAttributes:
+          $ref: '#/components/schemas/LoadLocalAttributesResponse'
     CommandResults:
       type: object
       properties:
@@ -521,6 +523,25 @@ components:
           $ref: '#/components/schemas/ProcessIdReusePolicy'
         globalAttributeConfig:
           $ref: '#/components/schemas/GlobalAttributeConfig'
+        localAttributeConfig:
+          $ref: '#/components/schemas/LocalAttributeConfig'
+    LocalAttributeConfig:
+      type: object
+      properties:
+        initialWrite:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    KeyValue:
+      type: object
+      required:
+        - key
+        - value
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/EncodedObject'
     GlobalAttributeConfig:
       type: object
       properties:
@@ -585,6 +606,20 @@ components:
         dbColumn:
           type: string
           description: the column name that can be used in the database query, see below for example   
+    LoadLocalAttributesRequest:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+    LoadLocalAttributesResponse:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
     LoadGlobalAttributesRequest:
       type: object
       description: the request to load global attributes
@@ -653,6 +688,8 @@ components:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
         loadGlobalAttributesRequest:
           $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        LoadLocalAttributesRequest:
+          $ref: '#/components/schemas/LoadLocalAttributesRequest'
     StateFailureRecoveryPolicy:
       type: string
       enum:
