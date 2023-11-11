@@ -613,7 +613,13 @@ components:
     LoadLocalAttributesRequest:
       type: object
       properties:
-        keys:
+        localAttributeLoadingType:
+          $ref: '#/components/schemas/LocalAttributeLoadingType'
+        partialLoadingKeys:
+          type: array
+          items:
+            type: string
+        lockingKeys:
           type: array
           items:
             type: string
@@ -624,6 +630,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
+    LocalAttributeLoadingType:
+      type: string
+      enum:
+        - LOAD_ALL_WITHOUT_LOCKING
+        - LOAD_PARTIAL_WITHOUT_LOCKING
+        - LOAD_PARTIAL_WITH_EXCLUSIVE_LOCK
+        - LOAD_NONE
     LoadGlobalAttributesRequest:
       type: object
       description: the request to load global attributes
@@ -632,6 +645,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TableReadRequest'
+    LocalAttributesReadRequest:
+      type: object
+      properties: 
+        tableName:
+          type: string
+        lockingPolicy:
+          $ref: '#/components/schemas/TableReadLockingPolicy'
+        key:
+          type: string
     TableReadRequest:
       type: object
       properties: 
@@ -692,7 +714,7 @@ components:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
         loadGlobalAttributesRequest:
           $ref: '#/components/schemas/LoadGlobalAttributesRequest'
-        LoadLocalAttributesRequest:
+        loadLocalAttributesRequest:
           $ref: '#/components/schemas/LoadLocalAttributesRequest'
     StateFailureRecoveryPolicy:
       type: string
