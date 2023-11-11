@@ -384,6 +384,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
+        writeToLocalAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
     StateDecision:
       type: object
       description: the decision at the end of state execution, either nextStates or threadCloseDecision is needed
