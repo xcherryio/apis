@@ -908,12 +908,6 @@ export interface ProcessRpcRequest {
     'input'?: EncodedObject;
     /**
      * 
-     * @type {CommandResults}
-     * @memberof ProcessRpcRequest
-     */
-    'commandResults'?: CommandResults;
-    /**
-     * 
      * @type {LoadGlobalAttributeResponse}
      * @memberof ProcessRpcRequest
      */

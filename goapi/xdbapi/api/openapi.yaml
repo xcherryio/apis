@@ -1561,33 +1561,6 @@ components:
         input:
           data: data
           encoding: encoding
-        commandResults:
-          localQueueResults:
-          - queueName: queueName
-            messages:
-            - payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
-            - payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
-            status: null
-          - queueName: queueName
-            messages:
-            - payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
-            - payload:
-                data: data
-                encoding: encoding
-              dedupId: dedupId
-            status: null
-          timerResults:
-          - status: null
-          - status: null
         loadedGlobalAttributes:
           tableResponses:
           - columns:
@@ -1622,8 +1595,6 @@ components:
           type: string
         input:
           $ref: '#/components/schemas/EncodedObject'
-        commandResults:
-          $ref: '#/components/schemas/CommandResults'
         loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
       required:

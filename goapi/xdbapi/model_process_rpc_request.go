@@ -23,7 +23,6 @@ type ProcessRpcRequest struct {
 	ProcessType            string                       `json:"processType"`
 	RpcName                string                       `json:"rpcName"`
 	Input                  *EncodedObject               `json:"input,omitempty"`
-	CommandResults         *CommandResults              `json:"commandResults,omitempty"`
 	LoadedGlobalAttributes *LoadGlobalAttributeResponse `json:"loadedGlobalAttributes,omitempty"`
 }
 
@@ -151,38 +150,6 @@ func (o *ProcessRpcRequest) SetInput(v EncodedObject) {
 	o.Input = &v
 }
 
-// GetCommandResults returns the CommandResults field value if set, zero value otherwise.
-func (o *ProcessRpcRequest) GetCommandResults() CommandResults {
-	if o == nil || IsNil(o.CommandResults) {
-		var ret CommandResults
-		return ret
-	}
-	return *o.CommandResults
-}
-
-// GetCommandResultsOk returns a tuple with the CommandResults field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProcessRpcRequest) GetCommandResultsOk() (*CommandResults, bool) {
-	if o == nil || IsNil(o.CommandResults) {
-		return nil, false
-	}
-	return o.CommandResults, true
-}
-
-// HasCommandResults returns a boolean if a field has been set.
-func (o *ProcessRpcRequest) HasCommandResults() bool {
-	if o != nil && !IsNil(o.CommandResults) {
-		return true
-	}
-
-	return false
-}
-
-// SetCommandResults gets a reference to the given CommandResults and assigns it to the CommandResults field.
-func (o *ProcessRpcRequest) SetCommandResults(v CommandResults) {
-	o.CommandResults = &v
-}
-
 // GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field value if set, zero value otherwise.
 func (o *ProcessRpcRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse {
 	if o == nil || IsNil(o.LoadedGlobalAttributes) {
@@ -230,9 +197,6 @@ func (o ProcessRpcRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["rpcName"] = o.RpcName
 	if !IsNil(o.Input) {
 		toSerialize["input"] = o.Input
-	}
-	if !IsNil(o.CommandResults) {
-		toSerialize["commandResults"] = o.CommandResults
 	}
 	if !IsNil(o.LoadedGlobalAttributes) {
 		toSerialize["loadedGlobalAttributes"] = o.LoadedGlobalAttributes

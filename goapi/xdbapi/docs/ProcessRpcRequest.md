@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **ProcessType** | **string** |  | 
 **RpcName** | **string** |  | 
 **Input** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
-**CommandResults** | Pointer to [**CommandResults**](CommandResults.md) |  | [optional] 
 **LoadedGlobalAttributes** | Pointer to [**LoadGlobalAttributeResponse**](LoadGlobalAttributeResponse.md) |  | [optional] 
 
 ## Methods
@@ -114,31 +113,6 @@ SetInput sets Input field to given value.
 `func (o *ProcessRpcRequest) HasInput() bool`
 
 HasInput returns a boolean if a field has been set.
-
-### GetCommandResults
-
-`func (o *ProcessRpcRequest) GetCommandResults() CommandResults`
-
-GetCommandResults returns the CommandResults field if non-nil, zero value otherwise.
-
-### GetCommandResultsOk
-
-`func (o *ProcessRpcRequest) GetCommandResultsOk() (*CommandResults, bool)`
-
-GetCommandResultsOk returns a tuple with the CommandResults field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCommandResults
-
-`func (o *ProcessRpcRequest) SetCommandResults(v CommandResults)`
-
-SetCommandResults sets CommandResults field to given value.
-
-### HasCommandResults
-
-`func (o *ProcessRpcRequest) HasCommandResults() bool`
-
-HasCommandResults returns a boolean if a field has been set.
 
 ### GetLoadedGlobalAttributes
 

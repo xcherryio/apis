@@ -860,8 +860,6 @@ components:
           type: string
         input:
           $ref: '#/components/schemas/EncodedObject'
-        commandResults:
-          $ref: '#/components/schemas/CommandResults'
         loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
     ProcessRpcResponse:
