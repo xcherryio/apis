@@ -6,10 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ApiV1XdbServiceProcessExecutionDescribePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionDescribePost) | **Post** /api/v1/xdb/service/process-execution/describe | describe a process execution
 [**ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionPublishToLocalQueuePost) | **Post** /api/v1/xdb/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
+[**ApiV1XdbServiceProcessExecutionRpcPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionRpcPost) | **Post** /api/v1/xdb/service/process-execution/rpc | execute a RPC method of a process execution
 [**ApiV1XdbServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStartPost) | **Post** /api/v1/xdb/service/process-execution/start | start a process execution
 [**ApiV1XdbServiceProcessExecutionStopPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStopPost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 [**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
+[**ApiV1XdbWorkerProcessRpcPost**](DefaultAPI.md#ApiV1XdbWorkerProcessRpcPost) | **Post** /api/v1/xdb/worker/process/rpc | invoking a Process RPC API
 [**InternalApiV1XdbNotifyImmediateTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyImmediateTasksPost) | **Post** /internal/api/v1/xdb/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 [**InternalApiV1XdbNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyTimerTasksPost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
 
@@ -126,6 +128,70 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApiV1XdbServiceProcessExecutionRpcPost
+
+> ProcessExecutionRpcResponse ApiV1XdbServiceProcessExecutionRpcPost(ctx).ProcessExecutionRpcRequest(processExecutionRpcRequest).Execute()
+
+execute a RPC method of a process execution
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xdblab/xdb-apis"
+)
+
+func main() {
+    processExecutionRpcRequest := *openapiclient.NewProcessExecutionRpcRequest("Namespace_example", "ProcessId_example", "RpcName_example") // ProcessExecutionRpcRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbServiceProcessExecutionRpcPost(context.Background()).ProcessExecutionRpcRequest(processExecutionRpcRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbServiceProcessExecutionRpcPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApiV1XdbServiceProcessExecutionRpcPost`: ProcessExecutionRpcResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbServiceProcessExecutionRpcPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApiV1XdbServiceProcessExecutionRpcPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processExecutionRpcRequest** | [**ProcessExecutionRpcRequest**](ProcessExecutionRpcRequest.md) |  | 
+
+### Return type
+
+[**ProcessExecutionRpcResponse**](ProcessExecutionRpcResponse.md)
 
 ### Authorization
 
@@ -380,6 +446,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AsyncStateWaitUntilResponse**](AsyncStateWaitUntilResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApiV1XdbWorkerProcessRpcPost
+
+> ProcessRpcResponse ApiV1XdbWorkerProcessRpcPost(ctx).ProcessRpcRequest(processRpcRequest).Execute()
+
+invoking a Process RPC API
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xdblab/xdb-apis"
+)
+
+func main() {
+    processRpcRequest := *openapiclient.NewProcessRpcRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "RpcName_example") // ProcessRpcRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbWorkerProcessRpcPost(context.Background()).ProcessRpcRequest(processRpcRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbWorkerProcessRpcPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApiV1XdbWorkerProcessRpcPost`: ProcessRpcResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbWorkerProcessRpcPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApiV1XdbWorkerProcessRpcPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processRpcRequest** | [**ProcessRpcRequest**](ProcessRpcRequest.md) |  | 
+
+### Return type
+
+[**ProcessRpcResponse**](ProcessRpcResponse.md)
 
 ### Authorization
 
