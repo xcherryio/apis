@@ -405,6 +405,16 @@ components:
         stateInput:
           data: data
           encoding: encoding
+        loadedLocalAttributes:
+          attributes:
+          - value:
+              data: data
+              encoding: encoding
+            key: key
+          - value:
+              data: data
+              encoding: encoding
+            key: key
       properties:
         context:
           $ref: '#/components/schemas/Context'
@@ -418,6 +428,8 @@ components:
           $ref: '#/components/schemas/CommandResults'
         loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        loadedLocalAttributes:
+          $ref: '#/components/schemas/LoadLocalAttributesResponse'
       required:
       - context
       - processType
@@ -542,6 +554,14 @@ components:
         stateDecision:
           nextStates:
           - stateConfig:
+              loadLocalAttributesRequest:
+                lockingPolicy: null
+                keysToLoadWithNoLock:
+                - keysToLoadWithNoLock
+                - keysToLoadWithNoLock
+                keysToLockWithLock:
+                - keysToLockWithLock
+                - keysToLockWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
@@ -578,6 +598,14 @@ components:
               data: data
               encoding: encoding
           - stateConfig:
+              loadLocalAttributesRequest:
+                lockingPolicy: null
+                keysToLoadWithNoLock:
+                - keysToLoadWithNoLock
+                - keysToLoadWithNoLock
+                keysToLockWithLock:
+                - keysToLockWithLock
+                - keysToLockWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
@@ -618,6 +646,15 @@ components:
               data: data
               encoding: encoding
             closeType: null
+        writeToLocalAttributes:
+        - value:
+            data: data
+            encoding: encoding
+          key: key
+        - value:
+            data: data
+            encoding: encoding
+          key: key
         publishToLocalQueue:
         - queueName: queueName
           payload:
@@ -653,6 +690,10 @@ components:
           items:
             $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
           type: array
+        writeToLocalAttributes:
+          items:
+            $ref: '#/components/schemas/KeyValue'
+          type: array
       required:
       - stateDecision
       type: object
@@ -662,6 +703,14 @@ components:
       example:
         nextStates:
         - stateConfig:
+            loadLocalAttributesRequest:
+              lockingPolicy: null
+              keysToLoadWithNoLock:
+              - keysToLoadWithNoLock
+              - keysToLoadWithNoLock
+              keysToLockWithLock:
+              - keysToLockWithLock
+              - keysToLockWithLock
             executeApiTimeoutSeconds: 6
             stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
@@ -698,6 +747,14 @@ components:
             data: data
             encoding: encoding
         - stateConfig:
+            loadLocalAttributesRequest:
+              lockingPolicy: null
+              keysToLoadWithNoLock:
+              - keysToLoadWithNoLock
+              - keysToLoadWithNoLock
+              keysToLockWithLock:
+              - keysToLockWithLock
+              - keysToLockWithLock
             executeApiTimeoutSeconds: 6
             stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
@@ -770,6 +827,14 @@ components:
     StateMovement:
       example:
         stateConfig:
+          loadLocalAttributesRequest:
+            lockingPolicy: null
+            keysToLoadWithNoLock:
+            - keysToLoadWithNoLock
+            - keysToLoadWithNoLock
+            keysToLockWithLock:
+            - keysToLockWithLock
+            - keysToLockWithLock
           executeApiTimeoutSeconds: 6
           stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
@@ -895,6 +960,14 @@ components:
       description: the request for starting a process execution
       example:
         startStateConfig:
+          loadLocalAttributesRequest:
+            lockingPolicy: null
+            keysToLoadWithNoLock:
+            - keysToLoadWithNoLock
+            - keysToLoadWithNoLock
+            keysToLockWithLock:
+            - keysToLockWithLock
+            - keysToLockWithLock
           executeApiTimeoutSeconds: 6
           stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
@@ -933,6 +1006,16 @@ components:
         startStateId: startStateId
         processId: processId
         processStartConfig:
+          localAttributeConfig:
+            initialWrite:
+            - value:
+                data: data
+                encoding: encoding
+              key: key
+            - value:
+                data: data
+                encoding: encoding
+              key: key
           timeoutSeconds: 9
           idReusePolicy: null
           globalAttributeConfig:
@@ -993,6 +1076,16 @@ components:
       type: object
     ProcessStartConfig:
       example:
+        localAttributeConfig:
+          initialWrite:
+          - value:
+              data: data
+              encoding: encoding
+            key: key
+          - value:
+              data: data
+              encoding: encoding
+            key: key
         timeoutSeconds: 9
         idReusePolicy: null
         globalAttributeConfig:
@@ -1028,6 +1121,40 @@ components:
           $ref: '#/components/schemas/ProcessIdReusePolicy'
         globalAttributeConfig:
           $ref: '#/components/schemas/GlobalAttributeConfig'
+        localAttributeConfig:
+          $ref: '#/components/schemas/LocalAttributeConfig'
+      type: object
+    LocalAttributeConfig:
+      example:
+        initialWrite:
+        - value:
+            data: data
+            encoding: encoding
+          key: key
+        - value:
+            data: data
+            encoding: encoding
+          key: key
+      properties:
+        initialWrite:
+          items:
+            $ref: '#/components/schemas/KeyValue'
+          type: array
+      type: object
+    KeyValue:
+      example:
+        value:
+          data: data
+          encoding: encoding
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/EncodedObject'
+      required:
+      - key
+      - value
       type: object
     GlobalAttributeConfig:
       example:
@@ -1148,6 +1275,44 @@ components:
       required:
       - dbColumn
       type: object
+    LoadLocalAttributesRequest:
+      example:
+        lockingPolicy: null
+        keysToLoadWithNoLock:
+        - keysToLoadWithNoLock
+        - keysToLoadWithNoLock
+        keysToLockWithLock:
+        - keysToLockWithLock
+        - keysToLockWithLock
+      properties:
+        keysToLoadWithNoLock:
+          items:
+            type: string
+          type: array
+        keysToLockWithLock:
+          items:
+            type: string
+          type: array
+        lockingPolicy:
+          $ref: '#/components/schemas/TableReadLockingPolicy'
+      type: object
+    LoadLocalAttributesResponse:
+      example:
+        attributes:
+        - value:
+            data: data
+            encoding: encoding
+          key: key
+        - value:
+            data: data
+            encoding: encoding
+          key: key
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/KeyValue'
+          type: array
+      type: object
     LoadGlobalAttributesRequest:
       description: the request to load global attributes
       example:
@@ -1238,6 +1403,14 @@ components:
       type: string
     AsyncStateConfig:
       example:
+        loadLocalAttributesRequest:
+          lockingPolicy: null
+          keysToLoadWithNoLock:
+          - keysToLoadWithNoLock
+          - keysToLoadWithNoLock
+          keysToLockWithLock:
+          - keysToLockWithLock
+          - keysToLockWithLock
         executeApiTimeoutSeconds: 6
         stateFailureRecoveryOptions:
           stateFailureProceedStateId: stateFailureProceedStateId
@@ -1287,6 +1460,8 @@ components:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
         loadGlobalAttributesRequest:
           $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        loadLocalAttributesRequest:
+          $ref: '#/components/schemas/LoadLocalAttributesRequest'
       type: object
     StateFailureRecoveryPolicy:
       enum:

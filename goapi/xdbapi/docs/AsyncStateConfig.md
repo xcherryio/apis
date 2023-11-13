@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **ExecuteApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **StateFailureRecoveryOptions** | Pointer to [**StateFailureRecoveryOptions**](StateFailureRecoveryOptions.md) |  | [optional] 
 **LoadGlobalAttributesRequest** | Pointer to [**LoadGlobalAttributesRequest**](LoadGlobalAttributesRequest.md) |  | [optional] 
+**LoadLocalAttributesRequest** | Pointer to [**LoadLocalAttributesRequest**](LoadLocalAttributesRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetLoadGlobalAttributesRequest sets LoadGlobalAttributesRequest field to given v
 `func (o *AsyncStateConfig) HasLoadGlobalAttributesRequest() bool`
 
 HasLoadGlobalAttributesRequest returns a boolean if a field has been set.
+
+### GetLoadLocalAttributesRequest
+
+`func (o *AsyncStateConfig) GetLoadLocalAttributesRequest() LoadLocalAttributesRequest`
+
+GetLoadLocalAttributesRequest returns the LoadLocalAttributesRequest field if non-nil, zero value otherwise.
+
+### GetLoadLocalAttributesRequestOk
+
+`func (o *AsyncStateConfig) GetLoadLocalAttributesRequestOk() (*LoadLocalAttributesRequest, bool)`
+
+GetLoadLocalAttributesRequestOk returns a tuple with the LoadLocalAttributesRequest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoadLocalAttributesRequest
+
+`func (o *AsyncStateConfig) SetLoadLocalAttributesRequest(v LoadLocalAttributesRequest)`
+
+SetLoadLocalAttributesRequest sets LoadLocalAttributesRequest field to given value.
+
+### HasLoadLocalAttributesRequest
+
+`func (o *AsyncStateConfig) HasLoadLocalAttributesRequest() bool`
+
+HasLoadLocalAttributesRequest returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

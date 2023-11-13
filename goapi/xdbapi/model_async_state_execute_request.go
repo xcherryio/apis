@@ -25,6 +25,7 @@ type AsyncStateExecuteRequest struct {
 	StateInput             *EncodedObject               `json:"stateInput,omitempty"`
 	CommandResults         *CommandResults              `json:"commandResults,omitempty"`
 	LoadedGlobalAttributes *LoadGlobalAttributeResponse `json:"loadedGlobalAttributes,omitempty"`
+	LoadedLocalAttributes  *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
 }
 
 // NewAsyncStateExecuteRequest instantiates a new AsyncStateExecuteRequest object
@@ -215,6 +216,38 @@ func (o *AsyncStateExecuteRequest) SetLoadedGlobalAttributes(v LoadGlobalAttribu
 	o.LoadedGlobalAttributes = &v
 }
 
+// GetLoadedLocalAttributes returns the LoadedLocalAttributes field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetLoadedLocalAttributes() LoadLocalAttributesResponse {
+	if o == nil || IsNil(o.LoadedLocalAttributes) {
+		var ret LoadLocalAttributesResponse
+		return ret
+	}
+	return *o.LoadedLocalAttributes
+}
+
+// GetLoadedLocalAttributesOk returns a tuple with the LoadedLocalAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteRequest) GetLoadedLocalAttributesOk() (*LoadLocalAttributesResponse, bool) {
+	if o == nil || IsNil(o.LoadedLocalAttributes) {
+		return nil, false
+	}
+	return o.LoadedLocalAttributes, true
+}
+
+// HasLoadedLocalAttributes returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasLoadedLocalAttributes() bool {
+	if o != nil && !IsNil(o.LoadedLocalAttributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoadedLocalAttributes gets a reference to the given LoadLocalAttributesResponse and assigns it to the LoadedLocalAttributes field.
+func (o *AsyncStateExecuteRequest) SetLoadedLocalAttributes(v LoadLocalAttributesResponse) {
+	o.LoadedLocalAttributes = &v
+}
+
 func (o AsyncStateExecuteRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -236,6 +269,9 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LoadedGlobalAttributes) {
 		toSerialize["loadedGlobalAttributes"] = o.LoadedGlobalAttributes
+	}
+	if !IsNil(o.LoadedLocalAttributes) {
+		toSerialize["loadedLocalAttributes"] = o.LoadedLocalAttributes
 	}
 	return toSerialize, nil
 }

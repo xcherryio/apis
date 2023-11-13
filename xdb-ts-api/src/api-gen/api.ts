@@ -102,6 +102,12 @@ export interface AsyncStateConfig {
      * @memberof AsyncStateConfig
      */
     'loadGlobalAttributesRequest'?: LoadGlobalAttributesRequest;
+    /**
+     * 
+     * @type {LoadLocalAttributesRequest}
+     * @memberof AsyncStateConfig
+     */
+    'loadLocalAttributesRequest'?: LoadLocalAttributesRequest;
 }
 /**
  * the input of the execute API
@@ -145,6 +151,12 @@ export interface AsyncStateExecuteRequest {
      * @memberof AsyncStateExecuteRequest
      */
     'loadedGlobalAttributes'?: LoadGlobalAttributeResponse;
+    /**
+     * 
+     * @type {LoadLocalAttributesResponse}
+     * @memberof AsyncStateExecuteRequest
+     */
+    'loadedLocalAttributes'?: LoadLocalAttributesResponse;
 }
 /**
  * the output of the execute API
@@ -170,6 +182,12 @@ export interface AsyncStateExecuteResponse {
      * @memberof AsyncStateExecuteResponse
      */
     'writeToGlobalAttributes'?: Array<GlobalAttributeTableRowUpdate>;
+    /**
+     * 
+     * @type {Array<KeyValue>}
+     * @memberof AsyncStateExecuteResponse
+     */
+    'writeToLocalAttributes'?: Array<KeyValue>;
 }
 /**
  * the input of the waitUntil API
@@ -454,6 +472,25 @@ export interface GlobalAttributeTableRowUpdate {
     'updateColumns'?: Array<TableColumnValue>;
 }
 /**
+ * 
+ * @export
+ * @interface KeyValue
+ */
+export interface KeyValue {
+    /**
+     * 
+     * @type {string}
+     * @memberof KeyValue
+     */
+    'key': string;
+    /**
+     * 
+     * @type {EncodedObject}
+     * @memberof KeyValue
+     */
+    'value': EncodedObject;
+}
+/**
  * the response for loading global attributes
  * @export
  * @interface LoadGlobalAttributeResponse
@@ -478,6 +515,59 @@ export interface LoadGlobalAttributesRequest {
      * @memberof LoadGlobalAttributesRequest
      */
     'tableRequests'?: Array<TableReadRequest>;
+}
+/**
+ * 
+ * @export
+ * @interface LoadLocalAttributesRequest
+ */
+export interface LoadLocalAttributesRequest {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof LoadLocalAttributesRequest
+     */
+    'keysToLoadWithNoLock'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof LoadLocalAttributesRequest
+     */
+    'keysToLockWithLock'?: Array<string>;
+    /**
+     * 
+     * @type {TableReadLockingPolicy}
+     * @memberof LoadLocalAttributesRequest
+     */
+    'lockingPolicy'?: TableReadLockingPolicy;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface LoadLocalAttributesResponse
+ */
+export interface LoadLocalAttributesResponse {
+    /**
+     * 
+     * @type {Array<KeyValue>}
+     * @memberof LoadLocalAttributesResponse
+     */
+    'attributes'?: Array<KeyValue>;
+}
+/**
+ * 
+ * @export
+ * @interface LocalAttributeConfig
+ */
+export interface LocalAttributeConfig {
+    /**
+     * 
+     * @type {Array<KeyValue>}
+     * @memberof LocalAttributeConfig
+     */
+    'initialWrite'?: Array<KeyValue>;
 }
 /**
  * 
@@ -844,6 +934,12 @@ export interface ProcessStartConfig {
      * @memberof ProcessStartConfig
      */
     'globalAttributeConfig'?: GlobalAttributeConfig;
+    /**
+     * 
+     * @type {LocalAttributeConfig}
+     * @memberof ProcessStartConfig
+     */
+    'localAttributeConfig'?: LocalAttributeConfig;
 }
 
 
