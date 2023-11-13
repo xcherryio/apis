@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **TimeoutSeconds** | Pointer to **int32** |  | [optional] 
 **IdReusePolicy** | Pointer to [**ProcessIdReusePolicy**](ProcessIdReusePolicy.md) |  | [optional] 
 **GlobalAttributeConfig** | Pointer to [**GlobalAttributeConfig**](GlobalAttributeConfig.md) |  | [optional] 
+**LocalAttributeConfig** | Pointer to [**LocalAttributeConfig**](LocalAttributeConfig.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetGlobalAttributeConfig sets GlobalAttributeConfig field to given value.
 `func (o *ProcessStartConfig) HasGlobalAttributeConfig() bool`
 
 HasGlobalAttributeConfig returns a boolean if a field has been set.
+
+### GetLocalAttributeConfig
+
+`func (o *ProcessStartConfig) GetLocalAttributeConfig() LocalAttributeConfig`
+
+GetLocalAttributeConfig returns the LocalAttributeConfig field if non-nil, zero value otherwise.
+
+### GetLocalAttributeConfigOk
+
+`func (o *ProcessStartConfig) GetLocalAttributeConfigOk() (*LocalAttributeConfig, bool)`
+
+GetLocalAttributeConfigOk returns a tuple with the LocalAttributeConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalAttributeConfig
+
+`func (o *ProcessStartConfig) SetLocalAttributeConfig(v LocalAttributeConfig)`
+
+SetLocalAttributeConfig sets LocalAttributeConfig field to given value.
+
+### HasLocalAttributeConfig
+
+`func (o *ProcessStartConfig) HasLocalAttributeConfig() bool`
+
+HasLocalAttributeConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

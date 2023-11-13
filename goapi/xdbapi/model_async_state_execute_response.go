@@ -22,6 +22,7 @@ type AsyncStateExecuteResponse struct {
 	StateDecision           StateDecision                   `json:"stateDecision"`
 	PublishToLocalQueue     []LocalQueueMessage             `json:"publishToLocalQueue,omitempty"`
 	WriteToGlobalAttributes []GlobalAttributeTableRowUpdate `json:"writeToGlobalAttributes,omitempty"`
+	WriteToLocalAttributes  []KeyValue                      `json:"writeToLocalAttributes,omitempty"`
 }
 
 // NewAsyncStateExecuteResponse instantiates a new AsyncStateExecuteResponse object
@@ -130,6 +131,38 @@ func (o *AsyncStateExecuteResponse) SetWriteToGlobalAttributes(v []GlobalAttribu
 	o.WriteToGlobalAttributes = v
 }
 
+// GetWriteToLocalAttributes returns the WriteToLocalAttributes field value if set, zero value otherwise.
+func (o *AsyncStateExecuteResponse) GetWriteToLocalAttributes() []KeyValue {
+	if o == nil || IsNil(o.WriteToLocalAttributes) {
+		var ret []KeyValue
+		return ret
+	}
+	return o.WriteToLocalAttributes
+}
+
+// GetWriteToLocalAttributesOk returns a tuple with the WriteToLocalAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteResponse) GetWriteToLocalAttributesOk() ([]KeyValue, bool) {
+	if o == nil || IsNil(o.WriteToLocalAttributes) {
+		return nil, false
+	}
+	return o.WriteToLocalAttributes, true
+}
+
+// HasWriteToLocalAttributes returns a boolean if a field has been set.
+func (o *AsyncStateExecuteResponse) HasWriteToLocalAttributes() bool {
+	if o != nil && !IsNil(o.WriteToLocalAttributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetWriteToLocalAttributes gets a reference to the given []KeyValue and assigns it to the WriteToLocalAttributes field.
+func (o *AsyncStateExecuteResponse) SetWriteToLocalAttributes(v []KeyValue) {
+	o.WriteToLocalAttributes = v
+}
+
 func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -146,6 +179,9 @@ func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.WriteToGlobalAttributes) {
 		toSerialize["writeToGlobalAttributes"] = o.WriteToGlobalAttributes
+	}
+	if !IsNil(o.WriteToLocalAttributes) {
+		toSerialize["writeToLocalAttributes"] = o.WriteToLocalAttributes
 	}
 	return toSerialize, nil
 }

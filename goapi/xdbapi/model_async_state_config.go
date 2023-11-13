@@ -28,6 +28,7 @@ type AsyncStateConfig struct {
 	ExecuteApiRetryPolicy       *RetryPolicy                 `json:"executeApiRetryPolicy,omitempty"`
 	StateFailureRecoveryOptions *StateFailureRecoveryOptions `json:"stateFailureRecoveryOptions,omitempty"`
 	LoadGlobalAttributesRequest *LoadGlobalAttributesRequest `json:"loadGlobalAttributesRequest,omitempty"`
+	LoadLocalAttributesRequest  *LoadLocalAttributesRequest  `json:"loadLocalAttributesRequest,omitempty"`
 }
 
 // NewAsyncStateConfig instantiates a new AsyncStateConfig object
@@ -271,6 +272,38 @@ func (o *AsyncStateConfig) SetLoadGlobalAttributesRequest(v LoadGlobalAttributes
 	o.LoadGlobalAttributesRequest = &v
 }
 
+// GetLoadLocalAttributesRequest returns the LoadLocalAttributesRequest field value if set, zero value otherwise.
+func (o *AsyncStateConfig) GetLoadLocalAttributesRequest() LoadLocalAttributesRequest {
+	if o == nil || IsNil(o.LoadLocalAttributesRequest) {
+		var ret LoadLocalAttributesRequest
+		return ret
+	}
+	return *o.LoadLocalAttributesRequest
+}
+
+// GetLoadLocalAttributesRequestOk returns a tuple with the LoadLocalAttributesRequest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateConfig) GetLoadLocalAttributesRequestOk() (*LoadLocalAttributesRequest, bool) {
+	if o == nil || IsNil(o.LoadLocalAttributesRequest) {
+		return nil, false
+	}
+	return o.LoadLocalAttributesRequest, true
+}
+
+// HasLoadLocalAttributesRequest returns a boolean if a field has been set.
+func (o *AsyncStateConfig) HasLoadLocalAttributesRequest() bool {
+	if o != nil && !IsNil(o.LoadLocalAttributesRequest) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoadLocalAttributesRequest gets a reference to the given LoadLocalAttributesRequest and assigns it to the LoadLocalAttributesRequest field.
+func (o *AsyncStateConfig) SetLoadLocalAttributesRequest(v LoadLocalAttributesRequest) {
+	o.LoadLocalAttributesRequest = &v
+}
+
 func (o AsyncStateConfig) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -301,6 +334,9 @@ func (o AsyncStateConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LoadGlobalAttributesRequest) {
 		toSerialize["loadGlobalAttributesRequest"] = o.LoadGlobalAttributesRequest
+	}
+	if !IsNil(o.LoadLocalAttributesRequest) {
+		toSerialize["loadLocalAttributesRequest"] = o.LoadLocalAttributesRequest
 	}
 	return toSerialize, nil
 }

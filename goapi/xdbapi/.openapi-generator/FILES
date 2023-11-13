@@ -23,8 +23,12 @@ docs/EncodedObject.md
 docs/GlobalAttributeConfig.md
 docs/GlobalAttributeTableConfig.md
 docs/GlobalAttributeTableRowUpdate.md
+docs/KeyValue.md
 docs/LoadGlobalAttributeResponse.md
 docs/LoadGlobalAttributesRequest.md
+docs/LoadLocalAttributesRequest.md
+docs/LoadLocalAttributesResponse.md
+docs/LocalAttributeConfig.md
 docs/LocalQueueCommand.md
 docs/LocalQueueMessage.md
 docs/LocalQueueMessageResult.md
@@ -76,8 +80,12 @@ model_encoded_object.go
 model_global_attribute_config.go
 model_global_attribute_table_config.go
 model_global_attribute_table_row_update.go
+model_key_value.go
 model_load_global_attribute_response.go
 model_load_global_attributes_request.go
+model_load_local_attributes_request.go
+model_load_local_attributes_response.go
+model_local_attribute_config.go
 model_local_queue_command.go
 model_local_queue_message.go
 model_local_queue_message_result.go

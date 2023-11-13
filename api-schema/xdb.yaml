@@ -306,6 +306,8 @@ components:
           $ref: '#/components/schemas/CommandResults'
         loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        loadedLocalAttributes:
+          $ref: '#/components/schemas/LoadLocalAttributesResponse'
     CommandResults:
       type: object
       properties:
@@ -382,6 +384,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
+        writeToLocalAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
     StateDecision:
       type: object
       description: the decision at the end of state execution, either nextStates or threadCloseDecision is needed
@@ -521,6 +527,25 @@ components:
           $ref: '#/components/schemas/ProcessIdReusePolicy'
         globalAttributeConfig:
           $ref: '#/components/schemas/GlobalAttributeConfig'
+        localAttributeConfig:
+          $ref: '#/components/schemas/LocalAttributeConfig'
+    LocalAttributeConfig:
+      type: object
+      properties:
+        initialWrite:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    KeyValue:
+      type: object
+      required:
+        - key
+        - value
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/EncodedObject'
     GlobalAttributeConfig:
       type: object
       properties:
@@ -585,6 +610,26 @@ components:
         dbColumn:
           type: string
           description: the column name that can be used in the database query, see below for example   
+    LoadLocalAttributesRequest:
+      type: object
+      properties:
+        keysToLoadNoLock:
+          type: array
+          items:
+            type: string
+        keysToLockWithLock:
+          type: array
+          items:
+            type: string
+        lockingPolicy:
+          $ref: '#/components/schemas/TableReadLockingPolicy'
+    LoadLocalAttributesResponse:
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
     LoadGlobalAttributesRequest:
       type: object
       description: the request to load global attributes
@@ -653,6 +698,8 @@ components:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
         loadGlobalAttributesRequest:
           $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        loadLocalAttributesRequest:
+          $ref: '#/components/schemas/LoadLocalAttributesRequest'
     StateFailureRecoveryPolicy:
       type: string
       enum:

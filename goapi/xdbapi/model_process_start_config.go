@@ -22,6 +22,7 @@ type ProcessStartConfig struct {
 	TimeoutSeconds        *int32                 `json:"timeoutSeconds,omitempty"`
 	IdReusePolicy         *ProcessIdReusePolicy  `json:"idReusePolicy,omitempty"`
 	GlobalAttributeConfig *GlobalAttributeConfig `json:"globalAttributeConfig,omitempty"`
+	LocalAttributeConfig  *LocalAttributeConfig  `json:"localAttributeConfig,omitempty"`
 }
 
 // NewProcessStartConfig instantiates a new ProcessStartConfig object
@@ -137,6 +138,38 @@ func (o *ProcessStartConfig) SetGlobalAttributeConfig(v GlobalAttributeConfig) {
 	o.GlobalAttributeConfig = &v
 }
 
+// GetLocalAttributeConfig returns the LocalAttributeConfig field value if set, zero value otherwise.
+func (o *ProcessStartConfig) GetLocalAttributeConfig() LocalAttributeConfig {
+	if o == nil || IsNil(o.LocalAttributeConfig) {
+		var ret LocalAttributeConfig
+		return ret
+	}
+	return *o.LocalAttributeConfig
+}
+
+// GetLocalAttributeConfigOk returns a tuple with the LocalAttributeConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProcessStartConfig) GetLocalAttributeConfigOk() (*LocalAttributeConfig, bool) {
+	if o == nil || IsNil(o.LocalAttributeConfig) {
+		return nil, false
+	}
+	return o.LocalAttributeConfig, true
+}
+
+// HasLocalAttributeConfig returns a boolean if a field has been set.
+func (o *ProcessStartConfig) HasLocalAttributeConfig() bool {
+	if o != nil && !IsNil(o.LocalAttributeConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalAttributeConfig gets a reference to the given LocalAttributeConfig and assigns it to the LocalAttributeConfig field.
+func (o *ProcessStartConfig) SetLocalAttributeConfig(v LocalAttributeConfig) {
+	o.LocalAttributeConfig = &v
+}
+
 func (o ProcessStartConfig) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -155,6 +188,9 @@ func (o ProcessStartConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.GlobalAttributeConfig) {
 		toSerialize["globalAttributeConfig"] = o.GlobalAttributeConfig
+	}
+	if !IsNil(o.LocalAttributeConfig) {
+		toSerialize["localAttributeConfig"] = o.LocalAttributeConfig
 	}
 	return toSerialize, nil
 }
