@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KeysToLoadWithNoLock** | Pointer to **[]string** |  | [optional] 
+**KeysToLoadNoLock** | Pointer to **[]string** |  | [optional] 
 **KeysToLockWithLock** | Pointer to **[]string** |  | [optional] 
 **LockingPolicy** | Pointer to [**TableReadLockingPolicy**](TableReadLockingPolicy.md) |  | [optional] 
 
@@ -27,30 +27,30 @@ NewLoadLocalAttributesRequestWithDefaults instantiates a new LoadLocalAttributes
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetKeysToLoadWithNoLock
+### GetKeysToLoadNoLock
 
-`func (o *LoadLocalAttributesRequest) GetKeysToLoadWithNoLock() []string`
+`func (o *LoadLocalAttributesRequest) GetKeysToLoadNoLock() []string`
 
-GetKeysToLoadWithNoLock returns the KeysToLoadWithNoLock field if non-nil, zero value otherwise.
+GetKeysToLoadNoLock returns the KeysToLoadNoLock field if non-nil, zero value otherwise.
 
-### GetKeysToLoadWithNoLockOk
+### GetKeysToLoadNoLockOk
 
-`func (o *LoadLocalAttributesRequest) GetKeysToLoadWithNoLockOk() (*[]string, bool)`
+`func (o *LoadLocalAttributesRequest) GetKeysToLoadNoLockOk() (*[]string, bool)`
 
-GetKeysToLoadWithNoLockOk returns a tuple with the KeysToLoadWithNoLock field if it's non-nil, zero value otherwise
+GetKeysToLoadNoLockOk returns a tuple with the KeysToLoadNoLock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKeysToLoadWithNoLock
+### SetKeysToLoadNoLock
 
-`func (o *LoadLocalAttributesRequest) SetKeysToLoadWithNoLock(v []string)`
+`func (o *LoadLocalAttributesRequest) SetKeysToLoadNoLock(v []string)`
 
-SetKeysToLoadWithNoLock sets KeysToLoadWithNoLock field to given value.
+SetKeysToLoadNoLock sets KeysToLoadNoLock field to given value.
 
-### HasKeysToLoadWithNoLock
+### HasKeysToLoadNoLock
 
-`func (o *LoadLocalAttributesRequest) HasKeysToLoadWithNoLock() bool`
+`func (o *LoadLocalAttributesRequest) HasKeysToLoadNoLock() bool`
 
-HasKeysToLoadWithNoLock returns a boolean if a field has been set.
+HasKeysToLoadNoLock returns a boolean if a field has been set.
 
 ### GetKeysToLockWithLock
 

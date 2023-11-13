@@ -527,7 +527,7 @@ export interface LoadLocalAttributesRequest {
      * @type {Array<string>}
      * @memberof LoadLocalAttributesRequest
      */
-    'keysToLoadWithNoLock'?: Array<string>;
+    'keysToLoadNoLock'?: Array<string>;
     /**
      * 
      * @type {Array<string>}

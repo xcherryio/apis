@@ -555,10 +555,10 @@ components:
           nextStates:
           - stateConfig:
               loadLocalAttributesRequest:
+                keysToLoadNoLock:
+                - keysToLoadNoLock
+                - keysToLoadNoLock
                 lockingPolicy: null
-                keysToLoadWithNoLock:
-                - keysToLoadWithNoLock
-                - keysToLoadWithNoLock
                 keysToLockWithLock:
                 - keysToLockWithLock
                 - keysToLockWithLock
@@ -599,10 +599,10 @@ components:
               encoding: encoding
           - stateConfig:
               loadLocalAttributesRequest:
+                keysToLoadNoLock:
+                - keysToLoadNoLock
+                - keysToLoadNoLock
                 lockingPolicy: null
-                keysToLoadWithNoLock:
-                - keysToLoadWithNoLock
-                - keysToLoadWithNoLock
                 keysToLockWithLock:
                 - keysToLockWithLock
                 - keysToLockWithLock
@@ -704,10 +704,10 @@ components:
         nextStates:
         - stateConfig:
             loadLocalAttributesRequest:
+              keysToLoadNoLock:
+              - keysToLoadNoLock
+              - keysToLoadNoLock
               lockingPolicy: null
-              keysToLoadWithNoLock:
-              - keysToLoadWithNoLock
-              - keysToLoadWithNoLock
               keysToLockWithLock:
               - keysToLockWithLock
               - keysToLockWithLock
@@ -748,10 +748,10 @@ components:
             encoding: encoding
         - stateConfig:
             loadLocalAttributesRequest:
+              keysToLoadNoLock:
+              - keysToLoadNoLock
+              - keysToLoadNoLock
               lockingPolicy: null
-              keysToLoadWithNoLock:
-              - keysToLoadWithNoLock
-              - keysToLoadWithNoLock
               keysToLockWithLock:
               - keysToLockWithLock
               - keysToLockWithLock
@@ -828,10 +828,10 @@ components:
       example:
         stateConfig:
           loadLocalAttributesRequest:
+            keysToLoadNoLock:
+            - keysToLoadNoLock
+            - keysToLoadNoLock
             lockingPolicy: null
-            keysToLoadWithNoLock:
-            - keysToLoadWithNoLock
-            - keysToLoadWithNoLock
             keysToLockWithLock:
             - keysToLockWithLock
             - keysToLockWithLock
@@ -961,10 +961,10 @@ components:
       example:
         startStateConfig:
           loadLocalAttributesRequest:
+            keysToLoadNoLock:
+            - keysToLoadNoLock
+            - keysToLoadNoLock
             lockingPolicy: null
-            keysToLoadWithNoLock:
-            - keysToLoadWithNoLock
-            - keysToLoadWithNoLock
             keysToLockWithLock:
             - keysToLockWithLock
             - keysToLockWithLock
@@ -1277,15 +1277,15 @@ components:
       type: object
     LoadLocalAttributesRequest:
       example:
+        keysToLoadNoLock:
+        - keysToLoadNoLock
+        - keysToLoadNoLock
         lockingPolicy: null
-        keysToLoadWithNoLock:
-        - keysToLoadWithNoLock
-        - keysToLoadWithNoLock
         keysToLockWithLock:
         - keysToLockWithLock
         - keysToLockWithLock
       properties:
-        keysToLoadWithNoLock:
+        keysToLoadNoLock:
           items:
             type: string
           type: array
@@ -1404,10 +1404,10 @@ components:
     AsyncStateConfig:
       example:
         loadLocalAttributesRequest:
+          keysToLoadNoLock:
+          - keysToLoadNoLock
+          - keysToLoadNoLock
           lockingPolicy: null
-          keysToLoadWithNoLock:
-          - keysToLoadWithNoLock
-          - keysToLoadWithNoLock
           keysToLockWithLock:
           - keysToLockWithLock
           - keysToLockWithLock

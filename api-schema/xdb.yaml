@@ -613,7 +613,7 @@ components:
     LoadLocalAttributesRequest:
       type: object
       properties:
-        keysToLoadWithNoLock:
+        keysToLoadNoLock:
           type: array
           items:
             type: string
