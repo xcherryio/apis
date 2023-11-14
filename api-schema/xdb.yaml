@@ -141,6 +141,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
+        '417':
+          description: worker RPC execution failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '424':
+          description: global attributes write failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
   # xdb workers APIs are hosted by xdb applications via SDKs, for xdb server to call back
   /api/v1/xdb/worker/async-state/wait-until:
     post:
@@ -186,19 +198,19 @@ paths:
                 $ref: '#/components/schemas/WorkerErrorResponse'
   /api/v1/xdb/worker/process/rpc:
     post:
-      summary: "invoking a Process RPC API"
+      summary: "execute a RPC method of a process execution in the worker"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProcessRpcRequest'
+              $ref: '#/components/schemas/ProcessRpcWorkerRequest'
       responses:
         '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProcessRpcResponse'
+                $ref: '#/components/schemas/ProcessRpcWorkerResponse'
         default:
           description: worker execution failure
           content:
@@ -844,9 +856,9 @@ components:
       properties:
         output:
           $ref: '#/components/schemas/EncodedObject'
-    ProcessRpcRequest:
+    ProcessRpcWorkerRequest:
       type: object
-      description: the input of the rpc API
+      description: the request of the worker RPC API
       required:
         - context
         - processType
@@ -862,9 +874,9 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         loadedGlobalAttributes:
           $ref: '#/components/schemas/LoadGlobalAttributeResponse'
-    ProcessRpcResponse:
+    ProcessRpcWorkerResponse:
       type: object
-      description: the output of the rpc API
+      description: the response of the worker RPC API
       required:
         - stateDecision
       properties:

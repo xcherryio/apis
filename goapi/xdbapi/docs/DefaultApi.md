@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**ApiV1XdbServiceProcessExecutionStopPost**](DefaultAPI.md#ApiV1XdbServiceProcessExecutionStopPost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 [**ApiV1XdbWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateExecutePost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XdbWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
-[**ApiV1XdbWorkerProcessRpcPost**](DefaultAPI.md#ApiV1XdbWorkerProcessRpcPost) | **Post** /api/v1/xdb/worker/process/rpc | invoking a Process RPC API
+[**ApiV1XdbWorkerProcessRpcPost**](DefaultAPI.md#ApiV1XdbWorkerProcessRpcPost) | **Post** /api/v1/xdb/worker/process/rpc | execute a RPC method of a process execution in the worker
 [**InternalApiV1XdbNotifyImmediateTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyImmediateTasksPost) | **Post** /internal/api/v1/xdb/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 [**InternalApiV1XdbNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XdbNotifyTimerTasksPost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
 
@@ -463,9 +463,9 @@ No authorization required
 
 ## ApiV1XdbWorkerProcessRpcPost
 
-> ProcessRpcResponse ApiV1XdbWorkerProcessRpcPost(ctx).ProcessRpcRequest(processRpcRequest).Execute()
+> ProcessRpcWorkerResponse ApiV1XdbWorkerProcessRpcPost(ctx).ProcessRpcWorkerRequest(processRpcWorkerRequest).Execute()
 
-invoking a Process RPC API
+execute a RPC method of a process execution in the worker
 
 ### Example
 
@@ -480,16 +480,16 @@ import (
 )
 
 func main() {
-    processRpcRequest := *openapiclient.NewProcessRpcRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "RpcName_example") // ProcessRpcRequest |  (optional)
+    processRpcWorkerRequest := *openapiclient.NewProcessRpcWorkerRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "RpcName_example") // ProcessRpcWorkerRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XdbWorkerProcessRpcPost(context.Background()).ProcessRpcRequest(processRpcRequest).Execute()
+    resp, r, err := apiClient.DefaultAPI.ApiV1XdbWorkerProcessRpcPost(context.Background()).ProcessRpcWorkerRequest(processRpcWorkerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XdbWorkerProcessRpcPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApiV1XdbWorkerProcessRpcPost`: ProcessRpcResponse
+    // response from `ApiV1XdbWorkerProcessRpcPost`: ProcessRpcWorkerResponse
     fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XdbWorkerProcessRpcPost`: %v\n", resp)
 }
 ```
@@ -505,11 +505,11 @@ Other parameters are passed through a pointer to a apiApiV1XdbWorkerProcessRpcPo
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **processRpcRequest** | [**ProcessRpcRequest**](ProcessRpcRequest.md) |  | 
+ **processRpcWorkerRequest** | [**ProcessRpcWorkerRequest**](ProcessRpcWorkerRequest.md) |  | 
 
 ### Return type
 
-[**ProcessRpcResponse**](ProcessRpcResponse.md)
+[**ProcessRpcWorkerResponse**](ProcessRpcWorkerResponse.md)
 
 ### Authorization
 

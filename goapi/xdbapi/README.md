@@ -84,7 +84,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ApiV1XdbServiceProcessExecutionStopPost**](docs/DefaultAPI.md#apiv1xdbserviceprocessexecutionstoppost) | **Post** /api/v1/xdb/service/process-execution/stop | stop a process execution
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstateexecutepost) | **Post** /api/v1/xdb/worker/async-state/execute | invoking AsyncState.execute API
 *DefaultAPI* | [**ApiV1XdbWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xdbworkerasyncstatewaituntilpost) | **Post** /api/v1/xdb/worker/async-state/wait-until | invoking AsyncState.waitUntil API
-*DefaultAPI* | [**ApiV1XdbWorkerProcessRpcPost**](docs/DefaultAPI.md#apiv1xdbworkerprocessrpcpost) | **Post** /api/v1/xdb/worker/process/rpc | invoking a Process RPC API
+*DefaultAPI* | [**ApiV1XdbWorkerProcessRpcPost**](docs/DefaultAPI.md#apiv1xdbworkerprocessrpcpost) | **Post** /api/v1/xdb/worker/process/rpc | execute a RPC method of a process execution in the worker
 *DefaultAPI* | [**InternalApiV1XdbNotifyImmediateTasksPost**](docs/DefaultAPI.md#internalapiv1xdbnotifyimmediatetaskspost) | **Post** /internal/api/v1/xdb/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 *DefaultAPI* | [**InternalApiV1XdbNotifyTimerTasksPost**](docs/DefaultAPI.md#internalapiv1xdbnotifytimertaskspost) | **Post** /internal/api/v1/xdb/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
 
@@ -124,8 +124,8 @@ Class | Method | HTTP request | Description
  - [ProcessExecutionStopRequest](docs/ProcessExecutionStopRequest.md)
  - [ProcessExecutionStopType](docs/ProcessExecutionStopType.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
- - [ProcessRpcRequest](docs/ProcessRpcRequest.md)
- - [ProcessRpcResponse](docs/ProcessRpcResponse.md)
+ - [ProcessRpcWorkerRequest](docs/ProcessRpcWorkerRequest.md)
+ - [ProcessRpcWorkerResponse](docs/ProcessRpcWorkerResponse.md)
  - [ProcessStartConfig](docs/ProcessStartConfig.md)
  - [ProcessStatus](docs/ProcessStatus.md)
  - [PublishToLocalQueueRequest](docs/PublishToLocalQueueRequest.md)

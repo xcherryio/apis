@@ -140,6 +140,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Process execution not exists
+        "417":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: worker RPC execution failure
+        "424":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: global attributes write failure
       summary: execute a RPC method of a process execution
   /api/v1/xdb/worker/async-state/wait-until:
     post:
@@ -189,13 +201,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProcessRpcRequest'
+              $ref: '#/components/schemas/ProcessRpcWorkerRequest'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProcessRpcResponse'
+                $ref: '#/components/schemas/ProcessRpcWorkerResponse'
           description: successful operation
         default:
           content:
@@ -203,7 +215,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkerErrorResponse'
           description: worker execution failure
-      summary: invoking a Process RPC API
+      summary: execute a RPC method of a process execution in the worker
   /internal/api/v1/xdb/notify-immediate-tasks:
     post:
       requestBody:
@@ -1555,8 +1567,8 @@ components:
         output:
           $ref: '#/components/schemas/EncodedObject'
       type: object
-    ProcessRpcRequest:
-      description: the input of the rpc API
+    ProcessRpcWorkerRequest:
+      description: the request of the worker RPC API
       example:
         input:
           data: data
@@ -1602,8 +1614,8 @@ components:
       - processType
       - rpcName
       type: object
-    ProcessRpcResponse:
-      description: the output of the rpc API
+    ProcessRpcWorkerResponse:
+      description: the response of the worker RPC API
       example:
         output:
           data: data

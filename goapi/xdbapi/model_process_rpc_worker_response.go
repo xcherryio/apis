@@ -14,37 +14,37 @@ import (
 	"encoding/json"
 )
 
-// checks if the ProcessRpcResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProcessRpcResponse{}
+// checks if the ProcessRpcWorkerResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProcessRpcWorkerResponse{}
 
-// ProcessRpcResponse the output of the rpc API
-type ProcessRpcResponse struct {
+// ProcessRpcWorkerResponse the response of the worker RPC API
+type ProcessRpcWorkerResponse struct {
 	Output                  *EncodedObject                  `json:"output,omitempty"`
 	StateDecision           StateDecision                   `json:"stateDecision"`
 	PublishToLocalQueue     []LocalQueueMessage             `json:"publishToLocalQueue,omitempty"`
 	WriteToGlobalAttributes []GlobalAttributeTableRowUpdate `json:"writeToGlobalAttributes,omitempty"`
 }
 
-// NewProcessRpcResponse instantiates a new ProcessRpcResponse object
+// NewProcessRpcWorkerResponse instantiates a new ProcessRpcWorkerResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProcessRpcResponse(stateDecision StateDecision) *ProcessRpcResponse {
-	this := ProcessRpcResponse{}
+func NewProcessRpcWorkerResponse(stateDecision StateDecision) *ProcessRpcWorkerResponse {
+	this := ProcessRpcWorkerResponse{}
 	this.StateDecision = stateDecision
 	return &this
 }
 
-// NewProcessRpcResponseWithDefaults instantiates a new ProcessRpcResponse object
+// NewProcessRpcWorkerResponseWithDefaults instantiates a new ProcessRpcWorkerResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProcessRpcResponseWithDefaults() *ProcessRpcResponse {
-	this := ProcessRpcResponse{}
+func NewProcessRpcWorkerResponseWithDefaults() *ProcessRpcWorkerResponse {
+	this := ProcessRpcWorkerResponse{}
 	return &this
 }
 
 // GetOutput returns the Output field value if set, zero value otherwise.
-func (o *ProcessRpcResponse) GetOutput() EncodedObject {
+func (o *ProcessRpcWorkerResponse) GetOutput() EncodedObject {
 	if o == nil || IsNil(o.Output) {
 		var ret EncodedObject
 		return ret
@@ -54,7 +54,7 @@ func (o *ProcessRpcResponse) GetOutput() EncodedObject {
 
 // GetOutputOk returns a tuple with the Output field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcResponse) GetOutputOk() (*EncodedObject, bool) {
+func (o *ProcessRpcWorkerResponse) GetOutputOk() (*EncodedObject, bool) {
 	if o == nil || IsNil(o.Output) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *ProcessRpcResponse) GetOutputOk() (*EncodedObject, bool) {
 }
 
 // HasOutput returns a boolean if a field has been set.
-func (o *ProcessRpcResponse) HasOutput() bool {
+func (o *ProcessRpcWorkerResponse) HasOutput() bool {
 	if o != nil && !IsNil(o.Output) {
 		return true
 	}
@@ -71,12 +71,12 @@ func (o *ProcessRpcResponse) HasOutput() bool {
 }
 
 // SetOutput gets a reference to the given EncodedObject and assigns it to the Output field.
-func (o *ProcessRpcResponse) SetOutput(v EncodedObject) {
+func (o *ProcessRpcWorkerResponse) SetOutput(v EncodedObject) {
 	o.Output = &v
 }
 
 // GetStateDecision returns the StateDecision field value
-func (o *ProcessRpcResponse) GetStateDecision() StateDecision {
+func (o *ProcessRpcWorkerResponse) GetStateDecision() StateDecision {
 	if o == nil {
 		var ret StateDecision
 		return ret
@@ -87,7 +87,7 @@ func (o *ProcessRpcResponse) GetStateDecision() StateDecision {
 
 // GetStateDecisionOk returns a tuple with the StateDecision field value
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcResponse) GetStateDecisionOk() (*StateDecision, bool) {
+func (o *ProcessRpcWorkerResponse) GetStateDecisionOk() (*StateDecision, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,12 +95,12 @@ func (o *ProcessRpcResponse) GetStateDecisionOk() (*StateDecision, bool) {
 }
 
 // SetStateDecision sets field value
-func (o *ProcessRpcResponse) SetStateDecision(v StateDecision) {
+func (o *ProcessRpcWorkerResponse) SetStateDecision(v StateDecision) {
 	o.StateDecision = v
 }
 
 // GetPublishToLocalQueue returns the PublishToLocalQueue field value if set, zero value otherwise.
-func (o *ProcessRpcResponse) GetPublishToLocalQueue() []LocalQueueMessage {
+func (o *ProcessRpcWorkerResponse) GetPublishToLocalQueue() []LocalQueueMessage {
 	if o == nil || IsNil(o.PublishToLocalQueue) {
 		var ret []LocalQueueMessage
 		return ret
@@ -110,7 +110,7 @@ func (o *ProcessRpcResponse) GetPublishToLocalQueue() []LocalQueueMessage {
 
 // GetPublishToLocalQueueOk returns a tuple with the PublishToLocalQueue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcResponse) GetPublishToLocalQueueOk() ([]LocalQueueMessage, bool) {
+func (o *ProcessRpcWorkerResponse) GetPublishToLocalQueueOk() ([]LocalQueueMessage, bool) {
 	if o == nil || IsNil(o.PublishToLocalQueue) {
 		return nil, false
 	}
@@ -118,7 +118,7 @@ func (o *ProcessRpcResponse) GetPublishToLocalQueueOk() ([]LocalQueueMessage, bo
 }
 
 // HasPublishToLocalQueue returns a boolean if a field has been set.
-func (o *ProcessRpcResponse) HasPublishToLocalQueue() bool {
+func (o *ProcessRpcWorkerResponse) HasPublishToLocalQueue() bool {
 	if o != nil && !IsNil(o.PublishToLocalQueue) {
 		return true
 	}
@@ -127,12 +127,12 @@ func (o *ProcessRpcResponse) HasPublishToLocalQueue() bool {
 }
 
 // SetPublishToLocalQueue gets a reference to the given []LocalQueueMessage and assigns it to the PublishToLocalQueue field.
-func (o *ProcessRpcResponse) SetPublishToLocalQueue(v []LocalQueueMessage) {
+func (o *ProcessRpcWorkerResponse) SetPublishToLocalQueue(v []LocalQueueMessage) {
 	o.PublishToLocalQueue = v
 }
 
 // GetWriteToGlobalAttributes returns the WriteToGlobalAttributes field value if set, zero value otherwise.
-func (o *ProcessRpcResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate {
+func (o *ProcessRpcWorkerResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate {
 	if o == nil || IsNil(o.WriteToGlobalAttributes) {
 		var ret []GlobalAttributeTableRowUpdate
 		return ret
@@ -142,7 +142,7 @@ func (o *ProcessRpcResponse) GetWriteToGlobalAttributes() []GlobalAttributeTable
 
 // GetWriteToGlobalAttributesOk returns a tuple with the WriteToGlobalAttributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcResponse) GetWriteToGlobalAttributesOk() ([]GlobalAttributeTableRowUpdate, bool) {
+func (o *ProcessRpcWorkerResponse) GetWriteToGlobalAttributesOk() ([]GlobalAttributeTableRowUpdate, bool) {
 	if o == nil || IsNil(o.WriteToGlobalAttributes) {
 		return nil, false
 	}
@@ -150,7 +150,7 @@ func (o *ProcessRpcResponse) GetWriteToGlobalAttributesOk() ([]GlobalAttributeTa
 }
 
 // HasWriteToGlobalAttributes returns a boolean if a field has been set.
-func (o *ProcessRpcResponse) HasWriteToGlobalAttributes() bool {
+func (o *ProcessRpcWorkerResponse) HasWriteToGlobalAttributes() bool {
 	if o != nil && !IsNil(o.WriteToGlobalAttributes) {
 		return true
 	}
@@ -159,11 +159,11 @@ func (o *ProcessRpcResponse) HasWriteToGlobalAttributes() bool {
 }
 
 // SetWriteToGlobalAttributes gets a reference to the given []GlobalAttributeTableRowUpdate and assigns it to the WriteToGlobalAttributes field.
-func (o *ProcessRpcResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate) {
+func (o *ProcessRpcWorkerResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate) {
 	o.WriteToGlobalAttributes = v
 }
 
-func (o ProcessRpcResponse) MarshalJSON() ([]byte, error) {
+func (o ProcessRpcWorkerResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -171,7 +171,7 @@ func (o ProcessRpcResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ProcessRpcResponse) ToMap() (map[string]interface{}, error) {
+func (o ProcessRpcWorkerResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Output) {
 		toSerialize["output"] = o.Output
@@ -186,38 +186,38 @@ func (o ProcessRpcResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableProcessRpcResponse struct {
-	value *ProcessRpcResponse
+type NullableProcessRpcWorkerResponse struct {
+	value *ProcessRpcWorkerResponse
 	isSet bool
 }
 
-func (v NullableProcessRpcResponse) Get() *ProcessRpcResponse {
+func (v NullableProcessRpcWorkerResponse) Get() *ProcessRpcWorkerResponse {
 	return v.value
 }
 
-func (v *NullableProcessRpcResponse) Set(val *ProcessRpcResponse) {
+func (v *NullableProcessRpcWorkerResponse) Set(val *ProcessRpcWorkerResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProcessRpcResponse) IsSet() bool {
+func (v NullableProcessRpcWorkerResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProcessRpcResponse) Unset() {
+func (v *NullableProcessRpcWorkerResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProcessRpcResponse(val *ProcessRpcResponse) *NullableProcessRpcResponse {
-	return &NullableProcessRpcResponse{value: val, isSet: true}
+func NewNullableProcessRpcWorkerResponse(val *ProcessRpcWorkerResponse) *NullableProcessRpcWorkerResponse {
+	return &NullableProcessRpcWorkerResponse{value: val, isSet: true}
 }
 
-func (v NullableProcessRpcResponse) MarshalJSON() ([]byte, error) {
+func (v NullableProcessRpcWorkerResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProcessRpcResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableProcessRpcWorkerResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

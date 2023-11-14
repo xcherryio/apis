@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the ProcessRpcRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProcessRpcRequest{}
+// checks if the ProcessRpcWorkerRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProcessRpcWorkerRequest{}
 
-// ProcessRpcRequest the input of the rpc API
-type ProcessRpcRequest struct {
+// ProcessRpcWorkerRequest the request of the worker RPC API
+type ProcessRpcWorkerRequest struct {
 	Context                Context                      `json:"context"`
 	ProcessType            string                       `json:"processType"`
 	RpcName                string                       `json:"rpcName"`
@@ -26,28 +26,28 @@ type ProcessRpcRequest struct {
 	LoadedGlobalAttributes *LoadGlobalAttributeResponse `json:"loadedGlobalAttributes,omitempty"`
 }
 
-// NewProcessRpcRequest instantiates a new ProcessRpcRequest object
+// NewProcessRpcWorkerRequest instantiates a new ProcessRpcWorkerRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProcessRpcRequest(context Context, processType string, rpcName string) *ProcessRpcRequest {
-	this := ProcessRpcRequest{}
+func NewProcessRpcWorkerRequest(context Context, processType string, rpcName string) *ProcessRpcWorkerRequest {
+	this := ProcessRpcWorkerRequest{}
 	this.Context = context
 	this.ProcessType = processType
 	this.RpcName = rpcName
 	return &this
 }
 
-// NewProcessRpcRequestWithDefaults instantiates a new ProcessRpcRequest object
+// NewProcessRpcWorkerRequestWithDefaults instantiates a new ProcessRpcWorkerRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProcessRpcRequestWithDefaults() *ProcessRpcRequest {
-	this := ProcessRpcRequest{}
+func NewProcessRpcWorkerRequestWithDefaults() *ProcessRpcWorkerRequest {
+	this := ProcessRpcWorkerRequest{}
 	return &this
 }
 
 // GetContext returns the Context field value
-func (o *ProcessRpcRequest) GetContext() Context {
+func (o *ProcessRpcWorkerRequest) GetContext() Context {
 	if o == nil {
 		var ret Context
 		return ret
@@ -58,7 +58,7 @@ func (o *ProcessRpcRequest) GetContext() Context {
 
 // GetContextOk returns a tuple with the Context field value
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcRequest) GetContextOk() (*Context, bool) {
+func (o *ProcessRpcWorkerRequest) GetContextOk() (*Context, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *ProcessRpcRequest) GetContextOk() (*Context, bool) {
 }
 
 // SetContext sets field value
-func (o *ProcessRpcRequest) SetContext(v Context) {
+func (o *ProcessRpcWorkerRequest) SetContext(v Context) {
 	o.Context = v
 }
 
 // GetProcessType returns the ProcessType field value
-func (o *ProcessRpcRequest) GetProcessType() string {
+func (o *ProcessRpcWorkerRequest) GetProcessType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *ProcessRpcRequest) GetProcessType() string {
 
 // GetProcessTypeOk returns a tuple with the ProcessType field value
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcRequest) GetProcessTypeOk() (*string, bool) {
+func (o *ProcessRpcWorkerRequest) GetProcessTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,12 +90,12 @@ func (o *ProcessRpcRequest) GetProcessTypeOk() (*string, bool) {
 }
 
 // SetProcessType sets field value
-func (o *ProcessRpcRequest) SetProcessType(v string) {
+func (o *ProcessRpcWorkerRequest) SetProcessType(v string) {
 	o.ProcessType = v
 }
 
 // GetRpcName returns the RpcName field value
-func (o *ProcessRpcRequest) GetRpcName() string {
+func (o *ProcessRpcWorkerRequest) GetRpcName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -106,7 +106,7 @@ func (o *ProcessRpcRequest) GetRpcName() string {
 
 // GetRpcNameOk returns a tuple with the RpcName field value
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcRequest) GetRpcNameOk() (*string, bool) {
+func (o *ProcessRpcWorkerRequest) GetRpcNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,12 +114,12 @@ func (o *ProcessRpcRequest) GetRpcNameOk() (*string, bool) {
 }
 
 // SetRpcName sets field value
-func (o *ProcessRpcRequest) SetRpcName(v string) {
+func (o *ProcessRpcWorkerRequest) SetRpcName(v string) {
 	o.RpcName = v
 }
 
 // GetInput returns the Input field value if set, zero value otherwise.
-func (o *ProcessRpcRequest) GetInput() EncodedObject {
+func (o *ProcessRpcWorkerRequest) GetInput() EncodedObject {
 	if o == nil || IsNil(o.Input) {
 		var ret EncodedObject
 		return ret
@@ -129,7 +129,7 @@ func (o *ProcessRpcRequest) GetInput() EncodedObject {
 
 // GetInputOk returns a tuple with the Input field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcRequest) GetInputOk() (*EncodedObject, bool) {
+func (o *ProcessRpcWorkerRequest) GetInputOk() (*EncodedObject, bool) {
 	if o == nil || IsNil(o.Input) {
 		return nil, false
 	}
@@ -137,7 +137,7 @@ func (o *ProcessRpcRequest) GetInputOk() (*EncodedObject, bool) {
 }
 
 // HasInput returns a boolean if a field has been set.
-func (o *ProcessRpcRequest) HasInput() bool {
+func (o *ProcessRpcWorkerRequest) HasInput() bool {
 	if o != nil && !IsNil(o.Input) {
 		return true
 	}
@@ -146,12 +146,12 @@ func (o *ProcessRpcRequest) HasInput() bool {
 }
 
 // SetInput gets a reference to the given EncodedObject and assigns it to the Input field.
-func (o *ProcessRpcRequest) SetInput(v EncodedObject) {
+func (o *ProcessRpcWorkerRequest) SetInput(v EncodedObject) {
 	o.Input = &v
 }
 
 // GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field value if set, zero value otherwise.
-func (o *ProcessRpcRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse {
+func (o *ProcessRpcWorkerRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse {
 	if o == nil || IsNil(o.LoadedGlobalAttributes) {
 		var ret LoadGlobalAttributeResponse
 		return ret
@@ -161,7 +161,7 @@ func (o *ProcessRpcRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeRespo
 
 // GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool) {
+func (o *ProcessRpcWorkerRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool) {
 	if o == nil || IsNil(o.LoadedGlobalAttributes) {
 		return nil, false
 	}
@@ -169,7 +169,7 @@ func (o *ProcessRpcRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeR
 }
 
 // HasLoadedGlobalAttributes returns a boolean if a field has been set.
-func (o *ProcessRpcRequest) HasLoadedGlobalAttributes() bool {
+func (o *ProcessRpcWorkerRequest) HasLoadedGlobalAttributes() bool {
 	if o != nil && !IsNil(o.LoadedGlobalAttributes) {
 		return true
 	}
@@ -178,11 +178,11 @@ func (o *ProcessRpcRequest) HasLoadedGlobalAttributes() bool {
 }
 
 // SetLoadedGlobalAttributes gets a reference to the given LoadGlobalAttributeResponse and assigns it to the LoadedGlobalAttributes field.
-func (o *ProcessRpcRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse) {
+func (o *ProcessRpcWorkerRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse) {
 	o.LoadedGlobalAttributes = &v
 }
 
-func (o ProcessRpcRequest) MarshalJSON() ([]byte, error) {
+func (o ProcessRpcWorkerRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -190,7 +190,7 @@ func (o ProcessRpcRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ProcessRpcRequest) ToMap() (map[string]interface{}, error) {
+func (o ProcessRpcWorkerRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["context"] = o.Context
 	toSerialize["processType"] = o.ProcessType
@@ -204,38 +204,38 @@ func (o ProcessRpcRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableProcessRpcRequest struct {
-	value *ProcessRpcRequest
+type NullableProcessRpcWorkerRequest struct {
+	value *ProcessRpcWorkerRequest
 	isSet bool
 }
 
-func (v NullableProcessRpcRequest) Get() *ProcessRpcRequest {
+func (v NullableProcessRpcWorkerRequest) Get() *ProcessRpcWorkerRequest {
 	return v.value
 }
 
-func (v *NullableProcessRpcRequest) Set(val *ProcessRpcRequest) {
+func (v *NullableProcessRpcWorkerRequest) Set(val *ProcessRpcWorkerRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProcessRpcRequest) IsSet() bool {
+func (v NullableProcessRpcWorkerRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProcessRpcRequest) Unset() {
+func (v *NullableProcessRpcWorkerRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProcessRpcRequest(val *ProcessRpcRequest) *NullableProcessRpcRequest {
-	return &NullableProcessRpcRequest{value: val, isSet: true}
+func NewNullableProcessRpcWorkerRequest(val *ProcessRpcWorkerRequest) *NullableProcessRpcWorkerRequest {
+	return &NullableProcessRpcWorkerRequest{value: val, isSet: true}
 }
 
-func (v NullableProcessRpcRequest) MarshalJSON() ([]byte, error) {
+func (v NullableProcessRpcWorkerRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProcessRpcRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableProcessRpcWorkerRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

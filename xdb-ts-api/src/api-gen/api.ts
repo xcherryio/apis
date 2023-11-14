@@ -877,70 +877,70 @@ export type ProcessIdReusePolicy = typeof ProcessIdReusePolicy[keyof typeof Proc
 
 
 /**
- * the input of the rpc API
+ * the request of the worker RPC API
  * @export
- * @interface ProcessRpcRequest
+ * @interface ProcessRpcWorkerRequest
  */
-export interface ProcessRpcRequest {
+export interface ProcessRpcWorkerRequest {
     /**
      * 
      * @type {Context}
-     * @memberof ProcessRpcRequest
+     * @memberof ProcessRpcWorkerRequest
      */
     'context': Context;
     /**
      * 
      * @type {string}
-     * @memberof ProcessRpcRequest
+     * @memberof ProcessRpcWorkerRequest
      */
     'processType': string;
     /**
      * 
      * @type {string}
-     * @memberof ProcessRpcRequest
+     * @memberof ProcessRpcWorkerRequest
      */
     'rpcName': string;
     /**
      * 
      * @type {EncodedObject}
-     * @memberof ProcessRpcRequest
+     * @memberof ProcessRpcWorkerRequest
      */
     'input'?: EncodedObject;
     /**
      * 
      * @type {LoadGlobalAttributeResponse}
-     * @memberof ProcessRpcRequest
+     * @memberof ProcessRpcWorkerRequest
      */
     'loadedGlobalAttributes'?: LoadGlobalAttributeResponse;
 }
 /**
- * the output of the rpc API
+ * the response of the worker RPC API
  * @export
- * @interface ProcessRpcResponse
+ * @interface ProcessRpcWorkerResponse
  */
-export interface ProcessRpcResponse {
+export interface ProcessRpcWorkerResponse {
     /**
      * 
      * @type {EncodedObject}
-     * @memberof ProcessRpcResponse
+     * @memberof ProcessRpcWorkerResponse
      */
     'output'?: EncodedObject;
     /**
      * 
      * @type {StateDecision}
-     * @memberof ProcessRpcResponse
+     * @memberof ProcessRpcWorkerResponse
      */
     'stateDecision': StateDecision;
     /**
      * 
      * @type {Array<LocalQueueMessage>}
-     * @memberof ProcessRpcResponse
+     * @memberof ProcessRpcWorkerResponse
      */
     'publishToLocalQueue'?: Array<LocalQueueMessage>;
     /**
      * 
      * @type {Array<GlobalAttributeTableRowUpdate>}
-     * @memberof ProcessRpcResponse
+     * @memberof ProcessRpcWorkerResponse
      */
     'writeToGlobalAttributes'?: Array<GlobalAttributeTableRowUpdate>;
 }
@@ -1573,12 +1573,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary invoking a Process RPC API
-         * @param {ProcessRpcRequest} [processRpcRequest] 
+         * @summary execute a RPC method of a process execution in the worker
+         * @param {ProcessRpcWorkerRequest} [processRpcWorkerRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XdbWorkerProcessRpcPost: async (processRpcRequest?: ProcessRpcRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XdbWorkerProcessRpcPost: async (processRpcWorkerRequest?: ProcessRpcWorkerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xdb/worker/process/rpc`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1598,7 +1598,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(processRpcRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(processRpcWorkerRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1762,13 +1762,13 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary invoking a Process RPC API
-         * @param {ProcessRpcRequest} [processRpcRequest] 
+         * @summary execute a RPC method of a process execution in the worker
+         * @param {ProcessRpcWorkerRequest} [processRpcWorkerRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XdbWorkerProcessRpcPost(processRpcRequest?: ProcessRpcRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessRpcResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XdbWorkerProcessRpcPost(processRpcRequest, options);
+        async apiV1XdbWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessRpcWorkerResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XdbWorkerProcessRpcPost(processRpcWorkerRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1875,13 +1875,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary invoking a Process RPC API
-         * @param {ProcessRpcRequest} [processRpcRequest] 
+         * @summary execute a RPC method of a process execution in the worker
+         * @param {ProcessRpcWorkerRequest} [processRpcWorkerRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XdbWorkerProcessRpcPost(processRpcRequest?: ProcessRpcRequest, options?: any): AxiosPromise<ProcessRpcResponse> {
-            return localVarFp.apiV1XdbWorkerProcessRpcPost(processRpcRequest, options).then((request) => request(axios, basePath));
+        apiV1XdbWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: any): AxiosPromise<ProcessRpcWorkerResponse> {
+            return localVarFp.apiV1XdbWorkerProcessRpcPost(processRpcWorkerRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1999,14 +1999,14 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary invoking a Process RPC API
-     * @param {ProcessRpcRequest} [processRpcRequest] 
+     * @summary execute a RPC method of a process execution in the worker
+     * @param {ProcessRpcWorkerRequest} [processRpcWorkerRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XdbWorkerProcessRpcPost(processRpcRequest?: ProcessRpcRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).apiV1XdbWorkerProcessRpcPost(processRpcRequest, options).then((request) => request(this.axios, this.basePath));
+    public apiV1XdbWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).apiV1XdbWorkerProcessRpcPost(processRpcWorkerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -103,7 +103,7 @@ type DefaultAPI interface {
 	ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error)
 
 	/*
-		ApiV1XdbWorkerProcessRpcPost invoking a Process RPC API
+		ApiV1XdbWorkerProcessRpcPost execute a RPC method of a process execution in the worker
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiApiV1XdbWorkerProcessRpcPostRequest
@@ -111,8 +111,8 @@ type DefaultAPI interface {
 	ApiV1XdbWorkerProcessRpcPost(ctx context.Context) ApiApiV1XdbWorkerProcessRpcPostRequest
 
 	// ApiV1XdbWorkerProcessRpcPostExecute executes the request
-	//  @return ProcessRpcResponse
-	ApiV1XdbWorkerProcessRpcPostExecute(r ApiApiV1XdbWorkerProcessRpcPostRequest) (*ProcessRpcResponse, *http.Response, error)
+	//  @return ProcessRpcWorkerResponse
+	ApiV1XdbWorkerProcessRpcPostExecute(r ApiApiV1XdbWorkerProcessRpcPostRequest) (*ProcessRpcWorkerResponse, *http.Response, error)
 
 	/*
 		InternalApiV1XdbNotifyImmediateTasksPost for api service to tell async service that there are new immediate tasks added to the queue
@@ -485,6 +485,28 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionRpcPostExecute(r ApiA
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 417 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 424 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -991,22 +1013,22 @@ func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiAp
 }
 
 type ApiApiV1XdbWorkerProcessRpcPostRequest struct {
-	ctx               context.Context
-	ApiService        DefaultAPI
-	processRpcRequest *ProcessRpcRequest
+	ctx                     context.Context
+	ApiService              DefaultAPI
+	processRpcWorkerRequest *ProcessRpcWorkerRequest
 }
 
-func (r ApiApiV1XdbWorkerProcessRpcPostRequest) ProcessRpcRequest(processRpcRequest ProcessRpcRequest) ApiApiV1XdbWorkerProcessRpcPostRequest {
-	r.processRpcRequest = &processRpcRequest
+func (r ApiApiV1XdbWorkerProcessRpcPostRequest) ProcessRpcWorkerRequest(processRpcWorkerRequest ProcessRpcWorkerRequest) ApiApiV1XdbWorkerProcessRpcPostRequest {
+	r.processRpcWorkerRequest = &processRpcWorkerRequest
 	return r
 }
 
-func (r ApiApiV1XdbWorkerProcessRpcPostRequest) Execute() (*ProcessRpcResponse, *http.Response, error) {
+func (r ApiApiV1XdbWorkerProcessRpcPostRequest) Execute() (*ProcessRpcWorkerResponse, *http.Response, error) {
 	return r.ApiService.ApiV1XdbWorkerProcessRpcPostExecute(r)
 }
 
 /*
-ApiV1XdbWorkerProcessRpcPost invoking a Process RPC API
+ApiV1XdbWorkerProcessRpcPost execute a RPC method of a process execution in the worker
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiApiV1XdbWorkerProcessRpcPostRequest
@@ -1020,13 +1042,13 @@ func (a *DefaultAPIService) ApiV1XdbWorkerProcessRpcPost(ctx context.Context) Ap
 
 // Execute executes the request
 //
-//	@return ProcessRpcResponse
-func (a *DefaultAPIService) ApiV1XdbWorkerProcessRpcPostExecute(r ApiApiV1XdbWorkerProcessRpcPostRequest) (*ProcessRpcResponse, *http.Response, error) {
+//	@return ProcessRpcWorkerResponse
+func (a *DefaultAPIService) ApiV1XdbWorkerProcessRpcPostExecute(r ApiApiV1XdbWorkerProcessRpcPostRequest) (*ProcessRpcWorkerResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProcessRpcResponse
+		localVarReturnValue *ProcessRpcWorkerResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbWorkerProcessRpcPost")
@@ -1058,7 +1080,7 @@ func (a *DefaultAPIService) ApiV1XdbWorkerProcessRpcPostExecute(r ApiApiV1XdbWor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.processRpcRequest
+	localVarPostBody = r.processRpcWorkerRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

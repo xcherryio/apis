@@ -1,4 +1,4 @@
-# ProcessRpcResponse
+# ProcessRpcWorkerResponse
 
 ## Properties
 
@@ -11,115 +11,115 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewProcessRpcResponse
+### NewProcessRpcWorkerResponse
 
-`func NewProcessRpcResponse(stateDecision StateDecision, ) *ProcessRpcResponse`
+`func NewProcessRpcWorkerResponse(stateDecision StateDecision, ) *ProcessRpcWorkerResponse`
 
-NewProcessRpcResponse instantiates a new ProcessRpcResponse object
+NewProcessRpcWorkerResponse instantiates a new ProcessRpcWorkerResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewProcessRpcResponseWithDefaults
+### NewProcessRpcWorkerResponseWithDefaults
 
-`func NewProcessRpcResponseWithDefaults() *ProcessRpcResponse`
+`func NewProcessRpcWorkerResponseWithDefaults() *ProcessRpcWorkerResponse`
 
-NewProcessRpcResponseWithDefaults instantiates a new ProcessRpcResponse object
+NewProcessRpcWorkerResponseWithDefaults instantiates a new ProcessRpcWorkerResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetOutput
 
-`func (o *ProcessRpcResponse) GetOutput() EncodedObject`
+`func (o *ProcessRpcWorkerResponse) GetOutput() EncodedObject`
 
 GetOutput returns the Output field if non-nil, zero value otherwise.
 
 ### GetOutputOk
 
-`func (o *ProcessRpcResponse) GetOutputOk() (*EncodedObject, bool)`
+`func (o *ProcessRpcWorkerResponse) GetOutputOk() (*EncodedObject, bool)`
 
 GetOutputOk returns a tuple with the Output field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOutput
 
-`func (o *ProcessRpcResponse) SetOutput(v EncodedObject)`
+`func (o *ProcessRpcWorkerResponse) SetOutput(v EncodedObject)`
 
 SetOutput sets Output field to given value.
 
 ### HasOutput
 
-`func (o *ProcessRpcResponse) HasOutput() bool`
+`func (o *ProcessRpcWorkerResponse) HasOutput() bool`
 
 HasOutput returns a boolean if a field has been set.
 
 ### GetStateDecision
 
-`func (o *ProcessRpcResponse) GetStateDecision() StateDecision`
+`func (o *ProcessRpcWorkerResponse) GetStateDecision() StateDecision`
 
 GetStateDecision returns the StateDecision field if non-nil, zero value otherwise.
 
 ### GetStateDecisionOk
 
-`func (o *ProcessRpcResponse) GetStateDecisionOk() (*StateDecision, bool)`
+`func (o *ProcessRpcWorkerResponse) GetStateDecisionOk() (*StateDecision, bool)`
 
 GetStateDecisionOk returns a tuple with the StateDecision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStateDecision
 
-`func (o *ProcessRpcResponse) SetStateDecision(v StateDecision)`
+`func (o *ProcessRpcWorkerResponse) SetStateDecision(v StateDecision)`
 
 SetStateDecision sets StateDecision field to given value.
 
 
 ### GetPublishToLocalQueue
 
-`func (o *ProcessRpcResponse) GetPublishToLocalQueue() []LocalQueueMessage`
+`func (o *ProcessRpcWorkerResponse) GetPublishToLocalQueue() []LocalQueueMessage`
 
 GetPublishToLocalQueue returns the PublishToLocalQueue field if non-nil, zero value otherwise.
 
 ### GetPublishToLocalQueueOk
 
-`func (o *ProcessRpcResponse) GetPublishToLocalQueueOk() (*[]LocalQueueMessage, bool)`
+`func (o *ProcessRpcWorkerResponse) GetPublishToLocalQueueOk() (*[]LocalQueueMessage, bool)`
 
 GetPublishToLocalQueueOk returns a tuple with the PublishToLocalQueue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPublishToLocalQueue
 
-`func (o *ProcessRpcResponse) SetPublishToLocalQueue(v []LocalQueueMessage)`
+`func (o *ProcessRpcWorkerResponse) SetPublishToLocalQueue(v []LocalQueueMessage)`
 
 SetPublishToLocalQueue sets PublishToLocalQueue field to given value.
 
 ### HasPublishToLocalQueue
 
-`func (o *ProcessRpcResponse) HasPublishToLocalQueue() bool`
+`func (o *ProcessRpcWorkerResponse) HasPublishToLocalQueue() bool`
 
 HasPublishToLocalQueue returns a boolean if a field has been set.
 
 ### GetWriteToGlobalAttributes
 
-`func (o *ProcessRpcResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate`
+`func (o *ProcessRpcWorkerResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate`
 
 GetWriteToGlobalAttributes returns the WriteToGlobalAttributes field if non-nil, zero value otherwise.
 
 ### GetWriteToGlobalAttributesOk
 
-`func (o *ProcessRpcResponse) GetWriteToGlobalAttributesOk() (*[]GlobalAttributeTableRowUpdate, bool)`
+`func (o *ProcessRpcWorkerResponse) GetWriteToGlobalAttributesOk() (*[]GlobalAttributeTableRowUpdate, bool)`
 
 GetWriteToGlobalAttributesOk returns a tuple with the WriteToGlobalAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWriteToGlobalAttributes
 
-`func (o *ProcessRpcResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate)`
+`func (o *ProcessRpcWorkerResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate)`
 
 SetWriteToGlobalAttributes sets WriteToGlobalAttributes field to given value.
 
 ### HasWriteToGlobalAttributes
 
-`func (o *ProcessRpcResponse) HasWriteToGlobalAttributes() bool`
+`func (o *ProcessRpcWorkerResponse) HasWriteToGlobalAttributes() bool`
 
 HasWriteToGlobalAttributes returns a boolean if a field has been set.
 
