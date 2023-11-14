@@ -1082,9 +1082,7 @@ components:
                 dbColumn: dbColumn
               tableName: tableName
               primaryKey:
-              - dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
-              - dbQueryValue: dbQueryValue
+                dbQueryValue: dbQueryValue
                 dbColumn: dbColumn
             - initialWriteMode: null
               initialWrite:
@@ -1094,9 +1092,7 @@ components:
                 dbColumn: dbColumn
               tableName: tableName
               primaryKey:
-              - dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
-              - dbQueryValue: dbQueryValue
+                dbQueryValue: dbQueryValue
                 dbColumn: dbColumn
         namespace: namespace
         processType: processType
@@ -1152,9 +1148,7 @@ components:
               dbColumn: dbColumn
             tableName: tableName
             primaryKey:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
+              dbQueryValue: dbQueryValue
               dbColumn: dbColumn
           - initialWriteMode: null
             initialWrite:
@@ -1164,9 +1158,7 @@ components:
               dbColumn: dbColumn
             tableName: tableName
             primaryKey:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
+              dbQueryValue: dbQueryValue
               dbColumn: dbColumn
       properties:
         timeoutSeconds:
@@ -1221,9 +1213,7 @@ components:
             dbColumn: dbColumn
           tableName: tableName
           primaryKey:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
+            dbQueryValue: dbQueryValue
             dbColumn: dbColumn
         - initialWriteMode: null
           initialWrite:
@@ -1233,9 +1223,7 @@ components:
             dbColumn: dbColumn
           tableName: tableName
           primaryKey:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
+            dbQueryValue: dbQueryValue
             dbColumn: dbColumn
       properties:
         tableConfigs:
@@ -1253,17 +1241,13 @@ components:
           dbColumn: dbColumn
         tableName: tableName
         primaryKey:
-        - dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-        - dbQueryValue: dbQueryValue
+          dbQueryValue: dbQueryValue
           dbColumn: dbColumn
       properties:
         tableName:
           type: string
         primaryKey:
-          items:
-            $ref: '#/components/schemas/TableColumnValue'
-          type: array
+          $ref: '#/components/schemas/TableColumnValue'
         initialWrite:
           items:
             $ref: '#/components/schemas/TableColumnValue'

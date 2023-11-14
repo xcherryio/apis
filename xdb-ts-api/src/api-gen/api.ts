@@ -433,10 +433,10 @@ export interface GlobalAttributeTableConfig {
     'tableName': string;
     /**
      * 
-     * @type {Array<TableColumnValue>}
+     * @type {TableColumnValue}
      * @memberof GlobalAttributeTableConfig
      */
-    'primaryKey': Array<TableColumnValue>;
+    'primaryKey': TableColumnValue;
     /**
      * 
      * @type {Array<TableColumnValue>}
