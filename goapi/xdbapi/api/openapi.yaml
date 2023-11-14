@@ -1776,6 +1776,14 @@ components:
         stateDecision:
           nextStates:
           - stateConfig:
+              loadLocalAttributesRequest:
+                keysToLoadNoLock:
+                - keysToLoadNoLock
+                - keysToLoadNoLock
+                lockingPolicy: null
+                keysToLockWithLock:
+                - keysToLockWithLock
+                - keysToLockWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
@@ -1812,6 +1820,14 @@ components:
               data: data
               encoding: encoding
           - stateConfig:
+              loadLocalAttributesRequest:
+                keysToLoadNoLock:
+                - keysToLoadNoLock
+                - keysToLoadNoLock
+                lockingPolicy: null
+                keysToLockWithLock:
+                - keysToLockWithLock
+                - keysToLockWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
