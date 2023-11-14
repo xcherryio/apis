@@ -44,6 +44,18 @@ type DefaultAPI interface {
 	ApiV1XdbServiceProcessExecutionPublishToLocalQueuePostExecute(r ApiApiV1XdbServiceProcessExecutionPublishToLocalQueuePostRequest) (*http.Response, error)
 
 	/*
+		ApiV1XdbServiceProcessExecutionRpcPost execute a RPC method of a process execution
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiApiV1XdbServiceProcessExecutionRpcPostRequest
+	*/
+	ApiV1XdbServiceProcessExecutionRpcPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionRpcPostRequest
+
+	// ApiV1XdbServiceProcessExecutionRpcPostExecute executes the request
+	//  @return ProcessExecutionRpcResponse
+	ApiV1XdbServiceProcessExecutionRpcPostExecute(r ApiApiV1XdbServiceProcessExecutionRpcPostRequest) (*ProcessExecutionRpcResponse, *http.Response, error)
+
+	/*
 		ApiV1XdbServiceProcessExecutionStartPost start a process execution
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -89,6 +101,18 @@ type DefaultAPI interface {
 	// ApiV1XdbWorkerAsyncStateWaitUntilPostExecute executes the request
 	//  @return AsyncStateWaitUntilResponse
 	ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiApiV1XdbWorkerAsyncStateWaitUntilPostRequest) (*AsyncStateWaitUntilResponse, *http.Response, error)
+
+	/*
+		ApiV1XdbWorkerProcessRpcPost execute a RPC method of a process execution in the worker
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiApiV1XdbWorkerProcessRpcPostRequest
+	*/
+	ApiV1XdbWorkerProcessRpcPost(ctx context.Context) ApiApiV1XdbWorkerProcessRpcPostRequest
+
+	// ApiV1XdbWorkerProcessRpcPostExecute executes the request
+	//  @return ProcessRpcWorkerResponse
+	ApiV1XdbWorkerProcessRpcPostExecute(r ApiApiV1XdbWorkerProcessRpcPostRequest) (*ProcessRpcWorkerResponse, *http.Response, error)
 
 	/*
 		InternalApiV1XdbNotifyImmediateTasksPost for api service to tell async service that there are new immediate tasks added to the queue
@@ -356,6 +380,144 @@ func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionPublishToLocalQueuePo
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type ApiApiV1XdbServiceProcessExecutionRpcPostRequest struct {
+	ctx                        context.Context
+	ApiService                 DefaultAPI
+	processExecutionRpcRequest *ProcessExecutionRpcRequest
+}
+
+func (r ApiApiV1XdbServiceProcessExecutionRpcPostRequest) ProcessExecutionRpcRequest(processExecutionRpcRequest ProcessExecutionRpcRequest) ApiApiV1XdbServiceProcessExecutionRpcPostRequest {
+	r.processExecutionRpcRequest = &processExecutionRpcRequest
+	return r
+}
+
+func (r ApiApiV1XdbServiceProcessExecutionRpcPostRequest) Execute() (*ProcessExecutionRpcResponse, *http.Response, error) {
+	return r.ApiService.ApiV1XdbServiceProcessExecutionRpcPostExecute(r)
+}
+
+/*
+ApiV1XdbServiceProcessExecutionRpcPost execute a RPC method of a process execution
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiApiV1XdbServiceProcessExecutionRpcPostRequest
+*/
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionRpcPost(ctx context.Context) ApiApiV1XdbServiceProcessExecutionRpcPostRequest {
+	return ApiApiV1XdbServiceProcessExecutionRpcPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ProcessExecutionRpcResponse
+func (a *DefaultAPIService) ApiV1XdbServiceProcessExecutionRpcPostExecute(r ApiApiV1XdbServiceProcessExecutionRpcPostRequest) (*ProcessExecutionRpcResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProcessExecutionRpcResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbServiceProcessExecutionRpcPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/xdb/service/process-execution/rpc"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.processExecutionRpcRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 424 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiApiV1XdbServiceProcessExecutionStartPostRequest struct {
@@ -794,6 +956,120 @@ func (a *DefaultAPIService) ApiV1XdbWorkerAsyncStateWaitUntilPostExecute(r ApiAp
 	}
 	// body params
 	localVarPostBody = r.asyncStateWaitUntilRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		var v WorkerErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiApiV1XdbWorkerProcessRpcPostRequest struct {
+	ctx                     context.Context
+	ApiService              DefaultAPI
+	processRpcWorkerRequest *ProcessRpcWorkerRequest
+}
+
+func (r ApiApiV1XdbWorkerProcessRpcPostRequest) ProcessRpcWorkerRequest(processRpcWorkerRequest ProcessRpcWorkerRequest) ApiApiV1XdbWorkerProcessRpcPostRequest {
+	r.processRpcWorkerRequest = &processRpcWorkerRequest
+	return r
+}
+
+func (r ApiApiV1XdbWorkerProcessRpcPostRequest) Execute() (*ProcessRpcWorkerResponse, *http.Response, error) {
+	return r.ApiService.ApiV1XdbWorkerProcessRpcPostExecute(r)
+}
+
+/*
+ApiV1XdbWorkerProcessRpcPost execute a RPC method of a process execution in the worker
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiApiV1XdbWorkerProcessRpcPostRequest
+*/
+func (a *DefaultAPIService) ApiV1XdbWorkerProcessRpcPost(ctx context.Context) ApiApiV1XdbWorkerProcessRpcPostRequest {
+	return ApiApiV1XdbWorkerProcessRpcPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ProcessRpcWorkerResponse
+func (a *DefaultAPIService) ApiV1XdbWorkerProcessRpcPostExecute(r ApiApiV1XdbWorkerProcessRpcPostRequest) (*ProcessRpcWorkerResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProcessRpcWorkerResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XdbWorkerProcessRpcPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/xdb/worker/process/rpc"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.processRpcWorkerRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

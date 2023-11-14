@@ -114,6 +114,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
+  /api/v1/xdb/service/process-execution/rpc:
+    post:
+      summary: execute a RPC method of a process execution
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionRpcRequest'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ProcessExecutionRpcResponse'
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '404':
+          description: Process execution not exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+        '424':
+          description: global attributes write failure / worker RPC execution failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
   # xdb workers APIs are hosted by xdb applications via SDKs, for xdb server to call back
   /api/v1/xdb/worker/async-state/wait-until:
     post:
@@ -151,6 +184,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AsyncStateExecuteResponse'
+        default:
+          description: worker execution failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerErrorResponse'
+  /api/v1/xdb/worker/process/rpc:
+    post:
+      summary: "execute a RPC method of a process execution in the worker"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessRpcWorkerRequest'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessRpcWorkerResponse'
         default:
           description: worker execution failure
           content:
@@ -816,4 +870,66 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
-
+    ProcessExecutionRpcRequest:
+      type: object
+      description: the request for executing a RPC method of a process execution
+      required:
+        - namespace
+        - processId
+        - rpcName
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        rpcName:
+          type: string
+        input:
+          $ref: '#/components/schemas/EncodedObject'
+        timeoutSeconds:
+          type: integer
+          description: the timeout for the single attempt of the Process RPC API
+        loadGlobalAttributesRequest:
+          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+    ProcessExecutionRpcResponse:
+      type: object
+      description: the response for executing a RPC method of a process execution
+      properties:
+        output:
+          $ref: '#/components/schemas/EncodedObject'
+    ProcessRpcWorkerRequest:
+      type: object
+      description: the request of the worker RPC API
+      required:
+        - context
+        - processType
+        - rpcName
+      properties:
+        context:
+          $ref: '#/components/schemas/Context'
+        processType:
+          type: string
+        rpcName:
+          type: string
+        input:
+          $ref: '#/components/schemas/EncodedObject'
+        loadedGlobalAttributes:
+          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+    ProcessRpcWorkerResponse:
+      type: object
+      description: the response of the worker RPC API
+      required:
+        - stateDecision
+      properties:
+        output:
+          $ref: '#/components/schemas/EncodedObject'
+        stateDecision:
+          $ref: '#/components/schemas/StateDecision'
+        publishToLocalQueue:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalQueueMessage'
+        writeToGlobalAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
