@@ -140,18 +140,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: Process execution not exists
-        "417":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: worker RPC execution failure
         "424":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: global attributes write failure
+          description: global attributes write failure / worker RPC execution failure
       summary: execute a RPC method of a process execution
   /api/v1/xdb/worker/async-state/wait-until:
     post:

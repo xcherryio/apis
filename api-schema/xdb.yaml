@@ -141,14 +141,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-        '417':
-          description: worker RPC execution failure
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
         '424':
-          description: global attributes write failure
+          description: global attributes write failure / worker RPC execution failure
           content:
             application/json:
               schema:
