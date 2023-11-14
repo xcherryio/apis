@@ -616,9 +616,7 @@ components:
         tableName:
           type: string
         primaryKey:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableColumnValue'
+          $ref: '#/components/schemas/TableColumnValue'
         initialWrite: # optional initial write -- create the new row if not exists   
           type: array
           items:

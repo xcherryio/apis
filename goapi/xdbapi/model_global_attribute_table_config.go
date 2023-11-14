@@ -20,7 +20,7 @@ var _ MappedNullable = &GlobalAttributeTableConfig{}
 // GlobalAttributeTableConfig struct for GlobalAttributeTableConfig
 type GlobalAttributeTableConfig struct {
 	TableName        string                      `json:"tableName"`
-	PrimaryKey       []TableColumnValue          `json:"primaryKey"`
+	PrimaryKey       TableColumnValue            `json:"primaryKey"`
 	InitialWrite     []TableColumnValue          `json:"initialWrite,omitempty"`
 	InitialWriteMode *AttributeWriteConflictMode `json:"initialWriteMode,omitempty"`
 }
@@ -29,7 +29,7 @@ type GlobalAttributeTableConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGlobalAttributeTableConfig(tableName string, primaryKey []TableColumnValue) *GlobalAttributeTableConfig {
+func NewGlobalAttributeTableConfig(tableName string, primaryKey TableColumnValue) *GlobalAttributeTableConfig {
 	this := GlobalAttributeTableConfig{}
 	this.TableName = tableName
 	this.PrimaryKey = primaryKey
@@ -69,9 +69,9 @@ func (o *GlobalAttributeTableConfig) SetTableName(v string) {
 }
 
 // GetPrimaryKey returns the PrimaryKey field value
-func (o *GlobalAttributeTableConfig) GetPrimaryKey() []TableColumnValue {
+func (o *GlobalAttributeTableConfig) GetPrimaryKey() TableColumnValue {
 	if o == nil {
-		var ret []TableColumnValue
+		var ret TableColumnValue
 		return ret
 	}
 
@@ -80,15 +80,15 @@ func (o *GlobalAttributeTableConfig) GetPrimaryKey() []TableColumnValue {
 
 // GetPrimaryKeyOk returns a tuple with the PrimaryKey field value
 // and a boolean to check if the value has been set.
-func (o *GlobalAttributeTableConfig) GetPrimaryKeyOk() ([]TableColumnValue, bool) {
+func (o *GlobalAttributeTableConfig) GetPrimaryKeyOk() (*TableColumnValue, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PrimaryKey, true
+	return &o.PrimaryKey, true
 }
 
 // SetPrimaryKey sets field value
-func (o *GlobalAttributeTableConfig) SetPrimaryKey(v []TableColumnValue) {
+func (o *GlobalAttributeTableConfig) SetPrimaryKey(v TableColumnValue) {
 	o.PrimaryKey = v
 }
 

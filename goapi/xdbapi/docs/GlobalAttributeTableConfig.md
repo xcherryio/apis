@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TableName** | **string** |  | 
-**PrimaryKey** | [**[]TableColumnValue**](TableColumnValue.md) |  | 
+**PrimaryKey** | [**TableColumnValue**](TableColumnValue.md) |  | 
 **InitialWrite** | Pointer to [**[]TableColumnValue**](TableColumnValue.md) |  | [optional] 
 **InitialWriteMode** | Pointer to [**AttributeWriteConflictMode**](AttributeWriteConflictMode.md) |  | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewGlobalAttributeTableConfig
 
-`func NewGlobalAttributeTableConfig(tableName string, primaryKey []TableColumnValue, ) *GlobalAttributeTableConfig`
+`func NewGlobalAttributeTableConfig(tableName string, primaryKey TableColumnValue, ) *GlobalAttributeTableConfig`
 
 NewGlobalAttributeTableConfig instantiates a new GlobalAttributeTableConfig object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetTableName sets TableName field to given value.
 
 ### GetPrimaryKey
 
-`func (o *GlobalAttributeTableConfig) GetPrimaryKey() []TableColumnValue`
+`func (o *GlobalAttributeTableConfig) GetPrimaryKey() TableColumnValue`
 
 GetPrimaryKey returns the PrimaryKey field if non-nil, zero value otherwise.
 
 ### GetPrimaryKeyOk
 
-`func (o *GlobalAttributeTableConfig) GetPrimaryKeyOk() (*[]TableColumnValue, bool)`
+`func (o *GlobalAttributeTableConfig) GetPrimaryKeyOk() (*TableColumnValue, bool)`
 
 GetPrimaryKeyOk returns a tuple with the PrimaryKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrimaryKey
 
-`func (o *GlobalAttributeTableConfig) SetPrimaryKey(v []TableColumnValue)`
+`func (o *GlobalAttributeTableConfig) SetPrimaryKey(v TableColumnValue)`
 
 SetPrimaryKey sets PrimaryKey field to given value.
 
