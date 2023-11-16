@@ -613,9 +613,9 @@ components:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
                 lockingPolicy: null
-                keysToLockWithLock:
-                - keysToLockWithLock
-                - keysToLockWithLock
+                keysToLoadWithLock:
+                - keysToLoadWithLock
+                - keysToLoadWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
@@ -657,9 +657,9 @@ components:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
                 lockingPolicy: null
-                keysToLockWithLock:
-                - keysToLockWithLock
-                - keysToLockWithLock
+                keysToLoadWithLock:
+                - keysToLoadWithLock
+                - keysToLoadWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
@@ -762,9 +762,9 @@ components:
               - keysToLoadNoLock
               - keysToLoadNoLock
               lockingPolicy: null
-              keysToLockWithLock:
-              - keysToLockWithLock
-              - keysToLockWithLock
+              keysToLoadWithLock:
+              - keysToLoadWithLock
+              - keysToLoadWithLock
             executeApiTimeoutSeconds: 6
             stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
@@ -806,9 +806,9 @@ components:
               - keysToLoadNoLock
               - keysToLoadNoLock
               lockingPolicy: null
-              keysToLockWithLock:
-              - keysToLockWithLock
-              - keysToLockWithLock
+              keysToLoadWithLock:
+              - keysToLoadWithLock
+              - keysToLoadWithLock
             executeApiTimeoutSeconds: 6
             stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
@@ -886,9 +886,9 @@ components:
             - keysToLoadNoLock
             - keysToLoadNoLock
             lockingPolicy: null
-            keysToLockWithLock:
-            - keysToLockWithLock
-            - keysToLockWithLock
+            keysToLoadWithLock:
+            - keysToLoadWithLock
+            - keysToLoadWithLock
           executeApiTimeoutSeconds: 6
           stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
@@ -1019,9 +1019,9 @@ components:
             - keysToLoadNoLock
             - keysToLoadNoLock
             lockingPolicy: null
-            keysToLockWithLock:
-            - keysToLockWithLock
-            - keysToLockWithLock
+            keysToLoadWithLock:
+            - keysToLoadWithLock
+            - keysToLoadWithLock
           executeApiTimeoutSeconds: 6
           stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
@@ -1319,15 +1319,15 @@ components:
         - keysToLoadNoLock
         - keysToLoadNoLock
         lockingPolicy: null
-        keysToLockWithLock:
-        - keysToLockWithLock
-        - keysToLockWithLock
+        keysToLoadWithLock:
+        - keysToLoadWithLock
+        - keysToLoadWithLock
       properties:
         keysToLoadNoLock:
           items:
             type: string
           type: array
-        keysToLockWithLock:
+        keysToLoadWithLock:
           items:
             type: string
           type: array
@@ -1446,9 +1446,9 @@ components:
           - keysToLoadNoLock
           - keysToLoadNoLock
           lockingPolicy: null
-          keysToLockWithLock:
-          - keysToLockWithLock
-          - keysToLockWithLock
+          keysToLoadWithLock:
+          - keysToLoadWithLock
+          - keysToLoadWithLock
         executeApiTimeoutSeconds: 6
         stateFailureRecoveryOptions:
           stateFailureProceedStateId: stateFailureProceedStateId
@@ -1781,9 +1781,9 @@ components:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
                 lockingPolicy: null
-                keysToLockWithLock:
-                - keysToLockWithLock
-                - keysToLockWithLock
+                keysToLoadWithLock:
+                - keysToLoadWithLock
+                - keysToLoadWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
@@ -1825,9 +1825,9 @@ components:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
                 lockingPolicy: null
-                keysToLockWithLock:
-                - keysToLockWithLock
-                - keysToLockWithLock
+                keysToLoadWithLock:
+                - keysToLoadWithLock
+                - keysToLoadWithLock
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
