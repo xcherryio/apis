@@ -1,4 +1,4 @@
-module github.com/xdblab/xdb-apis
+module github.com/xcherryio/apis
 
 go 1.19
 
