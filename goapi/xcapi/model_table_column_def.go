@@ -12,6 +12,7 @@ package xcapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the TableColumnDef type satisfies the MappedNullable interface at compile time
@@ -22,6 +23,8 @@ type TableColumnDef struct {
 	// the column name that can be used in the database query, see below for example
 	DbColumn string `json:"dbColumn"`
 }
+
+type _TableColumnDef TableColumnDef
 
 // NewTableColumnDef instantiates a new TableColumnDef object
 // This constructor will assign default values to properties that have it defined,
@@ -77,6 +80,41 @@ func (o TableColumnDef) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["dbColumn"] = o.DbColumn
 	return toSerialize, nil
+}
+
+func (o *TableColumnDef) UnmarshalJSON(bytes []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"dbColumn",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTableColumnDef := _TableColumnDef{}
+
+	err = json.Unmarshal(bytes, &varTableColumnDef)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TableColumnDef(varTableColumnDef)
+
+	return err
 }
 
 type NullableTableColumnDef struct {

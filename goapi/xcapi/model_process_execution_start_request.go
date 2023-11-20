@@ -12,6 +12,7 @@ package xcapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ProcessExecutionStartRequest type satisfies the MappedNullable interface at compile time
@@ -32,6 +33,8 @@ type ProcessExecutionStartRequest struct {
 	StartStateConfig   *AsyncStateConfig   `json:"startStateConfig,omitempty"`
 	ProcessStartConfig *ProcessStartConfig `json:"processStartConfig,omitempty"`
 }
+
+type _ProcessExecutionStartRequest ProcessExecutionStartRequest
 
 // NewProcessExecutionStartRequest instantiates a new ProcessExecutionStartRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -305,6 +308,44 @@ func (o ProcessExecutionStartRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["processStartConfig"] = o.ProcessStartConfig
 	}
 	return toSerialize, nil
+}
+
+func (o *ProcessExecutionStartRequest) UnmarshalJSON(bytes []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"namespace",
+		"processId",
+		"processType",
+		"workerUrl",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varProcessExecutionStartRequest := _ProcessExecutionStartRequest{}
+
+	err = json.Unmarshal(bytes, &varProcessExecutionStartRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProcessExecutionStartRequest(varProcessExecutionStartRequest)
+
+	return err
 }
 
 type NullableProcessExecutionStartRequest struct {

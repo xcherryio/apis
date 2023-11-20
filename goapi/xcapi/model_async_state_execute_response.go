@@ -12,6 +12,7 @@ package xcapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AsyncStateExecuteResponse type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type AsyncStateExecuteResponse struct {
 	WriteToGlobalAttributes []GlobalAttributeTableRowUpdate `json:"writeToGlobalAttributes,omitempty"`
 	WriteToLocalAttributes  []KeyValue                      `json:"writeToLocalAttributes,omitempty"`
 }
+
+type _AsyncStateExecuteResponse AsyncStateExecuteResponse
 
 // NewAsyncStateExecuteResponse instantiates a new AsyncStateExecuteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -184,6 +187,41 @@ func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["writeToLocalAttributes"] = o.WriteToLocalAttributes
 	}
 	return toSerialize, nil
+}
+
+func (o *AsyncStateExecuteResponse) UnmarshalJSON(bytes []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"stateDecision",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAsyncStateExecuteResponse := _AsyncStateExecuteResponse{}
+
+	err = json.Unmarshal(bytes, &varAsyncStateExecuteResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AsyncStateExecuteResponse(varAsyncStateExecuteResponse)
+
+	return err
 }
 
 type NullableAsyncStateExecuteResponse struct {

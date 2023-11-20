@@ -12,6 +12,7 @@ package xcapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PublishToLocalQueueRequest type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ type PublishToLocalQueueRequest struct {
 	ProcessId string              `json:"processId"`
 	Messages  []LocalQueueMessage `json:"messages,omitempty"`
 }
+
+type _PublishToLocalQueueRequest PublishToLocalQueueRequest
 
 // NewPublishToLocalQueueRequest instantiates a new PublishToLocalQueueRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -139,6 +142,42 @@ func (o PublishToLocalQueueRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["messages"] = o.Messages
 	}
 	return toSerialize, nil
+}
+
+func (o *PublishToLocalQueueRequest) UnmarshalJSON(bytes []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"namespace",
+		"processId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPublishToLocalQueueRequest := _PublishToLocalQueueRequest{}
+
+	err = json.Unmarshal(bytes, &varPublishToLocalQueueRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PublishToLocalQueueRequest(varPublishToLocalQueueRequest)
+
+	return err
 }
 
 type NullablePublishToLocalQueueRequest struct {
