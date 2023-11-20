@@ -669,7 +669,7 @@ components:
           type: array
           items:
             type: string
-        keysToLockWithLock:
+        keysToLoadWithLock:
           type: array
           items:
             type: string

@@ -20,7 +20,7 @@ var _ MappedNullable = &LoadLocalAttributesRequest{}
 // LoadLocalAttributesRequest struct for LoadLocalAttributesRequest
 type LoadLocalAttributesRequest struct {
 	KeysToLoadNoLock   []string                `json:"keysToLoadNoLock,omitempty"`
-	KeysToLockWithLock []string                `json:"keysToLockWithLock,omitempty"`
+	KeysToLoadWithLock []string                `json:"keysToLoadWithLock,omitempty"`
 	LockingPolicy      *TableReadLockingPolicy `json:"lockingPolicy,omitempty"`
 }
 
@@ -73,36 +73,36 @@ func (o *LoadLocalAttributesRequest) SetKeysToLoadNoLock(v []string) {
 	o.KeysToLoadNoLock = v
 }
 
-// GetKeysToLockWithLock returns the KeysToLockWithLock field value if set, zero value otherwise.
-func (o *LoadLocalAttributesRequest) GetKeysToLockWithLock() []string {
-	if o == nil || IsNil(o.KeysToLockWithLock) {
+// GetKeysToLoadWithLock returns the KeysToLoadWithLock field value if set, zero value otherwise.
+func (o *LoadLocalAttributesRequest) GetKeysToLoadWithLock() []string {
+	if o == nil || IsNil(o.KeysToLoadWithLock) {
 		var ret []string
 		return ret
 	}
-	return o.KeysToLockWithLock
+	return o.KeysToLoadWithLock
 }
 
-// GetKeysToLockWithLockOk returns a tuple with the KeysToLockWithLock field value if set, nil otherwise
+// GetKeysToLoadWithLockOk returns a tuple with the KeysToLoadWithLock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadLocalAttributesRequest) GetKeysToLockWithLockOk() ([]string, bool) {
-	if o == nil || IsNil(o.KeysToLockWithLock) {
+func (o *LoadLocalAttributesRequest) GetKeysToLoadWithLockOk() ([]string, bool) {
+	if o == nil || IsNil(o.KeysToLoadWithLock) {
 		return nil, false
 	}
-	return o.KeysToLockWithLock, true
+	return o.KeysToLoadWithLock, true
 }
 
-// HasKeysToLockWithLock returns a boolean if a field has been set.
-func (o *LoadLocalAttributesRequest) HasKeysToLockWithLock() bool {
-	if o != nil && !IsNil(o.KeysToLockWithLock) {
+// HasKeysToLoadWithLock returns a boolean if a field has been set.
+func (o *LoadLocalAttributesRequest) HasKeysToLoadWithLock() bool {
+	if o != nil && !IsNil(o.KeysToLoadWithLock) {
 		return true
 	}
 
 	return false
 }
 
-// SetKeysToLockWithLock gets a reference to the given []string and assigns it to the KeysToLockWithLock field.
-func (o *LoadLocalAttributesRequest) SetKeysToLockWithLock(v []string) {
-	o.KeysToLockWithLock = v
+// SetKeysToLoadWithLock gets a reference to the given []string and assigns it to the KeysToLoadWithLock field.
+func (o *LoadLocalAttributesRequest) SetKeysToLoadWithLock(v []string) {
+	o.KeysToLoadWithLock = v
 }
 
 // GetLockingPolicy returns the LockingPolicy field value if set, zero value otherwise.
@@ -150,8 +150,8 @@ func (o LoadLocalAttributesRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KeysToLoadNoLock) {
 		toSerialize["keysToLoadNoLock"] = o.KeysToLoadNoLock
 	}
-	if !IsNil(o.KeysToLockWithLock) {
-		toSerialize["keysToLockWithLock"] = o.KeysToLockWithLock
+	if !IsNil(o.KeysToLoadWithLock) {
+		toSerialize["keysToLoadWithLock"] = o.KeysToLoadWithLock
 	}
 	if !IsNil(o.LockingPolicy) {
 		toSerialize["lockingPolicy"] = o.LockingPolicy

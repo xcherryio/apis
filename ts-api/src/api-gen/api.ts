@@ -533,7 +533,7 @@ export interface LoadLocalAttributesRequest {
      * @type {Array<string>}
      * @memberof LoadLocalAttributesRequest
      */
-    'keysToLockWithLock'?: Array<string>;
+    'keysToLoadWithLock'?: Array<string>;
     /**
      * 
      * @type {TableReadLockingPolicy}

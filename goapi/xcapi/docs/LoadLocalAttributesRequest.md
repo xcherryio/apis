@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **KeysToLoadNoLock** | Pointer to **[]string** |  | [optional] 
-**KeysToLockWithLock** | Pointer to **[]string** |  | [optional] 
+**KeysToLoadWithLock** | Pointer to **[]string** |  | [optional] 
 **LockingPolicy** | Pointer to [**TableReadLockingPolicy**](TableReadLockingPolicy.md) |  | [optional] 
 
 ## Methods
@@ -52,30 +52,30 @@ SetKeysToLoadNoLock sets KeysToLoadNoLock field to given value.
 
 HasKeysToLoadNoLock returns a boolean if a field has been set.
 
-### GetKeysToLockWithLock
+### GetKeysToLoadWithLock
 
-`func (o *LoadLocalAttributesRequest) GetKeysToLockWithLock() []string`
+`func (o *LoadLocalAttributesRequest) GetKeysToLoadWithLock() []string`
 
-GetKeysToLockWithLock returns the KeysToLockWithLock field if non-nil, zero value otherwise.
+GetKeysToLoadWithLock returns the KeysToLoadWithLock field if non-nil, zero value otherwise.
 
-### GetKeysToLockWithLockOk
+### GetKeysToLoadWithLockOk
 
-`func (o *LoadLocalAttributesRequest) GetKeysToLockWithLockOk() (*[]string, bool)`
+`func (o *LoadLocalAttributesRequest) GetKeysToLoadWithLockOk() (*[]string, bool)`
 
-GetKeysToLockWithLockOk returns a tuple with the KeysToLockWithLock field if it's non-nil, zero value otherwise
+GetKeysToLoadWithLockOk returns a tuple with the KeysToLoadWithLock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKeysToLockWithLock
+### SetKeysToLoadWithLock
 
-`func (o *LoadLocalAttributesRequest) SetKeysToLockWithLock(v []string)`
+`func (o *LoadLocalAttributesRequest) SetKeysToLoadWithLock(v []string)`
 
-SetKeysToLockWithLock sets KeysToLockWithLock field to given value.
+SetKeysToLoadWithLock sets KeysToLoadWithLock field to given value.
 
-### HasKeysToLockWithLock
+### HasKeysToLoadWithLock
 
-`func (o *LoadLocalAttributesRequest) HasKeysToLockWithLock() bool`
+`func (o *LoadLocalAttributesRequest) HasKeysToLoadWithLock() bool`
 
-HasKeysToLockWithLock returns a boolean if a field has been set.
+HasKeysToLoadWithLock returns a boolean if a field has been set.
 
 ### GetLockingPolicy
 
