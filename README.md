@@ -1,5 +1,5 @@
-# xdb-apis
-API protocol between xdb SDKs and [xdb server](https://github.com/xdblab/xdb)
+# xCherry-apis
+API protocol between xCherry SDKs and [xCherry server](https://github.com/xcherryio/xcherry)
 
 It's based on OpenAPI 3.0.3, see [specification](https://spec.openapis.org/oas/v3.0.3)
 
