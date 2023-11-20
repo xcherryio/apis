@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ProcessExecutionStopRequest type satisfies the MappedNullable interface at compile time
@@ -24,8 +23,6 @@ type ProcessExecutionStopRequest struct {
 	ProcessId string                    `json:"processId"`
 	StopType  *ProcessExecutionStopType `json:"stopType,omitempty"`
 }
-
-type _ProcessExecutionStopRequest ProcessExecutionStopRequest
 
 // NewProcessExecutionStopRequest instantiates a new ProcessExecutionStopRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -142,42 +139,6 @@ func (o ProcessExecutionStopRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["stopType"] = o.StopType
 	}
 	return toSerialize, nil
-}
-
-func (o *ProcessExecutionStopRequest) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"namespace",
-		"processId",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varProcessExecutionStopRequest := _ProcessExecutionStopRequest{}
-
-	err = json.Unmarshal(bytes, &varProcessExecutionStopRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ProcessExecutionStopRequest(varProcessExecutionStopRequest)
-
-	return err
 }
 
 type NullableProcessExecutionStopRequest struct {

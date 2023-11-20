@@ -21,7 +21,7 @@ import globalAxios from 'axios';
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 
 /**
  * 
@@ -1788,9 +1788,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionDescribeResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionDescribePost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1801,9 +1799,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest?: PublishToLocalQueueRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1814,9 +1810,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest?: ProcessExecutionRpcRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionRpcResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionRpcPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1827,9 +1821,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest?: ProcessExecutionStartRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionStartResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionStartPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1840,9 +1832,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest?: ProcessExecutionStopRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionStopPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1853,9 +1843,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest?: AsyncStateExecuteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncStateExecuteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryWorkerAsyncStateExecutePost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1866,9 +1854,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest?: AsyncStateWaitUntilRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncStateWaitUntilResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryWorkerAsyncStateWaitUntilPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1879,9 +1865,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessRpcWorkerResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryWorkerProcessRpcPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1892,9 +1876,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherryNotifyImmediateTasksPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -1905,9 +1887,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherryNotifyTimerTasksPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };

@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the LocalQueueMessageResult type satisfies the MappedNullable interface at compile time
@@ -24,8 +23,6 @@ type LocalQueueMessageResult struct {
 	DedupId string         `json:"dedupId"`
 	Payload *EncodedObject `json:"payload,omitempty"`
 }
-
-type _LocalQueueMessageResult LocalQueueMessageResult
 
 // NewLocalQueueMessageResult instantiates a new LocalQueueMessageResult object
 // This constructor will assign default values to properties that have it defined,
@@ -116,41 +113,6 @@ func (o LocalQueueMessageResult) ToMap() (map[string]interface{}, error) {
 		toSerialize["payload"] = o.Payload
 	}
 	return toSerialize, nil
-}
-
-func (o *LocalQueueMessageResult) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"dedupId",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varLocalQueueMessageResult := _LocalQueueMessageResult{}
-
-	err = json.Unmarshal(bytes, &varLocalQueueMessageResult)
-
-	if err != nil {
-		return err
-	}
-
-	*o = LocalQueueMessageResult(varLocalQueueMessageResult)
-
-	return err
 }
 
 type NullableLocalQueueMessageResult struct {

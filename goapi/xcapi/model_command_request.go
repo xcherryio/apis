@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CommandRequest type satisfies the MappedNullable interface at compile time
@@ -24,8 +23,6 @@ type CommandRequest struct {
 	TimerCommands      []TimerCommand      `json:"timerCommands,omitempty"`
 	LocalQueueCommands []LocalQueueCommand `json:"localQueueCommands,omitempty"`
 }
-
-type _CommandRequest CommandRequest
 
 // NewCommandRequest instantiates a new CommandRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -151,41 +148,6 @@ func (o CommandRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["localQueueCommands"] = o.LocalQueueCommands
 	}
 	return toSerialize, nil
-}
-
-func (o *CommandRequest) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"waitingType",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCommandRequest := _CommandRequest{}
-
-	err = json.Unmarshal(bytes, &varCommandRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CommandRequest(varCommandRequest)
-
-	return err
 }
 
 type NullableCommandRequest struct {

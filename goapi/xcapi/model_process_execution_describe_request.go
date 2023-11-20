@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ProcessExecutionDescribeRequest type satisfies the MappedNullable interface at compile time
@@ -23,8 +22,6 @@ type ProcessExecutionDescribeRequest struct {
 	Namespace string `json:"namespace"`
 	ProcessId string `json:"processId"`
 }
-
-type _ProcessExecutionDescribeRequest ProcessExecutionDescribeRequest
 
 // NewProcessExecutionDescribeRequest instantiates a new ProcessExecutionDescribeRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -106,42 +103,6 @@ func (o ProcessExecutionDescribeRequest) ToMap() (map[string]interface{}, error)
 	toSerialize["namespace"] = o.Namespace
 	toSerialize["processId"] = o.ProcessId
 	return toSerialize, nil
-}
-
-func (o *ProcessExecutionDescribeRequest) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"namespace",
-		"processId",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varProcessExecutionDescribeRequest := _ProcessExecutionDescribeRequest{}
-
-	err = json.Unmarshal(bytes, &varProcessExecutionDescribeRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ProcessExecutionDescribeRequest(varProcessExecutionDescribeRequest)
-
-	return err
 }
 
 type NullableProcessExecutionDescribeRequest struct {

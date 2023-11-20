@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the GlobalAttributeTableConfig type satisfies the MappedNullable interface at compile time
@@ -25,8 +24,6 @@ type GlobalAttributeTableConfig struct {
 	InitialWrite     []TableColumnValue          `json:"initialWrite,omitempty"`
 	InitialWriteMode *AttributeWriteConflictMode `json:"initialWriteMode,omitempty"`
 }
-
-type _GlobalAttributeTableConfig GlobalAttributeTableConfig
 
 // NewGlobalAttributeTableConfig instantiates a new GlobalAttributeTableConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -178,42 +175,6 @@ func (o GlobalAttributeTableConfig) ToMap() (map[string]interface{}, error) {
 		toSerialize["initialWriteMode"] = o.InitialWriteMode
 	}
 	return toSerialize, nil
-}
-
-func (o *GlobalAttributeTableConfig) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"tableName",
-		"primaryKey",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varGlobalAttributeTableConfig := _GlobalAttributeTableConfig{}
-
-	err = json.Unmarshal(bytes, &varGlobalAttributeTableConfig)
-
-	if err != nil {
-		return err
-	}
-
-	*o = GlobalAttributeTableConfig(varGlobalAttributeTableConfig)
-
-	return err
 }
 
 type NullableGlobalAttributeTableConfig struct {

@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the EncodedObject type satisfies the MappedNullable interface at compile time
@@ -23,8 +22,6 @@ type EncodedObject struct {
 	Encoding string `json:"encoding"`
 	Data     string `json:"data"`
 }
-
-type _EncodedObject EncodedObject
 
 // NewEncodedObject instantiates a new EncodedObject object
 // This constructor will assign default values to properties that have it defined,
@@ -106,42 +103,6 @@ func (o EncodedObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["encoding"] = o.Encoding
 	toSerialize["data"] = o.Data
 	return toSerialize, nil
-}
-
-func (o *EncodedObject) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"encoding",
-		"data",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varEncodedObject := _EncodedObject{}
-
-	err = json.Unmarshal(bytes, &varEncodedObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = EncodedObject(varEncodedObject)
-
-	return err
 }
 
 type NullableEncodedObject struct {

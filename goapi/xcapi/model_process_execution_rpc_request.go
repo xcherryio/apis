@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ProcessExecutionRpcRequest type satisfies the MappedNullable interface at compile time
@@ -28,8 +27,6 @@ type ProcessExecutionRpcRequest struct {
 	TimeoutSeconds              *int32                       `json:"timeoutSeconds,omitempty"`
 	LoadGlobalAttributesRequest *LoadGlobalAttributesRequest `json:"loadGlobalAttributesRequest,omitempty"`
 }
-
-type _ProcessExecutionRpcRequest ProcessExecutionRpcRequest
 
 // NewProcessExecutionRpcRequest instantiates a new ProcessExecutionRpcRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -242,43 +239,6 @@ func (o ProcessExecutionRpcRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["loadGlobalAttributesRequest"] = o.LoadGlobalAttributesRequest
 	}
 	return toSerialize, nil
-}
-
-func (o *ProcessExecutionRpcRequest) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"namespace",
-		"processId",
-		"rpcName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varProcessExecutionRpcRequest := _ProcessExecutionRpcRequest{}
-
-	err = json.Unmarshal(bytes, &varProcessExecutionRpcRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ProcessExecutionRpcRequest(varProcessExecutionRpcRequest)
-
-	return err
 }
 
 type NullableProcessExecutionRpcRequest struct {

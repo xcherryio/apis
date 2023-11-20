@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the TableColumnValue type satisfies the MappedNullable interface at compile time
@@ -25,8 +24,6 @@ type TableColumnValue struct {
 	// the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
 	DbQueryValue string `json:"dbQueryValue"`
 }
-
-type _TableColumnValue TableColumnValue
 
 // NewTableColumnValue instantiates a new TableColumnValue object
 // This constructor will assign default values to properties that have it defined,
@@ -108,42 +105,6 @@ func (o TableColumnValue) ToMap() (map[string]interface{}, error) {
 	toSerialize["dbColumn"] = o.DbColumn
 	toSerialize["dbQueryValue"] = o.DbQueryValue
 	return toSerialize, nil
-}
-
-func (o *TableColumnValue) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"dbColumn",
-		"dbQueryValue",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varTableColumnValue := _TableColumnValue{}
-
-	err = json.Unmarshal(bytes, &varTableColumnValue)
-
-	if err != nil {
-		return err
-	}
-
-	*o = TableColumnValue(varTableColumnValue)
-
-	return err
 }
 
 type NullableTableColumnValue struct {

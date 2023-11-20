@@ -12,7 +12,6 @@ package xcapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the StateMovement type satisfies the MappedNullable interface at compile time
@@ -24,8 +23,6 @@ type StateMovement struct {
 	StateInput  *EncodedObject    `json:"stateInput,omitempty"`
 	StateConfig *AsyncStateConfig `json:"stateConfig,omitempty"`
 }
-
-type _StateMovement StateMovement
 
 // NewStateMovement instantiates a new StateMovement object
 // This constructor will assign default values to properties that have it defined,
@@ -151,41 +148,6 @@ func (o StateMovement) ToMap() (map[string]interface{}, error) {
 		toSerialize["stateConfig"] = o.StateConfig
 	}
 	return toSerialize, nil
-}
-
-func (o *StateMovement) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"stateId",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varStateMovement := _StateMovement{}
-
-	err = json.Unmarshal(bytes, &varStateMovement)
-
-	if err != nil {
-		return err
-	}
-
-	*o = StateMovement(varStateMovement)
-
-	return err
 }
 
 type NullableStateMovement struct {
