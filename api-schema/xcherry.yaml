@@ -359,7 +359,7 @@ components:
         commandResults:
           $ref: '#/components/schemas/CommandResults'
         readAppDatabaseResponse:
-          $ref: '#/components/schemas/ReadAppDatabaseResponse'
+          $ref: '#/components/schemas/AppDatabaseReadResponse'
         loadedLocalAttributes:
           $ref: '#/components/schemas/LoadLocalAttributesResponse'
     CommandResults:
@@ -435,7 +435,7 @@ components:
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
         writeToAppDatabase:
-          $ref: '#/components/schemas/AppDatabaseWriter'
+          $ref: '#/components/schemas/AppDatabaseWrite'
         writeToLocalAttributes:
           type: array
           items:
@@ -609,7 +609,7 @@ components:
       type: object
       required: 
         - tableName
-        - rowConfig
+        - rows
       properties: 
         tableName:
           type: string
@@ -632,7 +632,7 @@ components:
             $ref: '#/components/schemas/AppDatabaseColumnValue'
         conflictMode:
           $ref: '#/components/schemas/WriteConflictMode'
-    AppDatabaseWriter:
+    AppDatabaseWrite:
       type: object
       properties:
         tables:
@@ -646,11 +646,11 @@ components:
       properties:
         tableName:
           type: string
-        updateColumns:
+        rows:
           type: array
           items:
-            $ref: '#/components/schemas/AppDatabaseRowWriter'
-    AppDatabaseRowWriter:
+            $ref: '#/components/schemas/AppDatabaseRowWrite'
+    AppDatabaseRowWrite:
       type: object
       required:
         - primaryKey
@@ -703,7 +703,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-    ReadAppDatabaseRequest:
+    AppDatabaseReadRequest:
       type: object
       description: the request to read app database tables
       properties:
@@ -722,11 +722,11 @@ components:
           type: array
           items: 
             type: string
-    ReadAppDatabaseResponse:
+    AppDatabaseReadResponse:
       type: object
       description: the response for loading global attributes
       properties:
-        tableResponses:
+        tables:
           type: array
           items:
             $ref: '#/components/schemas/AppDatabaseTableReadResponse'
@@ -738,8 +738,8 @@ components:
         rows:
           type: array
           items: 
-            $ref: '#/components/schemas/AppDatabaseTableRow'
-    AppDatabaseTableRow:
+            $ref: '#/components/schemas/AppDatabaseRowReadResponse'
+    AppDatabaseRowReadResponse:
       type: object
       properties:
         columns:
@@ -915,8 +915,8 @@ components:
         timeoutSeconds:
           type: integer
           description: the timeout for the single attempt of the Process RPC API
-        appDatabaseRequest:
-          $ref: '#/components/schemas/AppDatabaseTableReadRequest'
+        appDatabaseReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
     ProcessExecutionRpcResponse:
       type: object
       description: the response for executing a RPC method of a process execution
@@ -940,7 +940,7 @@ components:
         input:
           $ref: '#/components/schemas/EncodedObject'
         appDatabaseReadResponse:
-          $ref: '#/components/schemas/ReadAppDatabaseResponse'
+          $ref: '#/components/schemas/AppDatabaseReadResponse'
     ProcessRpcWorkerResponse:
       type: object
       description: the response of the worker RPC API
@@ -956,4 +956,4 @@ components:
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
         writeToAppDatabase:
-          $ref: '#/components/schemas/AppDatabaseWriter'
+          $ref: '#/components/schemas/AppDatabaseWrite'
