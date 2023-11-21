@@ -34,7 +34,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
         '424':
-          description: global attributes write failure
+          description: app database write failure
           content:
             application/json:
               schema:
@@ -142,7 +142,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
         '424':
-          description: global attributes write failure / worker RPC execution failure
+          description: app database write failure or worker RPC execution failure
           content:
             application/json:
               schema:
@@ -358,8 +358,8 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        loadedGlobalAttributes:
-          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        readAppDatabaseResponse:
+          $ref: '#/components/schemas/ReadAppDatabaseResponse'
         loadedLocalAttributes:
           $ref: '#/components/schemas/LoadLocalAttributesResponse'
     CommandResults:
@@ -434,10 +434,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
-        writeToGlobalAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
+        writeToAppDatabase:
+          $ref: '#/components/schemas/AppDatabaseWriter'
         writeToLocalAttributes:
           type: array
           items:
@@ -579,8 +577,8 @@ components:
           type: integer
         idReusePolicy:
           $ref: '#/components/schemas/ProcessIdReusePolicy'
-        globalAttributeConfig:
-          $ref: '#/components/schemas/GlobalAttributeConfig'
+        appDatabaseConfig:
+          $ref: '#/components/schemas/AppDatabaseConfig'
         localAttributeConfig:
           $ref: '#/components/schemas/LocalAttributeConfig'
     LocalAttributeConfig:
@@ -600,49 +598,81 @@ components:
           type: string
         value:
           $ref: '#/components/schemas/EncodedObject'
-    GlobalAttributeConfig:
+    AppDatabaseConfig:
       type: object
       properties:
         tableConfigs:
           type: array
           items:
-            $ref: '#/components/schemas/GlobalAttributeTableConfig'
-    GlobalAttributeTableConfig:
+            $ref: '#/components/schemas/AppDatabaseTableConfig'
+    AppDatabaseTableConfig:
       type: object
       required: 
         - tableName
-        - primaryKey
+        - rowConfig
       properties: 
         tableName:
           type: string
-        primaryKey:
-          $ref: '#/components/schemas/TableColumnValue'
-        initialWrite: # optional initial write -- create the new row if not exists   
+        rows:
           type: array
           items:
-            $ref: '#/components/schemas/TableColumnValue'
-        initialWriteMode:
-          $ref: '#/components/schemas/AttributeWriteConflictMode'
-    GlobalAttributeTableRowUpdate:
+            $ref: '#/components/schemas/AppDatabaseTableRowSelector'
+    AppDatabaseTableRowSelector:
+      type: object
+      required:
+        - primaryKey
+      properties:
+        primaryKey:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        initialWrite: # optional initial write -- create the new row if not exists
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        conflictMode:
+          $ref: '#/components/schemas/WriteConflictMode'
+    AppDatabaseWriter:
+      type: object
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableWrite'
+    AppDatabaseTableWrite:
       type: object
       required:
         - tableName
       properties:
         tableName:
           type: string
-        updateColumns:    
+        updateColumns:
           type: array
           items:
-            $ref: '#/components/schemas/TableColumnValue'
-    AttributeWriteConflictMode:
+            $ref: '#/components/schemas/AppDatabaseRowWriter'
+    AppDatabaseRowWriter:
+      type: object
+      required:
+        - primaryKey
+        - writeColumns
+      properties:
+        primaryKey:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        writeColumns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+    WriteConflictMode:
       type: string
       enum:
-        - RETURN_ERROR_ON_CONFLICT # default behavior for initial global attributes
+        - RETURN_ERROR_ON_CONFLICT # default behavior for initial row write
         - IGNORE_CONFLICT
         - OVERRIDE_ON_CONFLICT
-    TableColumnValue:
+    AppDatabaseColumnValue:
       type: object
-      description: the value of a global attribute table (from SDK to server or from server to SDK)
+      description: the value of a table column (from SDK to server or from server to SDK)
       required:
         - dbColumn
         - dbQueryValue
@@ -653,15 +683,6 @@ components:
         dbQueryValue:
           type: string
           description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
-    TableColumnDef:
-      type: object
-      description: the definition(key) for getting value of a global attribute table
-      required:
-        - dbColumn
-      properties:
-        dbColumn:
-          type: string
-          description: the column name that can be used in the database query, see below for example   
     LoadLocalAttributesRequest:
       type: object
       properties:
@@ -673,8 +694,8 @@ components:
           type: array
           items:
             type: string
-        lockingPolicy:
-          $ref: '#/components/schemas/TableReadLockingPolicy'
+        lockType:
+          $ref: '#/components/schemas/DatabaseLockingType'
     LoadLocalAttributesResponse:
       type: object
       properties:
@@ -682,43 +703,50 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-    LoadGlobalAttributesRequest:
+    ReadAppDatabaseRequest:
       type: object
-      description: the request to load global attributes
+      description: the request to read app database tables
       properties:
         tableRequests:
           type: array
           items:
-            $ref: '#/components/schemas/TableReadRequest'
-    TableReadRequest:
+            $ref: '#/components/schemas/AppDatabaseTableReadRequest'
+    AppDatabaseTableReadRequest:
       type: object
       properties: 
         tableName:
           type: string
-        lockingPolicy:
-          $ref: '#/components/schemas/TableReadLockingPolicy'
+        lockType:
+          $ref: '#/components/schemas/DatabaseLockingType'
         columns:
           type: array
           items: 
-            $ref: '#/components/schemas/TableColumnDef'
-    LoadGlobalAttributeResponse:
+            type: string
+    ReadAppDatabaseResponse:
       type: object
       description: the response for loading global attributes
       properties:
         tableResponses:
           type: array
           items:
-            $ref: '#/components/schemas/TableReadResponse'
-    TableReadResponse:
+            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
+    AppDatabaseTableReadResponse:
       type: object
       properties:
         tableName:
           type: string
-        columns:
+        rows:
           type: array
           items: 
-            $ref: '#/components/schemas/TableColumnValue'
-    TableReadLockingPolicy:
+            $ref: '#/components/schemas/AppDatabaseTableRow'
+    AppDatabaseTableRow:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+    DatabaseLockingType:
       type: string
       enum:
         - NO_LOCKING
@@ -748,8 +776,8 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryOptions:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
-        loadGlobalAttributesRequest:
-          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        appDatabaseRequest:
+          $ref: '#/components/schemas/AppDatabaseTableReadRequest'
         loadLocalAttributesRequest:
           $ref: '#/components/schemas/LoadLocalAttributesRequest'
     StateFailureRecoveryPolicy:
@@ -887,8 +915,8 @@ components:
         timeoutSeconds:
           type: integer
           description: the timeout for the single attempt of the Process RPC API
-        loadGlobalAttributesRequest:
-          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        appDatabaseRequest:
+          $ref: '#/components/schemas/AppDatabaseTableReadRequest'
     ProcessExecutionRpcResponse:
       type: object
       description: the response for executing a RPC method of a process execution
@@ -911,8 +939,8 @@ components:
           type: string
         input:
           $ref: '#/components/schemas/EncodedObject'
-        loadedGlobalAttributes:
-          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        appDatabaseReadResponse:
+          $ref: '#/components/schemas/ReadAppDatabaseResponse'
     ProcessRpcWorkerResponse:
       type: object
       description: the response of the worker RPC API
@@ -927,7 +955,5 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
-        writeToGlobalAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
+        writeToAppDatabase:
+          $ref: '#/components/schemas/AppDatabaseWriter'
