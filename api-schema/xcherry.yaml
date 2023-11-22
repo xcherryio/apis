@@ -803,8 +803,7 @@ components:
             $ref: '#/components/schemas/LocalQueueMessage'
         writeToAppDatabase:
           $ref: '#/components/schemas/AppDatabaseWrite'
-    # below is models for app database feature
-    AppDatabaseReadRequest:
+    AppDatabaseReadRequest: # below is models for app database feature
       type: object
       description: the request to read the selected rows of configured app database tables
       properties:
@@ -952,4 +951,3 @@ components:
         queryValue:
           type: string
           description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
-# above is the models for app database feature
