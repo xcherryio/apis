@@ -21,24 +21,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionStartResponse'
-        '400':
-          description: Invalid request
+        default:
+          description: "400: Invalid request, 409: Process already started, 424: app database write failure"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-        '409':
-          description: Process already started
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '424':
-          description: app database write failure
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'                
   /api/v1/xcherry/service/process-execution/stop:
     post:
       summary: stop a process execution
@@ -51,14 +39,8 @@ paths:
         '200':
           description: successful operation
           content: {}
-        '400':
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
+        default:
+          description: "400: Invalid request, 404: Process execution not exists"
           content:
             application/json:
               schema:
@@ -78,14 +60,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionDescribeResponse'
-        '400':
-          description: Invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
+        default:
+          description: "400: Invalid request, 404: Process execution not exists"
           content:
             application/json:
               schema:
@@ -102,14 +78,8 @@ paths:
         '200':
           description: successful operation
           content: {}
-        '400':
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
+        default:
+          description: "400: Invalid request, 404: Process execution not exists"
           content:
             application/json:
               schema:
@@ -129,20 +99,8 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/ProcessExecutionRpcResponse'
-        '400':
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '424':
-          description: app database write failure or worker RPC execution failure
+        default:
+          description: "400: Invalid request, 404: Process execution not exists, 424: app database write failure or worker RPC execution failure, see subStatus for details"
           content:
             application/json:
               schema:
@@ -505,12 +463,13 @@ components:
           description: for async state API only, state id + sequence number
           type: string
         recoverFromApi: # if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
-          $ref: '#/components/schemas/StateApiType'
-    StateApiType:
+          $ref: '#/components/schemas/WorkerApiType'
+    WorkerApiType:
       type: string
       enum:
         - WAIT_UNTIL_API
         - EXECUTE_API
+        - RPC_API
     WorkerErrorResponse:
       type: object
       required: 
@@ -518,8 +477,11 @@ components:
       properties:
         detail:
           type: string
+          description: "an optional field to let application set some detailed information. 
+          Default to the error message + stacktrace of the error"
         errorType:
           type: string
+          description: "an optional field for error handling. Default to the class/error Name"
     EncodedObject:
       type: object
       required: 
@@ -533,14 +495,25 @@ components:
     ApiErrorResponse:
       type: object
       properties:
-        detail:
+        errorSubType:
+          $ref: '#/components/schemas/ErrorSubType'
+        appErrorType:
           type: string
-        originalWorkerErrorDetail:
+          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType;
+          for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver"
+        details:
           type: string
-        originalWorkerErrorType:
-          type: string
-        originalWorkerErrorStatus:
-          type: integer
+          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details;
+          for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver;
+          for other apiErrorType, it's the detailed message from server."
+    ErrorSubType:
+      type: string
+      enum:
+        - UNCATEGORIZED_ERROR # for errors that are not necessary to categorize as subType yet(e.g. http status code are enough)
+        - WORKER_EXECUTION_ERROR
+        - APP_DATABASE_READ_ERROR
+        - APP_DATABASE_WRITE_ERROR
+        - POLL_TIMEOUT_ERROR
     ProcessExecutionStartRequest:
       type: object
       description: the request for starting a process execution
