@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **WaitUntilApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **ExecuteApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **StateFailureRecoveryOptions** | Pointer to [**StateFailureRecoveryOptions**](StateFailureRecoveryOptions.md) |  | [optional] 
-**AppDatabaseReadRequest** | Pointer to [**AppDatabaseTableReadRequest**](AppDatabaseTableReadRequest.md) |  | [optional] 
+**AppDatabaseReadRequest** | Pointer to [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
 **LoadLocalAttributesRequest** | Pointer to [**LoadLocalAttributesRequest**](LoadLocalAttributesRequest.md) |  | [optional] 
 
 ## Methods
@@ -184,20 +184,20 @@ HasStateFailureRecoveryOptions returns a boolean if a field has been set.
 
 ### GetAppDatabaseReadRequest
 
-`func (o *AsyncStateConfig) GetAppDatabaseReadRequest() AppDatabaseTableReadRequest`
+`func (o *AsyncStateConfig) GetAppDatabaseReadRequest() AppDatabaseReadRequest`
 
 GetAppDatabaseReadRequest returns the AppDatabaseReadRequest field if non-nil, zero value otherwise.
 
 ### GetAppDatabaseReadRequestOk
 
-`func (o *AsyncStateConfig) GetAppDatabaseReadRequestOk() (*AppDatabaseTableReadRequest, bool)`
+`func (o *AsyncStateConfig) GetAppDatabaseReadRequestOk() (*AppDatabaseReadRequest, bool)`
 
 GetAppDatabaseReadRequestOk returns a tuple with the AppDatabaseReadRequest field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAppDatabaseReadRequest
 
-`func (o *AsyncStateConfig) SetAppDatabaseReadRequest(v AppDatabaseTableReadRequest)`
+`func (o *AsyncStateConfig) SetAppDatabaseReadRequest(v AppDatabaseReadRequest)`
 
 SetAppDatabaseReadRequest sets AppDatabaseReadRequest field to given value.
 

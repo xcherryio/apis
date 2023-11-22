@@ -20,10 +20,11 @@ var _ MappedNullable = &AsyncStateExecuteResponse{}
 
 // AsyncStateExecuteResponse the output of the execute API
 type AsyncStateExecuteResponse struct {
-	StateDecision          StateDecision       `json:"stateDecision"`
-	PublishToLocalQueue    []LocalQueueMessage `json:"publishToLocalQueue,omitempty"`
-	WriteToAppDatabase     *AppDatabaseWrite   `json:"writeToAppDatabase,omitempty"`
-	WriteToLocalAttributes []KeyValue          `json:"writeToLocalAttributes,omitempty"`
+	StateDecision                 StateDecision           `json:"stateDecision"`
+	PublishToLocalQueue           []LocalQueueMessage     `json:"publishToLocalQueue,omitempty"`
+	WriteToAppDatabase            *AppDatabaseWrite       `json:"writeToAppDatabase,omitempty"`
+	WriteToLocalAttributes        []KeyValue              `json:"writeToLocalAttributes,omitempty"`
+	UpdatedAppDatabaseReadRequest *AppDatabaseReadRequest `json:"updatedAppDatabaseReadRequest,omitempty"`
 }
 
 type _AsyncStateExecuteResponse AsyncStateExecuteResponse
@@ -166,6 +167,38 @@ func (o *AsyncStateExecuteResponse) SetWriteToLocalAttributes(v []KeyValue) {
 	o.WriteToLocalAttributes = v
 }
 
+// GetUpdatedAppDatabaseReadRequest returns the UpdatedAppDatabaseReadRequest field value if set, zero value otherwise.
+func (o *AsyncStateExecuteResponse) GetUpdatedAppDatabaseReadRequest() AppDatabaseReadRequest {
+	if o == nil || IsNil(o.UpdatedAppDatabaseReadRequest) {
+		var ret AppDatabaseReadRequest
+		return ret
+	}
+	return *o.UpdatedAppDatabaseReadRequest
+}
+
+// GetUpdatedAppDatabaseReadRequestOk returns a tuple with the UpdatedAppDatabaseReadRequest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteResponse) GetUpdatedAppDatabaseReadRequestOk() (*AppDatabaseReadRequest, bool) {
+	if o == nil || IsNil(o.UpdatedAppDatabaseReadRequest) {
+		return nil, false
+	}
+	return o.UpdatedAppDatabaseReadRequest, true
+}
+
+// HasUpdatedAppDatabaseReadRequest returns a boolean if a field has been set.
+func (o *AsyncStateExecuteResponse) HasUpdatedAppDatabaseReadRequest() bool {
+	if o != nil && !IsNil(o.UpdatedAppDatabaseReadRequest) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAppDatabaseReadRequest gets a reference to the given AppDatabaseReadRequest and assigns it to the UpdatedAppDatabaseReadRequest field.
+func (o *AsyncStateExecuteResponse) SetUpdatedAppDatabaseReadRequest(v AppDatabaseReadRequest) {
+	o.UpdatedAppDatabaseReadRequest = &v
+}
+
 func (o AsyncStateExecuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -185,6 +218,9 @@ func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.WriteToLocalAttributes) {
 		toSerialize["writeToLocalAttributes"] = o.WriteToLocalAttributes
+	}
+	if !IsNil(o.UpdatedAppDatabaseReadRequest) {
+		toSerialize["updatedAppDatabaseReadRequest"] = o.UpdatedAppDatabaseReadRequest
 	}
 	return toSerialize, nil
 }

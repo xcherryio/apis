@@ -27,7 +27,7 @@ type AsyncStateConfig struct {
 	WaitUntilApiRetryPolicy     *RetryPolicy                 `json:"waitUntilApiRetryPolicy,omitempty"`
 	ExecuteApiRetryPolicy       *RetryPolicy                 `json:"executeApiRetryPolicy,omitempty"`
 	StateFailureRecoveryOptions *StateFailureRecoveryOptions `json:"stateFailureRecoveryOptions,omitempty"`
-	AppDatabaseReadRequest      *AppDatabaseTableReadRequest `json:"appDatabaseReadRequest,omitempty"`
+	AppDatabaseReadRequest      *AppDatabaseReadRequest      `json:"appDatabaseReadRequest,omitempty"`
 	LoadLocalAttributesRequest  *LoadLocalAttributesRequest  `json:"loadLocalAttributesRequest,omitempty"`
 }
 
@@ -241,9 +241,9 @@ func (o *AsyncStateConfig) SetStateFailureRecoveryOptions(v StateFailureRecovery
 }
 
 // GetAppDatabaseReadRequest returns the AppDatabaseReadRequest field value if set, zero value otherwise.
-func (o *AsyncStateConfig) GetAppDatabaseReadRequest() AppDatabaseTableReadRequest {
+func (o *AsyncStateConfig) GetAppDatabaseReadRequest() AppDatabaseReadRequest {
 	if o == nil || IsNil(o.AppDatabaseReadRequest) {
-		var ret AppDatabaseTableReadRequest
+		var ret AppDatabaseReadRequest
 		return ret
 	}
 	return *o.AppDatabaseReadRequest
@@ -251,7 +251,7 @@ func (o *AsyncStateConfig) GetAppDatabaseReadRequest() AppDatabaseTableReadReque
 
 // GetAppDatabaseReadRequestOk returns a tuple with the AppDatabaseReadRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateConfig) GetAppDatabaseReadRequestOk() (*AppDatabaseTableReadRequest, bool) {
+func (o *AsyncStateConfig) GetAppDatabaseReadRequestOk() (*AppDatabaseReadRequest, bool) {
 	if o == nil || IsNil(o.AppDatabaseReadRequest) {
 		return nil, false
 	}
@@ -267,8 +267,8 @@ func (o *AsyncStateConfig) HasAppDatabaseReadRequest() bool {
 	return false
 }
 
-// SetAppDatabaseReadRequest gets a reference to the given AppDatabaseTableReadRequest and assigns it to the AppDatabaseReadRequest field.
-func (o *AsyncStateConfig) SetAppDatabaseReadRequest(v AppDatabaseTableReadRequest) {
+// SetAppDatabaseReadRequest gets a reference to the given AppDatabaseReadRequest and assigns it to the AppDatabaseReadRequest field.
+func (o *AsyncStateConfig) SetAppDatabaseReadRequest(v AppDatabaseReadRequest) {
 	o.AppDatabaseReadRequest = &v
 }
 

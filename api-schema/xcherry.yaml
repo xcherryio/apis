@@ -401,6 +401,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
+        updatedAppDatabaseReadRequest: # needed for AppDatabaseError
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
     StateDecision:
       type: object
       description: the decision at the end of state execution, either nextStates or threadCloseDecision is needed
@@ -625,7 +627,7 @@ components:
         stateFailureRecoveryOptions:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
         appDatabaseReadRequest:
-          $ref: '#/components/schemas/AppDatabaseTableReadRequest'
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
         loadLocalAttributesRequest:
           $ref: '#/components/schemas/LoadLocalAttributesRequest'
     StateFailureRecoveryPolicy:
@@ -845,8 +847,8 @@ components:
           # Note 0: this is only for AsyncStateExecuteRequest because RPC can return error synchronously
           # Note 1: for write error, it's duplicateExecutionForThrowingDatabaseError
           #        -- meaning the write operation is from the last attempt of execute API
-          # Note 2: with this error, server will not accept any AsyncStateExecuteResponse. Invoking the execute
-          #      API is only for throwing error on worker code
+          # Note 2: with this error, server will only accept updatedAppDatabaseReadRequest in AsyncStateExecuteResponse.
+          # Invoking the execute API is only for throwing error on worker code and collect this updatedAppDatabaseReadRequest
           $ref: '#/components/schemas/ErrorSubType'
         appDBErrorCode:
           type: string

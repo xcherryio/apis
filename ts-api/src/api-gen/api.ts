@@ -341,10 +341,10 @@ export interface AsyncStateConfig {
     'stateFailureRecoveryOptions'?: StateFailureRecoveryOptions;
     /**
      * 
-     * @type {AppDatabaseTableReadRequest}
+     * @type {AppDatabaseReadRequest}
      * @memberof AsyncStateConfig
      */
-    'appDatabaseReadRequest'?: AppDatabaseTableReadRequest;
+    'appDatabaseReadRequest'?: AppDatabaseReadRequest;
     /**
      * 
      * @type {LoadLocalAttributesRequest}
@@ -437,6 +437,12 @@ export interface AsyncStateExecuteResponse {
      * @memberof AsyncStateExecuteResponse
      */
     'writeToLocalAttributes'?: Array<KeyValue>;
+    /**
+     * 
+     * @type {AppDatabaseReadRequest}
+     * @memberof AsyncStateExecuteResponse
+     */
+    'updatedAppDatabaseReadRequest'?: AppDatabaseReadRequest;
 }
 /**
  * the input of the waitUntil API

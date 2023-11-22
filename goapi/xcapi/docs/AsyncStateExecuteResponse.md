@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **PublishToLocalQueue** | Pointer to [**[]LocalQueueMessage**](LocalQueueMessage.md) |  | [optional] 
 **WriteToAppDatabase** | Pointer to [**AppDatabaseWrite**](AppDatabaseWrite.md) |  | [optional] 
 **WriteToLocalAttributes** | Pointer to [**[]KeyValue**](KeyValue.md) |  | [optional] 
+**UpdatedAppDatabaseReadRequest** | Pointer to [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -122,6 +123,31 @@ SetWriteToLocalAttributes sets WriteToLocalAttributes field to given value.
 `func (o *AsyncStateExecuteResponse) HasWriteToLocalAttributes() bool`
 
 HasWriteToLocalAttributes returns a boolean if a field has been set.
+
+### GetUpdatedAppDatabaseReadRequest
+
+`func (o *AsyncStateExecuteResponse) GetUpdatedAppDatabaseReadRequest() AppDatabaseReadRequest`
+
+GetUpdatedAppDatabaseReadRequest returns the UpdatedAppDatabaseReadRequest field if non-nil, zero value otherwise.
+
+### GetUpdatedAppDatabaseReadRequestOk
+
+`func (o *AsyncStateExecuteResponse) GetUpdatedAppDatabaseReadRequestOk() (*AppDatabaseReadRequest, bool)`
+
+GetUpdatedAppDatabaseReadRequestOk returns a tuple with the UpdatedAppDatabaseReadRequest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAppDatabaseReadRequest
+
+`func (o *AsyncStateExecuteResponse) SetUpdatedAppDatabaseReadRequest(v AppDatabaseReadRequest)`
+
+SetUpdatedAppDatabaseReadRequest sets UpdatedAppDatabaseReadRequest field to given value.
+
+### HasUpdatedAppDatabaseReadRequest
+
+`func (o *AsyncStateExecuteResponse) HasUpdatedAppDatabaseReadRequest() bool`
+
+HasUpdatedAppDatabaseReadRequest returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -602,11 +602,17 @@ components:
                 stateFailureProceedStateConfig: null
                 policy: null
               appDatabaseReadRequest:
-                columns:
-                - columns
-                - columns
-                lockType: null
-                tableName: tableName
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
@@ -640,11 +646,17 @@ components:
                 stateFailureProceedStateConfig: null
                 policy: null
               appDatabaseReadRequest:
-                columns:
-                - columns
-                - columns
-                lockType: null
-                tableName: tableName
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
@@ -723,6 +735,18 @@ components:
               - column: column
                 queryValue: queryValue
             tableName: tableName
+        updatedAppDatabaseReadRequest:
+          tables:
+          - columns:
+            - columns
+            - columns
+            lockType: null
+            tableName: tableName
+          - columns:
+            - columns
+            - columns
+            lockType: null
+            tableName: tableName
         publishToLocalQueue:
         - queueName: queueName
           payload:
@@ -747,6 +771,8 @@ components:
           items:
             $ref: '#/components/schemas/KeyValue'
           type: array
+        updatedAppDatabaseReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
       required:
       - stateDecision
       type: object
@@ -770,11 +796,17 @@ components:
               stateFailureProceedStateConfig: null
               policy: null
             appDatabaseReadRequest:
-              columns:
-              - columns
-              - columns
-              lockType: null
-              tableName: tableName
+              tables:
+              - columns:
+                - columns
+                - columns
+                lockType: null
+                tableName: tableName
+              - columns:
+                - columns
+                - columns
+                lockType: null
+                tableName: tableName
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
               maximumAttemptsDurationSeconds: 7
@@ -808,11 +840,17 @@ components:
               stateFailureProceedStateConfig: null
               policy: null
             appDatabaseReadRequest:
-              columns:
-              - columns
-              - columns
-              lockType: null
-              tableName: tableName
+              tables:
+              - columns:
+                - columns
+                - columns
+                lockType: null
+                tableName: tableName
+              - columns:
+                - columns
+                - columns
+                lockType: null
+                tableName: tableName
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
               maximumAttemptsDurationSeconds: 7
@@ -882,11 +920,17 @@ components:
             stateFailureProceedStateConfig: null
             policy: null
           appDatabaseReadRequest:
-            columns:
-            - columns
-            - columns
-            lockType: null
-            tableName: tableName
+            tables:
+            - columns:
+              - columns
+              - columns
+              lockType: null
+              tableName: tableName
+            - columns:
+              - columns
+              - columns
+              lockType: null
+              tableName: tableName
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
             maximumAttemptsDurationSeconds: 7
@@ -1026,11 +1070,17 @@ components:
             stateFailureProceedStateConfig: null
             policy: null
           appDatabaseReadRequest:
-            columns:
-            - columns
-            - columns
-            lockType: null
-            tableName: tableName
+            tables:
+            - columns:
+              - columns
+              - columns
+              lockType: null
+              tableName: tableName
+            - columns:
+              - columns
+              - columns
+              lockType: null
+              tableName: tableName
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
             maximumAttemptsDurationSeconds: 7
@@ -1317,11 +1367,17 @@ components:
           stateFailureProceedStateConfig: null
           policy: null
         appDatabaseReadRequest:
-          columns:
-          - columns
-          - columns
-          lockType: null
-          tableName: tableName
+          tables:
+          - columns:
+            - columns
+            - columns
+            lockType: null
+            tableName: tableName
+          - columns:
+            - columns
+            - columns
+            lockType: null
+            tableName: tableName
         skipWaitUntil: true
         waitUntilApiRetryPolicy:
           maximumAttemptsDurationSeconds: 7
@@ -1353,7 +1409,7 @@ components:
         stateFailureRecoveryOptions:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
         appDatabaseReadRequest:
-          $ref: '#/components/schemas/AppDatabaseTableReadRequest'
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
         loadLocalAttributesRequest:
           $ref: '#/components/schemas/LoadLocalAttributesRequest'
       type: object
@@ -1658,11 +1714,17 @@ components:
                 stateFailureProceedStateConfig: null
                 policy: null
               appDatabaseReadRequest:
-                columns:
-                - columns
-                - columns
-                lockType: null
-                tableName: tableName
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
@@ -1696,11 +1758,17 @@ components:
                 stateFailureProceedStateConfig: null
                 policy: null
               appDatabaseReadRequest:
-                columns:
-                - columns
-                - columns
-                lockType: null
-                tableName: tableName
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
+                  tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
                 maximumAttemptsDurationSeconds: 7
