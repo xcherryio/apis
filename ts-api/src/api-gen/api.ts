@@ -83,6 +83,39 @@ export interface AppDatabaseConfig {
     'tables'?: Array<AppDatabaseTableConfig>;
 }
 /**
+ * the error for read/write the app database. For the write error, it\'s from last attempt.
+ * @export
+ * @interface AppDatabaseError
+ */
+export interface AppDatabaseError {
+    /**
+     * 
+     * @type {ErrorSubType}
+     * @memberof AppDatabaseError
+     */
+    'appDBErrorType': ErrorSubType;
+    /**
+     * the error code from database driver
+     * @type {string}
+     * @memberof AppDatabaseError
+     */
+    'appDBErrorCode': string;
+    /**
+     * the error message from database driver
+     * @type {string}
+     * @memberof AppDatabaseError
+     */
+    'appDBErrorMessage'?: string;
+    /**
+     * the first table that encounters the error to help SDK to throw the error in a friendly way 
+     * @type {string}
+     * @memberof AppDatabaseError
+     */
+    'appDBErrorTableName'?: string;
+}
+
+
+/**
  * the request to read the selected rows of configured app database tables
  * @export
  * @interface AppDatabaseReadRequest
@@ -108,45 +141,6 @@ export interface AppDatabaseReadResponse {
      */
     'tables'?: Array<AppDatabaseTableReadResponse>;
 }
-/**
- * the response for read the app database, or the read/write error. For the write error, it\'s from last attempt.
- * @export
- * @interface AppDatabaseReadResponseWithDBError
- */
-export interface AppDatabaseReadResponseWithDBError {
-    /**
-     * 
-     * @type {Array<AppDatabaseTableReadResponse>}
-     * @memberof AppDatabaseReadResponseWithDBError
-     */
-    'tables'?: Array<AppDatabaseTableReadResponse>;
-    /**
-     * 
-     * @type {ErrorSubType}
-     * @memberof AppDatabaseReadResponseWithDBError
-     */
-    'appDBErrorType'?: ErrorSubType;
-    /**
-     * the error code from database driver
-     * @type {string}
-     * @memberof AppDatabaseReadResponseWithDBError
-     */
-    'appDBErrorCode'?: string;
-    /**
-     * the error message from database driver
-     * @type {string}
-     * @memberof AppDatabaseReadResponseWithDBError
-     */
-    'appDBErrorMessage'?: string;
-    /**
-     * the first table that encounters the error to help SDK to throw the error in a friendly way 
-     * @type {string}
-     * @memberof AppDatabaseReadResponseWithDBError
-     */
-    'appDBErrorTableName'?: string;
-}
-
-
 /**
  * 
  * @export
@@ -396,10 +390,16 @@ export interface AsyncStateExecuteRequest {
     'commandResults'?: CommandResults;
     /**
      * 
-     * @type {AppDatabaseReadResponseWithDBError}
+     * @type {AppDatabaseReadResponse}
      * @memberof AsyncStateExecuteRequest
      */
-    'readAppDatabaseResponseWithDBError'?: AppDatabaseReadResponseWithDBError;
+    'readAppDatabaseResponse'?: AppDatabaseReadResponse;
+    /**
+     * 
+     * @type {AppDatabaseError}
+     * @memberof AsyncStateExecuteRequest
+     */
+    'appDatabaseError'?: AppDatabaseError;
     /**
      * 
      * @type {LoadLocalAttributesResponse}

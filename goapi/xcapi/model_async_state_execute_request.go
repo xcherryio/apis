@@ -20,13 +20,14 @@ var _ MappedNullable = &AsyncStateExecuteRequest{}
 
 // AsyncStateExecuteRequest the input of the execute API
 type AsyncStateExecuteRequest struct {
-	Context                            Context                             `json:"context"`
-	ProcessType                        string                              `json:"processType"`
-	StateId                            string                              `json:"stateId"`
-	StateInput                         *EncodedObject                      `json:"stateInput,omitempty"`
-	CommandResults                     *CommandResults                     `json:"commandResults,omitempty"`
-	ReadAppDatabaseResponseWithDBError *AppDatabaseReadResponseWithDBError `json:"readAppDatabaseResponseWithDBError,omitempty"`
-	LoadedLocalAttributes              *LoadLocalAttributesResponse        `json:"loadedLocalAttributes,omitempty"`
+	Context                 Context                      `json:"context"`
+	ProcessType             string                       `json:"processType"`
+	StateId                 string                       `json:"stateId"`
+	StateInput              *EncodedObject               `json:"stateInput,omitempty"`
+	CommandResults          *CommandResults              `json:"commandResults,omitempty"`
+	ReadAppDatabaseResponse *AppDatabaseReadResponse     `json:"readAppDatabaseResponse,omitempty"`
+	AppDatabaseError        *AppDatabaseError            `json:"appDatabaseError,omitempty"`
+	LoadedLocalAttributes   *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
 }
 
 type _AsyncStateExecuteRequest AsyncStateExecuteRequest
@@ -187,36 +188,68 @@ func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults) {
 	o.CommandResults = &v
 }
 
-// GetReadAppDatabaseResponseWithDBError returns the ReadAppDatabaseResponseWithDBError field value if set, zero value otherwise.
-func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseWithDBError() AppDatabaseReadResponseWithDBError {
-	if o == nil || IsNil(o.ReadAppDatabaseResponseWithDBError) {
-		var ret AppDatabaseReadResponseWithDBError
+// GetReadAppDatabaseResponse returns the ReadAppDatabaseResponse field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponse() AppDatabaseReadResponse {
+	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
+		var ret AppDatabaseReadResponse
 		return ret
 	}
-	return *o.ReadAppDatabaseResponseWithDBError
+	return *o.ReadAppDatabaseResponse
 }
 
-// GetReadAppDatabaseResponseWithDBErrorOk returns a tuple with the ReadAppDatabaseResponseWithDBError field value if set, nil otherwise
+// GetReadAppDatabaseResponseOk returns a tuple with the ReadAppDatabaseResponse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseWithDBErrorOk() (*AppDatabaseReadResponseWithDBError, bool) {
-	if o == nil || IsNil(o.ReadAppDatabaseResponseWithDBError) {
+func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseOk() (*AppDatabaseReadResponse, bool) {
+	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
 		return nil, false
 	}
-	return o.ReadAppDatabaseResponseWithDBError, true
+	return o.ReadAppDatabaseResponse, true
 }
 
-// HasReadAppDatabaseResponseWithDBError returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponseWithDBError() bool {
-	if o != nil && !IsNil(o.ReadAppDatabaseResponseWithDBError) {
+// HasReadAppDatabaseResponse returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponse() bool {
+	if o != nil && !IsNil(o.ReadAppDatabaseResponse) {
 		return true
 	}
 
 	return false
 }
 
-// SetReadAppDatabaseResponseWithDBError gets a reference to the given AppDatabaseReadResponseWithDBError and assigns it to the ReadAppDatabaseResponseWithDBError field.
-func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponseWithDBError(v AppDatabaseReadResponseWithDBError) {
-	o.ReadAppDatabaseResponseWithDBError = &v
+// SetReadAppDatabaseResponse gets a reference to the given AppDatabaseReadResponse and assigns it to the ReadAppDatabaseResponse field.
+func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponse(v AppDatabaseReadResponse) {
+	o.ReadAppDatabaseResponse = &v
+}
+
+// GetAppDatabaseError returns the AppDatabaseError field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetAppDatabaseError() AppDatabaseError {
+	if o == nil || IsNil(o.AppDatabaseError) {
+		var ret AppDatabaseError
+		return ret
+	}
+	return *o.AppDatabaseError
+}
+
+// GetAppDatabaseErrorOk returns a tuple with the AppDatabaseError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteRequest) GetAppDatabaseErrorOk() (*AppDatabaseError, bool) {
+	if o == nil || IsNil(o.AppDatabaseError) {
+		return nil, false
+	}
+	return o.AppDatabaseError, true
+}
+
+// HasAppDatabaseError returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasAppDatabaseError() bool {
+	if o != nil && !IsNil(o.AppDatabaseError) {
+		return true
+	}
+
+	return false
+}
+
+// SetAppDatabaseError gets a reference to the given AppDatabaseError and assigns it to the AppDatabaseError field.
+func (o *AsyncStateExecuteRequest) SetAppDatabaseError(v AppDatabaseError) {
+	o.AppDatabaseError = &v
 }
 
 // GetLoadedLocalAttributes returns the LoadedLocalAttributes field value if set, zero value otherwise.
@@ -270,8 +303,11 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CommandResults) {
 		toSerialize["commandResults"] = o.CommandResults
 	}
-	if !IsNil(o.ReadAppDatabaseResponseWithDBError) {
-		toSerialize["readAppDatabaseResponseWithDBError"] = o.ReadAppDatabaseResponseWithDBError
+	if !IsNil(o.ReadAppDatabaseResponse) {
+		toSerialize["readAppDatabaseResponse"] = o.ReadAppDatabaseResponse
+	}
+	if !IsNil(o.AppDatabaseError) {
+		toSerialize["appDatabaseError"] = o.AppDatabaseError
 	}
 	if !IsNil(o.LoadedLocalAttributes) {
 		toSerialize["loadedLocalAttributes"] = o.LoadedLocalAttributes

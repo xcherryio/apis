@@ -317,8 +317,10 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        readAppDatabaseResponseWithDBError:
-          $ref: '#/components/schemas/AppDatabaseReadResponseWithDBError'
+        readAppDatabaseResponse:
+          $ref: '#/components/schemas/AppDatabaseReadResponse'
+        appDatabaseError:
+          $ref: '#/components/schemas/AppDatabaseError'
         loadedLocalAttributes:
           $ref: '#/components/schemas/LoadLocalAttributesResponse'
     CommandResults:
@@ -831,15 +833,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppDatabaseTableReadResponse'
-    AppDatabaseReadResponseWithDBError:
+    AppDatabaseError:
       type: object
-      description: "the response for read the app database, or the read/write error. 
-      For the write error, it's from last attempt."
+      description: "the error for read/write the app database. For the write error, it's from last attempt."
+      required:
+        - appDBErrorType
+        - appDBErrorCode
       properties:
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
         appDBErrorType:
           # this is for read/write error on appDatabase
           # Note 0: this is only for AsyncStateExecuteRequest because RPC can return error synchronously
