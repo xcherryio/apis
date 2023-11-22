@@ -31,28 +31,264 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 export interface ApiErrorResponse {
     /**
      * 
+     * @type {ErrorSubType}
+     * @memberof ApiErrorResponse
+     */
+    'errorSubType'?: ErrorSubType;
+    /**
+     * for WORKER_EXECUTION_ERROR, it\'s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it\'s the error code from database driver
      * @type {string}
      * @memberof ApiErrorResponse
      */
-    'detail'?: string;
+    'appErrorType'?: string;
     /**
-     * 
+     * for WORKER_EXECUTION_ERROR, it\'s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it\'s the error message from database driver; for other apiErrorType, it\'s the detailed message from server.
      * @type {string}
      * @memberof ApiErrorResponse
      */
-    'originalWorkerErrorDetail'?: string;
+    'details'?: string;
+}
+
+
+/**
+ * the value of a table column (from SDK to server or from server to SDK)
+ * @export
+ * @interface AppDatabaseColumnValue
+ */
+export interface AppDatabaseColumnValue {
+    /**
+     * the column name that can be used in the database query, see below for example
+     * @type {string}
+     * @memberof AppDatabaseColumnValue
+     */
+    'column': string;
+    /**
+     * the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
+     * @type {string}
+     * @memberof AppDatabaseColumnValue
+     */
+    'queryValue': string;
+}
+/**
+ * the configuration of what tables and rows to read/load for state/RPCs, including an optional initial write
+ * @export
+ * @interface AppDatabaseConfig
+ */
+export interface AppDatabaseConfig {
+    /**
+     * 
+     * @type {Array<AppDatabaseTableConfig>}
+     * @memberof AppDatabaseConfig
+     */
+    'tables'?: Array<AppDatabaseTableConfig>;
+}
+/**
+ * the request to read the selected rows of configured app database tables
+ * @export
+ * @interface AppDatabaseReadRequest
+ */
+export interface AppDatabaseReadRequest {
+    /**
+     * 
+     * @type {Array<AppDatabaseTableReadRequest>}
+     * @memberof AppDatabaseReadRequest
+     */
+    'tableRequests'?: Array<AppDatabaseTableReadRequest>;
+}
+/**
+ * the response for read the app database
+ * @export
+ * @interface AppDatabaseReadResponse
+ */
+export interface AppDatabaseReadResponse {
+    /**
+     * 
+     * @type {Array<AppDatabaseTableReadResponse>}
+     * @memberof AppDatabaseReadResponse
+     */
+    'tables'?: Array<AppDatabaseTableReadResponse>;
+    /**
+     * 
+     * @type {ErrorSubType}
+     * @memberof AppDatabaseReadResponse
+     */
+    'appDBErrorType'?: ErrorSubType;
+    /**
+     * the error code from database driver
+     * @type {string}
+     * @memberof AppDatabaseReadResponse
+     */
+    'appDBErrorCode'?: string;
+    /**
+     * the error message from database driver
+     * @type {string}
+     * @memberof AppDatabaseReadResponse
+     */
+    'appDBErrorMessage'?: string;
+    /**
+     * the first table that encounters the error to help SDK to throw the error in a friendly way 
+     * @type {string}
+     * @memberof AppDatabaseReadResponse
+     */
+    'appDBErrorTableName'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface AppDatabaseRowReadResponse
+ */
+export interface AppDatabaseRowReadResponse {
+    /**
+     * 
+     * @type {Array<AppDatabaseColumnValue>}
+     * @memberof AppDatabaseRowReadResponse
+     */
+    'columns'?: Array<AppDatabaseColumnValue>;
+}
+/**
+ * 
+ * @export
+ * @interface AppDatabaseRowWrite
+ */
+export interface AppDatabaseRowWrite {
+    /**
+     * the PK to locate the rows for write
+     * @type {Array<AppDatabaseColumnValue>}
+     * @memberof AppDatabaseRowWrite
+     */
+    'primaryKey': Array<AppDatabaseColumnValue>;
+    /**
+     * 
+     * @type {Array<AppDatabaseColumnValue>}
+     * @memberof AppDatabaseRowWrite
+     */
+    'writeColumns': Array<AppDatabaseColumnValue>;
+}
+/**
+ * 
+ * @export
+ * @interface AppDatabaseTableConfig
+ */
+export interface AppDatabaseTableConfig {
     /**
      * 
      * @type {string}
-     * @memberof ApiErrorResponse
+     * @memberof AppDatabaseTableConfig
      */
-    'originalWorkerErrorType'?: string;
+    'tableName': string;
     /**
      * 
-     * @type {number}
-     * @memberof ApiErrorResponse
+     * @type {Array<AppDatabaseTableRowSelector>}
+     * @memberof AppDatabaseTableConfig
      */
-    'originalWorkerErrorStatus'?: number;
+    'rows': Array<AppDatabaseTableRowSelector>;
+}
+/**
+ * 
+ * @export
+ * @interface AppDatabaseTableReadRequest
+ */
+export interface AppDatabaseTableReadRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AppDatabaseTableReadRequest
+     */
+    'tableName'?: string;
+    /**
+     * 
+     * @type {DatabaseLockingType}
+     * @memberof AppDatabaseTableReadRequest
+     */
+    'lockType'?: DatabaseLockingType;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof AppDatabaseTableReadRequest
+     */
+    'columns'?: Array<string>;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface AppDatabaseTableReadResponse
+ */
+export interface AppDatabaseTableReadResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof AppDatabaseTableReadResponse
+     */
+    'tableName'?: string;
+    /**
+     * 
+     * @type {Array<AppDatabaseRowReadResponse>}
+     * @memberof AppDatabaseTableReadResponse
+     */
+    'rows'?: Array<AppDatabaseRowReadResponse>;
+}
+/**
+ * 
+ * @export
+ * @interface AppDatabaseTableRowSelector
+ */
+export interface AppDatabaseTableRowSelector {
+    /**
+     * 
+     * @type {Array<AppDatabaseColumnValue>}
+     * @memberof AppDatabaseTableRowSelector
+     */
+    'primaryKey': Array<AppDatabaseColumnValue>;
+    /**
+     * 
+     * @type {Array<AppDatabaseColumnValue>}
+     * @memberof AppDatabaseTableRowSelector
+     */
+    'initialWrite'?: Array<AppDatabaseColumnValue>;
+    /**
+     * 
+     * @type {WriteConflictMode}
+     * @memberof AppDatabaseTableRowSelector
+     */
+    'conflictMode'?: WriteConflictMode;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface AppDatabaseTableWrite
+ */
+export interface AppDatabaseTableWrite {
+    /**
+     * 
+     * @type {string}
+     * @memberof AppDatabaseTableWrite
+     */
+    'tableName': string;
+    /**
+     * 
+     * @type {Array<AppDatabaseRowWrite>}
+     * @memberof AppDatabaseTableWrite
+     */
+    'rows'?: Array<AppDatabaseRowWrite>;
+}
+/**
+ * the write operation for state/RPCs to write to the app database values
+ * @export
+ * @interface AppDatabaseWrite
+ */
+export interface AppDatabaseWrite {
+    /**
+     * 
+     * @type {Array<AppDatabaseTableWrite>}
+     * @memberof AppDatabaseWrite
+     */
+    'tables'?: Array<AppDatabaseTableWrite>;
 }
 /**
  * 
@@ -98,10 +334,10 @@ export interface AsyncStateConfig {
     'stateFailureRecoveryOptions'?: StateFailureRecoveryOptions;
     /**
      * 
-     * @type {LoadGlobalAttributesRequest}
+     * @type {AppDatabaseTableReadRequest}
      * @memberof AsyncStateConfig
      */
-    'loadGlobalAttributesRequest'?: LoadGlobalAttributesRequest;
+    'appDatabaseReadRequest'?: AppDatabaseTableReadRequest;
     /**
      * 
      * @type {LoadLocalAttributesRequest}
@@ -147,10 +383,10 @@ export interface AsyncStateExecuteRequest {
     'commandResults'?: CommandResults;
     /**
      * 
-     * @type {LoadGlobalAttributeResponse}
+     * @type {AppDatabaseReadResponse}
      * @memberof AsyncStateExecuteRequest
      */
-    'loadedGlobalAttributes'?: LoadGlobalAttributeResponse;
+    'readAppDatabaseResponse'?: AppDatabaseReadResponse;
     /**
      * 
      * @type {LoadLocalAttributesResponse}
@@ -178,10 +414,10 @@ export interface AsyncStateExecuteResponse {
     'publishToLocalQueue'?: Array<LocalQueueMessage>;
     /**
      * 
-     * @type {Array<GlobalAttributeTableRowUpdate>}
+     * @type {AppDatabaseWrite}
      * @memberof AsyncStateExecuteResponse
      */
-    'writeToGlobalAttributes'?: Array<GlobalAttributeTableRowUpdate>;
+    'writeToAppDatabase'?: AppDatabaseWrite;
     /**
      * 
      * @type {Array<KeyValue>}
@@ -239,21 +475,6 @@ export interface AsyncStateWaitUntilResponse {
      */
     'publishToLocalQueue'?: Array<LocalQueueMessage>;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const AttributeWriteConflictMode = {
-    ReturnErrorOnConflict: 'RETURN_ERROR_ON_CONFLICT',
-    IgnoreConflict: 'IGNORE_CONFLICT',
-    OverrideOnConflict: 'OVERRIDE_ON_CONFLICT'
-} as const;
-
-export type AttributeWriteConflictMode = typeof AttributeWriteConflictMode[keyof typeof AttributeWriteConflictMode];
-
-
 /**
  * 
  * @export
@@ -380,11 +601,26 @@ export interface Context {
     'recoverFromStateExecutionId'?: string;
     /**
      * 
-     * @type {StateApiType}
+     * @type {WorkerApiType}
      * @memberof Context
      */
-    'recoverFromApi'?: StateApiType;
+    'recoverFromApi'?: WorkerApiType;
 }
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DatabaseLockingType = {
+    NoLocking: 'NO_LOCKING',
+    ShareLock: 'SHARE_LOCK',
+    ExclusiveLock: 'EXCLUSIVE_LOCK'
+} as const;
+
+export type DatabaseLockingType = typeof DatabaseLockingType[keyof typeof DatabaseLockingType];
 
 
 /**
@@ -409,68 +645,20 @@ export interface EncodedObject {
 /**
  * 
  * @export
- * @interface GlobalAttributeConfig
+ * @enum {string}
  */
-export interface GlobalAttributeConfig {
-    /**
-     * 
-     * @type {Array<GlobalAttributeTableConfig>}
-     * @memberof GlobalAttributeConfig
-     */
-    'tableConfigs'?: Array<GlobalAttributeTableConfig>;
-}
-/**
- * 
- * @export
- * @interface GlobalAttributeTableConfig
- */
-export interface GlobalAttributeTableConfig {
-    /**
-     * 
-     * @type {string}
-     * @memberof GlobalAttributeTableConfig
-     */
-    'tableName': string;
-    /**
-     * 
-     * @type {TableColumnValue}
-     * @memberof GlobalAttributeTableConfig
-     */
-    'primaryKey': TableColumnValue;
-    /**
-     * 
-     * @type {Array<TableColumnValue>}
-     * @memberof GlobalAttributeTableConfig
-     */
-    'initialWrite'?: Array<TableColumnValue>;
-    /**
-     * 
-     * @type {AttributeWriteConflictMode}
-     * @memberof GlobalAttributeTableConfig
-     */
-    'initialWriteMode'?: AttributeWriteConflictMode;
-}
+
+export const ErrorSubType = {
+    UncategorizedError: 'UNCATEGORIZED_ERROR',
+    WorkerExecutionError: 'WORKER_EXECUTION_ERROR',
+    AppDatabaseReadError: 'APP_DATABASE_READ_ERROR',
+    AppDatabaseWriteError: 'APP_DATABASE_WRITE_ERROR',
+    PollTimeoutError: 'POLL_TIMEOUT_ERROR'
+} as const;
+
+export type ErrorSubType = typeof ErrorSubType[keyof typeof ErrorSubType];
 
 
-/**
- * 
- * @export
- * @interface GlobalAttributeTableRowUpdate
- */
-export interface GlobalAttributeTableRowUpdate {
-    /**
-     * 
-     * @type {string}
-     * @memberof GlobalAttributeTableRowUpdate
-     */
-    'tableName': string;
-    /**
-     * 
-     * @type {Array<TableColumnValue>}
-     * @memberof GlobalAttributeTableRowUpdate
-     */
-    'updateColumns'?: Array<TableColumnValue>;
-}
 /**
  * 
  * @export
@@ -489,32 +677,6 @@ export interface KeyValue {
      * @memberof KeyValue
      */
     'value': EncodedObject;
-}
-/**
- * the response for loading global attributes
- * @export
- * @interface LoadGlobalAttributeResponse
- */
-export interface LoadGlobalAttributeResponse {
-    /**
-     * 
-     * @type {Array<TableReadResponse>}
-     * @memberof LoadGlobalAttributeResponse
-     */
-    'tableResponses'?: Array<TableReadResponse>;
-}
-/**
- * the request to load global attributes
- * @export
- * @interface LoadGlobalAttributesRequest
- */
-export interface LoadGlobalAttributesRequest {
-    /**
-     * 
-     * @type {Array<TableReadRequest>}
-     * @memberof LoadGlobalAttributesRequest
-     */
-    'tableRequests'?: Array<TableReadRequest>;
 }
 /**
  * 
@@ -536,10 +698,10 @@ export interface LoadLocalAttributesRequest {
     'keysToLoadWithLock'?: Array<string>;
     /**
      * 
-     * @type {TableReadLockingPolicy}
+     * @type {DatabaseLockingType}
      * @memberof LoadLocalAttributesRequest
      */
-    'lockingPolicy'?: TableReadLockingPolicy;
+    'lockType'?: DatabaseLockingType;
 }
 
 
@@ -823,10 +985,10 @@ export interface ProcessExecutionRpcRequest {
     'timeoutSeconds'?: number;
     /**
      * 
-     * @type {LoadGlobalAttributesRequest}
+     * @type {AppDatabaseReadRequest}
      * @memberof ProcessExecutionRpcRequest
      */
-    'loadGlobalAttributesRequest'?: LoadGlobalAttributesRequest;
+    'appDatabaseReadRequest'?: AppDatabaseReadRequest;
 }
 /**
  * the response for executing a RPC method of a process execution
@@ -998,10 +1160,10 @@ export interface ProcessRpcWorkerRequest {
     'input'?: EncodedObject;
     /**
      * 
-     * @type {LoadGlobalAttributeResponse}
+     * @type {AppDatabaseReadResponse}
      * @memberof ProcessRpcWorkerRequest
      */
-    'loadedGlobalAttributes'?: LoadGlobalAttributeResponse;
+    'appDatabaseReadResponse'?: AppDatabaseReadResponse;
 }
 /**
  * the response of the worker RPC API
@@ -1029,10 +1191,10 @@ export interface ProcessRpcWorkerResponse {
     'publishToLocalQueue'?: Array<LocalQueueMessage>;
     /**
      * 
-     * @type {Array<GlobalAttributeTableRowUpdate>}
+     * @type {AppDatabaseWrite}
      * @memberof ProcessRpcWorkerResponse
      */
-    'writeToGlobalAttributes'?: Array<GlobalAttributeTableRowUpdate>;
+    'writeToAppDatabase'?: AppDatabaseWrite;
 }
 /**
  * 
@@ -1054,10 +1216,10 @@ export interface ProcessStartConfig {
     'idReusePolicy'?: ProcessIdReusePolicy;
     /**
      * 
-     * @type {GlobalAttributeConfig}
+     * @type {AppDatabaseConfig}
      * @memberof ProcessStartConfig
      */
-    'globalAttributeConfig'?: GlobalAttributeConfig;
+    'appDatabaseConfig'?: AppDatabaseConfig;
     /**
      * 
      * @type {LocalAttributeConfig}
@@ -1147,20 +1309,6 @@ export interface RetryPolicy {
     'maximumAttemptsDurationSeconds'?: number;
 }
 /**
- * 
- * @export
- * @enum {string}
- */
-
-export const StateApiType = {
-    WaitUntilApi: 'WAIT_UNTIL_API',
-    ExecuteApi: 'EXECUTE_API'
-} as const;
-
-export type StateApiType = typeof StateApiType[keyof typeof StateApiType];
-
-
-/**
  * the decision at the end of state execution, either nextStates or threadCloseDecision is needed
  * @export
  * @interface StateDecision
@@ -1246,99 +1394,6 @@ export interface StateMovement {
     'stateConfig'?: AsyncStateConfig;
 }
 /**
- * the definition(key) for getting value of a global attribute table
- * @export
- * @interface TableColumnDef
- */
-export interface TableColumnDef {
-    /**
-     * the column name that can be used in the database query, see below for example
-     * @type {string}
-     * @memberof TableColumnDef
-     */
-    'dbColumn': string;
-}
-/**
- * the value of a global attribute table (from SDK to server or from server to SDK)
- * @export
- * @interface TableColumnValue
- */
-export interface TableColumnValue {
-    /**
-     * the column name that can be used in the database query, see below for example
-     * @type {string}
-     * @memberof TableColumnValue
-     */
-    'dbColumn': string;
-    /**
-     * the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
-     * @type {string}
-     * @memberof TableColumnValue
-     */
-    'dbQueryValue': string;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const TableReadLockingPolicy = {
-    NoLocking: 'NO_LOCKING',
-    ShareLock: 'SHARE_LOCK',
-    ExclusiveLock: 'EXCLUSIVE_LOCK'
-} as const;
-
-export type TableReadLockingPolicy = typeof TableReadLockingPolicy[keyof typeof TableReadLockingPolicy];
-
-
-/**
- * 
- * @export
- * @interface TableReadRequest
- */
-export interface TableReadRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof TableReadRequest
-     */
-    'tableName'?: string;
-    /**
-     * 
-     * @type {TableReadLockingPolicy}
-     * @memberof TableReadRequest
-     */
-    'lockingPolicy'?: TableReadLockingPolicy;
-    /**
-     * 
-     * @type {Array<TableColumnDef>}
-     * @memberof TableReadRequest
-     */
-    'columns'?: Array<TableColumnDef>;
-}
-
-
-/**
- * 
- * @export
- * @interface TableReadResponse
- */
-export interface TableReadResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof TableReadResponse
-     */
-    'tableName'?: string;
-    /**
-     * 
-     * @type {Array<TableColumnValue>}
-     * @memberof TableReadResponse
-     */
-    'columns'?: Array<TableColumnValue>;
-}
-/**
  * 
  * @export
  * @interface ThreadCloseDecision
@@ -1406,22 +1461,52 @@ export interface TimerResult {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const WorkerApiType = {
+    WaitUntilApi: 'WAIT_UNTIL_API',
+    ExecuteApi: 'EXECUTE_API',
+    RpcApi: 'RPC_API'
+} as const;
+
+export type WorkerApiType = typeof WorkerApiType[keyof typeof WorkerApiType];
+
+
+/**
+ * 
+ * @export
  * @interface WorkerErrorResponse
  */
 export interface WorkerErrorResponse {
     /**
-     * 
+     * an optional field to let application set some detailed information. Default to the error message + stacktrace of the error
      * @type {string}
      * @memberof WorkerErrorResponse
      */
     'detail'?: string;
     /**
-     * 
+     * an optional field for error handling. Default to the class/error Name
      * @type {string}
      * @memberof WorkerErrorResponse
      */
     'errorType': string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const WriteConflictMode = {
+    ReturnErrorOnConflict: 'RETURN_ERROR_ON_CONFLICT',
+    IgnoreConflict: 'IGNORE_CONFLICT',
+    OverrideOnConflict: 'OVERRIDE_ON_CONFLICT'
+} as const;
+
+export type WriteConflictMode = typeof WriteConflictMode[keyof typeof WriteConflictMode];
+
+
 
 /**
  * DefaultApi - axios parameter creator

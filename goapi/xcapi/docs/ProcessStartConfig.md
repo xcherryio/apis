@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TimeoutSeconds** | Pointer to **int32** |  | [optional] 
 **IdReusePolicy** | Pointer to [**ProcessIdReusePolicy**](ProcessIdReusePolicy.md) |  | [optional] 
-**GlobalAttributeConfig** | Pointer to [**GlobalAttributeConfig**](GlobalAttributeConfig.md) |  | [optional] 
+**AppDatabaseConfig** | Pointer to [**AppDatabaseConfig**](AppDatabaseConfig.md) |  | [optional] 
 **LocalAttributeConfig** | Pointer to [**LocalAttributeConfig**](LocalAttributeConfig.md) |  | [optional] 
 
 ## Methods
@@ -78,30 +78,30 @@ SetIdReusePolicy sets IdReusePolicy field to given value.
 
 HasIdReusePolicy returns a boolean if a field has been set.
 
-### GetGlobalAttributeConfig
+### GetAppDatabaseConfig
 
-`func (o *ProcessStartConfig) GetGlobalAttributeConfig() GlobalAttributeConfig`
+`func (o *ProcessStartConfig) GetAppDatabaseConfig() AppDatabaseConfig`
 
-GetGlobalAttributeConfig returns the GlobalAttributeConfig field if non-nil, zero value otherwise.
+GetAppDatabaseConfig returns the AppDatabaseConfig field if non-nil, zero value otherwise.
 
-### GetGlobalAttributeConfigOk
+### GetAppDatabaseConfigOk
 
-`func (o *ProcessStartConfig) GetGlobalAttributeConfigOk() (*GlobalAttributeConfig, bool)`
+`func (o *ProcessStartConfig) GetAppDatabaseConfigOk() (*AppDatabaseConfig, bool)`
 
-GetGlobalAttributeConfigOk returns a tuple with the GlobalAttributeConfig field if it's non-nil, zero value otherwise
+GetAppDatabaseConfigOk returns a tuple with the AppDatabaseConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGlobalAttributeConfig
+### SetAppDatabaseConfig
 
-`func (o *ProcessStartConfig) SetGlobalAttributeConfig(v GlobalAttributeConfig)`
+`func (o *ProcessStartConfig) SetAppDatabaseConfig(v AppDatabaseConfig)`
 
-SetGlobalAttributeConfig sets GlobalAttributeConfig field to given value.
+SetAppDatabaseConfig sets AppDatabaseConfig field to given value.
 
-### HasGlobalAttributeConfig
+### HasAppDatabaseConfig
 
-`func (o *ProcessStartConfig) HasGlobalAttributeConfig() bool`
+`func (o *ProcessStartConfig) HasAppDatabaseConfig() bool`
 
-HasGlobalAttributeConfig returns a boolean if a field has been set.
+HasAppDatabaseConfig returns a boolean if a field has been set.
 
 ### GetLocalAttributeConfig
 

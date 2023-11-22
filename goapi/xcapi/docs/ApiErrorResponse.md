@@ -4,10 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Detail** | Pointer to **string** |  | [optional] 
-**OriginalWorkerErrorDetail** | Pointer to **string** |  | [optional] 
-**OriginalWorkerErrorType** | Pointer to **string** |  | [optional] 
-**OriginalWorkerErrorStatus** | Pointer to **int32** |  | [optional] 
+**ErrorSubType** | Pointer to [**ErrorSubType**](ErrorSubType.md) |  | [optional] 
+**AppErrorType** | Pointer to **string** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error code from database driver | [optional] 
+**Details** | Pointer to **string** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error message from database driver; for other apiErrorType, it&#39;s the detailed message from server. | [optional] 
 
 ## Methods
 
@@ -28,105 +27,80 @@ NewApiErrorResponseWithDefaults instantiates a new ApiErrorResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDetail
+### GetErrorSubType
 
-`func (o *ApiErrorResponse) GetDetail() string`
+`func (o *ApiErrorResponse) GetErrorSubType() ErrorSubType`
 
-GetDetail returns the Detail field if non-nil, zero value otherwise.
+GetErrorSubType returns the ErrorSubType field if non-nil, zero value otherwise.
 
-### GetDetailOk
+### GetErrorSubTypeOk
 
-`func (o *ApiErrorResponse) GetDetailOk() (*string, bool)`
+`func (o *ApiErrorResponse) GetErrorSubTypeOk() (*ErrorSubType, bool)`
 
-GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
+GetErrorSubTypeOk returns a tuple with the ErrorSubType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDetail
+### SetErrorSubType
 
-`func (o *ApiErrorResponse) SetDetail(v string)`
+`func (o *ApiErrorResponse) SetErrorSubType(v ErrorSubType)`
 
-SetDetail sets Detail field to given value.
+SetErrorSubType sets ErrorSubType field to given value.
 
-### HasDetail
+### HasErrorSubType
 
-`func (o *ApiErrorResponse) HasDetail() bool`
+`func (o *ApiErrorResponse) HasErrorSubType() bool`
 
-HasDetail returns a boolean if a field has been set.
+HasErrorSubType returns a boolean if a field has been set.
 
-### GetOriginalWorkerErrorDetail
+### GetAppErrorType
 
-`func (o *ApiErrorResponse) GetOriginalWorkerErrorDetail() string`
+`func (o *ApiErrorResponse) GetAppErrorType() string`
 
-GetOriginalWorkerErrorDetail returns the OriginalWorkerErrorDetail field if non-nil, zero value otherwise.
+GetAppErrorType returns the AppErrorType field if non-nil, zero value otherwise.
 
-### GetOriginalWorkerErrorDetailOk
+### GetAppErrorTypeOk
 
-`func (o *ApiErrorResponse) GetOriginalWorkerErrorDetailOk() (*string, bool)`
+`func (o *ApiErrorResponse) GetAppErrorTypeOk() (*string, bool)`
 
-GetOriginalWorkerErrorDetailOk returns a tuple with the OriginalWorkerErrorDetail field if it's non-nil, zero value otherwise
+GetAppErrorTypeOk returns a tuple with the AppErrorType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOriginalWorkerErrorDetail
+### SetAppErrorType
 
-`func (o *ApiErrorResponse) SetOriginalWorkerErrorDetail(v string)`
+`func (o *ApiErrorResponse) SetAppErrorType(v string)`
 
-SetOriginalWorkerErrorDetail sets OriginalWorkerErrorDetail field to given value.
+SetAppErrorType sets AppErrorType field to given value.
 
-### HasOriginalWorkerErrorDetail
+### HasAppErrorType
 
-`func (o *ApiErrorResponse) HasOriginalWorkerErrorDetail() bool`
+`func (o *ApiErrorResponse) HasAppErrorType() bool`
 
-HasOriginalWorkerErrorDetail returns a boolean if a field has been set.
+HasAppErrorType returns a boolean if a field has been set.
 
-### GetOriginalWorkerErrorType
+### GetDetails
 
-`func (o *ApiErrorResponse) GetOriginalWorkerErrorType() string`
+`func (o *ApiErrorResponse) GetDetails() string`
 
-GetOriginalWorkerErrorType returns the OriginalWorkerErrorType field if non-nil, zero value otherwise.
+GetDetails returns the Details field if non-nil, zero value otherwise.
 
-### GetOriginalWorkerErrorTypeOk
+### GetDetailsOk
 
-`func (o *ApiErrorResponse) GetOriginalWorkerErrorTypeOk() (*string, bool)`
+`func (o *ApiErrorResponse) GetDetailsOk() (*string, bool)`
 
-GetOriginalWorkerErrorTypeOk returns a tuple with the OriginalWorkerErrorType field if it's non-nil, zero value otherwise
+GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOriginalWorkerErrorType
+### SetDetails
 
-`func (o *ApiErrorResponse) SetOriginalWorkerErrorType(v string)`
+`func (o *ApiErrorResponse) SetDetails(v string)`
 
-SetOriginalWorkerErrorType sets OriginalWorkerErrorType field to given value.
+SetDetails sets Details field to given value.
 
-### HasOriginalWorkerErrorType
+### HasDetails
 
-`func (o *ApiErrorResponse) HasOriginalWorkerErrorType() bool`
+`func (o *ApiErrorResponse) HasDetails() bool`
 
-HasOriginalWorkerErrorType returns a boolean if a field has been set.
-
-### GetOriginalWorkerErrorStatus
-
-`func (o *ApiErrorResponse) GetOriginalWorkerErrorStatus() int32`
-
-GetOriginalWorkerErrorStatus returns the OriginalWorkerErrorStatus field if non-nil, zero value otherwise.
-
-### GetOriginalWorkerErrorStatusOk
-
-`func (o *ApiErrorResponse) GetOriginalWorkerErrorStatusOk() (*int32, bool)`
-
-GetOriginalWorkerErrorStatusOk returns a tuple with the OriginalWorkerErrorStatus field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOriginalWorkerErrorStatus
-
-`func (o *ApiErrorResponse) SetOriginalWorkerErrorStatus(v int32)`
-
-SetOriginalWorkerErrorStatus sets OriginalWorkerErrorStatus field to given value.
-
-### HasOriginalWorkerErrorStatus
-
-`func (o *ApiErrorResponse) HasOriginalWorkerErrorStatus() bool`
-
-HasOriginalWorkerErrorStatus returns a boolean if a field has been set.
+HasDetails returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

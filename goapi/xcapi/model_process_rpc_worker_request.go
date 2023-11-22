@@ -20,11 +20,11 @@ var _ MappedNullable = &ProcessRpcWorkerRequest{}
 
 // ProcessRpcWorkerRequest the request of the worker RPC API
 type ProcessRpcWorkerRequest struct {
-	Context                Context                      `json:"context"`
-	ProcessType            string                       `json:"processType"`
-	RpcName                string                       `json:"rpcName"`
-	Input                  *EncodedObject               `json:"input,omitempty"`
-	LoadedGlobalAttributes *LoadGlobalAttributeResponse `json:"loadedGlobalAttributes,omitempty"`
+	Context                 Context                  `json:"context"`
+	ProcessType             string                   `json:"processType"`
+	RpcName                 string                   `json:"rpcName"`
+	Input                   *EncodedObject           `json:"input,omitempty"`
+	AppDatabaseReadResponse *AppDatabaseReadResponse `json:"appDatabaseReadResponse,omitempty"`
 }
 
 type _ProcessRpcWorkerRequest ProcessRpcWorkerRequest
@@ -153,36 +153,36 @@ func (o *ProcessRpcWorkerRequest) SetInput(v EncodedObject) {
 	o.Input = &v
 }
 
-// GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field value if set, zero value otherwise.
-func (o *ProcessRpcWorkerRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse {
-	if o == nil || IsNil(o.LoadedGlobalAttributes) {
-		var ret LoadGlobalAttributeResponse
+// GetAppDatabaseReadResponse returns the AppDatabaseReadResponse field value if set, zero value otherwise.
+func (o *ProcessRpcWorkerRequest) GetAppDatabaseReadResponse() AppDatabaseReadResponse {
+	if o == nil || IsNil(o.AppDatabaseReadResponse) {
+		var ret AppDatabaseReadResponse
 		return ret
 	}
-	return *o.LoadedGlobalAttributes
+	return *o.AppDatabaseReadResponse
 }
 
-// GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field value if set, nil otherwise
+// GetAppDatabaseReadResponseOk returns a tuple with the AppDatabaseReadResponse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessRpcWorkerRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool) {
-	if o == nil || IsNil(o.LoadedGlobalAttributes) {
+func (o *ProcessRpcWorkerRequest) GetAppDatabaseReadResponseOk() (*AppDatabaseReadResponse, bool) {
+	if o == nil || IsNil(o.AppDatabaseReadResponse) {
 		return nil, false
 	}
-	return o.LoadedGlobalAttributes, true
+	return o.AppDatabaseReadResponse, true
 }
 
-// HasLoadedGlobalAttributes returns a boolean if a field has been set.
-func (o *ProcessRpcWorkerRequest) HasLoadedGlobalAttributes() bool {
-	if o != nil && !IsNil(o.LoadedGlobalAttributes) {
+// HasAppDatabaseReadResponse returns a boolean if a field has been set.
+func (o *ProcessRpcWorkerRequest) HasAppDatabaseReadResponse() bool {
+	if o != nil && !IsNil(o.AppDatabaseReadResponse) {
 		return true
 	}
 
 	return false
 }
 
-// SetLoadedGlobalAttributes gets a reference to the given LoadGlobalAttributeResponse and assigns it to the LoadedGlobalAttributes field.
-func (o *ProcessRpcWorkerRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse) {
-	o.LoadedGlobalAttributes = &v
+// SetAppDatabaseReadResponse gets a reference to the given AppDatabaseReadResponse and assigns it to the AppDatabaseReadResponse field.
+func (o *ProcessRpcWorkerRequest) SetAppDatabaseReadResponse(v AppDatabaseReadResponse) {
+	o.AppDatabaseReadResponse = &v
 }
 
 func (o ProcessRpcWorkerRequest) MarshalJSON() ([]byte, error) {
@@ -201,8 +201,8 @@ func (o ProcessRpcWorkerRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Input) {
 		toSerialize["input"] = o.Input
 	}
-	if !IsNil(o.LoadedGlobalAttributes) {
-		toSerialize["loadedGlobalAttributes"] = o.LoadedGlobalAttributes
+	if !IsNil(o.AppDatabaseReadResponse) {
+		toSerialize["appDatabaseReadResponse"] = o.AppDatabaseReadResponse
 	}
 	return toSerialize, nil
 }

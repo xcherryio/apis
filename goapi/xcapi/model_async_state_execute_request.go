@@ -20,13 +20,13 @@ var _ MappedNullable = &AsyncStateExecuteRequest{}
 
 // AsyncStateExecuteRequest the input of the execute API
 type AsyncStateExecuteRequest struct {
-	Context                Context                      `json:"context"`
-	ProcessType            string                       `json:"processType"`
-	StateId                string                       `json:"stateId"`
-	StateInput             *EncodedObject               `json:"stateInput,omitempty"`
-	CommandResults         *CommandResults              `json:"commandResults,omitempty"`
-	LoadedGlobalAttributes *LoadGlobalAttributeResponse `json:"loadedGlobalAttributes,omitempty"`
-	LoadedLocalAttributes  *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
+	Context                 Context                      `json:"context"`
+	ProcessType             string                       `json:"processType"`
+	StateId                 string                       `json:"stateId"`
+	StateInput              *EncodedObject               `json:"stateInput,omitempty"`
+	CommandResults          *CommandResults              `json:"commandResults,omitempty"`
+	ReadAppDatabaseResponse *AppDatabaseReadResponse     `json:"readAppDatabaseResponse,omitempty"`
+	LoadedLocalAttributes   *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
 }
 
 type _AsyncStateExecuteRequest AsyncStateExecuteRequest
@@ -187,36 +187,36 @@ func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults) {
 	o.CommandResults = &v
 }
 
-// GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field value if set, zero value otherwise.
-func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse {
-	if o == nil || IsNil(o.LoadedGlobalAttributes) {
-		var ret LoadGlobalAttributeResponse
+// GetReadAppDatabaseResponse returns the ReadAppDatabaseResponse field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponse() AppDatabaseReadResponse {
+	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
+		var ret AppDatabaseReadResponse
 		return ret
 	}
-	return *o.LoadedGlobalAttributes
+	return *o.ReadAppDatabaseResponse
 }
 
-// GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field value if set, nil otherwise
+// GetReadAppDatabaseResponseOk returns a tuple with the ReadAppDatabaseResponse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool) {
-	if o == nil || IsNil(o.LoadedGlobalAttributes) {
+func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseOk() (*AppDatabaseReadResponse, bool) {
+	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
 		return nil, false
 	}
-	return o.LoadedGlobalAttributes, true
+	return o.ReadAppDatabaseResponse, true
 }
 
-// HasLoadedGlobalAttributes returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasLoadedGlobalAttributes() bool {
-	if o != nil && !IsNil(o.LoadedGlobalAttributes) {
+// HasReadAppDatabaseResponse returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponse() bool {
+	if o != nil && !IsNil(o.ReadAppDatabaseResponse) {
 		return true
 	}
 
 	return false
 }
 
-// SetLoadedGlobalAttributes gets a reference to the given LoadGlobalAttributeResponse and assigns it to the LoadedGlobalAttributes field.
-func (o *AsyncStateExecuteRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse) {
-	o.LoadedGlobalAttributes = &v
+// SetReadAppDatabaseResponse gets a reference to the given AppDatabaseReadResponse and assigns it to the ReadAppDatabaseResponse field.
+func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponse(v AppDatabaseReadResponse) {
+	o.ReadAppDatabaseResponse = &v
 }
 
 // GetLoadedLocalAttributes returns the LoadedLocalAttributes field value if set, zero value otherwise.
@@ -270,8 +270,8 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CommandResults) {
 		toSerialize["commandResults"] = o.CommandResults
 	}
-	if !IsNil(o.LoadedGlobalAttributes) {
-		toSerialize["loadedGlobalAttributes"] = o.LoadedGlobalAttributes
+	if !IsNil(o.ReadAppDatabaseResponse) {
+		toSerialize["readAppDatabaseResponse"] = o.ReadAppDatabaseResponse
 	}
 	if !IsNil(o.LoadedLocalAttributes) {
 		toSerialize["loadedLocalAttributes"] = o.LoadedLocalAttributes

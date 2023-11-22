@@ -27,7 +27,7 @@ type AsyncStateConfig struct {
 	WaitUntilApiRetryPolicy     *RetryPolicy                 `json:"waitUntilApiRetryPolicy,omitempty"`
 	ExecuteApiRetryPolicy       *RetryPolicy                 `json:"executeApiRetryPolicy,omitempty"`
 	StateFailureRecoveryOptions *StateFailureRecoveryOptions `json:"stateFailureRecoveryOptions,omitempty"`
-	LoadGlobalAttributesRequest *LoadGlobalAttributesRequest `json:"loadGlobalAttributesRequest,omitempty"`
+	AppDatabaseReadRequest      *AppDatabaseTableReadRequest `json:"appDatabaseReadRequest,omitempty"`
 	LoadLocalAttributesRequest  *LoadLocalAttributesRequest  `json:"loadLocalAttributesRequest,omitempty"`
 }
 
@@ -240,36 +240,36 @@ func (o *AsyncStateConfig) SetStateFailureRecoveryOptions(v StateFailureRecovery
 	o.StateFailureRecoveryOptions = &v
 }
 
-// GetLoadGlobalAttributesRequest returns the LoadGlobalAttributesRequest field value if set, zero value otherwise.
-func (o *AsyncStateConfig) GetLoadGlobalAttributesRequest() LoadGlobalAttributesRequest {
-	if o == nil || IsNil(o.LoadGlobalAttributesRequest) {
-		var ret LoadGlobalAttributesRequest
+// GetAppDatabaseReadRequest returns the AppDatabaseReadRequest field value if set, zero value otherwise.
+func (o *AsyncStateConfig) GetAppDatabaseReadRequest() AppDatabaseTableReadRequest {
+	if o == nil || IsNil(o.AppDatabaseReadRequest) {
+		var ret AppDatabaseTableReadRequest
 		return ret
 	}
-	return *o.LoadGlobalAttributesRequest
+	return *o.AppDatabaseReadRequest
 }
 
-// GetLoadGlobalAttributesRequestOk returns a tuple with the LoadGlobalAttributesRequest field value if set, nil otherwise
+// GetAppDatabaseReadRequestOk returns a tuple with the AppDatabaseReadRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateConfig) GetLoadGlobalAttributesRequestOk() (*LoadGlobalAttributesRequest, bool) {
-	if o == nil || IsNil(o.LoadGlobalAttributesRequest) {
+func (o *AsyncStateConfig) GetAppDatabaseReadRequestOk() (*AppDatabaseTableReadRequest, bool) {
+	if o == nil || IsNil(o.AppDatabaseReadRequest) {
 		return nil, false
 	}
-	return o.LoadGlobalAttributesRequest, true
+	return o.AppDatabaseReadRequest, true
 }
 
-// HasLoadGlobalAttributesRequest returns a boolean if a field has been set.
-func (o *AsyncStateConfig) HasLoadGlobalAttributesRequest() bool {
-	if o != nil && !IsNil(o.LoadGlobalAttributesRequest) {
+// HasAppDatabaseReadRequest returns a boolean if a field has been set.
+func (o *AsyncStateConfig) HasAppDatabaseReadRequest() bool {
+	if o != nil && !IsNil(o.AppDatabaseReadRequest) {
 		return true
 	}
 
 	return false
 }
 
-// SetLoadGlobalAttributesRequest gets a reference to the given LoadGlobalAttributesRequest and assigns it to the LoadGlobalAttributesRequest field.
-func (o *AsyncStateConfig) SetLoadGlobalAttributesRequest(v LoadGlobalAttributesRequest) {
-	o.LoadGlobalAttributesRequest = &v
+// SetAppDatabaseReadRequest gets a reference to the given AppDatabaseTableReadRequest and assigns it to the AppDatabaseReadRequest field.
+func (o *AsyncStateConfig) SetAppDatabaseReadRequest(v AppDatabaseTableReadRequest) {
+	o.AppDatabaseReadRequest = &v
 }
 
 // GetLoadLocalAttributesRequest returns the LoadLocalAttributesRequest field value if set, zero value otherwise.
@@ -332,8 +332,8 @@ func (o AsyncStateConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StateFailureRecoveryOptions) {
 		toSerialize["stateFailureRecoveryOptions"] = o.StateFailureRecoveryOptions
 	}
-	if !IsNil(o.LoadGlobalAttributesRequest) {
-		toSerialize["loadGlobalAttributesRequest"] = o.LoadGlobalAttributesRequest
+	if !IsNil(o.AppDatabaseReadRequest) {
+		toSerialize["appDatabaseReadRequest"] = o.AppDatabaseReadRequest
 	}
 	if !IsNil(o.LoadLocalAttributesRequest) {
 		toSerialize["loadLocalAttributesRequest"] = o.LoadLocalAttributesRequest

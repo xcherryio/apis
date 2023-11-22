@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **FirstAttemptTimestamp** | Pointer to **int64** | for async state API only(during backoff retry) | [optional] 
 **Attempt** | Pointer to **int32** | for async state API only(during backoff retry) | [optional] 
 **RecoverFromStateExecutionId** | Pointer to **string** | for async state API only, state id + sequence number | [optional] 
-**RecoverFromApi** | Pointer to [**StateApiType**](StateApiType.md) |  | [optional] 
+**RecoverFromApi** | Pointer to [**WorkerApiType**](WorkerApiType.md) |  | [optional] 
 
 ## Methods
 
@@ -194,20 +194,20 @@ HasRecoverFromStateExecutionId returns a boolean if a field has been set.
 
 ### GetRecoverFromApi
 
-`func (o *Context) GetRecoverFromApi() StateApiType`
+`func (o *Context) GetRecoverFromApi() WorkerApiType`
 
 GetRecoverFromApi returns the RecoverFromApi field if non-nil, zero value otherwise.
 
 ### GetRecoverFromApiOk
 
-`func (o *Context) GetRecoverFromApiOk() (*StateApiType, bool)`
+`func (o *Context) GetRecoverFromApiOk() (*WorkerApiType, bool)`
 
 GetRecoverFromApiOk returns a tuple with the RecoverFromApi field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRecoverFromApi
 
-`func (o *Context) SetRecoverFromApi(v StateApiType)`
+`func (o *Context) SetRecoverFromApi(v WorkerApiType)`
 
 SetRecoverFromApi sets RecoverFromApi field to given value.
 

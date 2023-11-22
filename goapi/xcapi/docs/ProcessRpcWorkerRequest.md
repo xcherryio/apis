@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **ProcessType** | **string** |  | 
 **RpcName** | **string** |  | 
 **Input** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
-**LoadedGlobalAttributes** | Pointer to [**LoadGlobalAttributeResponse**](LoadGlobalAttributeResponse.md) |  | [optional] 
+**AppDatabaseReadResponse** | Pointer to [**AppDatabaseReadResponse**](AppDatabaseReadResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -114,30 +114,30 @@ SetInput sets Input field to given value.
 
 HasInput returns a boolean if a field has been set.
 
-### GetLoadedGlobalAttributes
+### GetAppDatabaseReadResponse
 
-`func (o *ProcessRpcWorkerRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse`
+`func (o *ProcessRpcWorkerRequest) GetAppDatabaseReadResponse() AppDatabaseReadResponse`
 
-GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field if non-nil, zero value otherwise.
+GetAppDatabaseReadResponse returns the AppDatabaseReadResponse field if non-nil, zero value otherwise.
 
-### GetLoadedGlobalAttributesOk
+### GetAppDatabaseReadResponseOk
 
-`func (o *ProcessRpcWorkerRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool)`
+`func (o *ProcessRpcWorkerRequest) GetAppDatabaseReadResponseOk() (*AppDatabaseReadResponse, bool)`
 
-GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field if it's non-nil, zero value otherwise
+GetAppDatabaseReadResponseOk returns a tuple with the AppDatabaseReadResponse field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoadedGlobalAttributes
+### SetAppDatabaseReadResponse
 
-`func (o *ProcessRpcWorkerRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse)`
+`func (o *ProcessRpcWorkerRequest) SetAppDatabaseReadResponse(v AppDatabaseReadResponse)`
 
-SetLoadedGlobalAttributes sets LoadedGlobalAttributes field to given value.
+SetAppDatabaseReadResponse sets AppDatabaseReadResponse field to given value.
 
-### HasLoadedGlobalAttributes
+### HasAppDatabaseReadResponse
 
-`func (o *ProcessRpcWorkerRequest) HasLoadedGlobalAttributes() bool`
+`func (o *ProcessRpcWorkerRequest) HasAppDatabaseReadResponse() bool`
 
-HasLoadedGlobalAttributes returns a boolean if a field has been set.
+HasAppDatabaseReadResponse returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

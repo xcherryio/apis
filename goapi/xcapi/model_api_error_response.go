@@ -19,10 +19,11 @@ var _ MappedNullable = &ApiErrorResponse{}
 
 // ApiErrorResponse struct for ApiErrorResponse
 type ApiErrorResponse struct {
-	Detail                    *string `json:"detail,omitempty"`
-	OriginalWorkerErrorDetail *string `json:"originalWorkerErrorDetail,omitempty"`
-	OriginalWorkerErrorType   *string `json:"originalWorkerErrorType,omitempty"`
-	OriginalWorkerErrorStatus *int32  `json:"originalWorkerErrorStatus,omitempty"`
+	ErrorSubType *ErrorSubType `json:"errorSubType,omitempty"`
+	// for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver
+	AppErrorType *string `json:"appErrorType,omitempty"`
+	// for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver; for other apiErrorType, it's the detailed message from server.
+	Details *string `json:"details,omitempty"`
 }
 
 // NewApiErrorResponse instantiates a new ApiErrorResponse object
@@ -42,132 +43,100 @@ func NewApiErrorResponseWithDefaults() *ApiErrorResponse {
 	return &this
 }
 
-// GetDetail returns the Detail field value if set, zero value otherwise.
-func (o *ApiErrorResponse) GetDetail() string {
-	if o == nil || IsNil(o.Detail) {
+// GetErrorSubType returns the ErrorSubType field value if set, zero value otherwise.
+func (o *ApiErrorResponse) GetErrorSubType() ErrorSubType {
+	if o == nil || IsNil(o.ErrorSubType) {
+		var ret ErrorSubType
+		return ret
+	}
+	return *o.ErrorSubType
+}
+
+// GetErrorSubTypeOk returns a tuple with the ErrorSubType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiErrorResponse) GetErrorSubTypeOk() (*ErrorSubType, bool) {
+	if o == nil || IsNil(o.ErrorSubType) {
+		return nil, false
+	}
+	return o.ErrorSubType, true
+}
+
+// HasErrorSubType returns a boolean if a field has been set.
+func (o *ApiErrorResponse) HasErrorSubType() bool {
+	if o != nil && !IsNil(o.ErrorSubType) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorSubType gets a reference to the given ErrorSubType and assigns it to the ErrorSubType field.
+func (o *ApiErrorResponse) SetErrorSubType(v ErrorSubType) {
+	o.ErrorSubType = &v
+}
+
+// GetAppErrorType returns the AppErrorType field value if set, zero value otherwise.
+func (o *ApiErrorResponse) GetAppErrorType() string {
+	if o == nil || IsNil(o.AppErrorType) {
 		var ret string
 		return ret
 	}
-	return *o.Detail
+	return *o.AppErrorType
 }
 
-// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
+// GetAppErrorTypeOk returns a tuple with the AppErrorType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiErrorResponse) GetDetailOk() (*string, bool) {
-	if o == nil || IsNil(o.Detail) {
+func (o *ApiErrorResponse) GetAppErrorTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.AppErrorType) {
 		return nil, false
 	}
-	return o.Detail, true
+	return o.AppErrorType, true
 }
 
-// HasDetail returns a boolean if a field has been set.
-func (o *ApiErrorResponse) HasDetail() bool {
-	if o != nil && !IsNil(o.Detail) {
+// HasAppErrorType returns a boolean if a field has been set.
+func (o *ApiErrorResponse) HasAppErrorType() bool {
+	if o != nil && !IsNil(o.AppErrorType) {
 		return true
 	}
 
 	return false
 }
 
-// SetDetail gets a reference to the given string and assigns it to the Detail field.
-func (o *ApiErrorResponse) SetDetail(v string) {
-	o.Detail = &v
+// SetAppErrorType gets a reference to the given string and assigns it to the AppErrorType field.
+func (o *ApiErrorResponse) SetAppErrorType(v string) {
+	o.AppErrorType = &v
 }
 
-// GetOriginalWorkerErrorDetail returns the OriginalWorkerErrorDetail field value if set, zero value otherwise.
-func (o *ApiErrorResponse) GetOriginalWorkerErrorDetail() string {
-	if o == nil || IsNil(o.OriginalWorkerErrorDetail) {
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *ApiErrorResponse) GetDetails() string {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
-	return *o.OriginalWorkerErrorDetail
+	return *o.Details
 }
 
-// GetOriginalWorkerErrorDetailOk returns a tuple with the OriginalWorkerErrorDetail field value if set, nil otherwise
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiErrorResponse) GetOriginalWorkerErrorDetailOk() (*string, bool) {
-	if o == nil || IsNil(o.OriginalWorkerErrorDetail) {
+func (o *ApiErrorResponse) GetDetailsOk() (*string, bool) {
+	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
-	return o.OriginalWorkerErrorDetail, true
+	return o.Details, true
 }
 
-// HasOriginalWorkerErrorDetail returns a boolean if a field has been set.
-func (o *ApiErrorResponse) HasOriginalWorkerErrorDetail() bool {
-	if o != nil && !IsNil(o.OriginalWorkerErrorDetail) {
+// HasDetails returns a boolean if a field has been set.
+func (o *ApiErrorResponse) HasDetails() bool {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
 	return false
 }
 
-// SetOriginalWorkerErrorDetail gets a reference to the given string and assigns it to the OriginalWorkerErrorDetail field.
-func (o *ApiErrorResponse) SetOriginalWorkerErrorDetail(v string) {
-	o.OriginalWorkerErrorDetail = &v
-}
-
-// GetOriginalWorkerErrorType returns the OriginalWorkerErrorType field value if set, zero value otherwise.
-func (o *ApiErrorResponse) GetOriginalWorkerErrorType() string {
-	if o == nil || IsNil(o.OriginalWorkerErrorType) {
-		var ret string
-		return ret
-	}
-	return *o.OriginalWorkerErrorType
-}
-
-// GetOriginalWorkerErrorTypeOk returns a tuple with the OriginalWorkerErrorType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiErrorResponse) GetOriginalWorkerErrorTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.OriginalWorkerErrorType) {
-		return nil, false
-	}
-	return o.OriginalWorkerErrorType, true
-}
-
-// HasOriginalWorkerErrorType returns a boolean if a field has been set.
-func (o *ApiErrorResponse) HasOriginalWorkerErrorType() bool {
-	if o != nil && !IsNil(o.OriginalWorkerErrorType) {
-		return true
-	}
-
-	return false
-}
-
-// SetOriginalWorkerErrorType gets a reference to the given string and assigns it to the OriginalWorkerErrorType field.
-func (o *ApiErrorResponse) SetOriginalWorkerErrorType(v string) {
-	o.OriginalWorkerErrorType = &v
-}
-
-// GetOriginalWorkerErrorStatus returns the OriginalWorkerErrorStatus field value if set, zero value otherwise.
-func (o *ApiErrorResponse) GetOriginalWorkerErrorStatus() int32 {
-	if o == nil || IsNil(o.OriginalWorkerErrorStatus) {
-		var ret int32
-		return ret
-	}
-	return *o.OriginalWorkerErrorStatus
-}
-
-// GetOriginalWorkerErrorStatusOk returns a tuple with the OriginalWorkerErrorStatus field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApiErrorResponse) GetOriginalWorkerErrorStatusOk() (*int32, bool) {
-	if o == nil || IsNil(o.OriginalWorkerErrorStatus) {
-		return nil, false
-	}
-	return o.OriginalWorkerErrorStatus, true
-}
-
-// HasOriginalWorkerErrorStatus returns a boolean if a field has been set.
-func (o *ApiErrorResponse) HasOriginalWorkerErrorStatus() bool {
-	if o != nil && !IsNil(o.OriginalWorkerErrorStatus) {
-		return true
-	}
-
-	return false
-}
-
-// SetOriginalWorkerErrorStatus gets a reference to the given int32 and assigns it to the OriginalWorkerErrorStatus field.
-func (o *ApiErrorResponse) SetOriginalWorkerErrorStatus(v int32) {
-	o.OriginalWorkerErrorStatus = &v
+// SetDetails gets a reference to the given string and assigns it to the Details field.
+func (o *ApiErrorResponse) SetDetails(v string) {
+	o.Details = &v
 }
 
 func (o ApiErrorResponse) MarshalJSON() ([]byte, error) {
@@ -180,17 +149,14 @@ func (o ApiErrorResponse) MarshalJSON() ([]byte, error) {
 
 func (o ApiErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Detail) {
-		toSerialize["detail"] = o.Detail
+	if !IsNil(o.ErrorSubType) {
+		toSerialize["errorSubType"] = o.ErrorSubType
 	}
-	if !IsNil(o.OriginalWorkerErrorDetail) {
-		toSerialize["originalWorkerErrorDetail"] = o.OriginalWorkerErrorDetail
+	if !IsNil(o.AppErrorType) {
+		toSerialize["appErrorType"] = o.AppErrorType
 	}
-	if !IsNil(o.OriginalWorkerErrorType) {
-		toSerialize["originalWorkerErrorType"] = o.OriginalWorkerErrorType
-	}
-	if !IsNil(o.OriginalWorkerErrorStatus) {
-		toSerialize["originalWorkerErrorStatus"] = o.OriginalWorkerErrorStatus
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
 	}
 	return toSerialize, nil
 }

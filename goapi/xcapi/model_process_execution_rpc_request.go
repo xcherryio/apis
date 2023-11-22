@@ -25,8 +25,8 @@ type ProcessExecutionRpcRequest struct {
 	RpcName   string         `json:"rpcName"`
 	Input     *EncodedObject `json:"input,omitempty"`
 	// the timeout for the single attempt of the Process RPC API
-	TimeoutSeconds              *int32                       `json:"timeoutSeconds,omitempty"`
-	LoadGlobalAttributesRequest *LoadGlobalAttributesRequest `json:"loadGlobalAttributesRequest,omitempty"`
+	TimeoutSeconds         *int32                  `json:"timeoutSeconds,omitempty"`
+	AppDatabaseReadRequest *AppDatabaseReadRequest `json:"appDatabaseReadRequest,omitempty"`
 }
 
 type _ProcessExecutionRpcRequest ProcessExecutionRpcRequest
@@ -187,36 +187,36 @@ func (o *ProcessExecutionRpcRequest) SetTimeoutSeconds(v int32) {
 	o.TimeoutSeconds = &v
 }
 
-// GetLoadGlobalAttributesRequest returns the LoadGlobalAttributesRequest field value if set, zero value otherwise.
-func (o *ProcessExecutionRpcRequest) GetLoadGlobalAttributesRequest() LoadGlobalAttributesRequest {
-	if o == nil || IsNil(o.LoadGlobalAttributesRequest) {
-		var ret LoadGlobalAttributesRequest
+// GetAppDatabaseReadRequest returns the AppDatabaseReadRequest field value if set, zero value otherwise.
+func (o *ProcessExecutionRpcRequest) GetAppDatabaseReadRequest() AppDatabaseReadRequest {
+	if o == nil || IsNil(o.AppDatabaseReadRequest) {
+		var ret AppDatabaseReadRequest
 		return ret
 	}
-	return *o.LoadGlobalAttributesRequest
+	return *o.AppDatabaseReadRequest
 }
 
-// GetLoadGlobalAttributesRequestOk returns a tuple with the LoadGlobalAttributesRequest field value if set, nil otherwise
+// GetAppDatabaseReadRequestOk returns a tuple with the AppDatabaseReadRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionRpcRequest) GetLoadGlobalAttributesRequestOk() (*LoadGlobalAttributesRequest, bool) {
-	if o == nil || IsNil(o.LoadGlobalAttributesRequest) {
+func (o *ProcessExecutionRpcRequest) GetAppDatabaseReadRequestOk() (*AppDatabaseReadRequest, bool) {
+	if o == nil || IsNil(o.AppDatabaseReadRequest) {
 		return nil, false
 	}
-	return o.LoadGlobalAttributesRequest, true
+	return o.AppDatabaseReadRequest, true
 }
 
-// HasLoadGlobalAttributesRequest returns a boolean if a field has been set.
-func (o *ProcessExecutionRpcRequest) HasLoadGlobalAttributesRequest() bool {
-	if o != nil && !IsNil(o.LoadGlobalAttributesRequest) {
+// HasAppDatabaseReadRequest returns a boolean if a field has been set.
+func (o *ProcessExecutionRpcRequest) HasAppDatabaseReadRequest() bool {
+	if o != nil && !IsNil(o.AppDatabaseReadRequest) {
 		return true
 	}
 
 	return false
 }
 
-// SetLoadGlobalAttributesRequest gets a reference to the given LoadGlobalAttributesRequest and assigns it to the LoadGlobalAttributesRequest field.
-func (o *ProcessExecutionRpcRequest) SetLoadGlobalAttributesRequest(v LoadGlobalAttributesRequest) {
-	o.LoadGlobalAttributesRequest = &v
+// SetAppDatabaseReadRequest gets a reference to the given AppDatabaseReadRequest and assigns it to the AppDatabaseReadRequest field.
+func (o *ProcessExecutionRpcRequest) SetAppDatabaseReadRequest(v AppDatabaseReadRequest) {
+	o.AppDatabaseReadRequest = &v
 }
 
 func (o ProcessExecutionRpcRequest) MarshalJSON() ([]byte, error) {
@@ -238,8 +238,8 @@ func (o ProcessExecutionRpcRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TimeoutSeconds) {
 		toSerialize["timeoutSeconds"] = o.TimeoutSeconds
 	}
-	if !IsNil(o.LoadGlobalAttributesRequest) {
-		toSerialize["loadGlobalAttributesRequest"] = o.LoadGlobalAttributesRequest
+	if !IsNil(o.AppDatabaseReadRequest) {
+		toSerialize["appDatabaseReadRequest"] = o.AppDatabaseReadRequest
 	}
 	return toSerialize, nil
 }

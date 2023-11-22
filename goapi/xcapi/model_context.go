@@ -30,8 +30,8 @@ type Context struct {
 	// for async state API only(during backoff retry)
 	Attempt *int32 `json:"attempt,omitempty"`
 	// for async state API only, state id + sequence number
-	RecoverFromStateExecutionId *string       `json:"recoverFromStateExecutionId,omitempty"`
-	RecoverFromApi              *StateApiType `json:"recoverFromApi,omitempty"`
+	RecoverFromStateExecutionId *string        `json:"recoverFromStateExecutionId,omitempty"`
+	RecoverFromApi              *WorkerApiType `json:"recoverFromApi,omitempty"`
 }
 
 type _Context Context
@@ -257,9 +257,9 @@ func (o *Context) SetRecoverFromStateExecutionId(v string) {
 }
 
 // GetRecoverFromApi returns the RecoverFromApi field value if set, zero value otherwise.
-func (o *Context) GetRecoverFromApi() StateApiType {
+func (o *Context) GetRecoverFromApi() WorkerApiType {
 	if o == nil || IsNil(o.RecoverFromApi) {
-		var ret StateApiType
+		var ret WorkerApiType
 		return ret
 	}
 	return *o.RecoverFromApi
@@ -267,7 +267,7 @@ func (o *Context) GetRecoverFromApi() StateApiType {
 
 // GetRecoverFromApiOk returns a tuple with the RecoverFromApi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Context) GetRecoverFromApiOk() (*StateApiType, bool) {
+func (o *Context) GetRecoverFromApiOk() (*WorkerApiType, bool) {
 	if o == nil || IsNil(o.RecoverFromApi) {
 		return nil, false
 	}
@@ -283,8 +283,8 @@ func (o *Context) HasRecoverFromApi() bool {
 	return false
 }
 
-// SetRecoverFromApi gets a reference to the given StateApiType and assigns it to the RecoverFromApi field.
-func (o *Context) SetRecoverFromApi(v StateApiType) {
+// SetRecoverFromApi gets a reference to the given WorkerApiType and assigns it to the RecoverFromApi field.
+func (o *Context) SetRecoverFromApi(v WorkerApiType) {
 	o.RecoverFromApi = &v
 }
 
