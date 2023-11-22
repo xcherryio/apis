@@ -317,7 +317,7 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        readAppDatabaseResponse:
+        appDatabaseReadResponse:
           $ref: '#/components/schemas/AppDatabaseReadResponse'
         appDatabaseError:
           $ref: '#/components/schemas/AppDatabaseError'

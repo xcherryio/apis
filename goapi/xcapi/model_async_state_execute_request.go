@@ -25,7 +25,7 @@ type AsyncStateExecuteRequest struct {
 	StateId                 string                       `json:"stateId"`
 	StateInput              *EncodedObject               `json:"stateInput,omitempty"`
 	CommandResults          *CommandResults              `json:"commandResults,omitempty"`
-	ReadAppDatabaseResponse *AppDatabaseReadResponse     `json:"readAppDatabaseResponse,omitempty"`
+	AppDatabaseReadResponse *AppDatabaseReadResponse     `json:"appDatabaseReadResponse,omitempty"`
 	AppDatabaseError        *AppDatabaseError            `json:"appDatabaseError,omitempty"`
 	LoadedLocalAttributes   *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
 }
@@ -188,36 +188,36 @@ func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults) {
 	o.CommandResults = &v
 }
 
-// GetReadAppDatabaseResponse returns the ReadAppDatabaseResponse field value if set, zero value otherwise.
-func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponse() AppDatabaseReadResponse {
-	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
+// GetAppDatabaseReadResponse returns the AppDatabaseReadResponse field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetAppDatabaseReadResponse() AppDatabaseReadResponse {
+	if o == nil || IsNil(o.AppDatabaseReadResponse) {
 		var ret AppDatabaseReadResponse
 		return ret
 	}
-	return *o.ReadAppDatabaseResponse
+	return *o.AppDatabaseReadResponse
 }
 
-// GetReadAppDatabaseResponseOk returns a tuple with the ReadAppDatabaseResponse field value if set, nil otherwise
+// GetAppDatabaseReadResponseOk returns a tuple with the AppDatabaseReadResponse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseOk() (*AppDatabaseReadResponse, bool) {
-	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
+func (o *AsyncStateExecuteRequest) GetAppDatabaseReadResponseOk() (*AppDatabaseReadResponse, bool) {
+	if o == nil || IsNil(o.AppDatabaseReadResponse) {
 		return nil, false
 	}
-	return o.ReadAppDatabaseResponse, true
+	return o.AppDatabaseReadResponse, true
 }
 
-// HasReadAppDatabaseResponse returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponse() bool {
-	if o != nil && !IsNil(o.ReadAppDatabaseResponse) {
+// HasAppDatabaseReadResponse returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasAppDatabaseReadResponse() bool {
+	if o != nil && !IsNil(o.AppDatabaseReadResponse) {
 		return true
 	}
 
 	return false
 }
 
-// SetReadAppDatabaseResponse gets a reference to the given AppDatabaseReadResponse and assigns it to the ReadAppDatabaseResponse field.
-func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponse(v AppDatabaseReadResponse) {
-	o.ReadAppDatabaseResponse = &v
+// SetAppDatabaseReadResponse gets a reference to the given AppDatabaseReadResponse and assigns it to the AppDatabaseReadResponse field.
+func (o *AsyncStateExecuteRequest) SetAppDatabaseReadResponse(v AppDatabaseReadResponse) {
+	o.AppDatabaseReadResponse = &v
 }
 
 // GetAppDatabaseError returns the AppDatabaseError field value if set, zero value otherwise.
@@ -303,8 +303,8 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CommandResults) {
 		toSerialize["commandResults"] = o.CommandResults
 	}
-	if !IsNil(o.ReadAppDatabaseResponse) {
-		toSerialize["readAppDatabaseResponse"] = o.ReadAppDatabaseResponse
+	if !IsNil(o.AppDatabaseReadResponse) {
+		toSerialize["appDatabaseReadResponse"] = o.AppDatabaseReadResponse
 	}
 	if !IsNil(o.AppDatabaseError) {
 		toSerialize["appDatabaseError"] = o.AppDatabaseError

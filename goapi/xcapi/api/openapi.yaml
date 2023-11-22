@@ -407,8 +407,7 @@ components:
           firstAttemptTimestamp: 6
           attempt: 1
           stateExecutionId: stateExecutionId
-        processType: processType
-        readAppDatabaseResponse:
+        appDatabaseReadResponse:
           tables:
           - rows:
             - columns:
@@ -434,6 +433,7 @@ components:
               - column: column
                 queryValue: queryValue
             tableName: tableName
+        processType: processType
         stateInput:
           data: data
           encoding: encoding
@@ -458,7 +458,7 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        readAppDatabaseResponse:
+        appDatabaseReadResponse:
           $ref: '#/components/schemas/AppDatabaseReadResponse'
         appDatabaseError:
           $ref: '#/components/schemas/AppDatabaseError'

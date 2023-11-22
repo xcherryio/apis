@@ -393,7 +393,7 @@ export interface AsyncStateExecuteRequest {
      * @type {AppDatabaseReadResponse}
      * @memberof AsyncStateExecuteRequest
      */
-    'readAppDatabaseResponse'?: AppDatabaseReadResponse;
+    'appDatabaseReadResponse'?: AppDatabaseReadResponse;
     /**
      * 
      * @type {AppDatabaseError}
