@@ -5,4 +5,4 @@
 ## Checklist before merge
 [ ] Run the make command to update the generated code
 [ ] Make sure the openapi generator is not getting downgraded
-[ ] If it is a breaking changes, make sure to merge in together with SDK+server
+[ ] If it is a breaking changes, make sure to merge in together with SDK+server. And set the title with "[Breaking changes]"
