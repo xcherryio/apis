@@ -598,91 +598,6 @@ components:
           type: string
         value:
           $ref: '#/components/schemas/EncodedObject'
-    AppDatabaseConfig:
-      type: object
-      properties:
-        tableConfigs:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseTableConfig'
-    AppDatabaseTableConfig:
-      type: object
-      required: 
-        - tableName
-        - rows
-      properties: 
-        tableName:
-          type: string
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseTableRowSelector'
-    AppDatabaseTableRowSelector:
-      type: object
-      required:
-        - primaryKey
-      properties:
-        primaryKey:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseColumnValue'
-        initialWrite: # optional initial write -- create the new row if not exists
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseColumnValue'
-        conflictMode:
-          $ref: '#/components/schemas/WriteConflictMode'
-    AppDatabaseWrite:
-      type: object
-      properties:
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseTableWrite'
-    AppDatabaseTableWrite:
-      type: object
-      required:
-        - tableName
-      properties:
-        tableName:
-          type: string
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseRowWrite'
-    AppDatabaseRowWrite:
-      type: object
-      required:
-        - primaryKey
-        - writeColumns
-      properties:
-        primaryKey:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseColumnValue'
-        writeColumns:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseColumnValue'
-    WriteConflictMode:
-      type: string
-      enum:
-        - RETURN_ERROR_ON_CONFLICT # default behavior for initial row write
-        - IGNORE_CONFLICT
-        - OVERRIDE_ON_CONFLICT
-    AppDatabaseColumnValue:
-      type: object
-      description: the value of a table column (from SDK to server or from server to SDK)
-      required:
-        - dbColumn
-        - dbQueryValue
-      properties:
-        dbColumn:
-          type: string
-          description: the column name that can be used in the database query, see below for example
-        dbQueryValue:
-          type: string
-          description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
     LoadLocalAttributesRequest:
       type: object
       properties:
@@ -703,49 +618,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-    AppDatabaseReadRequest:
-      type: object
-      description: the request to read app database tables
-      properties:
-        tableRequests:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseTableReadRequest'
-    AppDatabaseTableReadRequest:
-      type: object
-      properties: 
-        tableName:
-          type: string
-        lockType:
-          $ref: '#/components/schemas/DatabaseLockingType'
-        columns:
-          type: array
-          items: 
-            type: string
-    AppDatabaseReadResponse:
-      type: object
-      description: the response for loading global attributes
-      properties:
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
-    AppDatabaseTableReadResponse:
-      type: object
-      properties:
-        tableName:
-          type: string
-        rows:
-          type: array
-          items: 
-            $ref: '#/components/schemas/AppDatabaseRowReadResponse'
-    AppDatabaseRowReadResponse:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppDatabaseColumnValue'
     DatabaseLockingType:
       type: string
       enum:
@@ -776,7 +648,7 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryOptions:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
-        appDatabaseRequest:
+        appDatabaseReadRequest:
           $ref: '#/components/schemas/AppDatabaseTableReadRequest'
         loadLocalAttributesRequest:
           $ref: '#/components/schemas/LoadLocalAttributesRequest'
@@ -957,3 +829,136 @@ components:
             $ref: '#/components/schemas/LocalQueueMessage'
         writeToAppDatabase:
           $ref: '#/components/schemas/AppDatabaseWrite'
+    # below is models for app database feature
+    AppDatabaseReadRequest:
+      type: object
+      description: the request to read the selected rows of configured app database tables
+      properties:
+        tableRequests:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableReadRequest'
+    AppDatabaseTableReadRequest:
+      type: object
+      properties:
+        tableName:
+          type: string
+        lockType:
+          $ref: '#/components/schemas/DatabaseLockingType'
+        columns:
+          type: array
+          items:
+            type: string
+    AppDatabaseReadResponse:
+      type: object
+      description: the response for read the app database
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
+    AppDatabaseTableReadResponse:
+      type: object
+      properties:
+        tableName:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseRowReadResponse'
+    AppDatabaseRowReadResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+    AppDatabaseConfig:
+      type: object
+      description: the configuration of what tables and rows to read/load for state/RPCs, including an optional initial write
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableConfig'
+    AppDatabaseTableConfig:
+      type: object
+      required:
+        - tableName
+        - rows
+      properties:
+        tableName:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableRowSelector'
+    AppDatabaseTableRowSelector:
+      type: object
+      required:
+        - primaryKey
+      properties:
+        primaryKey:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        initialWrite: # optional initial write to create the new row if not exists
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        conflictMode:
+          $ref: '#/components/schemas/WriteConflictMode'
+    AppDatabaseWrite:
+      type: object
+      description: the write operation for state/RPCs to write to the app database values
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableWrite'
+    AppDatabaseTableWrite:
+      type: object
+      required:
+        - tableName
+      properties:
+        tableName:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseRowWrite'
+    AppDatabaseRowWrite:
+      type: object
+      required:
+        - primaryKey
+        - writeColumns
+      properties:
+        primaryKey:
+          type: array
+          description: the PK to locate the rows for write
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        writeColumns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+    WriteConflictMode:
+      type: string
+      enum:
+        - RETURN_ERROR_ON_CONFLICT # default behavior for initial row write
+        - IGNORE_CONFLICT
+        - OVERRIDE_ON_CONFLICT
+    AppDatabaseColumnValue:
+      type: object
+      description: the value of a table column (from SDK to server or from server to SDK)
+      required:
+        - column
+        - queryValue
+      properties:
+        column:
+          type: string
+          description: the column name that can be used in the database query, see below for example
+        queryValue:
+          type: string
+          description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
+# above is the models for app database feature
