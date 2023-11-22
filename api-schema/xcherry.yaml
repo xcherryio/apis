@@ -317,8 +317,8 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        readAppDatabaseResponse:
-          $ref: '#/components/schemas/AppDatabaseReadResponse'
+        readAppDatabaseResponseWithDBError:
+          $ref: '#/components/schemas/AppDatabaseReadResponseWithDBError'
         loadedLocalAttributes:
           $ref: '#/components/schemas/LoadLocalAttributesResponse'
     CommandResults:
@@ -803,7 +803,8 @@ components:
             $ref: '#/components/schemas/LocalQueueMessage'
         writeToAppDatabase:
           $ref: '#/components/schemas/AppDatabaseWrite'
-    AppDatabaseReadRequest: # below is models for app database feature
+    # below is models for app database feature
+    AppDatabaseReadRequest:
       type: object
       description: the request to read the selected rows of configured app database tables
       properties:
@@ -824,7 +825,16 @@ components:
             type: string
     AppDatabaseReadResponse:
       type: object
-      description: the response for read the app database
+      description: "the response for read the app database"
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
+    AppDatabaseReadResponseWithDBError:
+      type: object
+      description: "the response for read the app database, or the read/write error. 
+      For the write error, it's from last attempt."
       properties:
         tables:
           type: array
@@ -951,3 +961,4 @@ components:
         queryValue:
           type: string
           description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
+    # above is models for app database feature
