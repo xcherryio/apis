@@ -19,7 +19,7 @@ var _ MappedNullable = &AppDatabaseReadRequest{}
 
 // AppDatabaseReadRequest the request to read the selected rows of configured app database tables
 type AppDatabaseReadRequest struct {
-	TableRequests []AppDatabaseTableReadRequest `json:"tableRequests,omitempty"`
+	Tables []AppDatabaseTableReadRequest `json:"tables,omitempty"`
 }
 
 // NewAppDatabaseReadRequest instantiates a new AppDatabaseReadRequest object
@@ -39,36 +39,36 @@ func NewAppDatabaseReadRequestWithDefaults() *AppDatabaseReadRequest {
 	return &this
 }
 
-// GetTableRequests returns the TableRequests field value if set, zero value otherwise.
-func (o *AppDatabaseReadRequest) GetTableRequests() []AppDatabaseTableReadRequest {
-	if o == nil || IsNil(o.TableRequests) {
+// GetTables returns the Tables field value if set, zero value otherwise.
+func (o *AppDatabaseReadRequest) GetTables() []AppDatabaseTableReadRequest {
+	if o == nil || IsNil(o.Tables) {
 		var ret []AppDatabaseTableReadRequest
 		return ret
 	}
-	return o.TableRequests
+	return o.Tables
 }
 
-// GetTableRequestsOk returns a tuple with the TableRequests field value if set, nil otherwise
+// GetTablesOk returns a tuple with the Tables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AppDatabaseReadRequest) GetTableRequestsOk() ([]AppDatabaseTableReadRequest, bool) {
-	if o == nil || IsNil(o.TableRequests) {
+func (o *AppDatabaseReadRequest) GetTablesOk() ([]AppDatabaseTableReadRequest, bool) {
+	if o == nil || IsNil(o.Tables) {
 		return nil, false
 	}
-	return o.TableRequests, true
+	return o.Tables, true
 }
 
-// HasTableRequests returns a boolean if a field has been set.
-func (o *AppDatabaseReadRequest) HasTableRequests() bool {
-	if o != nil && !IsNil(o.TableRequests) {
+// HasTables returns a boolean if a field has been set.
+func (o *AppDatabaseReadRequest) HasTables() bool {
+	if o != nil && !IsNil(o.Tables) {
 		return true
 	}
 
 	return false
 }
 
-// SetTableRequests gets a reference to the given []AppDatabaseTableReadRequest and assigns it to the TableRequests field.
-func (o *AppDatabaseReadRequest) SetTableRequests(v []AppDatabaseTableReadRequest) {
-	o.TableRequests = v
+// SetTables gets a reference to the given []AppDatabaseTableReadRequest and assigns it to the Tables field.
+func (o *AppDatabaseReadRequest) SetTables(v []AppDatabaseTableReadRequest) {
+	o.Tables = v
 }
 
 func (o AppDatabaseReadRequest) MarshalJSON() ([]byte, error) {
@@ -81,8 +81,8 @@ func (o AppDatabaseReadRequest) MarshalJSON() ([]byte, error) {
 
 func (o AppDatabaseReadRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.TableRequests) {
-		toSerialize["tableRequests"] = o.TableRequests
+	if !IsNil(o.Tables) {
+		toSerialize["tables"] = o.Tables
 	}
 	return toSerialize, nil
 }

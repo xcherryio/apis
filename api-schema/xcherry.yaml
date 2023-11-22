@@ -810,7 +810,7 @@ components:
       type: object
       description: the request to read the selected rows of configured app database tables
       properties:
-        tableRequests:
+        tables:
           type: array
           items:
             $ref: '#/components/schemas/AppDatabaseTableReadRequest'

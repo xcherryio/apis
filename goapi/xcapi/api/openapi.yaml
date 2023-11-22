@@ -1533,7 +1533,7 @@ components:
           encoding: encoding
         processId: processId
         appDatabaseReadRequest:
-          tableRequests:
+          tables:
           - columns:
             - columns
             - columns
@@ -1799,7 +1799,7 @@ components:
       description: the request to read the selected rows of configured app database
         tables
       example:
-        tableRequests:
+        tables:
         - columns:
           - columns
           - columns
@@ -1811,7 +1811,7 @@ components:
           lockType: null
           tableName: tableName
       properties:
-        tableRequests:
+        tables:
           items:
             $ref: '#/components/schemas/AppDatabaseTableReadRequest'
           type: array

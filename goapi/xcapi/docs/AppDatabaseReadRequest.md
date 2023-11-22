@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TableRequests** | Pointer to [**[]AppDatabaseTableReadRequest**](AppDatabaseTableReadRequest.md) |  | [optional] 
+**Tables** | Pointer to [**[]AppDatabaseTableReadRequest**](AppDatabaseTableReadRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewAppDatabaseReadRequestWithDefaults instantiates a new AppDatabaseReadRequest 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTableRequests
+### GetTables
 
-`func (o *AppDatabaseReadRequest) GetTableRequests() []AppDatabaseTableReadRequest`
+`func (o *AppDatabaseReadRequest) GetTables() []AppDatabaseTableReadRequest`
 
-GetTableRequests returns the TableRequests field if non-nil, zero value otherwise.
+GetTables returns the Tables field if non-nil, zero value otherwise.
 
-### GetTableRequestsOk
+### GetTablesOk
 
-`func (o *AppDatabaseReadRequest) GetTableRequestsOk() (*[]AppDatabaseTableReadRequest, bool)`
+`func (o *AppDatabaseReadRequest) GetTablesOk() (*[]AppDatabaseTableReadRequest, bool)`
 
-GetTableRequestsOk returns a tuple with the TableRequests field if it's non-nil, zero value otherwise
+GetTablesOk returns a tuple with the Tables field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTableRequests
+### SetTables
 
-`func (o *AppDatabaseReadRequest) SetTableRequests(v []AppDatabaseTableReadRequest)`
+`func (o *AppDatabaseReadRequest) SetTables(v []AppDatabaseTableReadRequest)`
 
-SetTableRequests sets TableRequests field to given value.
+SetTables sets Tables field to given value.
 
-### HasTableRequests
+### HasTables
 
-`func (o *AppDatabaseReadRequest) HasTableRequests() bool`
+`func (o *AppDatabaseReadRequest) HasTables() bool`
 
-HasTableRequests returns a boolean if a field has been set.
+HasTables returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

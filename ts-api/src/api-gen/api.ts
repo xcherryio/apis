@@ -126,7 +126,7 @@ export interface AppDatabaseReadRequest {
      * @type {Array<AppDatabaseTableReadRequest>}
      * @memberof AppDatabaseReadRequest
      */
-    'tableRequests'?: Array<AppDatabaseTableReadRequest>;
+    'tables'?: Array<AppDatabaseTableReadRequest>;
 }
 /**
  * the response for read the app database
