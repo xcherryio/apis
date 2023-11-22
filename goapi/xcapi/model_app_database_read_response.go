@@ -19,14 +19,7 @@ var _ MappedNullable = &AppDatabaseReadResponse{}
 
 // AppDatabaseReadResponse the response for read the app database
 type AppDatabaseReadResponse struct {
-	Tables         []AppDatabaseTableReadResponse `json:"tables,omitempty"`
-	AppDBErrorType *ErrorSubType                  `json:"appDBErrorType,omitempty"`
-	// the error code from database driver
-	AppDBErrorCode *string `json:"appDBErrorCode,omitempty"`
-	// the error message from database driver
-	AppDBErrorMessage *string `json:"appDBErrorMessage,omitempty"`
-	// the first table that encounters the error to help SDK to throw the error in a friendly way
-	AppDBErrorTableName *string `json:"appDBErrorTableName,omitempty"`
+	Tables []AppDatabaseTableReadResponse `json:"tables,omitempty"`
 }
 
 // NewAppDatabaseReadResponse instantiates a new AppDatabaseReadResponse object
@@ -78,134 +71,6 @@ func (o *AppDatabaseReadResponse) SetTables(v []AppDatabaseTableReadResponse) {
 	o.Tables = v
 }
 
-// GetAppDBErrorType returns the AppDBErrorType field value if set, zero value otherwise.
-func (o *AppDatabaseReadResponse) GetAppDBErrorType() ErrorSubType {
-	if o == nil || IsNil(o.AppDBErrorType) {
-		var ret ErrorSubType
-		return ret
-	}
-	return *o.AppDBErrorType
-}
-
-// GetAppDBErrorTypeOk returns a tuple with the AppDBErrorType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppDatabaseReadResponse) GetAppDBErrorTypeOk() (*ErrorSubType, bool) {
-	if o == nil || IsNil(o.AppDBErrorType) {
-		return nil, false
-	}
-	return o.AppDBErrorType, true
-}
-
-// HasAppDBErrorType returns a boolean if a field has been set.
-func (o *AppDatabaseReadResponse) HasAppDBErrorType() bool {
-	if o != nil && !IsNil(o.AppDBErrorType) {
-		return true
-	}
-
-	return false
-}
-
-// SetAppDBErrorType gets a reference to the given ErrorSubType and assigns it to the AppDBErrorType field.
-func (o *AppDatabaseReadResponse) SetAppDBErrorType(v ErrorSubType) {
-	o.AppDBErrorType = &v
-}
-
-// GetAppDBErrorCode returns the AppDBErrorCode field value if set, zero value otherwise.
-func (o *AppDatabaseReadResponse) GetAppDBErrorCode() string {
-	if o == nil || IsNil(o.AppDBErrorCode) {
-		var ret string
-		return ret
-	}
-	return *o.AppDBErrorCode
-}
-
-// GetAppDBErrorCodeOk returns a tuple with the AppDBErrorCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppDatabaseReadResponse) GetAppDBErrorCodeOk() (*string, bool) {
-	if o == nil || IsNil(o.AppDBErrorCode) {
-		return nil, false
-	}
-	return o.AppDBErrorCode, true
-}
-
-// HasAppDBErrorCode returns a boolean if a field has been set.
-func (o *AppDatabaseReadResponse) HasAppDBErrorCode() bool {
-	if o != nil && !IsNil(o.AppDBErrorCode) {
-		return true
-	}
-
-	return false
-}
-
-// SetAppDBErrorCode gets a reference to the given string and assigns it to the AppDBErrorCode field.
-func (o *AppDatabaseReadResponse) SetAppDBErrorCode(v string) {
-	o.AppDBErrorCode = &v
-}
-
-// GetAppDBErrorMessage returns the AppDBErrorMessage field value if set, zero value otherwise.
-func (o *AppDatabaseReadResponse) GetAppDBErrorMessage() string {
-	if o == nil || IsNil(o.AppDBErrorMessage) {
-		var ret string
-		return ret
-	}
-	return *o.AppDBErrorMessage
-}
-
-// GetAppDBErrorMessageOk returns a tuple with the AppDBErrorMessage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppDatabaseReadResponse) GetAppDBErrorMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.AppDBErrorMessage) {
-		return nil, false
-	}
-	return o.AppDBErrorMessage, true
-}
-
-// HasAppDBErrorMessage returns a boolean if a field has been set.
-func (o *AppDatabaseReadResponse) HasAppDBErrorMessage() bool {
-	if o != nil && !IsNil(o.AppDBErrorMessage) {
-		return true
-	}
-
-	return false
-}
-
-// SetAppDBErrorMessage gets a reference to the given string and assigns it to the AppDBErrorMessage field.
-func (o *AppDatabaseReadResponse) SetAppDBErrorMessage(v string) {
-	o.AppDBErrorMessage = &v
-}
-
-// GetAppDBErrorTableName returns the AppDBErrorTableName field value if set, zero value otherwise.
-func (o *AppDatabaseReadResponse) GetAppDBErrorTableName() string {
-	if o == nil || IsNil(o.AppDBErrorTableName) {
-		var ret string
-		return ret
-	}
-	return *o.AppDBErrorTableName
-}
-
-// GetAppDBErrorTableNameOk returns a tuple with the AppDBErrorTableName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AppDatabaseReadResponse) GetAppDBErrorTableNameOk() (*string, bool) {
-	if o == nil || IsNil(o.AppDBErrorTableName) {
-		return nil, false
-	}
-	return o.AppDBErrorTableName, true
-}
-
-// HasAppDBErrorTableName returns a boolean if a field has been set.
-func (o *AppDatabaseReadResponse) HasAppDBErrorTableName() bool {
-	if o != nil && !IsNil(o.AppDBErrorTableName) {
-		return true
-	}
-
-	return false
-}
-
-// SetAppDBErrorTableName gets a reference to the given string and assigns it to the AppDBErrorTableName field.
-func (o *AppDatabaseReadResponse) SetAppDBErrorTableName(v string) {
-	o.AppDBErrorTableName = &v
-}
-
 func (o AppDatabaseReadResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -218,18 +83,6 @@ func (o AppDatabaseReadResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Tables) {
 		toSerialize["tables"] = o.Tables
-	}
-	if !IsNil(o.AppDBErrorType) {
-		toSerialize["appDBErrorType"] = o.AppDBErrorType
-	}
-	if !IsNil(o.AppDBErrorCode) {
-		toSerialize["appDBErrorCode"] = o.AppDBErrorCode
-	}
-	if !IsNil(o.AppDBErrorMessage) {
-		toSerialize["appDBErrorMessage"] = o.AppDBErrorMessage
-	}
-	if !IsNil(o.AppDBErrorTableName) {
-		toSerialize["appDBErrorTableName"] = o.AppDBErrorTableName
 	}
 	return toSerialize, nil
 }

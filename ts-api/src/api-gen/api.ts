@@ -107,28 +107,41 @@ export interface AppDatabaseReadResponse {
      * @memberof AppDatabaseReadResponse
      */
     'tables'?: Array<AppDatabaseTableReadResponse>;
+}
+/**
+ * the response for read the app database, or the read/write error. For the write error, it\'s from last attempt.
+ * @export
+ * @interface AppDatabaseReadResponseWithDBError
+ */
+export interface AppDatabaseReadResponseWithDBError {
+    /**
+     * 
+     * @type {Array<AppDatabaseTableReadResponse>}
+     * @memberof AppDatabaseReadResponseWithDBError
+     */
+    'tables'?: Array<AppDatabaseTableReadResponse>;
     /**
      * 
      * @type {ErrorSubType}
-     * @memberof AppDatabaseReadResponse
+     * @memberof AppDatabaseReadResponseWithDBError
      */
     'appDBErrorType'?: ErrorSubType;
     /**
      * the error code from database driver
      * @type {string}
-     * @memberof AppDatabaseReadResponse
+     * @memberof AppDatabaseReadResponseWithDBError
      */
     'appDBErrorCode'?: string;
     /**
      * the error message from database driver
      * @type {string}
-     * @memberof AppDatabaseReadResponse
+     * @memberof AppDatabaseReadResponseWithDBError
      */
     'appDBErrorMessage'?: string;
     /**
      * the first table that encounters the error to help SDK to throw the error in a friendly way 
      * @type {string}
-     * @memberof AppDatabaseReadResponse
+     * @memberof AppDatabaseReadResponseWithDBError
      */
     'appDBErrorTableName'?: string;
 }
@@ -383,10 +396,10 @@ export interface AsyncStateExecuteRequest {
     'commandResults'?: CommandResults;
     /**
      * 
-     * @type {AppDatabaseReadResponse}
+     * @type {AppDatabaseReadResponseWithDBError}
      * @memberof AsyncStateExecuteRequest
      */
-    'readAppDatabaseResponse'?: AppDatabaseReadResponse;
+    'readAppDatabaseResponseWithDBError'?: AppDatabaseReadResponseWithDBError;
     /**
      * 
      * @type {LoadLocalAttributesResponse}

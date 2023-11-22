@@ -20,13 +20,13 @@ var _ MappedNullable = &AsyncStateExecuteRequest{}
 
 // AsyncStateExecuteRequest the input of the execute API
 type AsyncStateExecuteRequest struct {
-	Context                 Context                      `json:"context"`
-	ProcessType             string                       `json:"processType"`
-	StateId                 string                       `json:"stateId"`
-	StateInput              *EncodedObject               `json:"stateInput,omitempty"`
-	CommandResults          *CommandResults              `json:"commandResults,omitempty"`
-	ReadAppDatabaseResponse *AppDatabaseReadResponse     `json:"readAppDatabaseResponse,omitempty"`
-	LoadedLocalAttributes   *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
+	Context                            Context                             `json:"context"`
+	ProcessType                        string                              `json:"processType"`
+	StateId                            string                              `json:"stateId"`
+	StateInput                         *EncodedObject                      `json:"stateInput,omitempty"`
+	CommandResults                     *CommandResults                     `json:"commandResults,omitempty"`
+	ReadAppDatabaseResponseWithDBError *AppDatabaseReadResponseWithDBError `json:"readAppDatabaseResponseWithDBError,omitempty"`
+	LoadedLocalAttributes              *LoadLocalAttributesResponse        `json:"loadedLocalAttributes,omitempty"`
 }
 
 type _AsyncStateExecuteRequest AsyncStateExecuteRequest
@@ -187,36 +187,36 @@ func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults) {
 	o.CommandResults = &v
 }
 
-// GetReadAppDatabaseResponse returns the ReadAppDatabaseResponse field value if set, zero value otherwise.
-func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponse() AppDatabaseReadResponse {
-	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
-		var ret AppDatabaseReadResponse
+// GetReadAppDatabaseResponseWithDBError returns the ReadAppDatabaseResponseWithDBError field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseWithDBError() AppDatabaseReadResponseWithDBError {
+	if o == nil || IsNil(o.ReadAppDatabaseResponseWithDBError) {
+		var ret AppDatabaseReadResponseWithDBError
 		return ret
 	}
-	return *o.ReadAppDatabaseResponse
+	return *o.ReadAppDatabaseResponseWithDBError
 }
 
-// GetReadAppDatabaseResponseOk returns a tuple with the ReadAppDatabaseResponse field value if set, nil otherwise
+// GetReadAppDatabaseResponseWithDBErrorOk returns a tuple with the ReadAppDatabaseResponseWithDBError field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseOk() (*AppDatabaseReadResponse, bool) {
-	if o == nil || IsNil(o.ReadAppDatabaseResponse) {
+func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseWithDBErrorOk() (*AppDatabaseReadResponseWithDBError, bool) {
+	if o == nil || IsNil(o.ReadAppDatabaseResponseWithDBError) {
 		return nil, false
 	}
-	return o.ReadAppDatabaseResponse, true
+	return o.ReadAppDatabaseResponseWithDBError, true
 }
 
-// HasReadAppDatabaseResponse returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponse() bool {
-	if o != nil && !IsNil(o.ReadAppDatabaseResponse) {
+// HasReadAppDatabaseResponseWithDBError returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponseWithDBError() bool {
+	if o != nil && !IsNil(o.ReadAppDatabaseResponseWithDBError) {
 		return true
 	}
 
 	return false
 }
 
-// SetReadAppDatabaseResponse gets a reference to the given AppDatabaseReadResponse and assigns it to the ReadAppDatabaseResponse field.
-func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponse(v AppDatabaseReadResponse) {
-	o.ReadAppDatabaseResponse = &v
+// SetReadAppDatabaseResponseWithDBError gets a reference to the given AppDatabaseReadResponseWithDBError and assigns it to the ReadAppDatabaseResponseWithDBError field.
+func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponseWithDBError(v AppDatabaseReadResponseWithDBError) {
+	o.ReadAppDatabaseResponseWithDBError = &v
 }
 
 // GetLoadedLocalAttributes returns the LoadedLocalAttributes field value if set, zero value otherwise.
@@ -270,8 +270,8 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CommandResults) {
 		toSerialize["commandResults"] = o.CommandResults
 	}
-	if !IsNil(o.ReadAppDatabaseResponse) {
-		toSerialize["readAppDatabaseResponse"] = o.ReadAppDatabaseResponse
+	if !IsNil(o.ReadAppDatabaseResponseWithDBError) {
+		toSerialize["readAppDatabaseResponseWithDBError"] = o.ReadAppDatabaseResponseWithDBError
 	}
 	if !IsNil(o.LoadedLocalAttributes) {
 		toSerialize["loadedLocalAttributes"] = o.LoadedLocalAttributes

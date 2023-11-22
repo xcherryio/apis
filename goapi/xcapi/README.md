@@ -96,6 +96,7 @@ Class | Method | HTTP request | Description
  - [AppDatabaseConfig](docs/AppDatabaseConfig.md)
  - [AppDatabaseReadRequest](docs/AppDatabaseReadRequest.md)
  - [AppDatabaseReadResponse](docs/AppDatabaseReadResponse.md)
+ - [AppDatabaseReadResponseWithDBError](docs/AppDatabaseReadResponseWithDBError.md)
  - [AppDatabaseRowReadResponse](docs/AppDatabaseRowReadResponse.md)
  - [AppDatabaseRowWrite](docs/AppDatabaseRowWrite.md)
  - [AppDatabaseTableConfig](docs/AppDatabaseTableConfig.md)

@@ -365,6 +365,36 @@ components:
     AsyncStateExecuteRequest:
       description: the input of the execute API
       example:
+        readAppDatabaseResponseWithDBError:
+          tables:
+          - rows:
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
+          - rows:
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
+          appDBErrorCode: appDBErrorCode
+          appDBErrorTableName: appDBErrorTableName
+          appDBErrorType: null
+          appDBErrorMessage: appDBErrorMessage
         commandResults:
           localQueueResults:
           - queueName: queueName
@@ -403,36 +433,6 @@ components:
           attempt: 1
           stateExecutionId: stateExecutionId
         processType: processType
-        readAppDatabaseResponse:
-          tables:
-          - rows:
-            - columns:
-              - column: column
-                queryValue: queryValue
-              - column: column
-                queryValue: queryValue
-            - columns:
-              - column: column
-                queryValue: queryValue
-              - column: column
-                queryValue: queryValue
-            tableName: tableName
-          - rows:
-            - columns:
-              - column: column
-                queryValue: queryValue
-              - column: column
-                queryValue: queryValue
-            - columns:
-              - column: column
-                queryValue: queryValue
-              - column: column
-                queryValue: queryValue
-            tableName: tableName
-          appDBErrorCode: appDBErrorCode
-          appDBErrorTableName: appDBErrorTableName
-          appDBErrorType: null
-          appDBErrorMessage: appDBErrorMessage
         stateInput:
           data: data
           encoding: encoding
@@ -457,8 +457,8 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        readAppDatabaseResponse:
-          $ref: '#/components/schemas/AppDatabaseReadResponse'
+        readAppDatabaseResponseWithDBError:
+          $ref: '#/components/schemas/AppDatabaseReadResponseWithDBError'
         loadedLocalAttributes:
           $ref: '#/components/schemas/LoadLocalAttributesResponse'
       required:
@@ -1614,10 +1614,6 @@ components:
               - column: column
                 queryValue: queryValue
             tableName: tableName
-          appDBErrorCode: appDBErrorCode
-          appDBErrorTableName: appDBErrorTableName
-          appDBErrorType: null
-          appDBErrorMessage: appDBErrorMessage
         processType: processType
         rpcName: rpcName
       properties:
@@ -1836,6 +1832,41 @@ components:
       type: object
     AppDatabaseReadResponse:
       description: the response for read the app database
+      example:
+        tables:
+        - rows:
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+        - rows:
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+      properties:
+        tables:
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
+          type: array
+      type: object
+    AppDatabaseReadResponseWithDBError:
+      description: "the response for read the app database, or the read/write error.\
+        \ For the write error, it's from last attempt."
       example:
         tables:
         - rows:

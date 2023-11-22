@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **StateId** | **string** |  | 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 **CommandResults** | Pointer to [**CommandResults**](CommandResults.md) |  | [optional] 
-**ReadAppDatabaseResponse** | Pointer to [**AppDatabaseReadResponse**](AppDatabaseReadResponse.md) |  | [optional] 
+**ReadAppDatabaseResponseWithDBError** | Pointer to [**AppDatabaseReadResponseWithDBError**](AppDatabaseReadResponseWithDBError.md) |  | [optional] 
 **LoadedLocalAttributes** | Pointer to [**LoadLocalAttributesResponse**](LoadLocalAttributesResponse.md) |  | [optional] 
 
 ## Methods
@@ -141,30 +141,30 @@ SetCommandResults sets CommandResults field to given value.
 
 HasCommandResults returns a boolean if a field has been set.
 
-### GetReadAppDatabaseResponse
+### GetReadAppDatabaseResponseWithDBError
 
-`func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponse() AppDatabaseReadResponse`
+`func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseWithDBError() AppDatabaseReadResponseWithDBError`
 
-GetReadAppDatabaseResponse returns the ReadAppDatabaseResponse field if non-nil, zero value otherwise.
+GetReadAppDatabaseResponseWithDBError returns the ReadAppDatabaseResponseWithDBError field if non-nil, zero value otherwise.
 
-### GetReadAppDatabaseResponseOk
+### GetReadAppDatabaseResponseWithDBErrorOk
 
-`func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseOk() (*AppDatabaseReadResponse, bool)`
+`func (o *AsyncStateExecuteRequest) GetReadAppDatabaseResponseWithDBErrorOk() (*AppDatabaseReadResponseWithDBError, bool)`
 
-GetReadAppDatabaseResponseOk returns a tuple with the ReadAppDatabaseResponse field if it's non-nil, zero value otherwise
+GetReadAppDatabaseResponseWithDBErrorOk returns a tuple with the ReadAppDatabaseResponseWithDBError field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReadAppDatabaseResponse
+### SetReadAppDatabaseResponseWithDBError
 
-`func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponse(v AppDatabaseReadResponse)`
+`func (o *AsyncStateExecuteRequest) SetReadAppDatabaseResponseWithDBError(v AppDatabaseReadResponseWithDBError)`
 
-SetReadAppDatabaseResponse sets ReadAppDatabaseResponse field to given value.
+SetReadAppDatabaseResponseWithDBError sets ReadAppDatabaseResponseWithDBError field to given value.
 
-### HasReadAppDatabaseResponse
+### HasReadAppDatabaseResponseWithDBError
 
-`func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponse() bool`
+`func (o *AsyncStateExecuteRequest) HasReadAppDatabaseResponseWithDBError() bool`
 
-HasReadAppDatabaseResponse returns a boolean if a field has been set.
+HasReadAppDatabaseResponseWithDBError returns a boolean if a field has been set.
 
 ### GetLoadedLocalAttributes
 

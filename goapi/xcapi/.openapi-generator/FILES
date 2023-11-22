@@ -11,6 +11,7 @@ docs/AppDatabaseColumnValue.md
 docs/AppDatabaseConfig.md
 docs/AppDatabaseReadRequest.md
 docs/AppDatabaseReadResponse.md
+docs/AppDatabaseReadResponseWithDBError.md
 docs/AppDatabaseRowReadResponse.md
 docs/AppDatabaseRowWrite.md
 docs/AppDatabaseTableConfig.md
@@ -77,6 +78,7 @@ model_app_database_column_value.go
 model_app_database_config.go
 model_app_database_read_request.go
 model_app_database_read_response.go
+model_app_database_read_response_with_db_error.go
 model_app_database_row_read_response.go
 model_app_database_row_write.go
 model_app_database_table_config.go
