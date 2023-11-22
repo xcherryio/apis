@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
  - [AppDatabaseColumnValue](docs/AppDatabaseColumnValue.md)
  - [AppDatabaseConfig](docs/AppDatabaseConfig.md)
  - [AppDatabaseError](docs/AppDatabaseError.md)
+ - [AppDatabaseErrorHandling](docs/AppDatabaseErrorHandling.md)
  - [AppDatabaseReadRequest](docs/AppDatabaseReadRequest.md)
  - [AppDatabaseReadResponse](docs/AppDatabaseReadResponse.md)
  - [AppDatabaseRowReadResponse](docs/AppDatabaseRowReadResponse.md)

@@ -10,6 +10,7 @@ docs/ApiErrorResponse.md
 docs/AppDatabaseColumnValue.md
 docs/AppDatabaseConfig.md
 docs/AppDatabaseError.md
+docs/AppDatabaseErrorHandling.md
 docs/AppDatabaseReadRequest.md
 docs/AppDatabaseReadResponse.md
 docs/AppDatabaseRowReadResponse.md
@@ -77,6 +78,7 @@ model_api_error_response.go
 model_app_database_column_value.go
 model_app_database_config.go
 model_app_database_error.go
+model_app_database_error_handling.go
 model_app_database_read_request.go
 model_app_database_read_response.go
 model_app_database_row_read_response.go

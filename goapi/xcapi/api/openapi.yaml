@@ -83,7 +83,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: "400: Invalid request, 404: Process execution not exists"
+          description: "400: Invalid request, 404: Process execution not exists or\
+            \ not running"
       summary: send message(s) to be consumed within a single process execution
   /api/v1/xcherry/service/process-execution/rpc:
     post:
@@ -104,9 +105,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: "400: Invalid request, 404: Process execution not exists, 424:\
-            \ app database write failure or worker RPC execution failure, see ErrorSubType\
-            \ for details"
+          description: "400: Invalid request, 404: Process execution not exists, or\
+            \ not running to accept write operation, 424: app database write failure\
+            \ or worker RPC execution failure, see ErrorSubType for details"
       summary: execute a RPC method of a process execution
   /api/v1/xcherry/worker/async-state/wait-until:
     post:
@@ -122,7 +123,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncStateWaitUntilResponse'
           description: successful operation
-        default:
+        "424":
           content:
             application/json:
               schema:
@@ -143,7 +144,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncStateExecuteResponse'
           description: successful operation
-        default:
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDatabaseErrorHandling'
+          description: response of handling app database error
+        "424":
           content:
             application/json:
               schema:
@@ -164,7 +171,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProcessRpcWorkerResponse'
           description: successful operation
-        default:
+        "424":
           content:
             application/json:
               schema:
@@ -735,18 +742,6 @@ components:
               - column: column
                 queryValue: queryValue
             tableName: tableName
-        updatedAppDatabaseReadRequest:
-          tables:
-          - columns:
-            - columns
-            - columns
-            lockType: null
-            tableName: tableName
-          - columns:
-            - columns
-            - columns
-            lockType: null
-            tableName: tableName
         publishToLocalQueue:
         - queueName: queueName
           payload:
@@ -771,8 +766,6 @@ components:
           items:
             $ref: '#/components/schemas/KeyValue'
           type: array
-        updatedAppDatabaseReadRequest:
-          $ref: '#/components/schemas/AppDatabaseReadRequest'
       required:
       - stateDecision
       type: object
@@ -2257,4 +2250,10 @@ components:
       required:
       - column
       - queryValue
+      type: object
+    AppDatabaseErrorHandling:
+      description: handling the AppDatabase error
+      properties:
+        latestReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
       type: object

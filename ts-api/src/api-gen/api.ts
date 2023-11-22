@@ -116,6 +116,19 @@ export interface AppDatabaseError {
 
 
 /**
+ * handling the AppDatabase error
+ * @export
+ * @interface AppDatabaseErrorHandling
+ */
+export interface AppDatabaseErrorHandling {
+    /**
+     * 
+     * @type {AppDatabaseReadRequest}
+     * @memberof AppDatabaseErrorHandling
+     */
+    'latestReadRequest'?: AppDatabaseReadRequest;
+}
+/**
  * the request to read the selected rows of configured app database tables
  * @export
  * @interface AppDatabaseReadRequest
@@ -437,12 +450,6 @@ export interface AsyncStateExecuteResponse {
      * @memberof AsyncStateExecuteResponse
      */
     'writeToLocalAttributes'?: Array<KeyValue>;
-    /**
-     * 
-     * @type {AppDatabaseReadRequest}
-     * @memberof AsyncStateExecuteResponse
-     */
-    'updatedAppDatabaseReadRequest'?: AppDatabaseReadRequest;
 }
 /**
  * the input of the waitUntil API

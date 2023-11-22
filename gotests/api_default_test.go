@@ -15,7 +15,7 @@ import (
 	"testing"
 )
 
-func Test_xdbapi_build(t *testing.T) {
+func Test_build(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
