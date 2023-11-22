@@ -100,7 +100,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionRpcResponse'
         default:
-          description: "400: Invalid request, 404: Process execution not exists, 424: app database write failure or worker RPC execution failure, see subStatus for details"
+          description: "400: Invalid request, 404: Process execution not exists, 
+          424: app database write failure or worker RPC execution failure, see ErrorSubType for details"
           content:
             application/json:
               schema:
@@ -495,7 +496,7 @@ components:
     ApiErrorResponse:
       type: object
       properties:
-        errorSubType:
+        errorSubType: # subType is for distinguishing different errors within the same HTTP status code
           $ref: '#/components/schemas/ErrorSubType'
         appErrorType:
           type: string
@@ -830,6 +831,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AppDatabaseTableReadResponse'
+        appDBErrorType:
+          # this is for read/write error on appDatabase
+          # Note 0: this is only for AsyncStateExecuteRequest because RPC can return error synchronously
+          # Note 1: for write error, it's duplicateExecutionForThrowingDatabaseError
+          #        -- meaning the write operation is from the last attempt of execute API
+          # Note 2: with this error, server will not accept any AsyncStateExecuteResponse. Invoking the execute
+          #      API is only for throwing error on worker code
+          $ref: '#/components/schemas/ErrorSubType'
+        appDBErrorCode:
+          type: string
+          description: "the error code from database driver"
+        appDBErrorMessage:
+          type: string
+          description: "the error message from database driver"
+        appDBErrorTableName:
+          type: string
+          description: "the first table that encounters the error to help SDK to throw the error in a friendly way "
     AppDatabaseTableReadResponse:
       type: object
       properties:
