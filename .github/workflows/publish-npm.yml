@@ -14,7 +14,11 @@ jobs:
         with:
           node-version: "21"
       - run: npm ci
+        with:
+          package: ./ts-api
       - run: npm test
+        with:
+          package: ./ts-api
       - uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
