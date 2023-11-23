@@ -1,6 +1,6 @@
 default: gen tests
 
-gen: api-code-gen-go api-code-gen-ts
+gen: api-code-gen-go api-code-gen-ts api-code-gen-py
 
 api-code-gen-go: #generate/refresh go clent code for idl, do this after update the idl file
 	rm -Rf ./goapi ; true
@@ -10,6 +10,10 @@ api-code-gen-go: #generate/refresh go clent code for idl, do this after update t
 api-code-gen-ts: #generate/refresh typescript apis
 	rm -Rf ./ts-api/src/api-gen ; true
 	openapi-generator generate -i ./api-schema/xcherry.yaml -g typescript-axios -o ./ts-api/src/api-gen -p packageName=ts-api -p generateInterfaces=true -p isGoSubmodule=false --git-user-id xcherryio --git-repo-id apis
+
+api-code-gen-py: #generate/refresh python apis
+	rm -Rf ./ts-api/src/api-gen ; true
+	openapi-generator generate -i ./api-schema/xcherry.yaml -g python -o ./pyapi -p packageName=xcherryapi
 
 tests:
 	$Q go test -v ./gotests 
