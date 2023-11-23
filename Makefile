@@ -13,7 +13,7 @@ api-code-gen-ts: #generate/refresh typescript apis
 
 api-code-gen-py: #generate/refresh python apis
 	rm -Rf ./pyapi/* ; true
-	openapi-generator generate -i ./api-schema/xcherry.yaml -g python -o ./pyapi -p packageName=xcherryapi --git-user-id xcherryio --git-repo-id apis
+	openapi-generator generate -i ./api-schema/xcherry.yaml -g python -o ./pyapi -p packageVersion=0.0.1 -p packageName=xcherryapi --git-user-id xcherryio --git-repo-id apis
 
 tests:
 	$Q go test -v ./gotests 
