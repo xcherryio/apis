@@ -5,7 +5,7 @@ description = "xCherry APIs"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
 readme = "README.md"
-repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
+repository = "https://github.com/xcherryio/apis"
 keywords = ["OpenAPI", "OpenAPI-Generator", "xCherry APIs"]
 include = ["xcherryapi/py.typed"]
 
