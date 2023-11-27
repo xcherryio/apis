@@ -970,6 +970,6 @@ components:
       type: object
       description: "handling the AppDatabase error"
       properties:
-        latestReadRequest:
+        latestAppDBReqForRevise:
           $ref: '#/components/schemas/AppDatabaseReadRequest'
     # above is models for app database feature
