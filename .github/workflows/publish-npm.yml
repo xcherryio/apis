@@ -1,6 +1,5 @@
 name: Publish NPM package
 on:
-  pull_request: #remove this before merge
   push:
     branches:
       - 'main'

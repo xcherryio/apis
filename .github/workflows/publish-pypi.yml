@@ -1,6 +1,5 @@
 name: PyPi Publish
 on:
-  pull_request: #remove this before merge
   push:
     branches:
       - 'main'
