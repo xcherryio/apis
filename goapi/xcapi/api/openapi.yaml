@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: This APIs between xCherry service and SDKs
   title: xCherry APIs
-  version: 0.0.1
+  version: 0.0.3
 servers:
 - url: /
 paths:
@@ -2254,6 +2254,6 @@ components:
     AppDatabaseErrorHandling:
       description: handling the AppDatabase error
       properties:
-        latestReadRequest:
+        latestAppDBReqForRevise:
           $ref: '#/components/schemas/AppDatabaseReadRequest'
       type: object

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LatestReadRequest** | Pointer to [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
+**LatestAppDBReqForRevise** | Pointer to [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewAppDatabaseErrorHandlingWithDefaults instantiates a new AppDatabaseErrorHandl
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLatestReadRequest
+### GetLatestAppDBReqForRevise
 
-`func (o *AppDatabaseErrorHandling) GetLatestReadRequest() AppDatabaseReadRequest`
+`func (o *AppDatabaseErrorHandling) GetLatestAppDBReqForRevise() AppDatabaseReadRequest`
 
-GetLatestReadRequest returns the LatestReadRequest field if non-nil, zero value otherwise.
+GetLatestAppDBReqForRevise returns the LatestAppDBReqForRevise field if non-nil, zero value otherwise.
 
-### GetLatestReadRequestOk
+### GetLatestAppDBReqForReviseOk
 
-`func (o *AppDatabaseErrorHandling) GetLatestReadRequestOk() (*AppDatabaseReadRequest, bool)`
+`func (o *AppDatabaseErrorHandling) GetLatestAppDBReqForReviseOk() (*AppDatabaseReadRequest, bool)`
 
-GetLatestReadRequestOk returns a tuple with the LatestReadRequest field if it's non-nil, zero value otherwise
+GetLatestAppDBReqForReviseOk returns a tuple with the LatestAppDBReqForRevise field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLatestReadRequest
+### SetLatestAppDBReqForRevise
 
-`func (o *AppDatabaseErrorHandling) SetLatestReadRequest(v AppDatabaseReadRequest)`
+`func (o *AppDatabaseErrorHandling) SetLatestAppDBReqForRevise(v AppDatabaseReadRequest)`
 
-SetLatestReadRequest sets LatestReadRequest field to given value.
+SetLatestAppDBReqForRevise sets LatestAppDBReqForRevise field to given value.
 
-### HasLatestReadRequest
+### HasLatestAppDBReqForRevise
 
-`func (o *AppDatabaseErrorHandling) HasLatestReadRequest() bool`
+`func (o *AppDatabaseErrorHandling) HasLatestAppDBReqForRevise() bool`
 
-HasLatestReadRequest returns a boolean if a field has been set.
+HasLatestAppDBReqForRevise returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
