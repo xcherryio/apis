@@ -5,7 +5,7 @@ handling the AppDatabase error
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**latest_read_request** | [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
+**latest_app_db_req_for_revise** | [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
 
 ## Example
 
