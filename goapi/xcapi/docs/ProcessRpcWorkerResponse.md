@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Output** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 **StateDecision** | [**StateDecision**](StateDecision.md) |  | 
 **PublishToLocalQueue** | Pointer to [**[]LocalQueueMessage**](LocalQueueMessage.md) |  | [optional] 
-**WriteToGlobalAttributes** | Pointer to [**[]GlobalAttributeTableRowUpdate**](GlobalAttributeTableRowUpdate.md) |  | [optional] 
+**WriteToAppDatabase** | Pointer to [**AppDatabaseWrite**](AppDatabaseWrite.md) |  | [optional] 
 
 ## Methods
 
@@ -98,30 +98,30 @@ SetPublishToLocalQueue sets PublishToLocalQueue field to given value.
 
 HasPublishToLocalQueue returns a boolean if a field has been set.
 
-### GetWriteToGlobalAttributes
+### GetWriteToAppDatabase
 
-`func (o *ProcessRpcWorkerResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate`
+`func (o *ProcessRpcWorkerResponse) GetWriteToAppDatabase() AppDatabaseWrite`
 
-GetWriteToGlobalAttributes returns the WriteToGlobalAttributes field if non-nil, zero value otherwise.
+GetWriteToAppDatabase returns the WriteToAppDatabase field if non-nil, zero value otherwise.
 
-### GetWriteToGlobalAttributesOk
+### GetWriteToAppDatabaseOk
 
-`func (o *ProcessRpcWorkerResponse) GetWriteToGlobalAttributesOk() (*[]GlobalAttributeTableRowUpdate, bool)`
+`func (o *ProcessRpcWorkerResponse) GetWriteToAppDatabaseOk() (*AppDatabaseWrite, bool)`
 
-GetWriteToGlobalAttributesOk returns a tuple with the WriteToGlobalAttributes field if it's non-nil, zero value otherwise
+GetWriteToAppDatabaseOk returns a tuple with the WriteToAppDatabase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWriteToGlobalAttributes
+### SetWriteToAppDatabase
 
-`func (o *ProcessRpcWorkerResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate)`
+`func (o *ProcessRpcWorkerResponse) SetWriteToAppDatabase(v AppDatabaseWrite)`
 
-SetWriteToGlobalAttributes sets WriteToGlobalAttributes field to given value.
+SetWriteToAppDatabase sets WriteToAppDatabase field to given value.
 
-### HasWriteToGlobalAttributes
+### HasWriteToAppDatabase
 
-`func (o *ProcessRpcWorkerResponse) HasWriteToGlobalAttributes() bool`
+`func (o *ProcessRpcWorkerResponse) HasWriteToAppDatabase() bool`
 
-HasWriteToGlobalAttributes returns a boolean if a field has been set.
+HasWriteToAppDatabase returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

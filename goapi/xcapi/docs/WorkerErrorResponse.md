@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Detail** | Pointer to **string** |  | [optional] 
-**ErrorType** | **string** |  | 
+**Detail** | Pointer to **string** | an optional field to let application set some detailed information. Default to the error message + stacktrace of the error | [optional] 
+**ErrorType** | **string** | an optional field for error handling. Default to the class/error Name | 
 
 ## Methods
 

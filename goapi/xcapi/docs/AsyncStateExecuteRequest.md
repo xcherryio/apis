@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **StateId** | **string** |  | 
 **StateInput** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 **CommandResults** | Pointer to [**CommandResults**](CommandResults.md) |  | [optional] 
-**LoadedGlobalAttributes** | Pointer to [**LoadGlobalAttributeResponse**](LoadGlobalAttributeResponse.md) |  | [optional] 
+**AppDatabaseReadResponse** | Pointer to [**AppDatabaseReadResponse**](AppDatabaseReadResponse.md) |  | [optional] 
+**AppDatabaseError** | Pointer to [**AppDatabaseError**](AppDatabaseError.md) |  | [optional] 
 **LoadedLocalAttributes** | Pointer to [**LoadLocalAttributesResponse**](LoadLocalAttributesResponse.md) |  | [optional] 
 
 ## Methods
@@ -141,30 +142,55 @@ SetCommandResults sets CommandResults field to given value.
 
 HasCommandResults returns a boolean if a field has been set.
 
-### GetLoadedGlobalAttributes
+### GetAppDatabaseReadResponse
 
-`func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse`
+`func (o *AsyncStateExecuteRequest) GetAppDatabaseReadResponse() AppDatabaseReadResponse`
 
-GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field if non-nil, zero value otherwise.
+GetAppDatabaseReadResponse returns the AppDatabaseReadResponse field if non-nil, zero value otherwise.
 
-### GetLoadedGlobalAttributesOk
+### GetAppDatabaseReadResponseOk
 
-`func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool)`
+`func (o *AsyncStateExecuteRequest) GetAppDatabaseReadResponseOk() (*AppDatabaseReadResponse, bool)`
 
-GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field if it's non-nil, zero value otherwise
+GetAppDatabaseReadResponseOk returns a tuple with the AppDatabaseReadResponse field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoadedGlobalAttributes
+### SetAppDatabaseReadResponse
 
-`func (o *AsyncStateExecuteRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse)`
+`func (o *AsyncStateExecuteRequest) SetAppDatabaseReadResponse(v AppDatabaseReadResponse)`
 
-SetLoadedGlobalAttributes sets LoadedGlobalAttributes field to given value.
+SetAppDatabaseReadResponse sets AppDatabaseReadResponse field to given value.
 
-### HasLoadedGlobalAttributes
+### HasAppDatabaseReadResponse
 
-`func (o *AsyncStateExecuteRequest) HasLoadedGlobalAttributes() bool`
+`func (o *AsyncStateExecuteRequest) HasAppDatabaseReadResponse() bool`
 
-HasLoadedGlobalAttributes returns a boolean if a field has been set.
+HasAppDatabaseReadResponse returns a boolean if a field has been set.
+
+### GetAppDatabaseError
+
+`func (o *AsyncStateExecuteRequest) GetAppDatabaseError() AppDatabaseError`
+
+GetAppDatabaseError returns the AppDatabaseError field if non-nil, zero value otherwise.
+
+### GetAppDatabaseErrorOk
+
+`func (o *AsyncStateExecuteRequest) GetAppDatabaseErrorOk() (*AppDatabaseError, bool)`
+
+GetAppDatabaseErrorOk returns a tuple with the AppDatabaseError field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppDatabaseError
+
+`func (o *AsyncStateExecuteRequest) SetAppDatabaseError(v AppDatabaseError)`
+
+SetAppDatabaseError sets AppDatabaseError field to given value.
+
+### HasAppDatabaseError
+
+`func (o *AsyncStateExecuteRequest) HasAppDatabaseError() bool`
+
+HasAppDatabaseError returns a boolean if a field has been set.
 
 ### GetLoadedLocalAttributes
 

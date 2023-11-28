@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **WaitUntilApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **ExecuteApiRetryPolicy** | Pointer to [**RetryPolicy**](RetryPolicy.md) |  | [optional] 
 **StateFailureRecoveryOptions** | Pointer to [**StateFailureRecoveryOptions**](StateFailureRecoveryOptions.md) |  | [optional] 
-**LoadGlobalAttributesRequest** | Pointer to [**LoadGlobalAttributesRequest**](LoadGlobalAttributesRequest.md) |  | [optional] 
+**AppDatabaseReadRequest** | Pointer to [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
 **LoadLocalAttributesRequest** | Pointer to [**LoadLocalAttributesRequest**](LoadLocalAttributesRequest.md) |  | [optional] 
 
 ## Methods
@@ -182,30 +182,30 @@ SetStateFailureRecoveryOptions sets StateFailureRecoveryOptions field to given v
 
 HasStateFailureRecoveryOptions returns a boolean if a field has been set.
 
-### GetLoadGlobalAttributesRequest
+### GetAppDatabaseReadRequest
 
-`func (o *AsyncStateConfig) GetLoadGlobalAttributesRequest() LoadGlobalAttributesRequest`
+`func (o *AsyncStateConfig) GetAppDatabaseReadRequest() AppDatabaseReadRequest`
 
-GetLoadGlobalAttributesRequest returns the LoadGlobalAttributesRequest field if non-nil, zero value otherwise.
+GetAppDatabaseReadRequest returns the AppDatabaseReadRequest field if non-nil, zero value otherwise.
 
-### GetLoadGlobalAttributesRequestOk
+### GetAppDatabaseReadRequestOk
 
-`func (o *AsyncStateConfig) GetLoadGlobalAttributesRequestOk() (*LoadGlobalAttributesRequest, bool)`
+`func (o *AsyncStateConfig) GetAppDatabaseReadRequestOk() (*AppDatabaseReadRequest, bool)`
 
-GetLoadGlobalAttributesRequestOk returns a tuple with the LoadGlobalAttributesRequest field if it's non-nil, zero value otherwise
+GetAppDatabaseReadRequestOk returns a tuple with the AppDatabaseReadRequest field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoadGlobalAttributesRequest
+### SetAppDatabaseReadRequest
 
-`func (o *AsyncStateConfig) SetLoadGlobalAttributesRequest(v LoadGlobalAttributesRequest)`
+`func (o *AsyncStateConfig) SetAppDatabaseReadRequest(v AppDatabaseReadRequest)`
 
-SetLoadGlobalAttributesRequest sets LoadGlobalAttributesRequest field to given value.
+SetAppDatabaseReadRequest sets AppDatabaseReadRequest field to given value.
 
-### HasLoadGlobalAttributesRequest
+### HasAppDatabaseReadRequest
 
-`func (o *AsyncStateConfig) HasLoadGlobalAttributesRequest() bool`
+`func (o *AsyncStateConfig) HasAppDatabaseReadRequest() bool`
 
-HasLoadGlobalAttributesRequest returns a boolean if a field has been set.
+HasAppDatabaseReadRequest returns a boolean if a field has been set.
 
 ### GetLoadLocalAttributesRequest
 

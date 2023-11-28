@@ -20,10 +20,10 @@ var _ MappedNullable = &AsyncStateExecuteResponse{}
 
 // AsyncStateExecuteResponse the output of the execute API
 type AsyncStateExecuteResponse struct {
-	StateDecision           StateDecision                   `json:"stateDecision"`
-	PublishToLocalQueue     []LocalQueueMessage             `json:"publishToLocalQueue,omitempty"`
-	WriteToGlobalAttributes []GlobalAttributeTableRowUpdate `json:"writeToGlobalAttributes,omitempty"`
-	WriteToLocalAttributes  []KeyValue                      `json:"writeToLocalAttributes,omitempty"`
+	StateDecision          StateDecision       `json:"stateDecision"`
+	PublishToLocalQueue    []LocalQueueMessage `json:"publishToLocalQueue,omitempty"`
+	WriteToAppDatabase     *AppDatabaseWrite   `json:"writeToAppDatabase,omitempty"`
+	WriteToLocalAttributes []KeyValue          `json:"writeToLocalAttributes,omitempty"`
 }
 
 type _AsyncStateExecuteResponse AsyncStateExecuteResponse
@@ -102,36 +102,36 @@ func (o *AsyncStateExecuteResponse) SetPublishToLocalQueue(v []LocalQueueMessage
 	o.PublishToLocalQueue = v
 }
 
-// GetWriteToGlobalAttributes returns the WriteToGlobalAttributes field value if set, zero value otherwise.
-func (o *AsyncStateExecuteResponse) GetWriteToGlobalAttributes() []GlobalAttributeTableRowUpdate {
-	if o == nil || IsNil(o.WriteToGlobalAttributes) {
-		var ret []GlobalAttributeTableRowUpdate
+// GetWriteToAppDatabase returns the WriteToAppDatabase field value if set, zero value otherwise.
+func (o *AsyncStateExecuteResponse) GetWriteToAppDatabase() AppDatabaseWrite {
+	if o == nil || IsNil(o.WriteToAppDatabase) {
+		var ret AppDatabaseWrite
 		return ret
 	}
-	return o.WriteToGlobalAttributes
+	return *o.WriteToAppDatabase
 }
 
-// GetWriteToGlobalAttributesOk returns a tuple with the WriteToGlobalAttributes field value if set, nil otherwise
+// GetWriteToAppDatabaseOk returns a tuple with the WriteToAppDatabase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateExecuteResponse) GetWriteToGlobalAttributesOk() ([]GlobalAttributeTableRowUpdate, bool) {
-	if o == nil || IsNil(o.WriteToGlobalAttributes) {
+func (o *AsyncStateExecuteResponse) GetWriteToAppDatabaseOk() (*AppDatabaseWrite, bool) {
+	if o == nil || IsNil(o.WriteToAppDatabase) {
 		return nil, false
 	}
-	return o.WriteToGlobalAttributes, true
+	return o.WriteToAppDatabase, true
 }
 
-// HasWriteToGlobalAttributes returns a boolean if a field has been set.
-func (o *AsyncStateExecuteResponse) HasWriteToGlobalAttributes() bool {
-	if o != nil && !IsNil(o.WriteToGlobalAttributes) {
+// HasWriteToAppDatabase returns a boolean if a field has been set.
+func (o *AsyncStateExecuteResponse) HasWriteToAppDatabase() bool {
+	if o != nil && !IsNil(o.WriteToAppDatabase) {
 		return true
 	}
 
 	return false
 }
 
-// SetWriteToGlobalAttributes gets a reference to the given []GlobalAttributeTableRowUpdate and assigns it to the WriteToGlobalAttributes field.
-func (o *AsyncStateExecuteResponse) SetWriteToGlobalAttributes(v []GlobalAttributeTableRowUpdate) {
-	o.WriteToGlobalAttributes = v
+// SetWriteToAppDatabase gets a reference to the given AppDatabaseWrite and assigns it to the WriteToAppDatabase field.
+func (o *AsyncStateExecuteResponse) SetWriteToAppDatabase(v AppDatabaseWrite) {
+	o.WriteToAppDatabase = &v
 }
 
 // GetWriteToLocalAttributes returns the WriteToLocalAttributes field value if set, zero value otherwise.
@@ -180,8 +180,8 @@ func (o AsyncStateExecuteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PublishToLocalQueue) {
 		toSerialize["publishToLocalQueue"] = o.PublishToLocalQueue
 	}
-	if !IsNil(o.WriteToGlobalAttributes) {
-		toSerialize["writeToGlobalAttributes"] = o.WriteToGlobalAttributes
+	if !IsNil(o.WriteToAppDatabase) {
+		toSerialize["writeToAppDatabase"] = o.WriteToAppDatabase
 	}
 	if !IsNil(o.WriteToLocalAttributes) {
 		toSerialize["writeToLocalAttributes"] = o.WriteToLocalAttributes

@@ -21,24 +21,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionStartResponse'
-        '400':
-          description: Invalid request
+        default:
+          description: "400: Invalid request, 409: Process already started, 424: app database write failure"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-        '409':
-          description: Process already started
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '424':
-          description: global attributes write failure
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'                
   /api/v1/xcherry/service/process-execution/stop:
     post:
       summary: stop a process execution
@@ -51,14 +39,8 @@ paths:
         '200':
           description: successful operation
           content: {}
-        '400':
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
+        default:
+          description: "400: Invalid request, 404: Process execution not exists"
           content:
             application/json:
               schema:
@@ -78,14 +60,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionDescribeResponse'
-        '400':
-          description: Invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
+        default:
+          description: "400: Invalid request, 404: Process execution not exists"
           content:
             application/json:
               schema:
@@ -102,14 +78,8 @@ paths:
         '200':
           description: successful operation
           content: {}
-        '400':
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
+        default:
+          description: "400: Invalid request, 404: Process execution not exists or not running"
           content:
             application/json:
               schema:
@@ -129,20 +99,9 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/ProcessExecutionRpcResponse'
-        '400':
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '404':
-          description: Process execution not exists
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-        '424':
-          description: global attributes write failure / worker RPC execution failure
+        default:
+          description: "400: Invalid request, 404: Process execution not exists, or not running to accept write operation, 
+          424: app database write failure or worker RPC execution failure, see ErrorSubType for details"
           content:
             application/json:
               schema:
@@ -163,7 +122,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AsyncStateWaitUntilResponse'
-        default:
+        '424':
           description: worker execution failure
           content:
             application/json:
@@ -184,7 +143,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AsyncStateExecuteResponse'
-        default:
+        '406':
+          description: response of handling app database error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDatabaseErrorHandling'
+        '424':
           description: worker execution failure
           content:
             application/json:
@@ -205,7 +170,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessRpcWorkerResponse'
-        default:
+        '424':
           description: worker execution failure
           content:
             application/json:
@@ -358,8 +323,10 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        loadedGlobalAttributes:
-          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        appDatabaseReadResponse:
+          $ref: '#/components/schemas/AppDatabaseReadResponse'
+        appDatabaseError:
+          $ref: '#/components/schemas/AppDatabaseError'
         loadedLocalAttributes:
           $ref: '#/components/schemas/LoadLocalAttributesResponse'
     CommandResults:
@@ -434,10 +401,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
-        writeToGlobalAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
+        writeToAppDatabase:
+          $ref: '#/components/schemas/AppDatabaseWrite'
         writeToLocalAttributes:
           type: array
           items:
@@ -507,12 +472,13 @@ components:
           description: for async state API only, state id + sequence number
           type: string
         recoverFromApi: # if last execution failed, WAIT_UNTIL or EXECUTE, otherwise NONE
-          $ref: '#/components/schemas/StateApiType'
-    StateApiType:
+          $ref: '#/components/schemas/WorkerApiType'
+    WorkerApiType:
       type: string
       enum:
         - WAIT_UNTIL_API
         - EXECUTE_API
+        - RPC_API
     WorkerErrorResponse:
       type: object
       required: 
@@ -520,8 +486,11 @@ components:
       properties:
         detail:
           type: string
+          description: "an optional field to let application set some detailed information. 
+          Default to the error message + stacktrace of the error"
         errorType:
           type: string
+          description: "an optional field for error handling. Default to the class/error Name"
     EncodedObject:
       type: object
       required: 
@@ -535,14 +504,25 @@ components:
     ApiErrorResponse:
       type: object
       properties:
-        detail:
+        errorSubType: # subType is for distinguishing different errors within the same HTTP status code
+          $ref: '#/components/schemas/ErrorSubType'
+        appErrorType:
           type: string
-        originalWorkerErrorDetail:
+          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType;
+          for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver"
+        details:
           type: string
-        originalWorkerErrorType:
-          type: string
-        originalWorkerErrorStatus:
-          type: integer
+          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details;
+          for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver;
+          for other apiErrorType, it's the detailed message from server."
+    ErrorSubType:
+      type: string
+      enum:
+        - UNCATEGORIZED_ERROR # for errors that are not necessary to categorize as subType yet(e.g. http status code are enough)
+        - WORKER_EXECUTION_ERROR
+        - APP_DATABASE_READ_ERROR
+        - APP_DATABASE_WRITE_ERROR
+        - POLL_TIMEOUT_ERROR
     ProcessExecutionStartRequest:
       type: object
       description: the request for starting a process execution
@@ -579,8 +559,8 @@ components:
           type: integer
         idReusePolicy:
           $ref: '#/components/schemas/ProcessIdReusePolicy'
-        globalAttributeConfig:
-          $ref: '#/components/schemas/GlobalAttributeConfig'
+        appDatabaseConfig:
+          $ref: '#/components/schemas/AppDatabaseConfig'
         localAttributeConfig:
           $ref: '#/components/schemas/LocalAttributeConfig'
     LocalAttributeConfig:
@@ -600,68 +580,6 @@ components:
           type: string
         value:
           $ref: '#/components/schemas/EncodedObject'
-    GlobalAttributeConfig:
-      type: object
-      properties:
-        tableConfigs:
-          type: array
-          items:
-            $ref: '#/components/schemas/GlobalAttributeTableConfig'
-    GlobalAttributeTableConfig:
-      type: object
-      required: 
-        - tableName
-        - primaryKey
-      properties: 
-        tableName:
-          type: string
-        primaryKey:
-          $ref: '#/components/schemas/TableColumnValue'
-        initialWrite: # optional initial write -- create the new row if not exists   
-          type: array
-          items:
-            $ref: '#/components/schemas/TableColumnValue'
-        initialWriteMode:
-          $ref: '#/components/schemas/AttributeWriteConflictMode'
-    GlobalAttributeTableRowUpdate:
-      type: object
-      required:
-        - tableName
-      properties:
-        tableName:
-          type: string
-        updateColumns:    
-          type: array
-          items:
-            $ref: '#/components/schemas/TableColumnValue'
-    AttributeWriteConflictMode:
-      type: string
-      enum:
-        - RETURN_ERROR_ON_CONFLICT # default behavior for initial global attributes
-        - IGNORE_CONFLICT
-        - OVERRIDE_ON_CONFLICT
-    TableColumnValue:
-      type: object
-      description: the value of a global attribute table (from SDK to server or from server to SDK)
-      required:
-        - dbColumn
-        - dbQueryValue
-      properties:
-        dbColumn:
-          type: string
-          description: the column name that can be used in the database query, see below for example
-        dbQueryValue:
-          type: string
-          description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
-    TableColumnDef:
-      type: object
-      description: the definition(key) for getting value of a global attribute table
-      required:
-        - dbColumn
-      properties:
-        dbColumn:
-          type: string
-          description: the column name that can be used in the database query, see below for example   
     LoadLocalAttributesRequest:
       type: object
       properties:
@@ -673,8 +591,8 @@ components:
           type: array
           items:
             type: string
-        lockingPolicy:
-          $ref: '#/components/schemas/TableReadLockingPolicy'
+        lockType:
+          $ref: '#/components/schemas/DatabaseLockingType'
     LoadLocalAttributesResponse:
       type: object
       properties:
@@ -682,43 +600,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-    LoadGlobalAttributesRequest:
-      type: object
-      description: the request to load global attributes
-      properties:
-        tableRequests:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableReadRequest'
-    TableReadRequest:
-      type: object
-      properties: 
-        tableName:
-          type: string
-        lockingPolicy:
-          $ref: '#/components/schemas/TableReadLockingPolicy'
-        columns:
-          type: array
-          items: 
-            $ref: '#/components/schemas/TableColumnDef'
-    LoadGlobalAttributeResponse:
-      type: object
-      description: the response for loading global attributes
-      properties:
-        tableResponses:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableReadResponse'
-    TableReadResponse:
-      type: object
-      properties:
-        tableName:
-          type: string
-        columns:
-          type: array
-          items: 
-            $ref: '#/components/schemas/TableColumnValue'
-    TableReadLockingPolicy:
+    DatabaseLockingType:
       type: string
       enum:
         - NO_LOCKING
@@ -748,8 +630,8 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryOptions:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
-        loadGlobalAttributesRequest:
-          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        appDatabaseReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
         loadLocalAttributesRequest:
           $ref: '#/components/schemas/LoadLocalAttributesRequest'
     StateFailureRecoveryPolicy:
@@ -887,8 +769,8 @@ components:
         timeoutSeconds:
           type: integer
           description: the timeout for the single attempt of the Process RPC API
-        loadGlobalAttributesRequest:
-          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        appDatabaseReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
     ProcessExecutionRpcResponse:
       type: object
       description: the response for executing a RPC method of a process execution
@@ -911,8 +793,8 @@ components:
           type: string
         input:
           $ref: '#/components/schemas/EncodedObject'
-        loadedGlobalAttributes:
-          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        appDatabaseReadResponse:
+          $ref: '#/components/schemas/AppDatabaseReadResponse'
     ProcessRpcWorkerResponse:
       type: object
       description: the response of the worker RPC API
@@ -927,7 +809,167 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
-        writeToGlobalAttributes:
+        writeToAppDatabase:
+          $ref: '#/components/schemas/AppDatabaseWrite'
+    # below is models for app database feature
+    AppDatabaseReadRequest:
+      type: object
+      description: the request to read the selected rows of configured app database tables
+      properties:
+        tables:
           type: array
           items:
-            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
+            $ref: '#/components/schemas/AppDatabaseTableReadRequest'
+    AppDatabaseTableReadRequest:
+      type: object
+      properties:
+        tableName:
+          type: string
+        lockType:
+          $ref: '#/components/schemas/DatabaseLockingType'
+        columns:
+          type: array
+          items:
+            type: string
+    AppDatabaseReadResponse:
+      type: object
+      description: "the response for read the app database"
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
+    AppDatabaseError:
+      type: object
+      description: "the error for read/write the app database. For the write error, it's from last attempt."
+      required:
+        - appDBErrorType
+        - appDBErrorCode
+      properties:
+        appDBErrorType:
+          # this is for read/write error on appDatabase
+          # Note 0: this is only for AsyncStateExecuteRequest because RPC can return error synchronously
+          # Note 1: for write error, it's duplicateExecutionForThrowingDatabaseError
+          #        -- meaning the write operation is from the last attempt of execute API
+          # Note 2: with this error, server will expect worker return 406 status code and AppDatabaseErrorHandling as response
+          $ref: '#/components/schemas/ErrorSubType'
+        appDBErrorCode:
+          type: string
+          description: "the error code from database driver"
+        appDBErrorMessage:
+          type: string
+          description: "the error message from database driver"
+        appDBErrorTableName:
+          type: string
+          description: "the first table that encounters the error to help SDK to throw the error in a friendly way "
+    AppDatabaseTableReadResponse:
+      type: object
+      properties:
+        tableName:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseRowReadResponse'
+    AppDatabaseRowReadResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+    AppDatabaseConfig:
+      type: object
+      description: the configuration of what tables and rows to read/load for state/RPCs, including an optional initial write
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableConfig'
+    AppDatabaseTableConfig:
+      type: object
+      required:
+        - tableName
+        - rows
+      properties:
+        tableName:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableRowSelector'
+    AppDatabaseTableRowSelector:
+      type: object
+      required:
+        - primaryKey
+      properties:
+        primaryKey:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        initialWrite: # optional initial write to create the new row if not exists
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        conflictMode:
+          $ref: '#/components/schemas/WriteConflictMode'
+    AppDatabaseWrite:
+      type: object
+      description: the write operation for state/RPCs to write to the app database values
+      properties:
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableWrite'
+    AppDatabaseTableWrite:
+      type: object
+      required:
+        - tableName
+      properties:
+        tableName:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseRowWrite'
+    AppDatabaseRowWrite:
+      type: object
+      required:
+        - primaryKey
+        - writeColumns
+      properties:
+        primaryKey:
+          type: array
+          description: the PK to locate the rows for write
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+        writeColumns:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+    WriteConflictMode:
+      type: string
+      enum:
+        - RETURN_ERROR_ON_CONFLICT # default behavior for initial row write
+        - IGNORE_CONFLICT
+        - OVERRIDE_ON_CONFLICT
+    AppDatabaseColumnValue:
+      type: object
+      description: the value of a table column (from SDK to server or from server to SDK)
+      required:
+        - column
+        - queryValue
+      properties:
+        column:
+          type: string
+          description: the column name that can be used in the database query, see below for example
+        queryValue:
+          type: string
+          description: the plain string value that can be used in the database query(e.g. for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
+    AppDatabaseErrorHandling:
+      type: object
+      description: "handling the AppDatabase error"
+      properties:
+        latestAppDBReqForRevise:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
+    # above is models for app database feature

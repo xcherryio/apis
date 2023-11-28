@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **KeysToLoadNoLock** | Pointer to **[]string** |  | [optional] 
 **KeysToLoadWithLock** | Pointer to **[]string** |  | [optional] 
-**LockingPolicy** | Pointer to [**TableReadLockingPolicy**](TableReadLockingPolicy.md) |  | [optional] 
+**LockType** | Pointer to [**DatabaseLockingType**](DatabaseLockingType.md) |  | [optional] 
 
 ## Methods
 
@@ -77,30 +77,30 @@ SetKeysToLoadWithLock sets KeysToLoadWithLock field to given value.
 
 HasKeysToLoadWithLock returns a boolean if a field has been set.
 
-### GetLockingPolicy
+### GetLockType
 
-`func (o *LoadLocalAttributesRequest) GetLockingPolicy() TableReadLockingPolicy`
+`func (o *LoadLocalAttributesRequest) GetLockType() DatabaseLockingType`
 
-GetLockingPolicy returns the LockingPolicy field if non-nil, zero value otherwise.
+GetLockType returns the LockType field if non-nil, zero value otherwise.
 
-### GetLockingPolicyOk
+### GetLockTypeOk
 
-`func (o *LoadLocalAttributesRequest) GetLockingPolicyOk() (*TableReadLockingPolicy, bool)`
+`func (o *LoadLocalAttributesRequest) GetLockTypeOk() (*DatabaseLockingType, bool)`
 
-GetLockingPolicyOk returns a tuple with the LockingPolicy field if it's non-nil, zero value otherwise
+GetLockTypeOk returns a tuple with the LockType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLockingPolicy
+### SetLockType
 
-`func (o *LoadLocalAttributesRequest) SetLockingPolicy(v TableReadLockingPolicy)`
+`func (o *LoadLocalAttributesRequest) SetLockType(v DatabaseLockingType)`
 
-SetLockingPolicy sets LockingPolicy field to given value.
+SetLockType sets LockType field to given value.
 
-### HasLockingPolicy
+### HasLockType
 
-`func (o *LoadLocalAttributesRequest) HasLockingPolicy() bool`
+`func (o *LoadLocalAttributesRequest) HasLockType() bool`
 
-HasLockingPolicy returns a boolean if a field has been set.
+HasLockType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

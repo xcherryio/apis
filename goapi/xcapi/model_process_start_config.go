@@ -19,10 +19,10 @@ var _ MappedNullable = &ProcessStartConfig{}
 
 // ProcessStartConfig struct for ProcessStartConfig
 type ProcessStartConfig struct {
-	TimeoutSeconds        *int32                 `json:"timeoutSeconds,omitempty"`
-	IdReusePolicy         *ProcessIdReusePolicy  `json:"idReusePolicy,omitempty"`
-	GlobalAttributeConfig *GlobalAttributeConfig `json:"globalAttributeConfig,omitempty"`
-	LocalAttributeConfig  *LocalAttributeConfig  `json:"localAttributeConfig,omitempty"`
+	TimeoutSeconds       *int32                `json:"timeoutSeconds,omitempty"`
+	IdReusePolicy        *ProcessIdReusePolicy `json:"idReusePolicy,omitempty"`
+	AppDatabaseConfig    *AppDatabaseConfig    `json:"appDatabaseConfig,omitempty"`
+	LocalAttributeConfig *LocalAttributeConfig `json:"localAttributeConfig,omitempty"`
 }
 
 // NewProcessStartConfig instantiates a new ProcessStartConfig object
@@ -106,36 +106,36 @@ func (o *ProcessStartConfig) SetIdReusePolicy(v ProcessIdReusePolicy) {
 	o.IdReusePolicy = &v
 }
 
-// GetGlobalAttributeConfig returns the GlobalAttributeConfig field value if set, zero value otherwise.
-func (o *ProcessStartConfig) GetGlobalAttributeConfig() GlobalAttributeConfig {
-	if o == nil || IsNil(o.GlobalAttributeConfig) {
-		var ret GlobalAttributeConfig
+// GetAppDatabaseConfig returns the AppDatabaseConfig field value if set, zero value otherwise.
+func (o *ProcessStartConfig) GetAppDatabaseConfig() AppDatabaseConfig {
+	if o == nil || IsNil(o.AppDatabaseConfig) {
+		var ret AppDatabaseConfig
 		return ret
 	}
-	return *o.GlobalAttributeConfig
+	return *o.AppDatabaseConfig
 }
 
-// GetGlobalAttributeConfigOk returns a tuple with the GlobalAttributeConfig field value if set, nil otherwise
+// GetAppDatabaseConfigOk returns a tuple with the AppDatabaseConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessStartConfig) GetGlobalAttributeConfigOk() (*GlobalAttributeConfig, bool) {
-	if o == nil || IsNil(o.GlobalAttributeConfig) {
+func (o *ProcessStartConfig) GetAppDatabaseConfigOk() (*AppDatabaseConfig, bool) {
+	if o == nil || IsNil(o.AppDatabaseConfig) {
 		return nil, false
 	}
-	return o.GlobalAttributeConfig, true
+	return o.AppDatabaseConfig, true
 }
 
-// HasGlobalAttributeConfig returns a boolean if a field has been set.
-func (o *ProcessStartConfig) HasGlobalAttributeConfig() bool {
-	if o != nil && !IsNil(o.GlobalAttributeConfig) {
+// HasAppDatabaseConfig returns a boolean if a field has been set.
+func (o *ProcessStartConfig) HasAppDatabaseConfig() bool {
+	if o != nil && !IsNil(o.AppDatabaseConfig) {
 		return true
 	}
 
 	return false
 }
 
-// SetGlobalAttributeConfig gets a reference to the given GlobalAttributeConfig and assigns it to the GlobalAttributeConfig field.
-func (o *ProcessStartConfig) SetGlobalAttributeConfig(v GlobalAttributeConfig) {
-	o.GlobalAttributeConfig = &v
+// SetAppDatabaseConfig gets a reference to the given AppDatabaseConfig and assigns it to the AppDatabaseConfig field.
+func (o *ProcessStartConfig) SetAppDatabaseConfig(v AppDatabaseConfig) {
+	o.AppDatabaseConfig = &v
 }
 
 // GetLocalAttributeConfig returns the LocalAttributeConfig field value if set, zero value otherwise.
@@ -186,8 +186,8 @@ func (o ProcessStartConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IdReusePolicy) {
 		toSerialize["idReusePolicy"] = o.IdReusePolicy
 	}
-	if !IsNil(o.GlobalAttributeConfig) {
-		toSerialize["globalAttributeConfig"] = o.GlobalAttributeConfig
+	if !IsNil(o.AppDatabaseConfig) {
+		toSerialize["appDatabaseConfig"] = o.AppDatabaseConfig
 	}
 	if !IsNil(o.LocalAttributeConfig) {
 		toSerialize["localAttributeConfig"] = o.LocalAttributeConfig

@@ -20,13 +20,14 @@ var _ MappedNullable = &AsyncStateExecuteRequest{}
 
 // AsyncStateExecuteRequest the input of the execute API
 type AsyncStateExecuteRequest struct {
-	Context                Context                      `json:"context"`
-	ProcessType            string                       `json:"processType"`
-	StateId                string                       `json:"stateId"`
-	StateInput             *EncodedObject               `json:"stateInput,omitempty"`
-	CommandResults         *CommandResults              `json:"commandResults,omitempty"`
-	LoadedGlobalAttributes *LoadGlobalAttributeResponse `json:"loadedGlobalAttributes,omitempty"`
-	LoadedLocalAttributes  *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
+	Context                 Context                      `json:"context"`
+	ProcessType             string                       `json:"processType"`
+	StateId                 string                       `json:"stateId"`
+	StateInput              *EncodedObject               `json:"stateInput,omitempty"`
+	CommandResults          *CommandResults              `json:"commandResults,omitempty"`
+	AppDatabaseReadResponse *AppDatabaseReadResponse     `json:"appDatabaseReadResponse,omitempty"`
+	AppDatabaseError        *AppDatabaseError            `json:"appDatabaseError,omitempty"`
+	LoadedLocalAttributes   *LoadLocalAttributesResponse `json:"loadedLocalAttributes,omitempty"`
 }
 
 type _AsyncStateExecuteRequest AsyncStateExecuteRequest
@@ -187,36 +188,68 @@ func (o *AsyncStateExecuteRequest) SetCommandResults(v CommandResults) {
 	o.CommandResults = &v
 }
 
-// GetLoadedGlobalAttributes returns the LoadedGlobalAttributes field value if set, zero value otherwise.
-func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributes() LoadGlobalAttributeResponse {
-	if o == nil || IsNil(o.LoadedGlobalAttributes) {
-		var ret LoadGlobalAttributeResponse
+// GetAppDatabaseReadResponse returns the AppDatabaseReadResponse field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetAppDatabaseReadResponse() AppDatabaseReadResponse {
+	if o == nil || IsNil(o.AppDatabaseReadResponse) {
+		var ret AppDatabaseReadResponse
 		return ret
 	}
-	return *o.LoadedGlobalAttributes
+	return *o.AppDatabaseReadResponse
 }
 
-// GetLoadedGlobalAttributesOk returns a tuple with the LoadedGlobalAttributes field value if set, nil otherwise
+// GetAppDatabaseReadResponseOk returns a tuple with the AppDatabaseReadResponse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AsyncStateExecuteRequest) GetLoadedGlobalAttributesOk() (*LoadGlobalAttributeResponse, bool) {
-	if o == nil || IsNil(o.LoadedGlobalAttributes) {
+func (o *AsyncStateExecuteRequest) GetAppDatabaseReadResponseOk() (*AppDatabaseReadResponse, bool) {
+	if o == nil || IsNil(o.AppDatabaseReadResponse) {
 		return nil, false
 	}
-	return o.LoadedGlobalAttributes, true
+	return o.AppDatabaseReadResponse, true
 }
 
-// HasLoadedGlobalAttributes returns a boolean if a field has been set.
-func (o *AsyncStateExecuteRequest) HasLoadedGlobalAttributes() bool {
-	if o != nil && !IsNil(o.LoadedGlobalAttributes) {
+// HasAppDatabaseReadResponse returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasAppDatabaseReadResponse() bool {
+	if o != nil && !IsNil(o.AppDatabaseReadResponse) {
 		return true
 	}
 
 	return false
 }
 
-// SetLoadedGlobalAttributes gets a reference to the given LoadGlobalAttributeResponse and assigns it to the LoadedGlobalAttributes field.
-func (o *AsyncStateExecuteRequest) SetLoadedGlobalAttributes(v LoadGlobalAttributeResponse) {
-	o.LoadedGlobalAttributes = &v
+// SetAppDatabaseReadResponse gets a reference to the given AppDatabaseReadResponse and assigns it to the AppDatabaseReadResponse field.
+func (o *AsyncStateExecuteRequest) SetAppDatabaseReadResponse(v AppDatabaseReadResponse) {
+	o.AppDatabaseReadResponse = &v
+}
+
+// GetAppDatabaseError returns the AppDatabaseError field value if set, zero value otherwise.
+func (o *AsyncStateExecuteRequest) GetAppDatabaseError() AppDatabaseError {
+	if o == nil || IsNil(o.AppDatabaseError) {
+		var ret AppDatabaseError
+		return ret
+	}
+	return *o.AppDatabaseError
+}
+
+// GetAppDatabaseErrorOk returns a tuple with the AppDatabaseError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AsyncStateExecuteRequest) GetAppDatabaseErrorOk() (*AppDatabaseError, bool) {
+	if o == nil || IsNil(o.AppDatabaseError) {
+		return nil, false
+	}
+	return o.AppDatabaseError, true
+}
+
+// HasAppDatabaseError returns a boolean if a field has been set.
+func (o *AsyncStateExecuteRequest) HasAppDatabaseError() bool {
+	if o != nil && !IsNil(o.AppDatabaseError) {
+		return true
+	}
+
+	return false
+}
+
+// SetAppDatabaseError gets a reference to the given AppDatabaseError and assigns it to the AppDatabaseError field.
+func (o *AsyncStateExecuteRequest) SetAppDatabaseError(v AppDatabaseError) {
+	o.AppDatabaseError = &v
 }
 
 // GetLoadedLocalAttributes returns the LoadedLocalAttributes field value if set, zero value otherwise.
@@ -270,8 +303,11 @@ func (o AsyncStateExecuteRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CommandResults) {
 		toSerialize["commandResults"] = o.CommandResults
 	}
-	if !IsNil(o.LoadedGlobalAttributes) {
-		toSerialize["loadedGlobalAttributes"] = o.LoadedGlobalAttributes
+	if !IsNil(o.AppDatabaseReadResponse) {
+		toSerialize["appDatabaseReadResponse"] = o.AppDatabaseReadResponse
+	}
+	if !IsNil(o.AppDatabaseError) {
+		toSerialize["appDatabaseError"] = o.AppDatabaseError
 	}
 	if !IsNil(o.LoadedLocalAttributes) {
 		toSerialize["loadedLocalAttributes"] = o.LoadedLocalAttributes

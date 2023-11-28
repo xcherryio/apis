@@ -19,9 +19,9 @@ var _ MappedNullable = &LoadLocalAttributesRequest{}
 
 // LoadLocalAttributesRequest struct for LoadLocalAttributesRequest
 type LoadLocalAttributesRequest struct {
-	KeysToLoadNoLock   []string                `json:"keysToLoadNoLock,omitempty"`
-	KeysToLoadWithLock []string                `json:"keysToLoadWithLock,omitempty"`
-	LockingPolicy      *TableReadLockingPolicy `json:"lockingPolicy,omitempty"`
+	KeysToLoadNoLock   []string             `json:"keysToLoadNoLock,omitempty"`
+	KeysToLoadWithLock []string             `json:"keysToLoadWithLock,omitempty"`
+	LockType           *DatabaseLockingType `json:"lockType,omitempty"`
 }
 
 // NewLoadLocalAttributesRequest instantiates a new LoadLocalAttributesRequest object
@@ -105,36 +105,36 @@ func (o *LoadLocalAttributesRequest) SetKeysToLoadWithLock(v []string) {
 	o.KeysToLoadWithLock = v
 }
 
-// GetLockingPolicy returns the LockingPolicy field value if set, zero value otherwise.
-func (o *LoadLocalAttributesRequest) GetLockingPolicy() TableReadLockingPolicy {
-	if o == nil || IsNil(o.LockingPolicy) {
-		var ret TableReadLockingPolicy
+// GetLockType returns the LockType field value if set, zero value otherwise.
+func (o *LoadLocalAttributesRequest) GetLockType() DatabaseLockingType {
+	if o == nil || IsNil(o.LockType) {
+		var ret DatabaseLockingType
 		return ret
 	}
-	return *o.LockingPolicy
+	return *o.LockType
 }
 
-// GetLockingPolicyOk returns a tuple with the LockingPolicy field value if set, nil otherwise
+// GetLockTypeOk returns a tuple with the LockType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadLocalAttributesRequest) GetLockingPolicyOk() (*TableReadLockingPolicy, bool) {
-	if o == nil || IsNil(o.LockingPolicy) {
+func (o *LoadLocalAttributesRequest) GetLockTypeOk() (*DatabaseLockingType, bool) {
+	if o == nil || IsNil(o.LockType) {
 		return nil, false
 	}
-	return o.LockingPolicy, true
+	return o.LockType, true
 }
 
-// HasLockingPolicy returns a boolean if a field has been set.
-func (o *LoadLocalAttributesRequest) HasLockingPolicy() bool {
-	if o != nil && !IsNil(o.LockingPolicy) {
+// HasLockType returns a boolean if a field has been set.
+func (o *LoadLocalAttributesRequest) HasLockType() bool {
+	if o != nil && !IsNil(o.LockType) {
 		return true
 	}
 
 	return false
 }
 
-// SetLockingPolicy gets a reference to the given TableReadLockingPolicy and assigns it to the LockingPolicy field.
-func (o *LoadLocalAttributesRequest) SetLockingPolicy(v TableReadLockingPolicy) {
-	o.LockingPolicy = &v
+// SetLockType gets a reference to the given DatabaseLockingType and assigns it to the LockType field.
+func (o *LoadLocalAttributesRequest) SetLockType(v DatabaseLockingType) {
+	o.LockType = &v
 }
 
 func (o LoadLocalAttributesRequest) MarshalJSON() ([]byte, error) {
@@ -153,8 +153,8 @@ func (o LoadLocalAttributesRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KeysToLoadWithLock) {
 		toSerialize["keysToLoadWithLock"] = o.KeysToLoadWithLock
 	}
-	if !IsNil(o.LockingPolicy) {
-		toSerialize["lockingPolicy"] = o.LockingPolicy
+	if !IsNil(o.LockType) {
+		toSerialize["lockType"] = o.LockType
 	}
 	return toSerialize, nil
 }

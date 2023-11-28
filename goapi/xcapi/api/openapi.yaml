@@ -20,24 +20,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionStartResponse'
           description: successful operation
-        "400":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: Invalid request
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Process already started
-        "424":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: global attributes write failure
+          description: "400: Invalid request, 409: Process already started, 424: app\
+            \ database write failure"
       summary: start a process execution
   /api/v1/xcherry/service/process-execution/stop:
     post:
@@ -50,18 +39,12 @@ paths:
         "200":
           content: {}
           description: successful operation
-        "400":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: invalid request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Process execution not exists
+          description: "400: Invalid request, 404: Process execution not exists"
       summary: stop a process execution
   /api/v1/xcherry/service/process-execution/describe:
     post:
@@ -77,18 +60,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionDescribeResponse'
           description: successful operation
-        "400":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: Invalid request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Process execution not exists
+          description: "400: Invalid request, 404: Process execution not exists"
       summary: describe a process execution
   /api/v1/xcherry/service/process-execution/publish-to-local-queue:
     post:
@@ -101,18 +78,13 @@ paths:
         "200":
           content: {}
           description: successful operation
-        "400":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: invalid request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Process execution not exists
+          description: "400: Invalid request, 404: Process execution not exists or\
+            \ not running"
       summary: send message(s) to be consumed within a single process execution
   /api/v1/xcherry/service/process-execution/rpc:
     post:
@@ -128,24 +100,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionRpcResponse'
           description: successful operation
-        "400":
+        default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: invalid request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: Process execution not exists
-        "424":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiErrorResponse'
-          description: global attributes write failure / worker RPC execution failure
+          description: "400: Invalid request, 404: Process execution not exists, or\
+            \ not running to accept write operation, 424: app database write failure\
+            \ or worker RPC execution failure, see ErrorSubType for details"
       summary: execute a RPC method of a process execution
   /api/v1/xcherry/worker/async-state/wait-until:
     post:
@@ -161,7 +123,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncStateWaitUntilResponse'
           description: successful operation
-        default:
+        "424":
           content:
             application/json:
               schema:
@@ -182,7 +144,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/AsyncStateExecuteResponse'
           description: successful operation
-        default:
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDatabaseErrorHandling'
+          description: response of handling app database error
+        "424":
           content:
             application/json:
               schema:
@@ -203,7 +171,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProcessRpcWorkerResponse'
           description: successful operation
-        default:
+        "424":
           content:
             application/json:
               schema:
@@ -431,20 +399,11 @@ components:
           timerResults:
           - status: null
           - status: null
-        loadedGlobalAttributes:
-          tableResponses:
-          - columns:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            tableName: tableName
-          - columns:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            tableName: tableName
+        appDatabaseError:
+          appDBErrorCode: appDBErrorCode
+          appDBErrorTableName: appDBErrorTableName
+          appDBErrorType: null
+          appDBErrorMessage: appDBErrorMessage
         stateId: stateId
         context:
           recoverFromApi: null
@@ -455,6 +414,32 @@ components:
           firstAttemptTimestamp: 6
           attempt: 1
           stateExecutionId: stateExecutionId
+        appDatabaseReadResponse:
+          tables:
+          - rows:
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
+          - rows:
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
         processType: processType
         stateInput:
           data: data
@@ -480,8 +465,10 @@ components:
           $ref: '#/components/schemas/EncodedObject'
         commandResults:
           $ref: '#/components/schemas/CommandResults'
-        loadedGlobalAttributes:
-          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        appDatabaseReadResponse:
+          $ref: '#/components/schemas/AppDatabaseReadResponse'
+        appDatabaseError:
+          $ref: '#/components/schemas/AppDatabaseError'
         loadedLocalAttributes:
           $ref: '#/components/schemas/LoadLocalAttributesResponse'
       required:
@@ -612,26 +599,26 @@ components:
                 keysToLoadNoLock:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
-                lockingPolicy: null
                 keysToLoadWithLock:
                 - keysToLoadWithLock
                 - keysToLoadWithLock
+                lockType: null
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
-              loadGlobalAttributesRequest:
-                tableRequests:
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+              appDatabaseReadRequest:
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
@@ -656,26 +643,26 @@ components:
                 keysToLoadNoLock:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
-                lockingPolicy: null
                 keysToLoadWithLock:
                 - keysToLoadWithLock
                 - keysToLoadWithLock
+                lockType: null
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
-              loadGlobalAttributesRequest:
-                tableRequests:
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+              appDatabaseReadRequest:
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
@@ -709,6 +696,52 @@ components:
             data: data
             encoding: encoding
           key: key
+        writeToAppDatabase:
+          tables:
+          - rows:
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
+          - rows:
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
         publishToLocalQueue:
         - queueName: queueName
           payload:
@@ -720,19 +753,6 @@ components:
             data: data
             encoding: encoding
           dedupId: dedupId
-        writeToGlobalAttributes:
-        - updateColumns:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
-        - updateColumns:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
       properties:
         stateDecision:
           $ref: '#/components/schemas/StateDecision'
@@ -740,10 +760,8 @@ components:
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
           type: array
-        writeToGlobalAttributes:
-          items:
-            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
-          type: array
+        writeToAppDatabase:
+          $ref: '#/components/schemas/AppDatabaseWrite'
         writeToLocalAttributes:
           items:
             $ref: '#/components/schemas/KeyValue'
@@ -761,26 +779,26 @@ components:
               keysToLoadNoLock:
               - keysToLoadNoLock
               - keysToLoadNoLock
-              lockingPolicy: null
               keysToLoadWithLock:
               - keysToLoadWithLock
               - keysToLoadWithLock
+              lockType: null
             executeApiTimeoutSeconds: 6
             stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
               stateFailureProceedStateConfig: null
               policy: null
-            loadGlobalAttributesRequest:
-              tableRequests:
-              - lockingPolicy: null
-                columns:
-                - dbColumn: dbColumn
-                - dbColumn: dbColumn
+            appDatabaseReadRequest:
+              tables:
+              - columns:
+                - columns
+                - columns
+                lockType: null
                 tableName: tableName
-              - lockingPolicy: null
-                columns:
-                - dbColumn: dbColumn
-                - dbColumn: dbColumn
+              - columns:
+                - columns
+                - columns
+                lockType: null
                 tableName: tableName
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
@@ -805,26 +823,26 @@ components:
               keysToLoadNoLock:
               - keysToLoadNoLock
               - keysToLoadNoLock
-              lockingPolicy: null
               keysToLoadWithLock:
               - keysToLoadWithLock
               - keysToLoadWithLock
+              lockType: null
             executeApiTimeoutSeconds: 6
             stateFailureRecoveryOptions:
               stateFailureProceedStateId: stateFailureProceedStateId
               stateFailureProceedStateConfig: null
               policy: null
-            loadGlobalAttributesRequest:
-              tableRequests:
-              - lockingPolicy: null
-                columns:
-                - dbColumn: dbColumn
-                - dbColumn: dbColumn
+            appDatabaseReadRequest:
+              tables:
+              - columns:
+                - columns
+                - columns
+                lockType: null
                 tableName: tableName
-              - lockingPolicy: null
-                columns:
-                - dbColumn: dbColumn
-                - dbColumn: dbColumn
+              - columns:
+                - columns
+                - columns
+                lockType: null
                 tableName: tableName
             skipWaitUntil: true
             waitUntilApiRetryPolicy:
@@ -885,26 +903,26 @@ components:
             keysToLoadNoLock:
             - keysToLoadNoLock
             - keysToLoadNoLock
-            lockingPolicy: null
             keysToLoadWithLock:
             - keysToLoadWithLock
             - keysToLoadWithLock
+            lockType: null
           executeApiTimeoutSeconds: 6
           stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
             stateFailureProceedStateConfig: null
             policy: null
-          loadGlobalAttributesRequest:
-            tableRequests:
-            - lockingPolicy: null
-              columns:
-              - dbColumn: dbColumn
-              - dbColumn: dbColumn
+          appDatabaseReadRequest:
+            tables:
+            - columns:
+              - columns
+              - columns
+              lockType: null
               tableName: tableName
-            - lockingPolicy: null
-              columns:
-              - dbColumn: dbColumn
-              - dbColumn: dbColumn
+            - columns:
+              - columns
+              - columns
+              lockType: null
               tableName: tableName
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
@@ -966,22 +984,27 @@ components:
           description: "for async state API only, state id + sequence number"
           type: string
         recoverFromApi:
-          $ref: '#/components/schemas/StateApiType'
+          $ref: '#/components/schemas/WorkerApiType'
       required:
       - processExecutionId
       - processId
       - processStartedTimestamp
       type: object
-    StateApiType:
+    WorkerApiType:
       enum:
       - WAIT_UNTIL_API
       - EXECUTE_API
+      - RPC_API
       type: string
     WorkerErrorResponse:
       properties:
         detail:
+          description: an optional field to let application set some detailed information.
+            Default to the error message + stacktrace of the error
           type: string
         errorType:
+          description: an optional field for error handling. Default to the class/error
+            Name
           type: string
       required:
       - errorType
@@ -1001,15 +1024,27 @@ components:
       type: object
     ApiErrorResponse:
       properties:
-        detail:
+        errorSubType:
+          $ref: '#/components/schemas/ErrorSubType'
+        appErrorType:
+          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType;\
+            \ for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database\
+            \ driver"
           type: string
-        originalWorkerErrorDetail:
+        details:
+          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details;\
+            \ for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database\
+            \ driver; for other apiErrorType, it's the detailed message from server."
           type: string
-        originalWorkerErrorType:
-          type: string
-        originalWorkerErrorStatus:
-          type: integer
       type: object
+    ErrorSubType:
+      enum:
+      - UNCATEGORIZED_ERROR
+      - WORKER_EXECUTION_ERROR
+      - APP_DATABASE_READ_ERROR
+      - APP_DATABASE_WRITE_ERROR
+      - POLL_TIMEOUT_ERROR
+      type: string
     ProcessExecutionStartRequest:
       description: the request for starting a process execution
       example:
@@ -1018,26 +1053,26 @@ components:
             keysToLoadNoLock:
             - keysToLoadNoLock
             - keysToLoadNoLock
-            lockingPolicy: null
             keysToLoadWithLock:
             - keysToLoadWithLock
             - keysToLoadWithLock
+            lockType: null
           executeApiTimeoutSeconds: 6
           stateFailureRecoveryOptions:
             stateFailureProceedStateId: stateFailureProceedStateId
             stateFailureProceedStateConfig: null
             policy: null
-          loadGlobalAttributesRequest:
-            tableRequests:
-            - lockingPolicy: null
-              columns:
-              - dbColumn: dbColumn
-              - dbColumn: dbColumn
+          appDatabaseReadRequest:
+            tables:
+            - columns:
+              - columns
+              - columns
+              lockType: null
               tableName: tableName
-            - lockingPolicy: null
-              columns:
-              - dbColumn: dbColumn
-              - dbColumn: dbColumn
+            - columns:
+              - columns
+              - columns
+              lockType: null
               tableName: tableName
           skipWaitUntil: true
           waitUntilApiRetryPolicy:
@@ -1060,6 +1095,56 @@ components:
         startStateId: startStateId
         processId: processId
         processStartConfig:
+          appDatabaseConfig:
+            tables:
+            - rows:
+              - conflictMode: null
+                initialWrite:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+                primaryKey:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+              - conflictMode: null
+                initialWrite:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+                primaryKey:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+              tableName: tableName
+            - rows:
+              - conflictMode: null
+                initialWrite:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+                primaryKey:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+              - conflictMode: null
+                initialWrite:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+                primaryKey:
+                - column: column
+                  queryValue: queryValue
+                - column: column
+                  queryValue: queryValue
+              tableName: tableName
           localAttributeConfig:
             initialWrite:
             - value:
@@ -1072,28 +1157,6 @@ components:
               key: key
           timeoutSeconds: 9
           idReusePolicy: null
-          globalAttributeConfig:
-            tableConfigs:
-            - initialWriteMode: null
-              initialWrite:
-              - dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
-              - dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
-              tableName: tableName
-              primaryKey:
-                dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
-            - initialWriteMode: null
-              initialWrite:
-              - dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
-              - dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
-              tableName: tableName
-              primaryKey:
-                dbQueryValue: dbQueryValue
-                dbColumn: dbColumn
         namespace: namespace
         processType: processType
       properties:
@@ -1126,6 +1189,56 @@ components:
       type: object
     ProcessStartConfig:
       example:
+        appDatabaseConfig:
+          tables:
+          - rows:
+            - conflictMode: null
+              initialWrite:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - conflictMode: null
+              initialWrite:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
+          - rows:
+            - conflictMode: null
+              initialWrite:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - conflictMode: null
+              initialWrite:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
         localAttributeConfig:
           initialWrite:
           - value:
@@ -1138,35 +1251,13 @@ components:
             key: key
         timeoutSeconds: 9
         idReusePolicy: null
-        globalAttributeConfig:
-          tableConfigs:
-          - initialWriteMode: null
-            initialWrite:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            tableName: tableName
-            primaryKey:
-              dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-          - initialWriteMode: null
-            initialWrite:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            tableName: tableName
-            primaryKey:
-              dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
       properties:
         timeoutSeconds:
           type: integer
         idReusePolicy:
           $ref: '#/components/schemas/ProcessIdReusePolicy'
-        globalAttributeConfig:
-          $ref: '#/components/schemas/GlobalAttributeConfig'
+        appDatabaseConfig:
+          $ref: '#/components/schemas/AppDatabaseConfig'
         localAttributeConfig:
           $ref: '#/components/schemas/LocalAttributeConfig'
       type: object
@@ -1202,126 +1293,15 @@ components:
       - key
       - value
       type: object
-    GlobalAttributeConfig:
-      example:
-        tableConfigs:
-        - initialWriteMode: null
-          initialWrite:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
-          primaryKey:
-            dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-        - initialWriteMode: null
-          initialWrite:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
-          primaryKey:
-            dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-      properties:
-        tableConfigs:
-          items:
-            $ref: '#/components/schemas/GlobalAttributeTableConfig'
-          type: array
-      type: object
-    GlobalAttributeTableConfig:
-      example:
-        initialWriteMode: null
-        initialWrite:
-        - dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-        - dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-        tableName: tableName
-        primaryKey:
-          dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-      properties:
-        tableName:
-          type: string
-        primaryKey:
-          $ref: '#/components/schemas/TableColumnValue'
-        initialWrite:
-          items:
-            $ref: '#/components/schemas/TableColumnValue'
-          type: array
-        initialWriteMode:
-          $ref: '#/components/schemas/AttributeWriteConflictMode'
-      required:
-      - primaryKey
-      - tableName
-      type: object
-    GlobalAttributeTableRowUpdate:
-      example:
-        updateColumns:
-        - dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-        - dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-        tableName: tableName
-      properties:
-        tableName:
-          type: string
-        updateColumns:
-          items:
-            $ref: '#/components/schemas/TableColumnValue'
-          type: array
-      required:
-      - tableName
-      type: object
-    AttributeWriteConflictMode:
-      enum:
-      - RETURN_ERROR_ON_CONFLICT
-      - IGNORE_CONFLICT
-      - OVERRIDE_ON_CONFLICT
-      type: string
-    TableColumnValue:
-      description: the value of a global attribute table (from SDK to server or from
-        server to SDK)
-      example:
-        dbQueryValue: dbQueryValue
-        dbColumn: dbColumn
-      properties:
-        dbColumn:
-          description: "the column name that can be used in the database query, see\
-            \ below for example"
-          type: string
-        dbQueryValue:
-          description: the plain string value that can be used in the database query(e.g.
-            for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
-          type: string
-      required:
-      - dbColumn
-      - dbQueryValue
-      type: object
-    TableColumnDef:
-      description: the definition(key) for getting value of a global attribute table
-      example:
-        dbColumn: dbColumn
-      properties:
-        dbColumn:
-          description: "the column name that can be used in the database query, see\
-            \ below for example"
-          type: string
-      required:
-      - dbColumn
-      type: object
     LoadLocalAttributesRequest:
       example:
         keysToLoadNoLock:
         - keysToLoadNoLock
         - keysToLoadNoLock
-        lockingPolicy: null
         keysToLoadWithLock:
         - keysToLoadWithLock
         - keysToLoadWithLock
+        lockType: null
       properties:
         keysToLoadNoLock:
           items:
@@ -1331,8 +1311,8 @@ components:
           items:
             type: string
           type: array
-        lockingPolicy:
-          $ref: '#/components/schemas/TableReadLockingPolicy'
+        lockType:
+          $ref: '#/components/schemas/DatabaseLockingType'
       type: object
     LoadLocalAttributesResponse:
       example:
@@ -1351,82 +1331,7 @@ components:
             $ref: '#/components/schemas/KeyValue'
           type: array
       type: object
-    LoadGlobalAttributesRequest:
-      description: the request to load global attributes
-      example:
-        tableRequests:
-        - lockingPolicy: null
-          columns:
-          - dbColumn: dbColumn
-          - dbColumn: dbColumn
-          tableName: tableName
-        - lockingPolicy: null
-          columns:
-          - dbColumn: dbColumn
-          - dbColumn: dbColumn
-          tableName: tableName
-      properties:
-        tableRequests:
-          items:
-            $ref: '#/components/schemas/TableReadRequest'
-          type: array
-      type: object
-    TableReadRequest:
-      example:
-        lockingPolicy: null
-        columns:
-        - dbColumn: dbColumn
-        - dbColumn: dbColumn
-        tableName: tableName
-      properties:
-        tableName:
-          type: string
-        lockingPolicy:
-          $ref: '#/components/schemas/TableReadLockingPolicy'
-        columns:
-          items:
-            $ref: '#/components/schemas/TableColumnDef'
-          type: array
-      type: object
-    LoadGlobalAttributeResponse:
-      description: the response for loading global attributes
-      example:
-        tableResponses:
-        - columns:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
-        - columns:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
-      properties:
-        tableResponses:
-          items:
-            $ref: '#/components/schemas/TableReadResponse'
-          type: array
-      type: object
-    TableReadResponse:
-      example:
-        columns:
-        - dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-        - dbQueryValue: dbQueryValue
-          dbColumn: dbColumn
-        tableName: tableName
-      properties:
-        tableName:
-          type: string
-        columns:
-          items:
-            $ref: '#/components/schemas/TableColumnValue'
-          type: array
-      type: object
-    TableReadLockingPolicy:
+    DatabaseLockingType:
       enum:
       - NO_LOCKING
       - SHARE_LOCK
@@ -1445,26 +1350,26 @@ components:
           keysToLoadNoLock:
           - keysToLoadNoLock
           - keysToLoadNoLock
-          lockingPolicy: null
           keysToLoadWithLock:
           - keysToLoadWithLock
           - keysToLoadWithLock
+          lockType: null
         executeApiTimeoutSeconds: 6
         stateFailureRecoveryOptions:
           stateFailureProceedStateId: stateFailureProceedStateId
           stateFailureProceedStateConfig: null
           policy: null
-        loadGlobalAttributesRequest:
-          tableRequests:
-          - lockingPolicy: null
-            columns:
-            - dbColumn: dbColumn
-            - dbColumn: dbColumn
+        appDatabaseReadRequest:
+          tables:
+          - columns:
+            - columns
+            - columns
+            lockType: null
             tableName: tableName
-          - lockingPolicy: null
-            columns:
-            - dbColumn: dbColumn
-            - dbColumn: dbColumn
+          - columns:
+            - columns
+            - columns
+            lockType: null
             tableName: tableName
         skipWaitUntil: true
         waitUntilApiRetryPolicy:
@@ -1496,8 +1401,8 @@ components:
           $ref: '#/components/schemas/RetryPolicy'
         stateFailureRecoveryOptions:
           $ref: '#/components/schemas/StateFailureRecoveryOptions'
-        loadGlobalAttributesRequest:
-          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        appDatabaseReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
         loadLocalAttributesRequest:
           $ref: '#/components/schemas/LoadLocalAttributesRequest'
       type: object
@@ -1676,17 +1581,17 @@ components:
           data: data
           encoding: encoding
         processId: processId
-        loadGlobalAttributesRequest:
-          tableRequests:
-          - lockingPolicy: null
-            columns:
-            - dbColumn: dbColumn
-            - dbColumn: dbColumn
+        appDatabaseReadRequest:
+          tables:
+          - columns:
+            - columns
+            - columns
+            lockType: null
             tableName: tableName
-          - lockingPolicy: null
-            columns:
-            - dbColumn: dbColumn
-            - dbColumn: dbColumn
+          - columns:
+            - columns
+            - columns
+            lockType: null
             tableName: tableName
         namespace: namespace
         timeoutSeconds: 0
@@ -1703,8 +1608,8 @@ components:
         timeoutSeconds:
           description: the timeout for the single attempt of the Process RPC API
           type: integer
-        loadGlobalAttributesRequest:
-          $ref: '#/components/schemas/LoadGlobalAttributesRequest'
+        appDatabaseReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
       required:
       - namespace
       - processId
@@ -1726,20 +1631,6 @@ components:
         input:
           data: data
           encoding: encoding
-        loadedGlobalAttributes:
-          tableResponses:
-          - columns:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            tableName: tableName
-          - columns:
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            - dbQueryValue: dbQueryValue
-              dbColumn: dbColumn
-            tableName: tableName
         context:
           recoverFromApi: null
           processStartedTimestamp: 0
@@ -1749,6 +1640,32 @@ components:
           firstAttemptTimestamp: 6
           attempt: 1
           stateExecutionId: stateExecutionId
+        appDatabaseReadResponse:
+          tables:
+          - rows:
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
+          - rows:
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - columns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
         processType: processType
         rpcName: rpcName
       properties:
@@ -1760,8 +1677,8 @@ components:
           type: string
         input:
           $ref: '#/components/schemas/EncodedObject'
-        loadedGlobalAttributes:
-          $ref: '#/components/schemas/LoadGlobalAttributeResponse'
+        appDatabaseReadResponse:
+          $ref: '#/components/schemas/AppDatabaseReadResponse'
       required:
       - context
       - processType
@@ -1780,26 +1697,26 @@ components:
                 keysToLoadNoLock:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
-                lockingPolicy: null
                 keysToLoadWithLock:
                 - keysToLoadWithLock
                 - keysToLoadWithLock
+                lockType: null
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
-              loadGlobalAttributesRequest:
-                tableRequests:
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+              appDatabaseReadRequest:
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
@@ -1824,26 +1741,26 @@ components:
                 keysToLoadNoLock:
                 - keysToLoadNoLock
                 - keysToLoadNoLock
-                lockingPolicy: null
                 keysToLoadWithLock:
                 - keysToLoadWithLock
                 - keysToLoadWithLock
+                lockType: null
               executeApiTimeoutSeconds: 6
               stateFailureRecoveryOptions:
                 stateFailureProceedStateId: stateFailureProceedStateId
                 stateFailureProceedStateConfig: null
                 policy: null
-              loadGlobalAttributesRequest:
-                tableRequests:
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+              appDatabaseReadRequest:
+                tables:
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
-                - lockingPolicy: null
-                  columns:
-                  - dbColumn: dbColumn
-                  - dbColumn: dbColumn
+                - columns:
+                  - columns
+                  - columns
+                  lockType: null
                   tableName: tableName
               skipWaitUntil: true
               waitUntilApiRetryPolicy:
@@ -1868,6 +1785,52 @@ components:
               data: data
               encoding: encoding
             closeType: null
+        writeToAppDatabase:
+          tables:
+          - rows:
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
+          - rows:
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            - writeColumns:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+              primaryKey:
+              - column: column
+                queryValue: queryValue
+              - column: column
+                queryValue: queryValue
+            tableName: tableName
         publishToLocalQueue:
         - queueName: queueName
           payload:
@@ -1879,19 +1842,6 @@ components:
             data: data
             encoding: encoding
           dedupId: dedupId
-        writeToGlobalAttributes:
-        - updateColumns:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
-        - updateColumns:
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          - dbQueryValue: dbQueryValue
-            dbColumn: dbColumn
-          tableName: tableName
       properties:
         output:
           $ref: '#/components/schemas/EncodedObject'
@@ -1901,10 +1851,409 @@ components:
           items:
             $ref: '#/components/schemas/LocalQueueMessage'
           type: array
-        writeToGlobalAttributes:
-          items:
-            $ref: '#/components/schemas/GlobalAttributeTableRowUpdate'
-          type: array
+        writeToAppDatabase:
+          $ref: '#/components/schemas/AppDatabaseWrite'
       required:
       - stateDecision
+      type: object
+    AppDatabaseReadRequest:
+      description: the request to read the selected rows of configured app database
+        tables
+      example:
+        tables:
+        - columns:
+          - columns
+          - columns
+          lockType: null
+          tableName: tableName
+        - columns:
+          - columns
+          - columns
+          lockType: null
+          tableName: tableName
+      properties:
+        tables:
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableReadRequest'
+          type: array
+      type: object
+    AppDatabaseTableReadRequest:
+      example:
+        columns:
+        - columns
+        - columns
+        lockType: null
+        tableName: tableName
+      properties:
+        tableName:
+          type: string
+        lockType:
+          $ref: '#/components/schemas/DatabaseLockingType'
+        columns:
+          items:
+            type: string
+          type: array
+      type: object
+    AppDatabaseReadResponse:
+      description: the response for read the app database
+      example:
+        tables:
+        - rows:
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+        - rows:
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - columns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+      properties:
+        tables:
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableReadResponse'
+          type: array
+      type: object
+    AppDatabaseError:
+      description: "the error for read/write the app database. For the write error,\
+        \ it's from last attempt."
+      example:
+        appDBErrorCode: appDBErrorCode
+        appDBErrorTableName: appDBErrorTableName
+        appDBErrorType: null
+        appDBErrorMessage: appDBErrorMessage
+      properties:
+        appDBErrorType:
+          $ref: '#/components/schemas/ErrorSubType'
+        appDBErrorCode:
+          description: the error code from database driver
+          type: string
+        appDBErrorMessage:
+          description: the error message from database driver
+          type: string
+        appDBErrorTableName:
+          description: 'the first table that encounters the error to help SDK to throw
+            the error in a friendly way '
+          type: string
+      required:
+      - appDBErrorCode
+      - appDBErrorType
+      type: object
+    AppDatabaseTableReadResponse:
+      example:
+        rows:
+        - columns:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+        - columns:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+        tableName: tableName
+      properties:
+        tableName:
+          type: string
+        rows:
+          items:
+            $ref: '#/components/schemas/AppDatabaseRowReadResponse'
+          type: array
+      type: object
+    AppDatabaseRowReadResponse:
+      example:
+        columns:
+        - column: column
+          queryValue: queryValue
+        - column: column
+          queryValue: queryValue
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+          type: array
+      type: object
+    AppDatabaseConfig:
+      description: "the configuration of what tables and rows to read/load for state/RPCs,\
+        \ including an optional initial write"
+      example:
+        tables:
+        - rows:
+          - conflictMode: null
+            initialWrite:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - conflictMode: null
+            initialWrite:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+        - rows:
+          - conflictMode: null
+            initialWrite:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - conflictMode: null
+            initialWrite:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+      properties:
+        tables:
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableConfig'
+          type: array
+      type: object
+    AppDatabaseTableConfig:
+      example:
+        rows:
+        - conflictMode: null
+          initialWrite:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+          primaryKey:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+        - conflictMode: null
+          initialWrite:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+          primaryKey:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+        tableName: tableName
+      properties:
+        tableName:
+          type: string
+        rows:
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableRowSelector'
+          type: array
+      required:
+      - rows
+      - tableName
+      type: object
+    AppDatabaseTableRowSelector:
+      example:
+        conflictMode: null
+        initialWrite:
+        - column: column
+          queryValue: queryValue
+        - column: column
+          queryValue: queryValue
+        primaryKey:
+        - column: column
+          queryValue: queryValue
+        - column: column
+          queryValue: queryValue
+      properties:
+        primaryKey:
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+          type: array
+        initialWrite:
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+          type: array
+        conflictMode:
+          $ref: '#/components/schemas/WriteConflictMode'
+      required:
+      - primaryKey
+      type: object
+    AppDatabaseWrite:
+      description: the write operation for state/RPCs to write to the app database
+        values
+      example:
+        tables:
+        - rows:
+          - writeColumns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - writeColumns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+        - rows:
+          - writeColumns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          - writeColumns:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+            primaryKey:
+            - column: column
+              queryValue: queryValue
+            - column: column
+              queryValue: queryValue
+          tableName: tableName
+      properties:
+        tables:
+          items:
+            $ref: '#/components/schemas/AppDatabaseTableWrite'
+          type: array
+      type: object
+    AppDatabaseTableWrite:
+      example:
+        rows:
+        - writeColumns:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+          primaryKey:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+        - writeColumns:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+          primaryKey:
+          - column: column
+            queryValue: queryValue
+          - column: column
+            queryValue: queryValue
+        tableName: tableName
+      properties:
+        tableName:
+          type: string
+        rows:
+          items:
+            $ref: '#/components/schemas/AppDatabaseRowWrite'
+          type: array
+      required:
+      - tableName
+      type: object
+    AppDatabaseRowWrite:
+      example:
+        writeColumns:
+        - column: column
+          queryValue: queryValue
+        - column: column
+          queryValue: queryValue
+        primaryKey:
+        - column: column
+          queryValue: queryValue
+        - column: column
+          queryValue: queryValue
+      properties:
+        primaryKey:
+          description: the PK to locate the rows for write
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+          type: array
+        writeColumns:
+          items:
+            $ref: '#/components/schemas/AppDatabaseColumnValue'
+          type: array
+      required:
+      - primaryKey
+      - writeColumns
+      type: object
+    WriteConflictMode:
+      enum:
+      - RETURN_ERROR_ON_CONFLICT
+      - IGNORE_CONFLICT
+      - OVERRIDE_ON_CONFLICT
+      type: string
+    AppDatabaseColumnValue:
+      description: the value of a table column (from SDK to server or from server
+        to SDK)
+      example:
+        column: column
+        queryValue: queryValue
+      properties:
+        column:
+          description: "the column name that can be used in the database query, see\
+            \ below for example"
+          type: string
+        queryValue:
+          description: the plain string value that can be used in the database query(e.g.
+            for SQL SELECT ... WHERE $Column=$dbQueryValue or UPDATE/INSERT)
+          type: string
+      required:
+      - column
+      - queryValue
+      type: object
+    AppDatabaseErrorHandling:
+      description: handling the AppDatabase error
+      properties:
+        latestReadRequest:
+          $ref: '#/components/schemas/AppDatabaseReadRequest'
       type: object

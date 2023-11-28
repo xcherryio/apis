@@ -1,6 +1,6 @@
 {
   "name": "xcherry-ts-api",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "ts apis for xcherry ts sdk",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

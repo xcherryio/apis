@@ -11,12 +11,11 @@ package gotests
 
 import (
 	"github.com/stretchr/testify/assert"
-	//openapiclient "github.com/xdblab/xdb-apis/goapi/xdbapi"
 	openapiclient "github.com/xcherryio/apis/goapi/xcapi"
 	"testing"
 )
 
-func Test_xdbapi_build(t *testing.T) {
+func Test_build(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

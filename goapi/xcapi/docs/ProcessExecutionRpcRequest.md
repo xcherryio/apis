@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RpcName** | **string** |  | 
 **Input** | Pointer to [**EncodedObject**](EncodedObject.md) |  | [optional] 
 **TimeoutSeconds** | Pointer to **int32** | the timeout for the single attempt of the Process RPC API | [optional] 
-**LoadGlobalAttributesRequest** | Pointer to [**LoadGlobalAttributesRequest**](LoadGlobalAttributesRequest.md) |  | [optional] 
+**AppDatabaseReadRequest** | Pointer to [**AppDatabaseReadRequest**](AppDatabaseReadRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -140,30 +140,30 @@ SetTimeoutSeconds sets TimeoutSeconds field to given value.
 
 HasTimeoutSeconds returns a boolean if a field has been set.
 
-### GetLoadGlobalAttributesRequest
+### GetAppDatabaseReadRequest
 
-`func (o *ProcessExecutionRpcRequest) GetLoadGlobalAttributesRequest() LoadGlobalAttributesRequest`
+`func (o *ProcessExecutionRpcRequest) GetAppDatabaseReadRequest() AppDatabaseReadRequest`
 
-GetLoadGlobalAttributesRequest returns the LoadGlobalAttributesRequest field if non-nil, zero value otherwise.
+GetAppDatabaseReadRequest returns the AppDatabaseReadRequest field if non-nil, zero value otherwise.
 
-### GetLoadGlobalAttributesRequestOk
+### GetAppDatabaseReadRequestOk
 
-`func (o *ProcessExecutionRpcRequest) GetLoadGlobalAttributesRequestOk() (*LoadGlobalAttributesRequest, bool)`
+`func (o *ProcessExecutionRpcRequest) GetAppDatabaseReadRequestOk() (*AppDatabaseReadRequest, bool)`
 
-GetLoadGlobalAttributesRequestOk returns a tuple with the LoadGlobalAttributesRequest field if it's non-nil, zero value otherwise
+GetAppDatabaseReadRequestOk returns a tuple with the AppDatabaseReadRequest field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoadGlobalAttributesRequest
+### SetAppDatabaseReadRequest
 
-`func (o *ProcessExecutionRpcRequest) SetLoadGlobalAttributesRequest(v LoadGlobalAttributesRequest)`
+`func (o *ProcessExecutionRpcRequest) SetAppDatabaseReadRequest(v AppDatabaseReadRequest)`
 
-SetLoadGlobalAttributesRequest sets LoadGlobalAttributesRequest field to given value.
+SetAppDatabaseReadRequest sets AppDatabaseReadRequest field to given value.
 
-### HasLoadGlobalAttributesRequest
+### HasAppDatabaseReadRequest
 
-`func (o *ProcessExecutionRpcRequest) HasLoadGlobalAttributesRequest() bool`
+`func (o *ProcessExecutionRpcRequest) HasAppDatabaseReadRequest() bool`
 
-HasLoadGlobalAttributesRequest returns a boolean if a field has been set.
+HasAppDatabaseReadRequest returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
