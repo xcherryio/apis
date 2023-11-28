@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: >-
     This APIs between xCherry service and SDKs
-  version: 0.0.1
+  version: 0.0.3
   title: xCherry APIs
 paths:
   # xCherry service APIs are hosted by xCherry service for SDKs to call
