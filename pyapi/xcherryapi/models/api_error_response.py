@@ -32,8 +32,8 @@ class ApiErrorResponse(BaseModel):
     ApiErrorResponse
     """ # noqa: E501
     error_sub_type: Optional[ErrorSubType] = Field(default=None, alias="errorSubType")
-    app_error_type: Optional[StrictStr] = Field(default=None, description="for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver", alias="appErrorType")
-    details: Optional[StrictStr] = Field(default=None, description="for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver; for other apiErrorType, it's the detailed message from server.")
+    app_error_type: Optional[StrictStr] = Field(default=None, description="for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver ", alias="appErrorType")
+    details: Optional[StrictStr] = Field(default=None, description="for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver; for other apiErrorType, it's the detailed message from server. ")
     __properties: ClassVar[List[str]] = ["errorSubType", "appErrorType", "details"]
 
     model_config = {

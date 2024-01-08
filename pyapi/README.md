@@ -86,6 +86,7 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**api_v1_xcherry_service_process_execution_describe_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_describe_post) | **POST** /api/v1/xcherry/service/process-execution/describe | describe a process execution
+*DefaultApi* | [**api_v1_xcherry_service_process_execution_list_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_list_post) | **POST** /api/v1/xcherry/service/process-execution/list | list process executions
 *DefaultApi* | [**api_v1_xcherry_service_process_execution_publish_to_local_queue_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_publish_to_local_queue_post) | **POST** /api/v1/xcherry/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
 *DefaultApi* | [**api_v1_xcherry_service_process_execution_rpc_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_rpc_post) | **POST** /api/v1/xcherry/service/process-execution/rpc | execute a RPC method of a process execution
 *DefaultApi* | [**api_v1_xcherry_service_process_execution_start_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_start_post) | **POST** /api/v1/xcherry/service/process-execution/start | start a process execution
@@ -128,6 +129,8 @@ Class | Method | HTTP request | Description
  - [EncodedObject](docs/EncodedObject.md)
  - [ErrorSubType](docs/ErrorSubType.md)
  - [KeyValue](docs/KeyValue.md)
+ - [ListProcessExecutionsRequest](docs/ListProcessExecutionsRequest.md)
+ - [ListProcessExecutionsResponse](docs/ListProcessExecutionsResponse.md)
  - [LoadLocalAttributesRequest](docs/LoadLocalAttributesRequest.md)
  - [LoadLocalAttributesResponse](docs/LoadLocalAttributesResponse.md)
  - [LocalAttributeConfig](docs/LocalAttributeConfig.md)
@@ -139,17 +142,20 @@ Class | Method | HTTP request | Description
  - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
  - [ProcessExecutionDescribeResponse](docs/ProcessExecutionDescribeResponse.md)
+ - [ProcessExecutionListInfo](docs/ProcessExecutionListInfo.md)
  - [ProcessExecutionRpcRequest](docs/ProcessExecutionRpcRequest.md)
  - [ProcessExecutionRpcResponse](docs/ProcessExecutionRpcResponse.md)
  - [ProcessExecutionStartRequest](docs/ProcessExecutionStartRequest.md)
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
  - [ProcessExecutionStopRequest](docs/ProcessExecutionStopRequest.md)
  - [ProcessExecutionStopType](docs/ProcessExecutionStopType.md)
+ - [ProcessIdFilter](docs/ProcessIdFilter.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
  - [ProcessRpcWorkerRequest](docs/ProcessRpcWorkerRequest.md)
  - [ProcessRpcWorkerResponse](docs/ProcessRpcWorkerResponse.md)
  - [ProcessStartConfig](docs/ProcessStartConfig.md)
  - [ProcessStatus](docs/ProcessStatus.md)
+ - [ProcessTypeFilter](docs/ProcessTypeFilter.md)
  - [PublishToLocalQueueRequest](docs/PublishToLocalQueueRequest.md)
  - [RetryPolicy](docs/RetryPolicy.md)
  - [StateDecision](docs/StateDecision.md)
@@ -158,6 +164,7 @@ Class | Method | HTTP request | Description
  - [StateMovement](docs/StateMovement.md)
  - [ThreadCloseDecision](docs/ThreadCloseDecision.md)
  - [ThreadCloseType](docs/ThreadCloseType.md)
+ - [TimeRangeFilter](docs/TimeRangeFilter.md)
  - [TimerCommand](docs/TimerCommand.md)
  - [TimerResult](docs/TimerResult.md)
  - [WorkerApiType](docs/WorkerApiType.md)

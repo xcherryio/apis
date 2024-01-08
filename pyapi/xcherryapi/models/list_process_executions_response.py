@@ -21,18 +21,19 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
+from xcherryapi.models.process_execution_list_info import ProcessExecutionListInfo
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class WorkerErrorResponse(BaseModel):
+class ListProcessExecutionsResponse(BaseModel):
     """
-    WorkerErrorResponse
+    ListProcessExecutionsResponse
     """ # noqa: E501
-    detail: Optional[StrictStr] = Field(default=None, description="an optional field to let application set some detailed information.  Default to the error message + stacktrace of the error ")
-    error_type: StrictStr = Field(description="an optional field for error handling. Default to the class/error Name", alias="errorType")
-    __properties: ClassVar[List[str]] = ["detail", "errorType"]
+    process_executions: Optional[List[ProcessExecutionListInfo]] = Field(default=None, alias="processExecutions")
+    next_page_token: Optional[StrictStr] = Field(default=None, alias="nextPageToken")
+    __properties: ClassVar[List[str]] = ["processExecutions", "nextPageToken"]
 
     model_config = {
         "populate_by_name": True,
@@ -51,7 +52,7 @@ class WorkerErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of WorkerErrorResponse from a JSON string"""
+        """Create an instance of ListProcessExecutionsResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,11 +71,18 @@ class WorkerErrorResponse(BaseModel):
             },
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in process_executions (list)
+        _items = []
+        if self.process_executions:
+            for _item in self.process_executions:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['processExecutions'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of WorkerErrorResponse from a dict"""
+        """Create an instance of ListProcessExecutionsResponse from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +90,8 @@ class WorkerErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "detail": obj.get("detail"),
-            "errorType": obj.get("errorType")
+            "processExecutions": [ProcessExecutionListInfo.from_dict(_item) for _item in obj.get("processExecutions")] if obj.get("processExecutions") is not None else None,
+            "nextPageToken": obj.get("nextPageToken")
         })
         return _obj
 

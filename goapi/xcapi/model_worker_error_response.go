@@ -20,7 +20,7 @@ var _ MappedNullable = &WorkerErrorResponse{}
 
 // WorkerErrorResponse struct for WorkerErrorResponse
 type WorkerErrorResponse struct {
-	// an optional field to let application set some detailed information. Default to the error message + stacktrace of the error
+	// an optional field to let application set some detailed information.  Default to the error message + stacktrace of the error
 	Detail *string `json:"detail,omitempty"`
 	// an optional field for error handling. Default to the class/error Name
 	ErrorType string `json:"errorType"`

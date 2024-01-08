@@ -66,6 +66,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
+  /api/v1/xcherry/service/process-execution/list:
+    post:
+      summary: list process executions
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/ListProcessExecutionsRequest'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessExecutionsResponse'
+        default:
+          description: "400: Invalid request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
   /api/v1/xcherry/service/process-execution/publish-to-local-queue:
     post:
       summary: send message(s) to be consumed within a single process execution
@@ -100,8 +121,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProcessExecutionRpcResponse'
         default:
-          description: "400: Invalid request, 404: Process execution not exists, or not running to accept write operation, 
-          424: app database write failure or worker RPC execution failure, see ErrorSubType for details"
+          description: >
+            400: Invalid request, 404: Process execution not exists, or not running to accept write operation, 
+            424: app database write failure or worker RPC execution failure, see ErrorSubType for details
           content:
             application/json:
               schema:
@@ -237,6 +259,74 @@ components:
         - FAILED
         - TIMEOUT
         - TERMINATED
+    ListProcessExecutionsRequest:
+      type: object
+      required:
+        - namespace
+        - pageSize
+      properties:
+        namespace:
+          type: string
+        pageSize:
+          type: integer
+          default: 100
+        nextPageToken:
+          type: string
+        statusFilter:
+          $ref: '#/components/schemas/ProcessStatus'
+        startTimeFilter:
+          $ref: '#/components/schemas/TimeRangeFilter'
+        processTypeFilter:
+          $ref: '#/components/schemas/ProcessTypeFilter'
+        processIdFilter:
+          $ref: '#/components/schemas/ProcessIdFilter'
+    ListProcessExecutionsResponse:
+      type: object
+      properties:
+        processExecutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessExecutionListInfo'
+        nextPageToken:
+          type: string
+    TimeRangeFilter:
+      type: object
+      properties:
+        earliestTime:
+          type: integer
+          format: int64
+        latestTime:
+          type: integer
+          format: int64
+    ProcessIdFilter:
+      type: object
+      properties:
+        processId:
+          type: string
+    ProcessTypeFilter:
+      type: object
+      required:
+        - processType
+      properties:
+        processType:
+          type: string
+    ProcessExecutionListInfo:
+      type: object
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        processExecutionId:
+          type: string
+        processType:
+          type: string
+        startTimestamp:
+          type: integer
+        closeTimestamp:
+          type: integer
+        status:
+          $ref: '#/components/schemas/ProcessStatus'
     AsyncStateWaitUntilRequest:
       type: object
       description: the input of the waitUntil API
@@ -486,8 +576,9 @@ components:
       properties:
         detail:
           type: string
-          description: "an optional field to let application set some detailed information. 
-          Default to the error message + stacktrace of the error"
+          description: >
+            an optional field to let application set some detailed information. 
+            Default to the error message + stacktrace of the error
         errorType:
           type: string
           description: "an optional field for error handling. Default to the class/error Name"
@@ -508,13 +599,15 @@ components:
           $ref: '#/components/schemas/ErrorSubType'
         appErrorType:
           type: string
-          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType;
-          for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver"
+          description: >
+            for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType;
+            for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver
         details:
           type: string
-          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details;
-          for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver;
-          for other apiErrorType, it's the detailed message from server."
+          description: >
+            for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details;
+            for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver;
+            for other apiErrorType, it's the detailed message from server.
     ErrorSubType:
       type: string
       enum:

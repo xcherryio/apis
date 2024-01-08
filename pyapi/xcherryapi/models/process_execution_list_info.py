@@ -19,20 +19,26 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
+from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import Field
+from xcherryapi.models.process_status import ProcessStatus
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class WorkerErrorResponse(BaseModel):
+class ProcessExecutionListInfo(BaseModel):
     """
-    WorkerErrorResponse
+    ProcessExecutionListInfo
     """ # noqa: E501
-    detail: Optional[StrictStr] = Field(default=None, description="an optional field to let application set some detailed information.  Default to the error message + stacktrace of the error ")
-    error_type: StrictStr = Field(description="an optional field for error handling. Default to the class/error Name", alias="errorType")
-    __properties: ClassVar[List[str]] = ["detail", "errorType"]
+    namespace: Optional[StrictStr] = None
+    process_id: Optional[StrictStr] = Field(default=None, alias="processId")
+    process_execution_id: Optional[StrictStr] = Field(default=None, alias="processExecutionId")
+    process_type: Optional[StrictStr] = Field(default=None, alias="processType")
+    start_timestamp: Optional[StrictInt] = Field(default=None, alias="startTimestamp")
+    close_timestamp: Optional[StrictInt] = Field(default=None, alias="closeTimestamp")
+    status: Optional[ProcessStatus] = None
+    __properties: ClassVar[List[str]] = ["namespace", "processId", "processExecutionId", "processType", "startTimestamp", "closeTimestamp", "status"]
 
     model_config = {
         "populate_by_name": True,
@@ -51,7 +57,7 @@ class WorkerErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of WorkerErrorResponse from a JSON string"""
+        """Create an instance of ProcessExecutionListInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,7 +80,7 @@ class WorkerErrorResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of WorkerErrorResponse from a dict"""
+        """Create an instance of ProcessExecutionListInfo from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +88,13 @@ class WorkerErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "detail": obj.get("detail"),
-            "errorType": obj.get("errorType")
+            "namespace": obj.get("namespace"),
+            "processId": obj.get("processId"),
+            "processExecutionId": obj.get("processExecutionId"),
+            "processType": obj.get("processType"),
+            "startTimestamp": obj.get("startTimestamp"),
+            "closeTimestamp": obj.get("closeTimestamp"),
+            "status": obj.get("status")
         })
         return _obj
 

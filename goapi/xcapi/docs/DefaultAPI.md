@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ApiV1XcherryServiceProcessExecutionDescribePost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionDescribePost) | **Post** /api/v1/xcherry/service/process-execution/describe | describe a process execution
+[**ApiV1XcherryServiceProcessExecutionListPost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionListPost) | **Post** /api/v1/xcherry/service/process-execution/list | list process executions
 [**ApiV1XcherryServiceProcessExecutionPublishToLocalQueuePost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionPublishToLocalQueuePost) | **Post** /api/v1/xcherry/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
 [**ApiV1XcherryServiceProcessExecutionRpcPost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionRpcPost) | **Post** /api/v1/xcherry/service/process-execution/rpc | execute a RPC method of a process execution
 [**ApiV1XcherryServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionStartPost) | **Post** /api/v1/xcherry/service/process-execution/start | start a process execution
@@ -66,6 +67,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ProcessExecutionDescribeResponse**](ProcessExecutionDescribeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApiV1XcherryServiceProcessExecutionListPost
+
+> ListProcessExecutionsResponse ApiV1XcherryServiceProcessExecutionListPost(ctx).ListProcessExecutionsRequest(listProcessExecutionsRequest).Execute()
+
+list process executions
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xcherryio/apis"
+)
+
+func main() {
+    listProcessExecutionsRequest := *openapiclient.NewListProcessExecutionsRequest("Namespace_example", int32(123)) // ListProcessExecutionsRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost(context.Background()).ListProcessExecutionsRequest(listProcessExecutionsRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApiV1XcherryServiceProcessExecutionListPost`: ListProcessExecutionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApiV1XcherryServiceProcessExecutionListPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **listProcessExecutionsRequest** | [**ListProcessExecutionsRequest**](ListProcessExecutionsRequest.md) |  | 
+
+### Return type
+
+[**ListProcessExecutionsResponse**](ListProcessExecutionsResponse.md)
 
 ### Authorization
 

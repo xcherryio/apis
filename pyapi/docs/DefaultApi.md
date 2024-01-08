@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**api_v1_xcherry_service_process_execution_describe_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_describe_post) | **POST** /api/v1/xcherry/service/process-execution/describe | describe a process execution
+[**api_v1_xcherry_service_process_execution_list_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_list_post) | **POST** /api/v1/xcherry/service/process-execution/list | list process executions
 [**api_v1_xcherry_service_process_execution_publish_to_local_queue_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_publish_to_local_queue_post) | **POST** /api/v1/xcherry/service/process-execution/publish-to-local-queue | send message(s) to be consumed within a single process execution
 [**api_v1_xcherry_service_process_execution_rpc_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_rpc_post) | **POST** /api/v1/xcherry/service/process-execution/rpc | execute a RPC method of a process execution
 [**api_v1_xcherry_service_process_execution_start_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_start_post) | **POST** /api/v1/xcherry/service/process-execution/start | start a process execution
@@ -80,6 +81,73 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | successful operation |  -  |
 **0** | 400: Invalid request, 404: Process execution not exists |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_v1_xcherry_service_process_execution_list_post**
+> ListProcessExecutionsResponse api_v1_xcherry_service_process_execution_list_post(list_process_executions_request=list_process_executions_request)
+
+list process executions
+
+### Example
+
+```python
+import time
+import os
+import xcherryapi
+from xcherryapi.models.list_process_executions_request import ListProcessExecutionsRequest
+from xcherryapi.models.list_process_executions_response import ListProcessExecutionsResponse
+from xcherryapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = xcherryapi.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with xcherryapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = xcherryapi.DefaultApi(api_client)
+    list_process_executions_request = xcherryapi.ListProcessExecutionsRequest() # ListProcessExecutionsRequest |  (optional)
+
+    try:
+        # list process executions
+        api_response = api_instance.api_v1_xcherry_service_process_execution_list_post(list_process_executions_request=list_process_executions_request)
+        print("The response of DefaultApi->api_v1_xcherry_service_process_execution_list_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->api_v1_xcherry_service_process_execution_list_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **list_process_executions_request** | [**ListProcessExecutionsRequest**](ListProcessExecutionsRequest.md)|  | [optional] 
+
+### Return type
+
+[**ListProcessExecutionsResponse**](ListProcessExecutionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**0** | 400: Invalid request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -210,7 +278,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successful operation |  -  |
-**0** | 400: Invalid request, 404: Process execution not exists, or not running to accept write operation, 424: app database write failure or worker RPC execution failure, see ErrorSubType for details |  -  |
+**0** | 400: Invalid request, 404: Process execution not exists, or not running to accept write operation,  424: app database write failure or worker RPC execution failure, see ErrorSubType for details  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
