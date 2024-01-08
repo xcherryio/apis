@@ -259,14 +259,7 @@ components:
         - FAILED
         - TIMEOUT
         - TERMINATED
-    ProcessCloseStatus:
-      type: string
-      enum:
-        - COMPLETED
-        - FAILED
-        - TIMEOUT
-        - TERMINATED
-    ListOpenProcessExecutionsRequest:
+    ListProcessExecutionsRequest:
       type: object
       required:
         - namespace
@@ -279,52 +272,26 @@ components:
           default: 100
         nextPageToken:
           type: string
+        statusFilter:
+          $ref: '#/components/schemas/ProcessStatus'
         startTimeFilter:
-          $ref: '#/components/schemas/StartTimeFilter'
+          $ref: '#/components/schemas/TimeRangeFilter'
         processTypeFilter:
           $ref: '#/components/schemas/ProcessTypeFilter'
         processExecutionFilter:
-          $ref: '#/components/schemas/ProcessExecutionFilter'
-    ListOpenProcessExecutionsResponse:
+          $ref: '#/components/schemas/ProcessIdFilter'
+        queryFilter:
+          type: string
+    ListProcessExecutionsResponse:
       type: object
       properties:
         processExecutions:
           type: array
           items:
-            $ref: '#/components/schemas/ProcessExecutionInfo'
+            $ref: '#/components/schemas/ProcessExecutionListInfo'
         nextPageToken:
           type: string
-    ListClosedProcessExecutionsRequest:
-      type: object
-      required:
-        - namespace
-        - pageSize
-      properties:
-        namespace:
-          type: string
-        pageSize:
-          type: integer
-          default: 100
-        nextPageToken:
-          type: string
-        startTimeFilter:
-          $ref: '#/components/schemas/StartTimeFilter'
-        processTypeFilter:
-          $ref: '#/components/schemas/ProcessTypeFilter'
-        processExecutionFilter:
-          $ref: '#/components/schemas/ProcessExecutionFilter'
-        processExecutionCloseStatus:
-          $ref: '#/components/schemas/ProcessCloseStatus'
-    ListClosedProcessExecutionsResponse:
-      type: object
-      properties:
-        processExecutions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessExecutionInfo'
-        nextPageToken:
-          type: string
-    StartTimeFilter:
+    TimeRangeFilter:
       type: object
       properties:
         earliestTime:
@@ -333,12 +300,10 @@ components:
         latestTime:
           type: integer
           format: int64
-    ProcessExecutionFilter:
+    ProcessIdFilter:
       type: object
       properties:
         processId:
-          type: string
-        processExecutionId:
           type: string
     ProcessTypeFilter:
       type: object
@@ -347,32 +312,7 @@ components:
       properties:
         processType:
           type: string
-    ListProcessExecutionsRequest:
-      type: object
-      required:
-        - namespace
-        - pageSize
-        - query
-      properties:
-        namespace:
-          type: string
-        pageSize:
-          type: integer
-          default: 100
-        nextPageToken:
-          type: string
-        query:
-          type: string
-    ListProcessExecutionsResponse:
-      type: object
-      properties:
-        processExecutions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessExecutionInfo'
-        nextPageToken:
-          type: string
-    ProcessExecutionInfo:
+    ProcessExecutionListInfo:
       type: object
       properties:
         namespace:
@@ -382,8 +322,6 @@ components:
         processExecutionId:
           type: string
         processType:
-          type: string
-        workerUrl:
           type: string
         startTimestamp:
           type: integer
