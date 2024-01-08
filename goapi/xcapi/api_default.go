@@ -33,6 +33,18 @@ type DefaultAPI interface {
 	ApiV1XcherryServiceProcessExecutionDescribePostExecute(r ApiApiV1XcherryServiceProcessExecutionDescribePostRequest) (*ProcessExecutionDescribeResponse, *http.Response, error)
 
 	/*
+		ApiV1XcherryServiceProcessExecutionListPost list process executions
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiApiV1XcherryServiceProcessExecutionListPostRequest
+	*/
+	ApiV1XcherryServiceProcessExecutionListPost(ctx context.Context) ApiApiV1XcherryServiceProcessExecutionListPostRequest
+
+	// ApiV1XcherryServiceProcessExecutionListPostExecute executes the request
+	//  @return ListProcessExecutionsResponse
+	ApiV1XcherryServiceProcessExecutionListPostExecute(r ApiApiV1XcherryServiceProcessExecutionListPostRequest) (*ListProcessExecutionsResponse, *http.Response, error)
+
+	/*
 		ApiV1XcherryServiceProcessExecutionPublishToLocalQueuePost send message(s) to be consumed within a single process execution
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -209,6 +221,120 @@ func (a *DefaultAPIService) ApiV1XcherryServiceProcessExecutionDescribePostExecu
 	}
 	// body params
 	localVarPostBody = r.processExecutionDescribeRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		var v ApiErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiApiV1XcherryServiceProcessExecutionListPostRequest struct {
+	ctx                          context.Context
+	ApiService                   DefaultAPI
+	listProcessExecutionsRequest *ListProcessExecutionsRequest
+}
+
+func (r ApiApiV1XcherryServiceProcessExecutionListPostRequest) ListProcessExecutionsRequest(listProcessExecutionsRequest ListProcessExecutionsRequest) ApiApiV1XcherryServiceProcessExecutionListPostRequest {
+	r.listProcessExecutionsRequest = &listProcessExecutionsRequest
+	return r
+}
+
+func (r ApiApiV1XcherryServiceProcessExecutionListPostRequest) Execute() (*ListProcessExecutionsResponse, *http.Response, error) {
+	return r.ApiService.ApiV1XcherryServiceProcessExecutionListPostExecute(r)
+}
+
+/*
+ApiV1XcherryServiceProcessExecutionListPost list process executions
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiApiV1XcherryServiceProcessExecutionListPostRequest
+*/
+func (a *DefaultAPIService) ApiV1XcherryServiceProcessExecutionListPost(ctx context.Context) ApiApiV1XcherryServiceProcessExecutionListPostRequest {
+	return ApiApiV1XcherryServiceProcessExecutionListPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListProcessExecutionsResponse
+func (a *DefaultAPIService) ApiV1XcherryServiceProcessExecutionListPostExecute(r ApiApiV1XcherryServiceProcessExecutionListPostRequest) (*ListProcessExecutionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListProcessExecutionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XcherryServiceProcessExecutionListPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/xcherry/service/process-execution/list"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.listProcessExecutionsRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

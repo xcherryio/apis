@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ErrorSubType** | Pointer to [**ErrorSubType**](ErrorSubType.md) |  | [optional] 
-**AppErrorType** | Pointer to **string** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error code from database driver | [optional] 
-**Details** | Pointer to **string** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error message from database driver; for other apiErrorType, it&#39;s the detailed message from server. | [optional] 
+**AppErrorType** | Pointer to **string** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error code from database driver  | [optional] 
+**Details** | Pointer to **string** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error message from database driver; for other apiErrorType, it&#39;s the detailed message from server.  | [optional] 
 
 ## Methods
 

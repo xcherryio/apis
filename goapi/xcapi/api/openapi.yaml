@@ -67,6 +67,27 @@ paths:
                 $ref: '#/components/schemas/ApiErrorResponse'
           description: "400: Invalid request, 404: Process execution not exists"
       summary: describe a process execution
+  /api/v1/xcherry/service/process-execution/list:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListProcessExecutionsRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessExecutionsResponse'
+          description: successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: "400: Invalid request"
+      summary: list process executions
   /api/v1/xcherry/service/process-execution/publish-to-local-queue:
     post:
       requestBody:
@@ -105,9 +126,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiErrorResponse'
-          description: "400: Invalid request, 404: Process execution not exists, or\
-            \ not running to accept write operation, 424: app database write failure\
-            \ or worker RPC execution failure, see ErrorSubType for details"
+          description: |
+            400: Invalid request, 404: Process execution not exists, or not running to accept write operation,  424: app database write failure or worker RPC execution failure, see ErrorSubType for details
       summary: execute a RPC method of a process execution
   /api/v1/xcherry/worker/async-state/wait-until:
     post:
@@ -249,6 +269,118 @@ components:
       - TIMEOUT
       - TERMINATED
       type: string
+    ListProcessExecutionsRequest:
+      example:
+        processTypeFilter:
+          processType: processType
+        statusFilter: null
+        nextPageToken: nextPageToken
+        startTimeFilter:
+          earliestTime: 6
+          latestTime: 1
+        namespace: namespace
+        pageSize: 0
+        processIdFilter:
+          processId: processId
+      properties:
+        namespace:
+          type: string
+        pageSize:
+          default: 100
+          type: integer
+        nextPageToken:
+          type: string
+        statusFilter:
+          $ref: '#/components/schemas/ProcessStatus'
+        startTimeFilter:
+          $ref: '#/components/schemas/TimeRangeFilter'
+        processTypeFilter:
+          $ref: '#/components/schemas/ProcessTypeFilter'
+        processIdFilter:
+          $ref: '#/components/schemas/ProcessIdFilter'
+      required:
+      - namespace
+      - pageSize
+      type: object
+    ListProcessExecutionsResponse:
+      example:
+        nextPageToken: nextPageToken
+        processExecutions:
+        - processExecutionId: processExecutionId
+          processId: processId
+          namespace: namespace
+          processType: processType
+          closeTimestamp: 6
+          startTimestamp: 0
+          status: null
+        - processExecutionId: processExecutionId
+          processId: processId
+          namespace: namespace
+          processType: processType
+          closeTimestamp: 6
+          startTimestamp: 0
+          status: null
+      properties:
+        processExecutions:
+          items:
+            $ref: '#/components/schemas/ProcessExecutionListInfo'
+          type: array
+        nextPageToken:
+          type: string
+      type: object
+    TimeRangeFilter:
+      example:
+        earliestTime: 6
+        latestTime: 1
+      properties:
+        earliestTime:
+          format: int64
+          type: integer
+        latestTime:
+          format: int64
+          type: integer
+      type: object
+    ProcessIdFilter:
+      example:
+        processId: processId
+      properties:
+        processId:
+          type: string
+      type: object
+    ProcessTypeFilter:
+      example:
+        processType: processType
+      properties:
+        processType:
+          type: string
+      required:
+      - processType
+      type: object
+    ProcessExecutionListInfo:
+      example:
+        processExecutionId: processExecutionId
+        processId: processId
+        namespace: namespace
+        processType: processType
+        closeTimestamp: 6
+        startTimestamp: 0
+        status: null
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        processExecutionId:
+          type: string
+        processType:
+          type: string
+        startTimestamp:
+          type: integer
+        closeTimestamp:
+          type: integer
+        status:
+          $ref: '#/components/schemas/ProcessStatus'
+      type: object
     AsyncStateWaitUntilRequest:
       description: the input of the waitUntil API
       example:
@@ -999,8 +1131,8 @@ components:
     WorkerErrorResponse:
       properties:
         detail:
-          description: an optional field to let application set some detailed information.
-            Default to the error message + stacktrace of the error
+          description: |
+            an optional field to let application set some detailed information.  Default to the error message + stacktrace of the error
           type: string
         errorType:
           description: an optional field for error handling. Default to the class/error
@@ -1027,14 +1159,12 @@ components:
         errorSubType:
           $ref: '#/components/schemas/ErrorSubType'
         appErrorType:
-          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType;\
-            \ for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database\
-            \ driver"
+          description: |
+            for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it's the error code from database driver
           type: string
         details:
-          description: "for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details;\
-            \ for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database\
-            \ driver; for other apiErrorType, it's the detailed message from server."
+          description: |
+            for WORKER_EXECUTION_ERROR, it's the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it's the error message from database driver; for other apiErrorType, it's the detailed message from server.
           type: string
       type: object
     ErrorSubType:

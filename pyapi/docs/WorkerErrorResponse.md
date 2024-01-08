@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**detail** | **str** | an optional field to let application set some detailed information. Default to the error message + stacktrace of the error | [optional] 
+**detail** | **str** | an optional field to let application set some detailed information.  Default to the error message + stacktrace of the error  | [optional] 
 **error_type** | **str** | an optional field for error handling. Default to the class/error Name | 
 
 ## Example

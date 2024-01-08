@@ -60,6 +60,8 @@ from xcherryapi.models.database_locking_type import DatabaseLockingType
 from xcherryapi.models.encoded_object import EncodedObject
 from xcherryapi.models.error_sub_type import ErrorSubType
 from xcherryapi.models.key_value import KeyValue
+from xcherryapi.models.list_process_executions_request import ListProcessExecutionsRequest
+from xcherryapi.models.list_process_executions_response import ListProcessExecutionsResponse
 from xcherryapi.models.load_local_attributes_request import LoadLocalAttributesRequest
 from xcherryapi.models.load_local_attributes_response import LoadLocalAttributesResponse
 from xcherryapi.models.local_attribute_config import LocalAttributeConfig
@@ -71,17 +73,20 @@ from xcherryapi.models.notify_immediate_tasks_request import NotifyImmediateTask
 from xcherryapi.models.notify_timer_tasks_request import NotifyTimerTasksRequest
 from xcherryapi.models.process_execution_describe_request import ProcessExecutionDescribeRequest
 from xcherryapi.models.process_execution_describe_response import ProcessExecutionDescribeResponse
+from xcherryapi.models.process_execution_list_info import ProcessExecutionListInfo
 from xcherryapi.models.process_execution_rpc_request import ProcessExecutionRpcRequest
 from xcherryapi.models.process_execution_rpc_response import ProcessExecutionRpcResponse
 from xcherryapi.models.process_execution_start_request import ProcessExecutionStartRequest
 from xcherryapi.models.process_execution_start_response import ProcessExecutionStartResponse
 from xcherryapi.models.process_execution_stop_request import ProcessExecutionStopRequest
 from xcherryapi.models.process_execution_stop_type import ProcessExecutionStopType
+from xcherryapi.models.process_id_filter import ProcessIdFilter
 from xcherryapi.models.process_id_reuse_policy import ProcessIdReusePolicy
 from xcherryapi.models.process_rpc_worker_request import ProcessRpcWorkerRequest
 from xcherryapi.models.process_rpc_worker_response import ProcessRpcWorkerResponse
 from xcherryapi.models.process_start_config import ProcessStartConfig
 from xcherryapi.models.process_status import ProcessStatus
+from xcherryapi.models.process_type_filter import ProcessTypeFilter
 from xcherryapi.models.publish_to_local_queue_request import PublishToLocalQueueRequest
 from xcherryapi.models.retry_policy import RetryPolicy
 from xcherryapi.models.state_decision import StateDecision
@@ -90,6 +95,7 @@ from xcherryapi.models.state_failure_recovery_policy import StateFailureRecovery
 from xcherryapi.models.state_movement import StateMovement
 from xcherryapi.models.thread_close_decision import ThreadCloseDecision
 from xcherryapi.models.thread_close_type import ThreadCloseType
+from xcherryapi.models.time_range_filter import TimeRangeFilter
 from xcherryapi.models.timer_command import TimerCommand
 from xcherryapi.models.timer_result import TimerResult
 from xcherryapi.models.worker_api_type import WorkerApiType

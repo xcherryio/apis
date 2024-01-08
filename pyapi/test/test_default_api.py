@@ -33,6 +33,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_api_v1_xcherry_service_process_execution_list_post(self) -> None:
+        """Test case for api_v1_xcherry_service_process_execution_list_post
+
+        list process executions
+        """
+        pass
+
     def test_api_v1_xcherry_service_process_execution_publish_to_local_queue_post(self) -> None:
         """Test case for api_v1_xcherry_service_process_execution_publish_to_local_queue_post
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **error_sub_type** | [**ErrorSubType**](ErrorSubType.md) |  | [optional] 
-**app_error_type** | **str** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error code from database driver | [optional] 
-**details** | **str** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error message from database driver; for other apiErrorType, it&#39;s the detailed message from server. | [optional] 
+**app_error_type** | **str** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error code from database driver  | [optional] 
+**details** | **str** | for WORKER_EXECUTION_ERROR, it&#39;s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it&#39;s the error message from database driver; for other apiErrorType, it&#39;s the detailed message from server.  | [optional] 
 
 ## Example
 

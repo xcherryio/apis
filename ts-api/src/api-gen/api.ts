@@ -36,13 +36,13 @@ export interface ApiErrorResponse {
      */
     'errorSubType'?: ErrorSubType;
     /**
-     * for WORKER_EXECUTION_ERROR, it\'s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it\'s the error code from database driver
+     * for WORKER_EXECUTION_ERROR, it\'s the value from WorkerErrorResponse.errorType; for APP_DATABASE_READ/WRITE_ERROR, it\'s the error code from database driver 
      * @type {string}
      * @memberof ApiErrorResponse
      */
     'appErrorType'?: string;
     /**
-     * for WORKER_EXECUTION_ERROR, it\'s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it\'s the error message from database driver; for other apiErrorType, it\'s the detailed message from server.
+     * for WORKER_EXECUTION_ERROR, it\'s the value from WorkerErrorResponse.details; for APP_DATABASE_READ/WRITE_ERROR, it\'s the error message from database driver; for other apiErrorType, it\'s the detailed message from server. 
      * @type {string}
      * @memberof ApiErrorResponse
      */
@@ -707,6 +707,76 @@ export interface KeyValue {
 /**
  * 
  * @export
+ * @interface ListProcessExecutionsRequest
+ */
+export interface ListProcessExecutionsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ListProcessExecutionsRequest
+     */
+    'namespace': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListProcessExecutionsRequest
+     */
+    'pageSize': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListProcessExecutionsRequest
+     */
+    'nextPageToken'?: string;
+    /**
+     * 
+     * @type {ProcessStatus}
+     * @memberof ListProcessExecutionsRequest
+     */
+    'statusFilter'?: ProcessStatus;
+    /**
+     * 
+     * @type {TimeRangeFilter}
+     * @memberof ListProcessExecutionsRequest
+     */
+    'startTimeFilter'?: TimeRangeFilter;
+    /**
+     * 
+     * @type {ProcessTypeFilter}
+     * @memberof ListProcessExecutionsRequest
+     */
+    'processTypeFilter'?: ProcessTypeFilter;
+    /**
+     * 
+     * @type {ProcessIdFilter}
+     * @memberof ListProcessExecutionsRequest
+     */
+    'processIdFilter'?: ProcessIdFilter;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface ListProcessExecutionsResponse
+ */
+export interface ListProcessExecutionsResponse {
+    /**
+     * 
+     * @type {Array<ProcessExecutionListInfo>}
+     * @memberof ListProcessExecutionsResponse
+     */
+    'processExecutions'?: Array<ProcessExecutionListInfo>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListProcessExecutionsResponse
+     */
+    'nextPageToken'?: string;
+}
+/**
+ * 
+ * @export
  * @interface LoadLocalAttributesRequest
  */
 export interface LoadLocalAttributesRequest {
@@ -974,6 +1044,57 @@ export interface ProcessExecutionDescribeResponse {
 
 
 /**
+ * 
+ * @export
+ * @interface ProcessExecutionListInfo
+ */
+export interface ProcessExecutionListInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessExecutionListInfo
+     */
+    'namespace'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessExecutionListInfo
+     */
+    'processId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessExecutionListInfo
+     */
+    'processExecutionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessExecutionListInfo
+     */
+    'processType'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProcessExecutionListInfo
+     */
+    'startTimestamp'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProcessExecutionListInfo
+     */
+    'closeTimestamp'?: number;
+    /**
+     * 
+     * @type {ProcessStatus}
+     * @memberof ProcessExecutionListInfo
+     */
+    'status'?: ProcessStatus;
+}
+
+
+/**
  * the request for executing a RPC method of a process execution
  * @export
  * @interface ProcessExecutionRpcRequest
@@ -1141,6 +1262,19 @@ export type ProcessExecutionStopType = typeof ProcessExecutionStopType[keyof typ
 /**
  * 
  * @export
+ * @interface ProcessIdFilter
+ */
+export interface ProcessIdFilter {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessIdFilter
+     */
+    'processId'?: string;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -1272,6 +1406,19 @@ export const ProcessStatus = {
 export type ProcessStatus = typeof ProcessStatus[keyof typeof ProcessStatus];
 
 
+/**
+ * 
+ * @export
+ * @interface ProcessTypeFilter
+ */
+export interface ProcessTypeFilter {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessTypeFilter
+     */
+    'processType': string;
+}
 /**
  * the request for sending messages to be consumed within a single process execution
  * @export
@@ -1459,6 +1606,25 @@ export type ThreadCloseType = typeof ThreadCloseType[keyof typeof ThreadCloseTyp
 /**
  * 
  * @export
+ * @interface TimeRangeFilter
+ */
+export interface TimeRangeFilter {
+    /**
+     * 
+     * @type {number}
+     * @memberof TimeRangeFilter
+     */
+    'earliestTime'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TimeRangeFilter
+     */
+    'latestTime'?: number;
+}
+/**
+ * 
+ * @export
  * @interface TimerCommand
  */
 export interface TimerCommand {
@@ -1506,7 +1672,7 @@ export type WorkerApiType = typeof WorkerApiType[keyof typeof WorkerApiType];
  */
 export interface WorkerErrorResponse {
     /**
-     * an optional field to let application set some detailed information. Default to the error message + stacktrace of the error
+     * an optional field to let application set some detailed information.  Default to the error message + stacktrace of the error 
      * @type {string}
      * @memberof WorkerErrorResponse
      */
@@ -1568,6 +1734,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(processExecutionDescribeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary list process executions
+         * @param {ListProcessExecutionsRequest} [listProcessExecutionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiV1XcherryServiceProcessExecutionListPost: async (listProcessExecutionsRequest?: ListProcessExecutionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/xcherry/service/process-execution/list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(listProcessExecutionsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1905,6 +2105,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary list process executions
+         * @param {ListProcessExecutionsRequest} [listProcessExecutionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest?: ListProcessExecutionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListProcessExecutionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionListPost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary send message(s) to be consumed within a single process execution
          * @param {PublishToLocalQueueRequest} [publishToLocalQueueRequest] 
          * @param {*} [options] Override http request option.
@@ -2042,6 +2255,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary list process executions
+         * @param {ListProcessExecutionsRequest} [listProcessExecutionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest?: ListProcessExecutionsRequest, options?: any): AxiosPromise<ListProcessExecutionsResponse> {
+            return localVarFp.apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary send message(s) to be consumed within a single process execution
          * @param {PublishToLocalQueueRequest} [publishToLocalQueueRequest] 
          * @param {*} [options] Override http request option.
@@ -2150,6 +2373,18 @@ export class DefaultApi extends BaseAPI {
      */
     public apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary list process executions
+     * @param {ListProcessExecutionsRequest} [listProcessExecutionsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest?: ListProcessExecutionsRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
