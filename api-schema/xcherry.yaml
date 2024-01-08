@@ -278,10 +278,8 @@ components:
           $ref: '#/components/schemas/TimeRangeFilter'
         processTypeFilter:
           $ref: '#/components/schemas/ProcessTypeFilter'
-        processExecutionFilter:
+        processIdFilter:
           $ref: '#/components/schemas/ProcessIdFilter'
-        queryFilter:
-          type: string
     ListProcessExecutionsResponse:
       type: object
       properties:
