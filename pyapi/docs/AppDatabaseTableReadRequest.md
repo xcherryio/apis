@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **table_name** | **str** |  | [optional] 
-**lock_type** | [**LockingType**](LockingType.md) |  | [optional] 
+**lock_type** | [**LockType**](LockType.md) |  | [optional] 
 **columns** | **List[str]** |  | [optional] 
 
 ## Example

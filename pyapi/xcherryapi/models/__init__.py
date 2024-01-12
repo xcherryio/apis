@@ -51,7 +51,7 @@ from xcherryapi.models.local_queue_command import LocalQueueCommand
 from xcherryapi.models.local_queue_message import LocalQueueMessage
 from xcherryapi.models.local_queue_message_result import LocalQueueMessageResult
 from xcherryapi.models.local_queue_result import LocalQueueResult
-from xcherryapi.models.locking_type import LockingType
+from xcherryapi.models.lock_type import LockType
 from xcherryapi.models.notify_immediate_tasks_request import NotifyImmediateTasksRequest
 from xcherryapi.models.notify_timer_tasks_request import NotifyTimerTasksRequest
 from xcherryapi.models.process_execution_describe_request import ProcessExecutionDescribeRequest

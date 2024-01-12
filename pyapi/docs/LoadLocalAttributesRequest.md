@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **keys_to_load_no_lock** | **List[str]** |  | [optional] 
 **keys_to_load_with_lock** | **List[str]** |  | [optional] 
-**lock_type** | [**LockingType**](LockingType.md) |  | [optional] 
+**lock_type** | [**LockType**](LockType.md) |  | [optional] 
 
 ## Example
 

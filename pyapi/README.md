@@ -137,7 +137,7 @@ Class | Method | HTTP request | Description
  - [LocalQueueMessage](docs/LocalQueueMessage.md)
  - [LocalQueueMessageResult](docs/LocalQueueMessageResult.md)
  - [LocalQueueResult](docs/LocalQueueResult.md)
- - [LockingType](docs/LockingType.md)
+ - [LockType](docs/LockType.md)
  - [NotifyImmediateTasksRequest](docs/NotifyImmediateTasksRequest.md)
  - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)

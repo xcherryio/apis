@@ -15,10 +15,10 @@
 import unittest
 import datetime
 
-from xcherryapi.models.locking_type import LockingType
+from xcherryapi.models.lock_type import LockType
 
-class TestLockingType(unittest.TestCase):
-    """LockingType unit test stubs"""
+class TestLockType(unittest.TestCase):
+    """LockType unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,9 +26,9 @@ class TestLockingType(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testLockingType(self):
-        """Test LockingType"""
-        # inst = LockingType()
+    def testLockType(self):
+        """Test LockType"""
+        # inst = LockType()
 
 if __name__ == '__main__':
     unittest.main()

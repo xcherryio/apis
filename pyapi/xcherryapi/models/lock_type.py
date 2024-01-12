@@ -26,9 +26,9 @@ except ImportError:
     from typing_extensions import Self
 
 
-class LockingType(str, Enum):
+class LockType(str, Enum):
     """
-    LockingType
+    LockType
     """
 
     """
@@ -40,7 +40,7 @@ class LockingType(str, Enum):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of LockingType from a JSON string"""
+        """Create an instance of LockType from a JSON string"""
         return cls(json.loads(json_str))
 
 

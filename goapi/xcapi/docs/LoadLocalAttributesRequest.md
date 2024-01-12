@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **KeysToLoadNoLock** | Pointer to **[]string** |  | [optional] 
 **KeysToLoadWithLock** | Pointer to **[]string** |  | [optional] 
-**LockType** | Pointer to [**LockingType**](LockingType.md) |  | [optional] 
+**LockType** | Pointer to [**LockType**](LockType.md) |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasKeysToLoadWithLock returns a boolean if a field has been set.
 
 ### GetLockType
 
-`func (o *LoadLocalAttributesRequest) GetLockType() LockingType`
+`func (o *LoadLocalAttributesRequest) GetLockType() LockType`
 
 GetLockType returns the LockType field if non-nil, zero value otherwise.
 
 ### GetLockTypeOk
 
-`func (o *LoadLocalAttributesRequest) GetLockTypeOk() (*LockingType, bool)`
+`func (o *LoadLocalAttributesRequest) GetLockTypeOk() (*LockType, bool)`
 
 GetLockTypeOk returns a tuple with the LockType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLockType
 
-`func (o *LoadLocalAttributesRequest) SetLockType(v LockingType)`
+`func (o *LoadLocalAttributesRequest) SetLockType(v LockType)`
 
 SetLockType sets LockType field to given value.
 
