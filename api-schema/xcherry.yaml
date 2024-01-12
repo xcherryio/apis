@@ -685,7 +685,7 @@ components:
           items:
             type: string
         lockType:
-          $ref: '#/components/schemas/DatabaseLockingType'
+          $ref: '#/components/schemas/LockType'
     LoadLocalAttributesResponse:
       type: object
       properties:
@@ -693,7 +693,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValue'
-    DatabaseLockingType:
+    LockType:
       type: string
       enum:
         - NO_LOCKING
@@ -919,7 +919,7 @@ components:
         tableName:
           type: string
         lockType:
-          $ref: '#/components/schemas/DatabaseLockingType'
+          $ref: '#/components/schemas/LockType'
         columns:
           type: array
           items:

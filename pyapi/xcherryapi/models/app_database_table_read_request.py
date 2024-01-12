@@ -21,7 +21,7 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
-from xcherryapi.models.database_locking_type import DatabaseLockingType
+from xcherryapi.models.lock_type import LockType
 try:
     from typing import Self
 except ImportError:
@@ -32,7 +32,7 @@ class AppDatabaseTableReadRequest(BaseModel):
     AppDatabaseTableReadRequest
     """ # noqa: E501
     table_name: Optional[StrictStr] = Field(default=None, alias="tableName")
-    lock_type: Optional[DatabaseLockingType] = Field(default=None, alias="lockType")
+    lock_type: Optional[LockType] = Field(default=None, alias="lockType")
     columns: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["tableName", "lockType", "columns"]
 

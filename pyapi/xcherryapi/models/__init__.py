@@ -39,7 +39,6 @@ from xcherryapi.models.command_results import CommandResults
 from xcherryapi.models.command_status import CommandStatus
 from xcherryapi.models.command_waiting_type import CommandWaitingType
 from xcherryapi.models.context import Context
-from xcherryapi.models.database_locking_type import DatabaseLockingType
 from xcherryapi.models.encoded_object import EncodedObject
 from xcherryapi.models.error_sub_type import ErrorSubType
 from xcherryapi.models.key_value import KeyValue
@@ -52,6 +51,7 @@ from xcherryapi.models.local_queue_command import LocalQueueCommand
 from xcherryapi.models.local_queue_message import LocalQueueMessage
 from xcherryapi.models.local_queue_message_result import LocalQueueMessageResult
 from xcherryapi.models.local_queue_result import LocalQueueResult
+from xcherryapi.models.lock_type import LockType
 from xcherryapi.models.notify_immediate_tasks_request import NotifyImmediateTasksRequest
 from xcherryapi.models.notify_timer_tasks_request import NotifyTimerTasksRequest
 from xcherryapi.models.process_execution_describe_request import ProcessExecutionDescribeRequest
