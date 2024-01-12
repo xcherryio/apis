@@ -7,21 +7,7 @@ It's based on OpenAPI 3.0.3, see [specification](https://spec.openapis.org/oas/v
 
 ## Prerequisites
 
-Install openapi-generator if you haven't. See more [documentation](https://openapi-generator.tech/docs/installation)
-
-An easy way to install openapi-generator CLI is to use Homebrew:
-```
-brew install openapi-generator
-```
-
-And to upgrade it:
-```
-brew update && brew upgrade openapi-generator
-```
-
-You may also need to upgrade it to the latest if it's older than what we are currently using.
-It's okay to upgrade but not downgrade the version in a PR.
-
+Install [Java 11+ to run the openapi-generator-cli.jar](https://github.com/OpenAPITools/openapi-generator?tab=readme-ov-file#13---download-jar)
 
 ## Build
 Just run `make` to re-generate the API code based on the OpenAPI schema. 
