@@ -3,6 +3,7 @@
 the value of a table column (from SDK to server or from server to SDK)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **column** | **str** | the column name that can be used in the database query, see below for example | 

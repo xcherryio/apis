@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **columns** | [**List[AppDatabaseColumnValue]**](AppDatabaseColumnValue.md) |  | [optional] 

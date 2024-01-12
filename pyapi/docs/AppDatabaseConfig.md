@@ -3,6 +3,7 @@
 the configuration of what tables and rows to read/load for state/RPCs, including an optional initial write
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tables** | [**List[AppDatabaseTableConfig]**](AppDatabaseTableConfig.md) |  | [optional] 

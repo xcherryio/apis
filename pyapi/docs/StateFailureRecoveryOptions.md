@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **policy** | [**StateFailureRecoveryPolicy**](StateFailureRecoveryPolicy.md) |  | 

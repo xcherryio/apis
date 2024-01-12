@@ -3,6 +3,7 @@
 the decision at the end of state execution, either nextStates or threadCloseDecision is needed
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **next_states** | [**List[StateMovement]**](StateMovement.md) |  | [optional] 

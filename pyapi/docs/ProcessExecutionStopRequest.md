@@ -3,6 +3,7 @@
 the request for stopping a process execution
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **namespace** | **str** |  | 

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **primary_key** | [**List[AppDatabaseColumnValue]**](AppDatabaseColumnValue.md) |  | 

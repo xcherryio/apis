@@ -30,24 +30,24 @@ describe a process execution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    processExecutionDescribeRequest := *openapiclient.NewProcessExecutionDescribeRequest("Namespace_example", "ProcessId_example") // ProcessExecutionDescribeRequest |  (optional)
+	processExecutionDescribeRequest := *openapiclient.NewProcessExecutionDescribeRequest("Namespace_example", "ProcessId_example") // ProcessExecutionDescribeRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionDescribePost(context.Background()).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionDescribePost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApiV1XcherryServiceProcessExecutionDescribePost`: ProcessExecutionDescribeResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionDescribePost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionDescribePost(context.Background()).ProcessExecutionDescribeRequest(processExecutionDescribeRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionDescribePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ApiV1XcherryServiceProcessExecutionDescribePost`: ProcessExecutionDescribeResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionDescribePost`: %v\n", resp)
 }
 ```
 
@@ -94,24 +94,24 @@ list process executions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    listProcessExecutionsRequest := *openapiclient.NewListProcessExecutionsRequest("Namespace_example", int32(123)) // ListProcessExecutionsRequest |  (optional)
+	listProcessExecutionsRequest := *openapiclient.NewListProcessExecutionsRequest("Namespace_example", int32(123)) // ListProcessExecutionsRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost(context.Background()).ListProcessExecutionsRequest(listProcessExecutionsRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApiV1XcherryServiceProcessExecutionListPost`: ListProcessExecutionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost(context.Background()).ListProcessExecutionsRequest(listProcessExecutionsRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ApiV1XcherryServiceProcessExecutionListPost`: ListProcessExecutionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionListPost`: %v\n", resp)
 }
 ```
 
@@ -158,22 +158,22 @@ send message(s) to be consumed within a single process execution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    publishToLocalQueueRequest := *openapiclient.NewPublishToLocalQueueRequest("Namespace_example", "ProcessId_example") // PublishToLocalQueueRequest |  (optional)
+	publishToLocalQueueRequest := *openapiclient.NewPublishToLocalQueueRequest("Namespace_example", "ProcessId_example") // PublishToLocalQueueRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(context.Background()).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionPublishToLocalQueuePost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(context.Background()).PublishToLocalQueueRequest(publishToLocalQueueRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionPublishToLocalQueuePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -220,24 +220,24 @@ execute a RPC method of a process execution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    processExecutionRpcRequest := *openapiclient.NewProcessExecutionRpcRequest("Namespace_example", "ProcessId_example", "RpcName_example") // ProcessExecutionRpcRequest |  (optional)
+	processExecutionRpcRequest := *openapiclient.NewProcessExecutionRpcRequest("Namespace_example", "ProcessId_example", "RpcName_example") // ProcessExecutionRpcRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionRpcPost(context.Background()).ProcessExecutionRpcRequest(processExecutionRpcRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionRpcPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApiV1XcherryServiceProcessExecutionRpcPost`: ProcessExecutionRpcResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionRpcPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionRpcPost(context.Background()).ProcessExecutionRpcRequest(processExecutionRpcRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionRpcPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ApiV1XcherryServiceProcessExecutionRpcPost`: ProcessExecutionRpcResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionRpcPost`: %v\n", resp)
 }
 ```
 
@@ -284,24 +284,24 @@ start a process execution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    processExecutionStartRequest := *openapiclient.NewProcessExecutionStartRequest("Namespace_example", "ProcessId_example", "ProcessType_example", "WorkerUrl_example") // ProcessExecutionStartRequest |  (optional)
+	processExecutionStartRequest := *openapiclient.NewProcessExecutionStartRequest("Namespace_example", "ProcessId_example", "ProcessType_example", "WorkerUrl_example") // ProcessExecutionStartRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionStartPost(context.Background()).ProcessExecutionStartRequest(processExecutionStartRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionStartPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApiV1XcherryServiceProcessExecutionStartPost`: ProcessExecutionStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionStartPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionStartPost(context.Background()).ProcessExecutionStartRequest(processExecutionStartRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionStartPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ApiV1XcherryServiceProcessExecutionStartPost`: ProcessExecutionStartResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionStartPost`: %v\n", resp)
 }
 ```
 
@@ -348,22 +348,22 @@ stop a process execution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    processExecutionStopRequest := *openapiclient.NewProcessExecutionStopRequest("Namespace_example", "ProcessId_example") // ProcessExecutionStopRequest |  (optional)
+	processExecutionStopRequest := *openapiclient.NewProcessExecutionStopRequest("Namespace_example", "ProcessId_example") // ProcessExecutionStopRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionStopPost(context.Background()).ProcessExecutionStopRequest(processExecutionStopRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionStopPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionStopPost(context.Background()).ProcessExecutionStopRequest(processExecutionStopRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionStopPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -410,24 +410,24 @@ invoking AsyncState.execute API
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    asyncStateExecuteRequest := *openapiclient.NewAsyncStateExecuteRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "StateId_example") // AsyncStateExecuteRequest |  (optional)
+	asyncStateExecuteRequest := *openapiclient.NewAsyncStateExecuteRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "StateId_example") // AsyncStateExecuteRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryWorkerAsyncStateExecutePost(context.Background()).AsyncStateExecuteRequest(asyncStateExecuteRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryWorkerAsyncStateExecutePost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApiV1XcherryWorkerAsyncStateExecutePost`: AsyncStateExecuteResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryWorkerAsyncStateExecutePost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ApiV1XcherryWorkerAsyncStateExecutePost(context.Background()).AsyncStateExecuteRequest(asyncStateExecuteRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryWorkerAsyncStateExecutePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ApiV1XcherryWorkerAsyncStateExecutePost`: AsyncStateExecuteResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryWorkerAsyncStateExecutePost`: %v\n", resp)
 }
 ```
 
@@ -474,24 +474,24 @@ invoking AsyncState.waitUntil API
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    asyncStateWaitUntilRequest := *openapiclient.NewAsyncStateWaitUntilRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "StateId_example") // AsyncStateWaitUntilRequest |  (optional)
+	asyncStateWaitUntilRequest := *openapiclient.NewAsyncStateWaitUntilRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "StateId_example") // AsyncStateWaitUntilRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryWorkerAsyncStateWaitUntilPost(context.Background()).AsyncStateWaitUntilRequest(asyncStateWaitUntilRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryWorkerAsyncStateWaitUntilPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApiV1XcherryWorkerAsyncStateWaitUntilPost`: AsyncStateWaitUntilResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryWorkerAsyncStateWaitUntilPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ApiV1XcherryWorkerAsyncStateWaitUntilPost(context.Background()).AsyncStateWaitUntilRequest(asyncStateWaitUntilRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryWorkerAsyncStateWaitUntilPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ApiV1XcherryWorkerAsyncStateWaitUntilPost`: AsyncStateWaitUntilResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryWorkerAsyncStateWaitUntilPost`: %v\n", resp)
 }
 ```
 
@@ -538,24 +538,24 @@ execute a RPC method of a process execution in the worker
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    processRpcWorkerRequest := *openapiclient.NewProcessRpcWorkerRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "RpcName_example") // ProcessRpcWorkerRequest |  (optional)
+	processRpcWorkerRequest := *openapiclient.NewProcessRpcWorkerRequest(*openapiclient.NewContext("ProcessId_example", "ProcessExecutionId_example", int64(123)), "ProcessType_example", "RpcName_example") // ProcessRpcWorkerRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryWorkerProcessRpcPost(context.Background()).ProcessRpcWorkerRequest(processRpcWorkerRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryWorkerProcessRpcPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApiV1XcherryWorkerProcessRpcPost`: ProcessRpcWorkerResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryWorkerProcessRpcPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ApiV1XcherryWorkerProcessRpcPost(context.Background()).ProcessRpcWorkerRequest(processRpcWorkerRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryWorkerProcessRpcPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ApiV1XcherryWorkerProcessRpcPost`: ProcessRpcWorkerResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryWorkerProcessRpcPost`: %v\n", resp)
 }
 ```
 
@@ -602,22 +602,22 @@ for api service to tell async service that there are new immediate tasks added t
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    notifyImmediateTasksRequest := *openapiclient.NewNotifyImmediateTasksRequest(int32(123)) // NotifyImmediateTasksRequest |  (optional)
+	notifyImmediateTasksRequest := *openapiclient.NewNotifyImmediateTasksRequest(int32(123)) // NotifyImmediateTasksRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.InternalApiV1XcherryNotifyImmediateTasksPost(context.Background()).NotifyImmediateTasksRequest(notifyImmediateTasksRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherryNotifyImmediateTasksPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.InternalApiV1XcherryNotifyImmediateTasksPost(context.Background()).NotifyImmediateTasksRequest(notifyImmediateTasksRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherryNotifyImmediateTasksPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -664,22 +664,22 @@ for api service to tell async service that there are new timer tasks added to th
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/xcherryio/apis"
 )
 
 func main() {
-    notifyTimerTasksRequest := *openapiclient.NewNotifyTimerTasksRequest(int32(123), []int64{int64(123)}) // NotifyTimerTasksRequest |  (optional)
+	notifyTimerTasksRequest := *openapiclient.NewNotifyTimerTasksRequest(int32(123), []int64{int64(123)}) // NotifyTimerTasksRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.InternalApiV1XcherryNotifyTimerTasksPost(context.Background()).NotifyTimerTasksRequest(notifyTimerTasksRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherryNotifyTimerTasksPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.InternalApiV1XcherryNotifyTimerTasksPost(context.Background()).NotifyTimerTasksRequest(notifyTimerTasksRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherryNotifyTimerTasksPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

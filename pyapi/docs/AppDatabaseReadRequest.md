@@ -3,6 +3,7 @@
 the request to read the selected rows of configured app database tables
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tables** | [**List[AppDatabaseTableReadRequest]**](AppDatabaseTableReadRequest.md) |  | [optional] 

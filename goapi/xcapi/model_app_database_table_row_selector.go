@@ -11,6 +11,7 @@ API version: 0.0.3
 package xcapi
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -153,7 +154,7 @@ func (o AppDatabaseTableRowSelector) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *AppDatabaseTableRowSelector) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AppDatabaseTableRowSelector) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -163,7 +164,7 @@ func (o *AppDatabaseTableRowSelector) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err
@@ -177,7 +178,9 @@ func (o *AppDatabaseTableRowSelector) UnmarshalJSON(bytes []byte) (err error) {
 
 	varAppDatabaseTableRowSelector := _AppDatabaseTableRowSelector{}
 
-	err = json.Unmarshal(bytes, &varAppDatabaseTableRowSelector)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAppDatabaseTableRowSelector)
 
 	if err != nil {
 		return err

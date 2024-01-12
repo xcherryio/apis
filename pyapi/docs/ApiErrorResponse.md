@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **error_sub_type** | [**ErrorSubType**](ErrorSubType.md) |  | [optional] 
