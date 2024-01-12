@@ -15,10 +15,10 @@
 import unittest
 import datetime
 
-from xcherryapi.models.database_locking_type import DatabaseLockingType
+from xcherryapi.models.locking_type import LockingType
 
-class TestDatabaseLockingType(unittest.TestCase):
-    """DatabaseLockingType unit test stubs"""
+class TestLockingType(unittest.TestCase):
+    """LockingType unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,9 +26,9 @@ class TestDatabaseLockingType(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testDatabaseLockingType(self):
-        """Test DatabaseLockingType"""
-        # inst = DatabaseLockingType()
+    def testLockingType(self):
+        """Test LockingType"""
+        # inst = LockingType()
 
 if __name__ == '__main__':
     unittest.main()

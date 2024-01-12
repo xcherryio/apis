@@ -19,9 +19,9 @@ var _ MappedNullable = &AppDatabaseTableReadRequest{}
 
 // AppDatabaseTableReadRequest struct for AppDatabaseTableReadRequest
 type AppDatabaseTableReadRequest struct {
-	TableName *string              `json:"tableName,omitempty"`
-	LockType  *DatabaseLockingType `json:"lockType,omitempty"`
-	Columns   []string             `json:"columns,omitempty"`
+	TableName *string      `json:"tableName,omitempty"`
+	LockType  *LockingType `json:"lockType,omitempty"`
+	Columns   []string     `json:"columns,omitempty"`
 }
 
 // NewAppDatabaseTableReadRequest instantiates a new AppDatabaseTableReadRequest object
@@ -74,9 +74,9 @@ func (o *AppDatabaseTableReadRequest) SetTableName(v string) {
 }
 
 // GetLockType returns the LockType field value if set, zero value otherwise.
-func (o *AppDatabaseTableReadRequest) GetLockType() DatabaseLockingType {
+func (o *AppDatabaseTableReadRequest) GetLockType() LockingType {
 	if o == nil || IsNil(o.LockType) {
-		var ret DatabaseLockingType
+		var ret LockingType
 		return ret
 	}
 	return *o.LockType
@@ -84,7 +84,7 @@ func (o *AppDatabaseTableReadRequest) GetLockType() DatabaseLockingType {
 
 // GetLockTypeOk returns a tuple with the LockType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AppDatabaseTableReadRequest) GetLockTypeOk() (*DatabaseLockingType, bool) {
+func (o *AppDatabaseTableReadRequest) GetLockTypeOk() (*LockingType, bool) {
 	if o == nil || IsNil(o.LockType) {
 		return nil, false
 	}
@@ -100,8 +100,8 @@ func (o *AppDatabaseTableReadRequest) HasLockType() bool {
 	return false
 }
 
-// SetLockType gets a reference to the given DatabaseLockingType and assigns it to the LockType field.
-func (o *AppDatabaseTableReadRequest) SetLockType(v DatabaseLockingType) {
+// SetLockType gets a reference to the given LockingType and assigns it to the LockType field.
+func (o *AppDatabaseTableReadRequest) SetLockType(v LockingType) {
 	o.LockType = &v
 }
 

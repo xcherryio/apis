@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TableName** | Pointer to **string** |  | [optional] 
-**LockType** | Pointer to [**DatabaseLockingType**](DatabaseLockingType.md) |  | [optional] 
+**LockType** | Pointer to [**LockingType**](LockingType.md) |  | [optional] 
 **Columns** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasTableName returns a boolean if a field has been set.
 
 ### GetLockType
 
-`func (o *AppDatabaseTableReadRequest) GetLockType() DatabaseLockingType`
+`func (o *AppDatabaseTableReadRequest) GetLockType() LockingType`
 
 GetLockType returns the LockType field if non-nil, zero value otherwise.
 
 ### GetLockTypeOk
 
-`func (o *AppDatabaseTableReadRequest) GetLockTypeOk() (*DatabaseLockingType, bool)`
+`func (o *AppDatabaseTableReadRequest) GetLockTypeOk() (*LockingType, bool)`
 
 GetLockTypeOk returns a tuple with the LockType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLockType
 
-`func (o *AppDatabaseTableReadRequest) SetLockType(v DatabaseLockingType)`
+`func (o *AppDatabaseTableReadRequest) SetLockType(v LockingType)`
 
 SetLockType sets LockType field to given value.
 

@@ -19,9 +19,9 @@ var _ MappedNullable = &LoadLocalAttributesRequest{}
 
 // LoadLocalAttributesRequest struct for LoadLocalAttributesRequest
 type LoadLocalAttributesRequest struct {
-	KeysToLoadNoLock   []string             `json:"keysToLoadNoLock,omitempty"`
-	KeysToLoadWithLock []string             `json:"keysToLoadWithLock,omitempty"`
-	LockType           *DatabaseLockingType `json:"lockType,omitempty"`
+	KeysToLoadNoLock   []string     `json:"keysToLoadNoLock,omitempty"`
+	KeysToLoadWithLock []string     `json:"keysToLoadWithLock,omitempty"`
+	LockType           *LockingType `json:"lockType,omitempty"`
 }
 
 // NewLoadLocalAttributesRequest instantiates a new LoadLocalAttributesRequest object
@@ -106,9 +106,9 @@ func (o *LoadLocalAttributesRequest) SetKeysToLoadWithLock(v []string) {
 }
 
 // GetLockType returns the LockType field value if set, zero value otherwise.
-func (o *LoadLocalAttributesRequest) GetLockType() DatabaseLockingType {
+func (o *LoadLocalAttributesRequest) GetLockType() LockingType {
 	if o == nil || IsNil(o.LockType) {
-		var ret DatabaseLockingType
+		var ret LockingType
 		return ret
 	}
 	return *o.LockType
@@ -116,7 +116,7 @@ func (o *LoadLocalAttributesRequest) GetLockType() DatabaseLockingType {
 
 // GetLockTypeOk returns a tuple with the LockType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadLocalAttributesRequest) GetLockTypeOk() (*DatabaseLockingType, bool) {
+func (o *LoadLocalAttributesRequest) GetLockTypeOk() (*LockingType, bool) {
 	if o == nil || IsNil(o.LockType) {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *LoadLocalAttributesRequest) HasLockType() bool {
 	return false
 }
 
-// SetLockType gets a reference to the given DatabaseLockingType and assigns it to the LockType field.
-func (o *LoadLocalAttributesRequest) SetLockType(v DatabaseLockingType) {
+// SetLockType gets a reference to the given LockingType and assigns it to the LockType field.
+func (o *LoadLocalAttributesRequest) SetLockType(v LockingType) {
 	o.LockType = &v
 }
 

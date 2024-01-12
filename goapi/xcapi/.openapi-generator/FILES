@@ -31,7 +31,6 @@ docs/CommandResults.md
 docs/CommandStatus.md
 docs/CommandWaitingType.md
 docs/Context.md
-docs/DatabaseLockingType.md
 docs/DefaultAPI.md
 docs/EncodedObject.md
 docs/ErrorSubType.md
@@ -45,6 +44,7 @@ docs/LocalQueueCommand.md
 docs/LocalQueueMessage.md
 docs/LocalQueueMessageResult.md
 docs/LocalQueueResult.md
+docs/LockingType.md
 docs/NotifyImmediateTasksRequest.md
 docs/NotifyTimerTasksRequest.md
 docs/ProcessExecutionDescribeRequest.md
@@ -105,7 +105,6 @@ model_command_results.go
 model_command_status.go
 model_command_waiting_type.go
 model_context.go
-model_database_locking_type.go
 model_encoded_object.go
 model_error_sub_type.go
 model_key_value.go
@@ -118,6 +117,7 @@ model_local_queue_command.go
 model_local_queue_message.go
 model_local_queue_message_result.go
 model_local_queue_result.go
+model_locking_type.go
 model_notify_immediate_tasks_request.go
 model_notify_timer_tasks_request.go
 model_process_execution_describe_request.go

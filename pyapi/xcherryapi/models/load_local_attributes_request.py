@@ -21,7 +21,7 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
-from xcherryapi.models.database_locking_type import DatabaseLockingType
+from xcherryapi.models.locking_type import LockingType
 try:
     from typing import Self
 except ImportError:
@@ -33,7 +33,7 @@ class LoadLocalAttributesRequest(BaseModel):
     """ # noqa: E501
     keys_to_load_no_lock: Optional[List[StrictStr]] = Field(default=None, alias="keysToLoadNoLock")
     keys_to_load_with_lock: Optional[List[StrictStr]] = Field(default=None, alias="keysToLoadWithLock")
-    lock_type: Optional[DatabaseLockingType] = Field(default=None, alias="lockType")
+    lock_type: Optional[LockingType] = Field(default=None, alias="lockType")
     __properties: ClassVar[List[str]] = ["keysToLoadNoLock", "keysToLoadWithLock", "lockType"]
 
     model_config = {

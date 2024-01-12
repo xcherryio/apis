@@ -219,10 +219,10 @@ export interface AppDatabaseTableReadRequest {
     'tableName'?: string;
     /**
      * 
-     * @type {DatabaseLockingType}
+     * @type {LockingType}
      * @memberof AppDatabaseTableReadRequest
      */
-    'lockType'?: DatabaseLockingType;
+    'lockType'?: LockingType;
     /**
      * 
      * @type {Array<string>}
@@ -637,21 +637,6 @@ export interface Context {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export const DatabaseLockingType = {
-    NoLocking: 'NO_LOCKING',
-    ShareLock: 'SHARE_LOCK',
-    ExclusiveLock: 'EXCLUSIVE_LOCK'
-} as const;
-
-export type DatabaseLockingType = typeof DatabaseLockingType[keyof typeof DatabaseLockingType];
-
-
-/**
- * 
- * @export
  * @interface EncodedObject
  */
 export interface EncodedObject {
@@ -794,10 +779,10 @@ export interface LoadLocalAttributesRequest {
     'keysToLoadWithLock'?: Array<string>;
     /**
      * 
-     * @type {DatabaseLockingType}
+     * @type {LockingType}
      * @memberof LoadLocalAttributesRequest
      */
-    'lockType'?: DatabaseLockingType;
+    'lockType'?: LockingType;
 }
 
 
@@ -915,6 +900,21 @@ export interface LocalQueueResult {
      */
     'messages'?: Array<LocalQueueMessageResult>;
 }
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const LockingType = {
+    NoLocking: 'NO_LOCKING',
+    ShareLock: 'SHARE_LOCK',
+    ExclusiveLock: 'EXCLUSIVE_LOCK'
+} as const;
+
+export type LockingType = typeof LockingType[keyof typeof LockingType];
 
 
 /**

@@ -1442,7 +1442,7 @@ components:
             type: string
           type: array
         lockType:
-          $ref: '#/components/schemas/DatabaseLockingType'
+          $ref: '#/components/schemas/LockingType'
       type: object
     LoadLocalAttributesResponse:
       example:
@@ -1461,7 +1461,7 @@ components:
             $ref: '#/components/schemas/KeyValue'
           type: array
       type: object
-    DatabaseLockingType:
+    LockingType:
       enum:
       - NO_LOCKING
       - SHARE_LOCK
@@ -2018,7 +2018,7 @@ components:
         tableName:
           type: string
         lockType:
-          $ref: '#/components/schemas/DatabaseLockingType'
+          $ref: '#/components/schemas/LockingType'
         columns:
           items:
             type: string
