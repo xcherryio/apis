@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **timer_results** | [**List[TimerResult]**](TimerResult.md) |  | [optional] 

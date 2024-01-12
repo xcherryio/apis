@@ -3,7 +3,6 @@
 the error for read/write the app database. For the write error, it's from last attempt.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **app_db_error_type** | [**ErrorSubType**](ErrorSubType.md) |  | 

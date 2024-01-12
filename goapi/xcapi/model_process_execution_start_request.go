@@ -11,7 +11,6 @@ API version: 0.0.3
 package xcapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -311,7 +310,7 @@ func (o ProcessExecutionStartRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProcessExecutionStartRequest) UnmarshalJSON(data []byte) (err error) {
+func (o *ProcessExecutionStartRequest) UnmarshalJSON(bytes []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -324,7 +323,7 @@ func (o *ProcessExecutionStartRequest) UnmarshalJSON(data []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(data, &allProperties)
+	err = json.Unmarshal(bytes, &allProperties)
 
 	if err != nil {
 		return err
@@ -338,9 +337,7 @@ func (o *ProcessExecutionStartRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varProcessExecutionStartRequest := _ProcessExecutionStartRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProcessExecutionStartRequest)
+	err = json.Unmarshal(bytes, &varProcessExecutionStartRequest)
 
 	if err != nil {
 		return err

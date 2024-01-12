@@ -14,7 +14,7 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -1713,7 +1713,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryServiceProcessExecutionDescribePost: async (processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryServiceProcessExecutionDescribePost: async (processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/service/process-execution/describe`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1747,7 +1747,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryServiceProcessExecutionListPost: async (listProcessExecutionsRequest?: ListProcessExecutionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryServiceProcessExecutionListPost: async (listProcessExecutionsRequest?: ListProcessExecutionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/service/process-execution/list`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1781,7 +1781,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost: async (publishToLocalQueueRequest?: PublishToLocalQueueRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost: async (publishToLocalQueueRequest?: PublishToLocalQueueRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/service/process-execution/publish-to-local-queue`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1815,7 +1815,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryServiceProcessExecutionRpcPost: async (processExecutionRpcRequest?: ProcessExecutionRpcRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryServiceProcessExecutionRpcPost: async (processExecutionRpcRequest?: ProcessExecutionRpcRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/service/process-execution/rpc`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1849,7 +1849,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryServiceProcessExecutionStartPost: async (processExecutionStartRequest?: ProcessExecutionStartRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryServiceProcessExecutionStartPost: async (processExecutionStartRequest?: ProcessExecutionStartRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/service/process-execution/start`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1883,7 +1883,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryServiceProcessExecutionStopPost: async (processExecutionStopRequest?: ProcessExecutionStopRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryServiceProcessExecutionStopPost: async (processExecutionStopRequest?: ProcessExecutionStopRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/service/process-execution/stop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1917,7 +1917,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryWorkerAsyncStateExecutePost: async (asyncStateExecuteRequest?: AsyncStateExecuteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryWorkerAsyncStateExecutePost: async (asyncStateExecuteRequest?: AsyncStateExecuteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/worker/async-state/execute`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1951,7 +1951,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryWorkerAsyncStateWaitUntilPost: async (asyncStateWaitUntilRequest?: AsyncStateWaitUntilRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryWorkerAsyncStateWaitUntilPost: async (asyncStateWaitUntilRequest?: AsyncStateWaitUntilRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/worker/async-state/wait-until`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1985,7 +1985,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiV1XcherryWorkerProcessRpcPost: async (processRpcWorkerRequest?: ProcessRpcWorkerRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiV1XcherryWorkerProcessRpcPost: async (processRpcWorkerRequest?: ProcessRpcWorkerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/xcherry/worker/process/rpc`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2019,7 +2019,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        internalApiV1XcherryNotifyImmediateTasksPost: async (notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        internalApiV1XcherryNotifyImmediateTasksPost: async (notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/internal/api/v1/xcherry/notify-immediate-tasks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2053,7 +2053,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        internalApiV1XcherryNotifyTimerTasksPost: async (notifyTimerTasksRequest?: NotifyTimerTasksRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        internalApiV1XcherryNotifyTimerTasksPost: async (notifyTimerTasksRequest?: NotifyTimerTasksRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/internal/api/v1/xcherry/notify-timer-tasks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2097,7 +2097,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionDescribeResponse>> {
+        async apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionDescribeResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionDescribePost']?.[index]?.url;
@@ -2110,7 +2110,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest?: ListProcessExecutionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListProcessExecutionsResponse>> {
+        async apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest?: ListProcessExecutionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListProcessExecutionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionListPost']?.[index]?.url;
@@ -2123,7 +2123,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest?: PublishToLocalQueueRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest?: PublishToLocalQueueRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost']?.[index]?.url;
@@ -2136,7 +2136,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest?: ProcessExecutionRpcRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionRpcResponse>> {
+        async apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest?: ProcessExecutionRpcRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionRpcResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionRpcPost']?.[index]?.url;
@@ -2149,7 +2149,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest?: ProcessExecutionStartRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionStartResponse>> {
+        async apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest?: ProcessExecutionStartRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionStartResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionStartPost']?.[index]?.url;
@@ -2162,7 +2162,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest?: ProcessExecutionStopRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest?: ProcessExecutionStopRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionStopPost']?.[index]?.url;
@@ -2175,7 +2175,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest?: AsyncStateExecuteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncStateExecuteResponse>> {
+        async apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest?: AsyncStateExecuteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncStateExecuteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryWorkerAsyncStateExecutePost']?.[index]?.url;
@@ -2188,7 +2188,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest?: AsyncStateWaitUntilRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncStateWaitUntilResponse>> {
+        async apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest?: AsyncStateWaitUntilRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncStateWaitUntilResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryWorkerAsyncStateWaitUntilPost']?.[index]?.url;
@@ -2201,7 +2201,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessRpcWorkerResponse>> {
+        async apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessRpcWorkerResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryWorkerProcessRpcPost']?.[index]?.url;
@@ -2214,7 +2214,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherryNotifyImmediateTasksPost']?.[index]?.url;
@@ -2227,7 +2227,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherryNotifyTimerTasksPost']?.[index]?.url;
@@ -2371,7 +2371,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest?: ProcessExecutionDescribeRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionDescribePost(processExecutionDescribeRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2383,7 +2383,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest?: ListProcessExecutionsRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest?: ListProcessExecutionsRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionListPost(listProcessExecutionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2395,7 +2395,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest?: PublishToLocalQueueRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest?: PublishToLocalQueueRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionPublishToLocalQueuePost(publishToLocalQueueRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2407,7 +2407,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest?: ProcessExecutionRpcRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest?: ProcessExecutionRpcRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionRpcPost(processExecutionRpcRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2419,7 +2419,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest?: ProcessExecutionStartRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest?: ProcessExecutionStartRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionStartPost(processExecutionStartRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2431,7 +2431,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest?: ProcessExecutionStopRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest?: ProcessExecutionStopRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionStopPost(processExecutionStopRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2443,7 +2443,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest?: AsyncStateExecuteRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest?: AsyncStateExecuteRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryWorkerAsyncStateExecutePost(asyncStateExecuteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2455,7 +2455,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest?: AsyncStateWaitUntilRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest?: AsyncStateWaitUntilRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryWorkerAsyncStateWaitUntilPost(asyncStateWaitUntilRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2467,7 +2467,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: RawAxiosRequestConfig) {
+    public apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest?: ProcessRpcWorkerRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).apiV1XcherryWorkerProcessRpcPost(processRpcWorkerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2479,7 +2479,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options?: RawAxiosRequestConfig) {
+    public internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2491,7 +2491,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: RawAxiosRequestConfig) {
+    public internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

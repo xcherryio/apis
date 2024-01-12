@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **waiting_type** | [**CommandWaitingType**](CommandWaitingType.md) |  | 

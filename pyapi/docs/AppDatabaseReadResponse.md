@@ -3,7 +3,6 @@
 the response for read the app database
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tables** | [**List[AppDatabaseTableReadResponse]**](AppDatabaseTableReadResponse.md) |  | [optional] 

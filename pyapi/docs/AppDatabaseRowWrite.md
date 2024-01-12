@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **primary_key** | [**List[AppDatabaseColumnValue]**](AppDatabaseColumnValue.md) | the PK to locate the rows for write | 

@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **dedup_id** | **str** | UUID to uniquely distinguish different messages. | 

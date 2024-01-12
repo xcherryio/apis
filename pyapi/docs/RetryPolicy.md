@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **initial_interval_seconds** | **int** | the initial interval for the first retry, default to 1 second | [optional] 

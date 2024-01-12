@@ -116,6 +116,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionDescribeResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -182,6 +184,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionDescribeResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -248,6 +252,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionDescribeResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -268,6 +274,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -383,6 +390,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListProcessExecutionsResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -449,6 +458,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListProcessExecutionsResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -515,6 +526,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ListProcessExecutionsResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -535,6 +548,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -649,7 +663,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -715,7 +729,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -781,7 +795,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -802,6 +816,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -917,6 +932,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionRpcResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -983,6 +1000,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionRpcResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1049,6 +1068,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionRpcResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1069,6 +1090,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -1184,6 +1206,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionStartResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1250,6 +1274,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionStartResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1316,6 +1342,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessExecutionStartResponse",
+            
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1336,6 +1364,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -1450,7 +1479,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1516,7 +1545,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1582,7 +1611,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1603,6 +1632,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -1719,7 +1749,8 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AsyncStateExecuteResponse",
             '406': "AppDatabaseErrorHandling",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1787,7 +1818,8 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AsyncStateExecuteResponse",
             '406': "AppDatabaseErrorHandling",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1855,7 +1887,8 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AsyncStateExecuteResponse",
             '406': "AppDatabaseErrorHandling",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1876,6 +1909,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -1991,7 +2025,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AsyncStateWaitUntilResponse",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2058,7 +2093,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AsyncStateWaitUntilResponse",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2125,7 +2161,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AsyncStateWaitUntilResponse",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2146,6 +2183,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -2261,7 +2299,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessRpcWorkerResponse",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2328,7 +2367,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessRpcWorkerResponse",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2395,7 +2435,8 @@ class DefaultApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ProcessRpcWorkerResponse",
-            '424': "WorkerErrorResponse",
+            '424': "WorkerErrorResponse"
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2416,6 +2457,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -2530,7 +2572,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2596,7 +2638,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2662,7 +2704,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2683,6 +2725,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}
@@ -2791,7 +2834,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2857,7 +2900,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2923,7 +2966,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': None,
+            
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2944,6 +2987,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            
         }
 
         _path_params: Dict[str, str] = {}

@@ -3,7 +3,6 @@
 the request of the worker RPC API
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **context** | [**Context**](Context.md) |  | 

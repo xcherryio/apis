@@ -3,7 +3,6 @@
 the input of the waitUntil API
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **context** | [**Context**](Context.md) |  | 

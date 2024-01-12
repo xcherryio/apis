@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **detail** | **str** | an optional field to let application set some detailed information.  Default to the error message + stacktrace of the error  | [optional] 

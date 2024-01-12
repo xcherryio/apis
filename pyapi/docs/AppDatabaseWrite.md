@@ -3,7 +3,6 @@
 the write operation for state/RPCs to write to the app database values
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tables** | [**List[AppDatabaseTableWrite]**](AppDatabaseTableWrite.md) |  | [optional] 

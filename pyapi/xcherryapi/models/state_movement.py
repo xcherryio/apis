@@ -39,8 +39,7 @@ class StateMovement(BaseModel):
 
     model_config = {
         "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
+        "validate_assignment": True
     }
 
 

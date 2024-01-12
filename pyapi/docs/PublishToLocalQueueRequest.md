@@ -3,7 +3,6 @@
 the request for sending messages to be consumed within a single process execution
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **namespace** | **str** |  | 
