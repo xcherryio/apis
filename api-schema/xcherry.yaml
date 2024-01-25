@@ -810,6 +810,25 @@ components:
         processExecutionId:
           type: string
           description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+    NotifyVisibilityTasksRequest:
+      type: object
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        processExecutionId:
+          type: string
+        processType:
+          type: string
+        status:
+          $ref: '#/components/schemas/ProcessStatus'
+        startTimestamp:
+          type: integer
+          format: int64
+        closeTimestamp:
+          type: integer
+          format: int64
     ProcessExecutionStopRequest:
       type: object
       description: the request for stopping a process execution
