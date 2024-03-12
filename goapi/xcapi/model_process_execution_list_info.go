@@ -23,8 +23,8 @@ type ProcessExecutionListInfo struct {
 	ProcessId          *string        `json:"processId,omitempty"`
 	ProcessExecutionId *string        `json:"processExecutionId,omitempty"`
 	ProcessType        *string        `json:"processType,omitempty"`
-	StartTimestamp     *int32         `json:"startTimestamp,omitempty"`
-	CloseTimestamp     *int32         `json:"closeTimestamp,omitempty"`
+	StartTimestamp     *int64         `json:"startTimestamp,omitempty"`
+	CloseTimestamp     *int64         `json:"closeTimestamp,omitempty"`
 	Status             *ProcessStatus `json:"status,omitempty"`
 }
 
@@ -174,9 +174,9 @@ func (o *ProcessExecutionListInfo) SetProcessType(v string) {
 }
 
 // GetStartTimestamp returns the StartTimestamp field value if set, zero value otherwise.
-func (o *ProcessExecutionListInfo) GetStartTimestamp() int32 {
+func (o *ProcessExecutionListInfo) GetStartTimestamp() int64 {
 	if o == nil || IsNil(o.StartTimestamp) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartTimestamp
@@ -184,7 +184,7 @@ func (o *ProcessExecutionListInfo) GetStartTimestamp() int32 {
 
 // GetStartTimestampOk returns a tuple with the StartTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionListInfo) GetStartTimestampOk() (*int32, bool) {
+func (o *ProcessExecutionListInfo) GetStartTimestampOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartTimestamp) {
 		return nil, false
 	}
@@ -200,15 +200,15 @@ func (o *ProcessExecutionListInfo) HasStartTimestamp() bool {
 	return false
 }
 
-// SetStartTimestamp gets a reference to the given int32 and assigns it to the StartTimestamp field.
-func (o *ProcessExecutionListInfo) SetStartTimestamp(v int32) {
+// SetStartTimestamp gets a reference to the given int64 and assigns it to the StartTimestamp field.
+func (o *ProcessExecutionListInfo) SetStartTimestamp(v int64) {
 	o.StartTimestamp = &v
 }
 
 // GetCloseTimestamp returns the CloseTimestamp field value if set, zero value otherwise.
-func (o *ProcessExecutionListInfo) GetCloseTimestamp() int32 {
+func (o *ProcessExecutionListInfo) GetCloseTimestamp() int64 {
 	if o == nil || IsNil(o.CloseTimestamp) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CloseTimestamp
@@ -216,7 +216,7 @@ func (o *ProcessExecutionListInfo) GetCloseTimestamp() int32 {
 
 // GetCloseTimestampOk returns a tuple with the CloseTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProcessExecutionListInfo) GetCloseTimestampOk() (*int32, bool) {
+func (o *ProcessExecutionListInfo) GetCloseTimestampOk() (*int64, bool) {
 	if o == nil || IsNil(o.CloseTimestamp) {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *ProcessExecutionListInfo) HasCloseTimestamp() bool {
 	return false
 }
 
-// SetCloseTimestamp gets a reference to the given int32 and assigns it to the CloseTimestamp field.
-func (o *ProcessExecutionListInfo) SetCloseTimestamp(v int32) {
+// SetCloseTimestamp gets a reference to the given int64 and assigns it to the CloseTimestamp field.
+func (o *ProcessExecutionListInfo) SetCloseTimestamp(v int64) {
 	o.CloseTimestamp = &v
 }
 
