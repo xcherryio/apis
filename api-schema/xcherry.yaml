@@ -323,8 +323,10 @@ components:
           type: string
         startTimestamp:
           type: integer
+          format: int64
         closeTimestamp:
           type: integer
+          format: int64
         status:
           $ref: '#/components/schemas/ProcessStatus'
     AsyncStateWaitUntilRequest:

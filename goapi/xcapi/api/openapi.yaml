@@ -375,8 +375,10 @@ components:
         processType:
           type: string
         startTimestamp:
+          format: int64
           type: integer
         closeTimestamp:
+          format: int64
           type: integer
         status:
           $ref: '#/components/schemas/ProcessStatus'

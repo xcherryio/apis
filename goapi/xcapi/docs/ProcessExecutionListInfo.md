@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **ProcessId** | Pointer to **string** |  | [optional] 
 **ProcessExecutionId** | Pointer to **string** |  | [optional] 
 **ProcessType** | Pointer to **string** |  | [optional] 
-**StartTimestamp** | Pointer to **int32** |  | [optional] 
-**CloseTimestamp** | Pointer to **int32** |  | [optional] 
+**StartTimestamp** | Pointer to **int64** |  | [optional] 
+**CloseTimestamp** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to [**ProcessStatus**](ProcessStatus.md) |  | [optional] 
 
 ## Methods
@@ -133,20 +133,20 @@ HasProcessType returns a boolean if a field has been set.
 
 ### GetStartTimestamp
 
-`func (o *ProcessExecutionListInfo) GetStartTimestamp() int32`
+`func (o *ProcessExecutionListInfo) GetStartTimestamp() int64`
 
 GetStartTimestamp returns the StartTimestamp field if non-nil, zero value otherwise.
 
 ### GetStartTimestampOk
 
-`func (o *ProcessExecutionListInfo) GetStartTimestampOk() (*int32, bool)`
+`func (o *ProcessExecutionListInfo) GetStartTimestampOk() (*int64, bool)`
 
 GetStartTimestampOk returns a tuple with the StartTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartTimestamp
 
-`func (o *ProcessExecutionListInfo) SetStartTimestamp(v int32)`
+`func (o *ProcessExecutionListInfo) SetStartTimestamp(v int64)`
 
 SetStartTimestamp sets StartTimestamp field to given value.
 
@@ -158,20 +158,20 @@ HasStartTimestamp returns a boolean if a field has been set.
 
 ### GetCloseTimestamp
 
-`func (o *ProcessExecutionListInfo) GetCloseTimestamp() int32`
+`func (o *ProcessExecutionListInfo) GetCloseTimestamp() int64`
 
 GetCloseTimestamp returns the CloseTimestamp field if non-nil, zero value otherwise.
 
 ### GetCloseTimestampOk
 
-`func (o *ProcessExecutionListInfo) GetCloseTimestampOk() (*int32, bool)`
+`func (o *ProcessExecutionListInfo) GetCloseTimestampOk() (*int64, bool)`
 
 GetCloseTimestampOk returns a tuple with the CloseTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCloseTimestamp
 
-`func (o *ProcessExecutionListInfo) SetCloseTimestamp(v int32)`
+`func (o *ProcessExecutionListInfo) SetCloseTimestamp(v int64)`
 
 SetCloseTimestamp sets CloseTimestamp field to given value.
 
