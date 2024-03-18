@@ -43,6 +43,7 @@ docs/LocalQueueMessageResult.md
 docs/LocalQueueResult.md
 docs/LockType.md
 docs/NotifyImmediateTasksRequest.md
+docs/NotifyReBalancingRequest.md
 docs/NotifyTimerTasksRequest.md
 docs/ProcessExecutionDescribeRequest.md
 docs/ProcessExecutionDescribeResponse.md
@@ -121,6 +122,7 @@ test/test_local_queue_message_result.py
 test/test_local_queue_result.py
 test/test_lock_type.py
 test/test_notify_immediate_tasks_request.py
+test/test_notify_re_balancing_request.py
 test/test_notify_timer_tasks_request.py
 test/test_process_execution_describe_request.py
 test/test_process_execution_describe_response.py
@@ -200,6 +202,7 @@ xcherryapi/models/local_queue_message_result.py
 xcherryapi/models/local_queue_result.py
 xcherryapi/models/lock_type.py
 xcherryapi/models/notify_immediate_tasks_request.py
+xcherryapi/models/notify_re_balancing_request.py
 xcherryapi/models/notify_timer_tasks_request.py
 xcherryapi/models/process_execution_describe_request.py
 xcherryapi/models/process_execution_describe_response.py

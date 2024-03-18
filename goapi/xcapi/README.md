@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ApiV1XcherryWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xcherryworkerasyncstatewaituntilpost) | **Post** /api/v1/xcherry/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 *DefaultAPI* | [**ApiV1XcherryWorkerProcessRpcPost**](docs/DefaultAPI.md#apiv1xcherryworkerprocessrpcpost) | **Post** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 *DefaultAPI* | [**InternalApiV1XcherryNotifyImmediateTasksPost**](docs/DefaultAPI.md#internalapiv1xcherrynotifyimmediatetaskspost) | **Post** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
+*DefaultAPI* | [**InternalApiV1XcherryNotifyReBalancingPost**](docs/DefaultAPI.md#internalapiv1xcherrynotifyrebalancingpost) | **Post** /internal/api/v1/xcherry/notify-re-balancing | for cluster delegate to tell async service that there is a need for re-balancing
 *DefaultAPI* | [**InternalApiV1XcherryNotifyTimerTasksPost**](docs/DefaultAPI.md#internalapiv1xcherrynotifytimertaskspost) | **Post** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
 
 
@@ -131,6 +132,7 @@ Class | Method | HTTP request | Description
  - [LocalQueueResult](docs/LocalQueueResult.md)
  - [LockType](docs/LockType.md)
  - [NotifyImmediateTasksRequest](docs/NotifyImmediateTasksRequest.md)
+ - [NotifyReBalancingRequest](docs/NotifyReBalancingRequest.md)
  - [NotifyTimerTasksRequest](docs/NotifyTimerTasksRequest.md)
  - [ProcessExecutionDescribeRequest](docs/ProcessExecutionDescribeRequest.md)
  - [ProcessExecutionDescribeResponse](docs/ProcessExecutionDescribeResponse.md)
