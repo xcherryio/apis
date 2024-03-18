@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**api_v1_xcherry_worker_async_state_wait_until_post**](DefaultApi.md#api_v1_xcherry_worker_async_state_wait_until_post) | **POST** /api/v1/xcherry/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 [**api_v1_xcherry_worker_process_rpc_post**](DefaultApi.md#api_v1_xcherry_worker_process_rpc_post) | **POST** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 [**internal_api_v1_xcherry_notify_immediate_tasks_post**](DefaultApi.md#internal_api_v1_xcherry_notify_immediate_tasks_post) | **POST** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
+[**internal_api_v1_xcherry_notify_re_balancing_post**](DefaultApi.md#internal_api_v1_xcherry_notify_re_balancing_post) | **POST** /internal/api/v1/xcherry/notify-re-balancing | for cluster delegate to tell async service that there is a need for re-balancing
 [**internal_api_v1_xcherry_notify_timer_tasks_post**](DefaultApi.md#internal_api_v1_xcherry_notify_timer_tasks_post) | **POST** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
 
 
@@ -657,6 +658,69 @@ with xcherryapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **notify_immediate_tasks_request** | [**NotifyImmediateTasksRequest**](NotifyImmediateTasksRequest.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internal_api_v1_xcherry_notify_re_balancing_post**
+> internal_api_v1_xcherry_notify_re_balancing_post(notify_re_balancing_request=notify_re_balancing_request)
+
+for cluster delegate to tell async service that there is a need for re-balancing
+
+### Example
+
+```python
+import time
+import os
+import xcherryapi
+from xcherryapi.models.notify_re_balancing_request import NotifyReBalancingRequest
+from xcherryapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = xcherryapi.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with xcherryapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = xcherryapi.DefaultApi(api_client)
+    notify_re_balancing_request = xcherryapi.NotifyReBalancingRequest() # NotifyReBalancingRequest |  (optional)
+
+    try:
+        # for cluster delegate to tell async service that there is a need for re-balancing
+        api_instance.internal_api_v1_xcherry_notify_re_balancing_post(notify_re_balancing_request=notify_re_balancing_request)
+    except Exception as e:
+        print("Exception when calling DefaultApi->internal_api_v1_xcherry_notify_re_balancing_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **notify_re_balancing_request** | [**NotifyReBalancingRequest**](NotifyReBalancingRequest.md)|  | [optional] 
 
 ### Return type
 

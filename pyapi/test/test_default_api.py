@@ -96,6 +96,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_internal_api_v1_xcherry_notify_re_balancing_post(self) -> None:
+        """Test case for internal_api_v1_xcherry_notify_re_balancing_post
+
+        for cluster delegate to tell async service that there is a need for re-balancing
+        """
+        pass
+
     def test_internal_api_v1_xcherry_notify_timer_tasks_post(self) -> None:
         """Test case for internal_api_v1_xcherry_notify_timer_tasks_post
 

@@ -224,6 +224,19 @@ paths:
           description: successful operation
       summary: for api service to tell async service that there are new timer tasks
         added to the queue
+  /internal/api/v1/xcherry/notify-re-balancing:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyReBalancingRequest'
+      responses:
+        "200":
+          content: {}
+          description: successful operation
+      summary: for cluster delegate to tell async service that there is a need for
+        re-balancing
 components:
   schemas:
     ProcessExecutionDescribeRequest:
@@ -1653,6 +1666,19 @@ components:
       required:
       - fireTimestamps
       - shardId
+      type: object
+    NotifyReBalancingRequest:
+      example:
+        isJoin: true
+        address: address
+      properties:
+        address:
+          type: string
+        isJoin:
+          type: boolean
+      required:
+      - address
+      - isJoin
       type: object
     ProcessExecutionStopRequest:
       description: the request for stopping a process execution

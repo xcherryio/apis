@@ -222,7 +222,19 @@ paths:
       responses:
         '200':
           description: successful operation
-          content: {}              
+          content: {}
+  /internal/api/v1/xcherry/notify-re-balancing:
+    post:
+      summary: "for cluster delegate to tell async service that there is a need for re-balancing"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyReBalancingRequest'
+      responses:
+        '200':
+          description: successful operation
+          content: { }
 components:
   schemas:
     ProcessExecutionDescribeRequest:
@@ -812,6 +824,16 @@ components:
         processExecutionId:
           type: string
           description: optional field for distributed database without global secondary index, to pull for specific task rather than a page
+    NotifyReBalancingRequest:
+      required:
+        - address
+        - isJoin
+      type: object
+      properties:
+        address:
+          type: string
+        isJoin:
+          type: boolean
     ProcessExecutionStopRequest:
       type: object
       description: the request for stopping a process execution

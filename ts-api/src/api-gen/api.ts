@@ -951,6 +951,25 @@ export interface NotifyImmediateTasksRequest {
 /**
  * 
  * @export
+ * @interface NotifyReBalancingRequest
+ */
+export interface NotifyReBalancingRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof NotifyReBalancingRequest
+     */
+    'address': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof NotifyReBalancingRequest
+     */
+    'isJoin': boolean;
+}
+/**
+ * 
+ * @export
  * @interface NotifyTimerTasksRequest
  */
 export interface NotifyTimerTasksRequest {
@@ -2048,6 +2067,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary for cluster delegate to tell async service that there is a need for re-balancing
+         * @param {NotifyReBalancingRequest} [notifyReBalancingRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiV1XcherryNotifyReBalancingPost: async (notifyReBalancingRequest?: NotifyReBalancingRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/internal/api/v1/xcherry/notify-re-balancing`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(notifyReBalancingRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary for api service to tell async service that there are new timer tasks added to the queue
          * @param {NotifyTimerTasksRequest} [notifyTimerTasksRequest] 
          * @param {*} [options] Override http request option.
@@ -2222,6 +2275,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary for cluster delegate to tell async service that there is a need for re-balancing
+         * @param {NotifyReBalancingRequest} [notifyReBalancingRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async internalApiV1XcherryNotifyReBalancingPost(notifyReBalancingRequest?: NotifyReBalancingRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherryNotifyReBalancingPost(notifyReBalancingRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherryNotifyReBalancingPost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary for api service to tell async service that there are new timer tasks added to the queue
          * @param {NotifyTimerTasksRequest} [notifyTimerTasksRequest] 
          * @param {*} [options] Override http request option.
@@ -2342,6 +2408,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options?: any): AxiosPromise<void> {
             return localVarFp.internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary for cluster delegate to tell async service that there is a need for re-balancing
+         * @param {NotifyReBalancingRequest} [notifyReBalancingRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiV1XcherryNotifyReBalancingPost(notifyReBalancingRequest?: NotifyReBalancingRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.internalApiV1XcherryNotifyReBalancingPost(notifyReBalancingRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2481,6 +2557,18 @@ export class DefaultApi extends BaseAPI {
      */
     public internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest?: NotifyImmediateTasksRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).internalApiV1XcherryNotifyImmediateTasksPost(notifyImmediateTasksRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary for cluster delegate to tell async service that there is a need for re-balancing
+     * @param {NotifyReBalancingRequest} [notifyReBalancingRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public internalApiV1XcherryNotifyReBalancingPost(notifyReBalancingRequest?: NotifyReBalancingRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).internalApiV1XcherryNotifyReBalancingPost(notifyReBalancingRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

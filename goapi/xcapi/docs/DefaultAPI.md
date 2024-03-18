@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**ApiV1XcherryWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XcherryWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xcherry/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 [**ApiV1XcherryWorkerProcessRpcPost**](DefaultAPI.md#ApiV1XcherryWorkerProcessRpcPost) | **Post** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 [**InternalApiV1XcherryNotifyImmediateTasksPost**](DefaultAPI.md#InternalApiV1XcherryNotifyImmediateTasksPost) | **Post** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
+[**InternalApiV1XcherryNotifyReBalancingPost**](DefaultAPI.md#InternalApiV1XcherryNotifyReBalancingPost) | **Post** /internal/api/v1/xcherry/notify-re-balancing | for cluster delegate to tell async service that there is a need for re-balancing
 [**InternalApiV1XcherryNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XcherryNotifyTimerTasksPost) | **Post** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
 
 
@@ -633,6 +634,68 @@ Other parameters are passed through a pointer to a apiInternalApiV1XcherryNotify
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **notifyImmediateTasksRequest** | [**NotifyImmediateTasksRequest**](NotifyImmediateTasksRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InternalApiV1XcherryNotifyReBalancingPost
+
+> InternalApiV1XcherryNotifyReBalancingPost(ctx).NotifyReBalancingRequest(notifyReBalancingRequest).Execute()
+
+for cluster delegate to tell async service that there is a need for re-balancing
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xcherryio/apis"
+)
+
+func main() {
+    notifyReBalancingRequest := *openapiclient.NewNotifyReBalancingRequest("Address_example", false) // NotifyReBalancingRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultAPI.InternalApiV1XcherryNotifyReBalancingPost(context.Background()).NotifyReBalancingRequest(notifyReBalancingRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherryNotifyReBalancingPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInternalApiV1XcherryNotifyReBalancingPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **notifyReBalancingRequest** | [**NotifyReBalancingRequest**](NotifyReBalancingRequest.md) |  | 
 
 ### Return type
 
