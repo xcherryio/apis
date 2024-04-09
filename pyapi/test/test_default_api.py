@@ -68,6 +68,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_api_v1_xcherry_service_process_execution_wait_for_process_completion_post(self) -> None:
+        """Test case for api_v1_xcherry_service_process_execution_wait_for_process_completion_post
+
+        wait for a process completion
+        """
+        pass
+
     def test_api_v1_xcherry_worker_async_state_execute_post(self) -> None:
         """Test case for api_v1_xcherry_worker_async_state_execute_post
 
@@ -100,6 +107,20 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for internal_api_v1_xcherry_notify_timer_tasks_post
 
         for api service to tell async service that there are new timer tasks added to the queue
+        """
+        pass
+
+    def test_internal_api_v1_xcherry_signal_process_completion_post(self) -> None:
+        """Test case for internal_api_v1_xcherry_signal_process_completion_post
+
+        for async service to signal for process completion
+        """
+        pass
+
+    def test_internal_api_v1_xcherry_wait_for_process_completion_post(self) -> None:
+        """Test case for internal_api_v1_xcherry_wait_for_process_completion_post
+
+        for api service to ask async service to wait for process completion
         """
         pass
 

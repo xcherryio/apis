@@ -91,11 +91,14 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**api_v1_xcherry_service_process_execution_rpc_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_rpc_post) | **POST** /api/v1/xcherry/service/process-execution/rpc | execute a RPC method of a process execution
 *DefaultApi* | [**api_v1_xcherry_service_process_execution_start_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_start_post) | **POST** /api/v1/xcherry/service/process-execution/start | start a process execution
 *DefaultApi* | [**api_v1_xcherry_service_process_execution_stop_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_stop_post) | **POST** /api/v1/xcherry/service/process-execution/stop | stop a process execution
+*DefaultApi* | [**api_v1_xcherry_service_process_execution_wait_for_process_completion_post**](docs/DefaultApi.md#api_v1_xcherry_service_process_execution_wait_for_process_completion_post) | **POST** /api/v1/xcherry/service/process-execution/wait-for-process-completion | wait for a process completion
 *DefaultApi* | [**api_v1_xcherry_worker_async_state_execute_post**](docs/DefaultApi.md#api_v1_xcherry_worker_async_state_execute_post) | **POST** /api/v1/xcherry/worker/async-state/execute | invoking AsyncState.execute API
 *DefaultApi* | [**api_v1_xcherry_worker_async_state_wait_until_post**](docs/DefaultApi.md#api_v1_xcherry_worker_async_state_wait_until_post) | **POST** /api/v1/xcherry/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 *DefaultApi* | [**api_v1_xcherry_worker_process_rpc_post**](docs/DefaultApi.md#api_v1_xcherry_worker_process_rpc_post) | **POST** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 *DefaultApi* | [**internal_api_v1_xcherry_notify_immediate_tasks_post**](docs/DefaultApi.md#internal_api_v1_xcherry_notify_immediate_tasks_post) | **POST** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 *DefaultApi* | [**internal_api_v1_xcherry_notify_timer_tasks_post**](docs/DefaultApi.md#internal_api_v1_xcherry_notify_timer_tasks_post) | **POST** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
+*DefaultApi* | [**internal_api_v1_xcherry_signal_process_completion_post**](docs/DefaultApi.md#internal_api_v1_xcherry_signal_process_completion_post) | **POST** /internal/api/v1/xcherry/signal-process-completion | for async service to signal for process completion
+*DefaultApi* | [**internal_api_v1_xcherry_wait_for_process_completion_post**](docs/DefaultApi.md#internal_api_v1_xcherry_wait_for_process_completion_post) | **POST** /internal/api/v1/xcherry/wait-for-process-completion | for api service to ask async service to wait for process completion
 
 
 ## Documentation For Models
@@ -149,6 +152,8 @@ Class | Method | HTTP request | Description
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
  - [ProcessExecutionStopRequest](docs/ProcessExecutionStopRequest.md)
  - [ProcessExecutionStopType](docs/ProcessExecutionStopType.md)
+ - [ProcessExecutionWaitForCompletionRequest](docs/ProcessExecutionWaitForCompletionRequest.md)
+ - [ProcessExecutionWaitForCompletionResponse](docs/ProcessExecutionWaitForCompletionResponse.md)
  - [ProcessIdFilter](docs/ProcessIdFilter.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
  - [ProcessRpcWorkerRequest](docs/ProcessRpcWorkerRequest.md)
@@ -158,6 +163,7 @@ Class | Method | HTTP request | Description
  - [ProcessTypeFilter](docs/ProcessTypeFilter.md)
  - [PublishToLocalQueueRequest](docs/PublishToLocalQueueRequest.md)
  - [RetryPolicy](docs/RetryPolicy.md)
+ - [SignalProcessCompletionRequest](docs/SignalProcessCompletionRequest.md)
  - [StateDecision](docs/StateDecision.md)
  - [StateFailureRecoveryOptions](docs/StateFailureRecoveryOptions.md)
  - [StateFailureRecoveryPolicy](docs/StateFailureRecoveryPolicy.md)
@@ -167,6 +173,8 @@ Class | Method | HTTP request | Description
  - [TimeRangeFilter](docs/TimeRangeFilter.md)
  - [TimerCommand](docs/TimerCommand.md)
  - [TimerResult](docs/TimerResult.md)
+ - [WaitForProcessCompletionRequest](docs/WaitForProcessCompletionRequest.md)
+ - [WaitForProcessCompletionResponse](docs/WaitForProcessCompletionResponse.md)
  - [WorkerApiType](docs/WorkerApiType.md)
  - [WorkerErrorResponse](docs/WorkerErrorResponse.md)
  - [WriteConflictMode](docs/WriteConflictMode.md)

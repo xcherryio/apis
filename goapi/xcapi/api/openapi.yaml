@@ -129,6 +129,27 @@ paths:
           description: |
             400: Invalid request, 404: Process execution not exists, or not running to accept write operation,  424: app database write failure or worker RPC execution failure, see ErrorSubType for details
       summary: execute a RPC method of a process execution
+  /api/v1/xcherry/service/process-execution/wait-for-process-completion:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessExecutionWaitForCompletionRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessExecutionWaitForCompletionResponse'
+          description: successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: "400: Invalid request, 404: Process execution not exists"
+      summary: wait for a process completion
   /api/v1/xcherry/worker/async-state/wait-until:
     post:
       requestBody:
@@ -224,6 +245,33 @@ paths:
           description: successful operation
       summary: for api service to tell async service that there are new timer tasks
         added to the queue
+  /internal/api/v1/xcherry/wait-for-process-completion:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaitForProcessCompletionRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitForProcessCompletionResponse'
+          description: successful operation
+      summary: for api service to ask async service to wait for process completion
+  /internal/api/v1/xcherry/signal-process-completion:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignalProcessCompletionRequest'
+      responses:
+        "200":
+          content: {}
+          description: successful operation
+      summary: for async service to signal for process completion
 components:
   schemas:
     ProcessExecutionDescribeRequest:
@@ -1654,6 +1702,46 @@ components:
       - fireTimestamps
       - shardId
       type: object
+    WaitForProcessCompletionRequest:
+      example:
+        processExecutionId: processExecutionId
+        shardId: 0
+      properties:
+        shardId:
+          type: integer
+        processExecutionId:
+          type: string
+      required:
+      - processExecutionId
+      - shardId
+      type: object
+    WaitForProcessCompletionResponse:
+      example:
+        timeout: true
+        status: null
+      properties:
+        timeout:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/ProcessStatus'
+      type: object
+    SignalProcessCompletionRequest:
+      example:
+        processExecutionId: processExecutionId
+        shardId: 0
+        status: status
+      properties:
+        shardId:
+          type: integer
+        processExecutionId:
+          type: string
+        status:
+          type: string
+      required:
+      - processExecutionId
+      - shardId
+      - status
+      type: object
     ProcessExecutionStopRequest:
       description: the request for stopping a process execution
       example:
@@ -1756,6 +1844,35 @@ components:
       properties:
         output:
           $ref: '#/components/schemas/EncodedObject'
+      type: object
+    ProcessExecutionWaitForCompletionRequest:
+      description: the request for waiting for a process completion
+      example:
+        processId: processId
+        namespace: namespace
+        timeoutSeconds: 0
+      properties:
+        namespace:
+          type: string
+        processId:
+          type: string
+        timeoutSeconds:
+          description: the timeout for the waiting operation
+          type: integer
+      required:
+      - namespace
+      - processId
+      type: object
+    ProcessExecutionWaitForCompletionResponse:
+      description: the response for waiting for a process completion
+      example:
+        timeout: true
+        status: null
+      properties:
+        timeout:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/ProcessStatus'
       type: object
     ProcessRpcWorkerRequest:
       description: the request of the worker RPC API

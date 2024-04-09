@@ -10,11 +10,14 @@ Method | HTTP request | Description
 [**api_v1_xcherry_service_process_execution_rpc_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_rpc_post) | **POST** /api/v1/xcherry/service/process-execution/rpc | execute a RPC method of a process execution
 [**api_v1_xcherry_service_process_execution_start_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_start_post) | **POST** /api/v1/xcherry/service/process-execution/start | start a process execution
 [**api_v1_xcherry_service_process_execution_stop_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_stop_post) | **POST** /api/v1/xcherry/service/process-execution/stop | stop a process execution
+[**api_v1_xcherry_service_process_execution_wait_for_process_completion_post**](DefaultApi.md#api_v1_xcherry_service_process_execution_wait_for_process_completion_post) | **POST** /api/v1/xcherry/service/process-execution/wait-for-process-completion | wait for a process completion
 [**api_v1_xcherry_worker_async_state_execute_post**](DefaultApi.md#api_v1_xcherry_worker_async_state_execute_post) | **POST** /api/v1/xcherry/worker/async-state/execute | invoking AsyncState.execute API
 [**api_v1_xcherry_worker_async_state_wait_until_post**](DefaultApi.md#api_v1_xcherry_worker_async_state_wait_until_post) | **POST** /api/v1/xcherry/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 [**api_v1_xcherry_worker_process_rpc_post**](DefaultApi.md#api_v1_xcherry_worker_process_rpc_post) | **POST** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 [**internal_api_v1_xcherry_notify_immediate_tasks_post**](DefaultApi.md#internal_api_v1_xcherry_notify_immediate_tasks_post) | **POST** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 [**internal_api_v1_xcherry_notify_timer_tasks_post**](DefaultApi.md#internal_api_v1_xcherry_notify_timer_tasks_post) | **POST** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
+[**internal_api_v1_xcherry_signal_process_completion_post**](DefaultApi.md#internal_api_v1_xcherry_signal_process_completion_post) | **POST** /internal/api/v1/xcherry/signal-process-completion | for async service to signal for process completion
+[**internal_api_v1_xcherry_wait_for_process_completion_post**](DefaultApi.md#internal_api_v1_xcherry_wait_for_process_completion_post) | **POST** /internal/api/v1/xcherry/wait-for-process-completion | for api service to ask async service to wait for process completion
 
 
 # **api_v1_xcherry_service_process_execution_describe_post**
@@ -413,6 +416,73 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **api_v1_xcherry_service_process_execution_wait_for_process_completion_post**
+> ProcessExecutionWaitForCompletionResponse api_v1_xcherry_service_process_execution_wait_for_process_completion_post(process_execution_wait_for_completion_request=process_execution_wait_for_completion_request)
+
+wait for a process completion
+
+### Example
+
+```python
+import time
+import os
+import xcherryapi
+from xcherryapi.models.process_execution_wait_for_completion_request import ProcessExecutionWaitForCompletionRequest
+from xcherryapi.models.process_execution_wait_for_completion_response import ProcessExecutionWaitForCompletionResponse
+from xcherryapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = xcherryapi.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with xcherryapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = xcherryapi.DefaultApi(api_client)
+    process_execution_wait_for_completion_request = xcherryapi.ProcessExecutionWaitForCompletionRequest() # ProcessExecutionWaitForCompletionRequest |  (optional)
+
+    try:
+        # wait for a process completion
+        api_response = api_instance.api_v1_xcherry_service_process_execution_wait_for_process_completion_post(process_execution_wait_for_completion_request=process_execution_wait_for_completion_request)
+        print("The response of DefaultApi->api_v1_xcherry_service_process_execution_wait_for_process_completion_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->api_v1_xcherry_service_process_execution_wait_for_process_completion_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **process_execution_wait_for_completion_request** | [**ProcessExecutionWaitForCompletionRequest**](ProcessExecutionWaitForCompletionRequest.md)|  | [optional] 
+
+### Return type
+
+[**ProcessExecutionWaitForCompletionResponse**](ProcessExecutionWaitForCompletionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**0** | 400: Invalid request, 404: Process execution not exists |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **api_v1_xcherry_worker_async_state_execute_post**
 > AsyncStateExecuteResponse api_v1_xcherry_worker_async_state_execute_post(async_state_execute_request=async_state_execute_request)
 
@@ -733,6 +803,135 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internal_api_v1_xcherry_signal_process_completion_post**
+> internal_api_v1_xcherry_signal_process_completion_post(signal_process_completion_request=signal_process_completion_request)
+
+for async service to signal for process completion
+
+### Example
+
+```python
+import time
+import os
+import xcherryapi
+from xcherryapi.models.signal_process_completion_request import SignalProcessCompletionRequest
+from xcherryapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = xcherryapi.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with xcherryapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = xcherryapi.DefaultApi(api_client)
+    signal_process_completion_request = xcherryapi.SignalProcessCompletionRequest() # SignalProcessCompletionRequest |  (optional)
+
+    try:
+        # for async service to signal for process completion
+        api_instance.internal_api_v1_xcherry_signal_process_completion_post(signal_process_completion_request=signal_process_completion_request)
+    except Exception as e:
+        print("Exception when calling DefaultApi->internal_api_v1_xcherry_signal_process_completion_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **signal_process_completion_request** | [**SignalProcessCompletionRequest**](SignalProcessCompletionRequest.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internal_api_v1_xcherry_wait_for_process_completion_post**
+> WaitForProcessCompletionResponse internal_api_v1_xcherry_wait_for_process_completion_post(wait_for_process_completion_request=wait_for_process_completion_request)
+
+for api service to ask async service to wait for process completion
+
+### Example
+
+```python
+import time
+import os
+import xcherryapi
+from xcherryapi.models.wait_for_process_completion_request import WaitForProcessCompletionRequest
+from xcherryapi.models.wait_for_process_completion_response import WaitForProcessCompletionResponse
+from xcherryapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = xcherryapi.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with xcherryapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = xcherryapi.DefaultApi(api_client)
+    wait_for_process_completion_request = xcherryapi.WaitForProcessCompletionRequest() # WaitForProcessCompletionRequest |  (optional)
+
+    try:
+        # for api service to ask async service to wait for process completion
+        api_response = api_instance.internal_api_v1_xcherry_wait_for_process_completion_post(wait_for_process_completion_request=wait_for_process_completion_request)
+        print("The response of DefaultApi->internal_api_v1_xcherry_wait_for_process_completion_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->internal_api_v1_xcherry_wait_for_process_completion_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **wait_for_process_completion_request** | [**WaitForProcessCompletionRequest**](WaitForProcessCompletionRequest.md)|  | [optional] 
+
+### Return type
+
+[**WaitForProcessCompletionResponse**](WaitForProcessCompletionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

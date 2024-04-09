@@ -80,6 +80,8 @@ from xcherryapi.models.process_execution_start_request import ProcessExecutionSt
 from xcherryapi.models.process_execution_start_response import ProcessExecutionStartResponse
 from xcherryapi.models.process_execution_stop_request import ProcessExecutionStopRequest
 from xcherryapi.models.process_execution_stop_type import ProcessExecutionStopType
+from xcherryapi.models.process_execution_wait_for_completion_request import ProcessExecutionWaitForCompletionRequest
+from xcherryapi.models.process_execution_wait_for_completion_response import ProcessExecutionWaitForCompletionResponse
 from xcherryapi.models.process_id_filter import ProcessIdFilter
 from xcherryapi.models.process_id_reuse_policy import ProcessIdReusePolicy
 from xcherryapi.models.process_rpc_worker_request import ProcessRpcWorkerRequest
@@ -89,6 +91,7 @@ from xcherryapi.models.process_status import ProcessStatus
 from xcherryapi.models.process_type_filter import ProcessTypeFilter
 from xcherryapi.models.publish_to_local_queue_request import PublishToLocalQueueRequest
 from xcherryapi.models.retry_policy import RetryPolicy
+from xcherryapi.models.signal_process_completion_request import SignalProcessCompletionRequest
 from xcherryapi.models.state_decision import StateDecision
 from xcherryapi.models.state_failure_recovery_options import StateFailureRecoveryOptions
 from xcherryapi.models.state_failure_recovery_policy import StateFailureRecoveryPolicy
@@ -98,6 +101,8 @@ from xcherryapi.models.thread_close_type import ThreadCloseType
 from xcherryapi.models.time_range_filter import TimeRangeFilter
 from xcherryapi.models.timer_command import TimerCommand
 from xcherryapi.models.timer_result import TimerResult
+from xcherryapi.models.wait_for_process_completion_request import WaitForProcessCompletionRequest
+from xcherryapi.models.wait_for_process_completion_response import WaitForProcessCompletionResponse
 from xcherryapi.models.worker_api_type import WorkerApiType
 from xcherryapi.models.worker_error_response import WorkerErrorResponse
 from xcherryapi.models.write_conflict_mode import WriteConflictMode

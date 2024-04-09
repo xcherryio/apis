@@ -10,11 +10,14 @@ Method | HTTP request | Description
 [**ApiV1XcherryServiceProcessExecutionRpcPost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionRpcPost) | **Post** /api/v1/xcherry/service/process-execution/rpc | execute a RPC method of a process execution
 [**ApiV1XcherryServiceProcessExecutionStartPost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionStartPost) | **Post** /api/v1/xcherry/service/process-execution/start | start a process execution
 [**ApiV1XcherryServiceProcessExecutionStopPost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionStopPost) | **Post** /api/v1/xcherry/service/process-execution/stop | stop a process execution
+[**ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost**](DefaultAPI.md#ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost) | **Post** /api/v1/xcherry/service/process-execution/wait-for-process-completion | wait for a process completion
 [**ApiV1XcherryWorkerAsyncStateExecutePost**](DefaultAPI.md#ApiV1XcherryWorkerAsyncStateExecutePost) | **Post** /api/v1/xcherry/worker/async-state/execute | invoking AsyncState.execute API
 [**ApiV1XcherryWorkerAsyncStateWaitUntilPost**](DefaultAPI.md#ApiV1XcherryWorkerAsyncStateWaitUntilPost) | **Post** /api/v1/xcherry/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 [**ApiV1XcherryWorkerProcessRpcPost**](DefaultAPI.md#ApiV1XcherryWorkerProcessRpcPost) | **Post** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 [**InternalApiV1XcherryNotifyImmediateTasksPost**](DefaultAPI.md#InternalApiV1XcherryNotifyImmediateTasksPost) | **Post** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 [**InternalApiV1XcherryNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XcherryNotifyTimerTasksPost) | **Post** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
+[**InternalApiV1XcherrySignalProcessCompletionPost**](DefaultAPI.md#InternalApiV1XcherrySignalProcessCompletionPost) | **Post** /internal/api/v1/xcherry/signal-process-completion | for async service to signal for process completion
+[**InternalApiV1XcherryWaitForProcessCompletionPost**](DefaultAPI.md#InternalApiV1XcherryWaitForProcessCompletionPost) | **Post** /internal/api/v1/xcherry/wait-for-process-completion | for api service to ask async service to wait for process completion
 
 
 
@@ -398,6 +401,70 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost
+
+> ProcessExecutionWaitForCompletionResponse ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(ctx).ProcessExecutionWaitForCompletionRequest(processExecutionWaitForCompletionRequest).Execute()
+
+wait for a process completion
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xcherryio/apis"
+)
+
+func main() {
+    processExecutionWaitForCompletionRequest := *openapiclient.NewProcessExecutionWaitForCompletionRequest("Namespace_example", "ProcessId_example") // ProcessExecutionWaitForCompletionRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultAPI.ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(context.Background()).ProcessExecutionWaitForCompletionRequest(processExecutionWaitForCompletionRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost`: ProcessExecutionWaitForCompletionResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processExecutionWaitForCompletionRequest** | [**ProcessExecutionWaitForCompletionRequest**](ProcessExecutionWaitForCompletionRequest.md) |  | 
+
+### Return type
+
+[**ProcessExecutionWaitForCompletionResponse**](ProcessExecutionWaitForCompletionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ApiV1XcherryWorkerAsyncStateExecutePost
 
 > AsyncStateExecuteResponse ApiV1XcherryWorkerAsyncStateExecutePost(ctx).AsyncStateExecuteRequest(asyncStateExecuteRequest).Execute()
@@ -708,6 +775,132 @@ No authorization required
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InternalApiV1XcherrySignalProcessCompletionPost
+
+> InternalApiV1XcherrySignalProcessCompletionPost(ctx).SignalProcessCompletionRequest(signalProcessCompletionRequest).Execute()
+
+for async service to signal for process completion
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xcherryio/apis"
+)
+
+func main() {
+    signalProcessCompletionRequest := *openapiclient.NewSignalProcessCompletionRequest(int32(123), "ProcessExecutionId_example", "Status_example") // SignalProcessCompletionRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultAPI.InternalApiV1XcherrySignalProcessCompletionPost(context.Background()).SignalProcessCompletionRequest(signalProcessCompletionRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherrySignalProcessCompletionPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInternalApiV1XcherrySignalProcessCompletionPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **signalProcessCompletionRequest** | [**SignalProcessCompletionRequest**](SignalProcessCompletionRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InternalApiV1XcherryWaitForProcessCompletionPost
+
+> WaitForProcessCompletionResponse InternalApiV1XcherryWaitForProcessCompletionPost(ctx).WaitForProcessCompletionRequest(waitForProcessCompletionRequest).Execute()
+
+for api service to ask async service to wait for process completion
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/xcherryio/apis"
+)
+
+func main() {
+    waitForProcessCompletionRequest := *openapiclient.NewWaitForProcessCompletionRequest(int32(123), "ProcessExecutionId_example") // WaitForProcessCompletionRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultAPI.InternalApiV1XcherryWaitForProcessCompletionPost(context.Background()).WaitForProcessCompletionRequest(waitForProcessCompletionRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherryWaitForProcessCompletionPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InternalApiV1XcherryWaitForProcessCompletionPost`: WaitForProcessCompletionResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.InternalApiV1XcherryWaitForProcessCompletionPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInternalApiV1XcherryWaitForProcessCompletionPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **waitForProcessCompletionRequest** | [**WaitForProcessCompletionRequest**](WaitForProcessCompletionRequest.md) |  | 
+
+### Return type
+
+[**WaitForProcessCompletionResponse**](WaitForProcessCompletionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
