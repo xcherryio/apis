@@ -89,7 +89,6 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ApiV1XcherryWorkerProcessRpcPost**](docs/DefaultAPI.md#apiv1xcherryworkerprocessrpcpost) | **Post** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 *DefaultAPI* | [**InternalApiV1XcherryNotifyImmediateTasksPost**](docs/DefaultAPI.md#internalapiv1xcherrynotifyimmediatetaskspost) | **Post** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 *DefaultAPI* | [**InternalApiV1XcherryNotifyTimerTasksPost**](docs/DefaultAPI.md#internalapiv1xcherrynotifytimertaskspost) | **Post** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
-*DefaultAPI* | [**InternalApiV1XcherrySignalProcessCompletionPost**](docs/DefaultAPI.md#internalapiv1xcherrysignalprocesscompletionpost) | **Post** /internal/api/v1/xcherry/signal-process-completion | for async service to signal for process completion
 *DefaultAPI* | [**InternalApiV1XcherryWaitForProcessCompletionPost**](docs/DefaultAPI.md#internalapiv1xcherrywaitforprocesscompletionpost) | **Post** /internal/api/v1/xcherry/wait-for-process-completion | for api service to ask async service to wait for process completion
 
 
@@ -155,7 +154,6 @@ Class | Method | HTTP request | Description
  - [ProcessTypeFilter](docs/ProcessTypeFilter.md)
  - [PublishToLocalQueueRequest](docs/PublishToLocalQueueRequest.md)
  - [RetryPolicy](docs/RetryPolicy.md)
- - [SignalProcessCompletionRequest](docs/SignalProcessCompletionRequest.md)
  - [StateDecision](docs/StateDecision.md)
  - [StateFailureRecoveryOptions](docs/StateFailureRecoveryOptions.md)
  - [StateFailureRecoveryPolicy](docs/StateFailureRecoveryPolicy.md)

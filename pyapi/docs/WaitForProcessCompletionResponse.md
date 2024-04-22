@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **timeout** | **bool** |  | [optional] 
+**stop_by_system** | **bool** |  | [optional] 
 **status** | [**ProcessStatus**](ProcessStatus.md) |  | [optional] 
 
 ## Example

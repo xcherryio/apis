@@ -67,7 +67,6 @@ docs/ProcessStatus.md
 docs/ProcessTypeFilter.md
 docs/PublishToLocalQueueRequest.md
 docs/RetryPolicy.md
-docs/SignalProcessCompletionRequest.md
 docs/StateDecision.md
 docs/StateFailureRecoveryOptions.md
 docs/StateFailureRecoveryPolicy.md
@@ -145,7 +144,6 @@ model_process_status.go
 model_process_type_filter.go
 model_publish_to_local_queue_request.go
 model_retry_policy.go
-model_signal_process_completion_request.go
 model_state_decision.go
 model_state_failure_recovery_options.go
 model_state_failure_recovery_policy.go

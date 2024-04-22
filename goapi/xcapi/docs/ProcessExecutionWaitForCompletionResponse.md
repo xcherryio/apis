@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Timeout** | Pointer to **bool** |  | [optional] 
+**StopBySystem** | Pointer to **bool** |  | [optional] 
 **Status** | Pointer to [**ProcessStatus**](ProcessStatus.md) |  | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetTimeout sets Timeout field to given value.
 `func (o *ProcessExecutionWaitForCompletionResponse) HasTimeout() bool`
 
 HasTimeout returns a boolean if a field has been set.
+
+### GetStopBySystem
+
+`func (o *ProcessExecutionWaitForCompletionResponse) GetStopBySystem() bool`
+
+GetStopBySystem returns the StopBySystem field if non-nil, zero value otherwise.
+
+### GetStopBySystemOk
+
+`func (o *ProcessExecutionWaitForCompletionResponse) GetStopBySystemOk() (*bool, bool)`
+
+GetStopBySystemOk returns a tuple with the StopBySystem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStopBySystem
+
+`func (o *ProcessExecutionWaitForCompletionResponse) SetStopBySystem(v bool)`
+
+SetStopBySystem sets StopBySystem field to given value.
+
+### HasStopBySystem
+
+`func (o *ProcessExecutionWaitForCompletionResponse) HasStopBySystem() bool`
+
+HasStopBySystem returns a boolean if a field has been set.
 
 ### GetStatus
 

@@ -161,17 +161,6 @@ type DefaultAPI interface {
 	InternalApiV1XcherryNotifyTimerTasksPostExecute(r ApiInternalApiV1XcherryNotifyTimerTasksPostRequest) (*http.Response, error)
 
 	/*
-		InternalApiV1XcherrySignalProcessCompletionPost for async service to signal for process completion
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiInternalApiV1XcherrySignalProcessCompletionPostRequest
-	*/
-	InternalApiV1XcherrySignalProcessCompletionPost(ctx context.Context) ApiInternalApiV1XcherrySignalProcessCompletionPostRequest
-
-	// InternalApiV1XcherrySignalProcessCompletionPostExecute executes the request
-	InternalApiV1XcherrySignalProcessCompletionPostExecute(r ApiInternalApiV1XcherrySignalProcessCompletionPostRequest) (*http.Response, error)
-
-	/*
 		InternalApiV1XcherryWaitForProcessCompletionPost for api service to ask async service to wait for process completion
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1480,100 +1469,6 @@ func (a *DefaultAPIService) InternalApiV1XcherryNotifyTimerTasksPostExecute(r Ap
 	}
 	// body params
 	localVarPostBody = r.notifyTimerTasksRequest
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiInternalApiV1XcherrySignalProcessCompletionPostRequest struct {
-	ctx                            context.Context
-	ApiService                     DefaultAPI
-	signalProcessCompletionRequest *SignalProcessCompletionRequest
-}
-
-func (r ApiInternalApiV1XcherrySignalProcessCompletionPostRequest) SignalProcessCompletionRequest(signalProcessCompletionRequest SignalProcessCompletionRequest) ApiInternalApiV1XcherrySignalProcessCompletionPostRequest {
-	r.signalProcessCompletionRequest = &signalProcessCompletionRequest
-	return r
-}
-
-func (r ApiInternalApiV1XcherrySignalProcessCompletionPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.InternalApiV1XcherrySignalProcessCompletionPostExecute(r)
-}
-
-/*
-InternalApiV1XcherrySignalProcessCompletionPost for async service to signal for process completion
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiInternalApiV1XcherrySignalProcessCompletionPostRequest
-*/
-func (a *DefaultAPIService) InternalApiV1XcherrySignalProcessCompletionPost(ctx context.Context) ApiInternalApiV1XcherrySignalProcessCompletionPostRequest {
-	return ApiInternalApiV1XcherrySignalProcessCompletionPostRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// Execute executes the request
-func (a *DefaultAPIService) InternalApiV1XcherrySignalProcessCompletionPostExecute(r ApiInternalApiV1XcherrySignalProcessCompletionPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.InternalApiV1XcherrySignalProcessCompletionPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/internal/api/v1/xcherry/signal-process-completion"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.signalProcessCompletionRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

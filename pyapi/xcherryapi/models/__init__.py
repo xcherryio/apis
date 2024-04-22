@@ -74,7 +74,6 @@ from xcherryapi.models.process_status import ProcessStatus
 from xcherryapi.models.process_type_filter import ProcessTypeFilter
 from xcherryapi.models.publish_to_local_queue_request import PublishToLocalQueueRequest
 from xcherryapi.models.retry_policy import RetryPolicy
-from xcherryapi.models.signal_process_completion_request import SignalProcessCompletionRequest
 from xcherryapi.models.state_decision import StateDecision
 from xcherryapi.models.state_failure_recovery_options import StateFailureRecoveryOptions
 from xcherryapi.models.state_failure_recovery_policy import StateFailureRecoveryPolicy

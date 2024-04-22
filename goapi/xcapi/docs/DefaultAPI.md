@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**ApiV1XcherryWorkerProcessRpcPost**](DefaultAPI.md#ApiV1XcherryWorkerProcessRpcPost) | **Post** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 [**InternalApiV1XcherryNotifyImmediateTasksPost**](DefaultAPI.md#InternalApiV1XcherryNotifyImmediateTasksPost) | **Post** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 [**InternalApiV1XcherryNotifyTimerTasksPost**](DefaultAPI.md#InternalApiV1XcherryNotifyTimerTasksPost) | **Post** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
-[**InternalApiV1XcherrySignalProcessCompletionPost**](DefaultAPI.md#InternalApiV1XcherrySignalProcessCompletionPost) | **Post** /internal/api/v1/xcherry/signal-process-completion | for async service to signal for process completion
 [**InternalApiV1XcherryWaitForProcessCompletionPost**](DefaultAPI.md#InternalApiV1XcherryWaitForProcessCompletionPost) | **Post** /internal/api/v1/xcherry/wait-for-process-completion | for api service to ask async service to wait for process completion
 
 
@@ -762,68 +761,6 @@ Other parameters are passed through a pointer to a apiInternalApiV1XcherryNotify
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **notifyTimerTasksRequest** | [**NotifyTimerTasksRequest**](NotifyTimerTasksRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## InternalApiV1XcherrySignalProcessCompletionPost
-
-> InternalApiV1XcherrySignalProcessCompletionPost(ctx).SignalProcessCompletionRequest(signalProcessCompletionRequest).Execute()
-
-for async service to signal for process completion
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/xcherryio/apis"
-)
-
-func main() {
-    signalProcessCompletionRequest := *openapiclient.NewSignalProcessCompletionRequest(int32(123), "ProcessExecutionId_example", "Status_example") // SignalProcessCompletionRequest |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultAPI.InternalApiV1XcherrySignalProcessCompletionPost(context.Background()).SignalProcessCompletionRequest(signalProcessCompletionRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.InternalApiV1XcherrySignalProcessCompletionPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiInternalApiV1XcherrySignalProcessCompletionPostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **signalProcessCompletionRequest** | [**SignalProcessCompletionRequest**](SignalProcessCompletionRequest.md) |  | 
 
 ### Return type
 

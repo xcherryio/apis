@@ -260,18 +260,6 @@ paths:
                 $ref: '#/components/schemas/WaitForProcessCompletionResponse'
           description: successful operation
       summary: for api service to ask async service to wait for process completion
-  /internal/api/v1/xcherry/signal-process-completion:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SignalProcessCompletionRequest'
-      responses:
-        "200":
-          content: {}
-          description: successful operation
-      summary: for async service to signal for process completion
 components:
   schemas:
     ProcessExecutionDescribeRequest:
@@ -1718,29 +1706,15 @@ components:
     WaitForProcessCompletionResponse:
       example:
         timeout: true
+        stopBySystem: true
         status: null
       properties:
         timeout:
           type: boolean
+        stopBySystem:
+          type: boolean
         status:
           $ref: '#/components/schemas/ProcessStatus'
-      type: object
-    SignalProcessCompletionRequest:
-      example:
-        processExecutionId: processExecutionId
-        shardId: 0
-        status: status
-      properties:
-        shardId:
-          type: integer
-        processExecutionId:
-          type: string
-        status:
-          type: string
-      required:
-      - processExecutionId
-      - shardId
-      - status
       type: object
     ProcessExecutionStopRequest:
       description: the request for stopping a process execution
@@ -1867,9 +1841,12 @@ components:
       description: the response for waiting for a process completion
       example:
         timeout: true
+        stopBySystem: true
         status: null
       properties:
         timeout:
+          type: boolean
+        stopBySystem:
           type: boolean
         status:
           $ref: '#/components/schemas/ProcessStatus'

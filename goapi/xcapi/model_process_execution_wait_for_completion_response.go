@@ -19,8 +19,9 @@ var _ MappedNullable = &ProcessExecutionWaitForCompletionResponse{}
 
 // ProcessExecutionWaitForCompletionResponse the response for waiting for a process completion
 type ProcessExecutionWaitForCompletionResponse struct {
-	Timeout *bool          `json:"timeout,omitempty"`
-	Status  *ProcessStatus `json:"status,omitempty"`
+	Timeout      *bool          `json:"timeout,omitempty"`
+	StopBySystem *bool          `json:"stopBySystem,omitempty"`
+	Status       *ProcessStatus `json:"status,omitempty"`
 }
 
 // NewProcessExecutionWaitForCompletionResponse instantiates a new ProcessExecutionWaitForCompletionResponse object
@@ -72,6 +73,38 @@ func (o *ProcessExecutionWaitForCompletionResponse) SetTimeout(v bool) {
 	o.Timeout = &v
 }
 
+// GetStopBySystem returns the StopBySystem field value if set, zero value otherwise.
+func (o *ProcessExecutionWaitForCompletionResponse) GetStopBySystem() bool {
+	if o == nil || IsNil(o.StopBySystem) {
+		var ret bool
+		return ret
+	}
+	return *o.StopBySystem
+}
+
+// GetStopBySystemOk returns a tuple with the StopBySystem field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProcessExecutionWaitForCompletionResponse) GetStopBySystemOk() (*bool, bool) {
+	if o == nil || IsNil(o.StopBySystem) {
+		return nil, false
+	}
+	return o.StopBySystem, true
+}
+
+// HasStopBySystem returns a boolean if a field has been set.
+func (o *ProcessExecutionWaitForCompletionResponse) HasStopBySystem() bool {
+	if o != nil && !IsNil(o.StopBySystem) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopBySystem gets a reference to the given bool and assigns it to the StopBySystem field.
+func (o *ProcessExecutionWaitForCompletionResponse) SetStopBySystem(v bool) {
+	o.StopBySystem = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ProcessExecutionWaitForCompletionResponse) GetStatus() ProcessStatus {
 	if o == nil || IsNil(o.Status) {
@@ -116,6 +149,9 @@ func (o ProcessExecutionWaitForCompletionResponse) ToMap() (map[string]interface
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Timeout) {
 		toSerialize["timeout"] = o.Timeout
+	}
+	if !IsNil(o.StopBySystem) {
+		toSerialize["stopBySystem"] = o.StopBySystem
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

@@ -37,6 +37,7 @@ class TestWaitForProcessCompletionResponse(unittest.TestCase):
         if include_optional:
             return WaitForProcessCompletionResponse(
                 timeout = True,
+                stop_by_system = True,
                 status = 'RUNNING'
             )
         else:

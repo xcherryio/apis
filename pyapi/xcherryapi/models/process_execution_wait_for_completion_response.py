@@ -20,6 +20,7 @@ import json
 
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictBool
+from pydantic import Field
 from xcherryapi.models.process_status import ProcessStatus
 try:
     from typing import Self
@@ -31,8 +32,9 @@ class ProcessExecutionWaitForCompletionResponse(BaseModel):
     the response for waiting for a process completion
     """ # noqa: E501
     timeout: Optional[StrictBool] = None
+    stop_by_system: Optional[StrictBool] = Field(default=None, alias="stopBySystem")
     status: Optional[ProcessStatus] = None
-    __properties: ClassVar[List[str]] = ["timeout", "status"]
+    __properties: ClassVar[List[str]] = ["timeout", "stopBySystem", "status"]
 
     model_config = {
         "populate_by_name": True,
@@ -83,6 +85,7 @@ class ProcessExecutionWaitForCompletionResponse(BaseModel):
 
         _obj = cls.model_validate({
             "timeout": obj.get("timeout"),
+            "stopBySystem": obj.get("stopBySystem"),
             "status": obj.get("status")
         })
         return _obj

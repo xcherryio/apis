@@ -110,13 +110,6 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
-    def test_internal_api_v1_xcherry_signal_process_completion_post(self) -> None:
-        """Test case for internal_api_v1_xcherry_signal_process_completion_post
-
-        for async service to signal for process completion
-        """
-        pass
-
     def test_internal_api_v1_xcherry_wait_for_process_completion_post(self) -> None:
         """Test case for internal_api_v1_xcherry_wait_for_process_completion_post
 

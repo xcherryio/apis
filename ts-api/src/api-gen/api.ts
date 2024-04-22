@@ -1298,6 +1298,12 @@ export interface ProcessExecutionWaitForCompletionResponse {
     'timeout'?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof ProcessExecutionWaitForCompletionResponse
+     */
+    'stopBySystem'?: boolean;
+    /**
+     * 
      * @type {ProcessStatus}
      * @memberof ProcessExecutionWaitForCompletionResponse
      */
@@ -1528,31 +1534,6 @@ export interface RetryPolicy {
     'maximumAttemptsDurationSeconds'?: number;
 }
 /**
- * 
- * @export
- * @interface SignalProcessCompletionRequest
- */
-export interface SignalProcessCompletionRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof SignalProcessCompletionRequest
-     */
-    'shardId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignalProcessCompletionRequest
-     */
-    'processExecutionId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignalProcessCompletionRequest
-     */
-    'status': string;
-}
-/**
  * the decision at the end of state execution, either nextStates or threadCloseDecision is needed
  * @export
  * @interface StateDecision
@@ -1752,6 +1733,12 @@ export interface WaitForProcessCompletionResponse {
      * @memberof WaitForProcessCompletionResponse
      */
     'timeout'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WaitForProcessCompletionResponse
+     */
+    'stopBySystem'?: boolean;
     /**
      * 
      * @type {ProcessStatus}
@@ -2227,40 +2214,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary for async service to signal for process completion
-         * @param {SignalProcessCompletionRequest} [signalProcessCompletionRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        internalApiV1XcherrySignalProcessCompletionPost: async (signalProcessCompletionRequest?: SignalProcessCompletionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/internal/api/v1/xcherry/signal-process-completion`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(signalProcessCompletionRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary for api service to ask async service to wait for process completion
          * @param {WaitForProcessCompletionRequest} [waitForProcessCompletionRequest] 
          * @param {*} [options] Override http request option.
@@ -2461,19 +2414,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary for async service to signal for process completion
-         * @param {SignalProcessCompletionRequest} [signalProcessCompletionRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async internalApiV1XcherrySignalProcessCompletionPost(signalProcessCompletionRequest?: SignalProcessCompletionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherrySignalProcessCompletionPost(signalProcessCompletionRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherrySignalProcessCompletionPost']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * 
          * @summary for api service to ask async service to wait for process completion
          * @param {WaitForProcessCompletionRequest} [waitForProcessCompletionRequest] 
          * @param {*} [options] Override http request option.
@@ -2614,16 +2554,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: any): AxiosPromise<void> {
             return localVarFp.internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary for async service to signal for process completion
-         * @param {SignalProcessCompletionRequest} [signalProcessCompletionRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        internalApiV1XcherrySignalProcessCompletionPost(signalProcessCompletionRequest?: SignalProcessCompletionRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.internalApiV1XcherrySignalProcessCompletionPost(signalProcessCompletionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2787,18 +2717,6 @@ export class DefaultApi extends BaseAPI {
      */
     public internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary for async service to signal for process completion
-     * @param {SignalProcessCompletionRequest} [signalProcessCompletionRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public internalApiV1XcherrySignalProcessCompletionPost(signalProcessCompletionRequest?: SignalProcessCompletionRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).internalApiV1XcherrySignalProcessCompletionPost(signalProcessCompletionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

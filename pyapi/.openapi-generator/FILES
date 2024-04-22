@@ -64,7 +64,6 @@ docs/ProcessStatus.md
 docs/ProcessTypeFilter.md
 docs/PublishToLocalQueueRequest.md
 docs/RetryPolicy.md
-docs/SignalProcessCompletionRequest.md
 docs/StateDecision.md
 docs/StateFailureRecoveryOptions.md
 docs/StateFailureRecoveryPolicy.md
@@ -147,7 +146,6 @@ test/test_process_status.py
 test/test_process_type_filter.py
 test/test_publish_to_local_queue_request.py
 test/test_retry_policy.py
-test/test_signal_process_completion_request.py
 test/test_state_decision.py
 test/test_state_failure_recovery_options.py
 test/test_state_failure_recovery_policy.py
@@ -231,7 +229,6 @@ xcherryapi/models/process_status.py
 xcherryapi/models/process_type_filter.py
 xcherryapi/models/publish_to_local_queue_request.py
 xcherryapi/models/retry_policy.py
-xcherryapi/models/signal_process_completion_request.py
 xcherryapi/models/state_decision.py
 xcherryapi/models/state_failure_recovery_options.py
 xcherryapi/models/state_failure_recovery_policy.py
