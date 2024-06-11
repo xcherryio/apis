@@ -83,11 +83,13 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ApiV1XcherryServiceProcessExecutionRpcPost**](docs/DefaultAPI.md#apiv1xcherryserviceprocessexecutionrpcpost) | **Post** /api/v1/xcherry/service/process-execution/rpc | execute a RPC method of a process execution
 *DefaultAPI* | [**ApiV1XcherryServiceProcessExecutionStartPost**](docs/DefaultAPI.md#apiv1xcherryserviceprocessexecutionstartpost) | **Post** /api/v1/xcherry/service/process-execution/start | start a process execution
 *DefaultAPI* | [**ApiV1XcherryServiceProcessExecutionStopPost**](docs/DefaultAPI.md#apiv1xcherryserviceprocessexecutionstoppost) | **Post** /api/v1/xcherry/service/process-execution/stop | stop a process execution
+*DefaultAPI* | [**ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost**](docs/DefaultAPI.md#apiv1xcherryserviceprocessexecutionwaitforprocesscompletionpost) | **Post** /api/v1/xcherry/service/process-execution/wait-for-process-completion | wait for a process completion
 *DefaultAPI* | [**ApiV1XcherryWorkerAsyncStateExecutePost**](docs/DefaultAPI.md#apiv1xcherryworkerasyncstateexecutepost) | **Post** /api/v1/xcherry/worker/async-state/execute | invoking AsyncState.execute API
 *DefaultAPI* | [**ApiV1XcherryWorkerAsyncStateWaitUntilPost**](docs/DefaultAPI.md#apiv1xcherryworkerasyncstatewaituntilpost) | **Post** /api/v1/xcherry/worker/async-state/wait-until | invoking AsyncState.waitUntil API
 *DefaultAPI* | [**ApiV1XcherryWorkerProcessRpcPost**](docs/DefaultAPI.md#apiv1xcherryworkerprocessrpcpost) | **Post** /api/v1/xcherry/worker/process/rpc | execute a RPC method of a process execution in the worker
 *DefaultAPI* | [**InternalApiV1XcherryNotifyImmediateTasksPost**](docs/DefaultAPI.md#internalapiv1xcherrynotifyimmediatetaskspost) | **Post** /internal/api/v1/xcherry/notify-immediate-tasks | for api service to tell async service that there are new immediate tasks added to the queue
 *DefaultAPI* | [**InternalApiV1XcherryNotifyTimerTasksPost**](docs/DefaultAPI.md#internalapiv1xcherrynotifytimertaskspost) | **Post** /internal/api/v1/xcherry/notify-timer-tasks | for api service to tell async service that there are new timer tasks added to the queue
+*DefaultAPI* | [**InternalApiV1XcherryWaitForProcessCompletionPost**](docs/DefaultAPI.md#internalapiv1xcherrywaitforprocesscompletionpost) | **Post** /internal/api/v1/xcherry/wait-for-process-completion | for api service to ask async service to wait for process completion
 
 
 ## Documentation For Models
@@ -141,6 +143,8 @@ Class | Method | HTTP request | Description
  - [ProcessExecutionStartResponse](docs/ProcessExecutionStartResponse.md)
  - [ProcessExecutionStopRequest](docs/ProcessExecutionStopRequest.md)
  - [ProcessExecutionStopType](docs/ProcessExecutionStopType.md)
+ - [ProcessExecutionWaitForCompletionRequest](docs/ProcessExecutionWaitForCompletionRequest.md)
+ - [ProcessExecutionWaitForCompletionResponse](docs/ProcessExecutionWaitForCompletionResponse.md)
  - [ProcessIdFilter](docs/ProcessIdFilter.md)
  - [ProcessIdReusePolicy](docs/ProcessIdReusePolicy.md)
  - [ProcessRpcWorkerRequest](docs/ProcessRpcWorkerRequest.md)
@@ -159,6 +163,8 @@ Class | Method | HTTP request | Description
  - [TimeRangeFilter](docs/TimeRangeFilter.md)
  - [TimerCommand](docs/TimerCommand.md)
  - [TimerResult](docs/TimerResult.md)
+ - [WaitForProcessCompletionRequest](docs/WaitForProcessCompletionRequest.md)
+ - [WaitForProcessCompletionResponse](docs/WaitForProcessCompletionResponse.md)
  - [WorkerApiType](docs/WorkerApiType.md)
  - [WorkerErrorResponse](docs/WorkerErrorResponse.md)
  - [WriteConflictMode](docs/WriteConflictMode.md)

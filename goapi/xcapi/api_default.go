@@ -91,6 +91,18 @@ type DefaultAPI interface {
 	ApiV1XcherryServiceProcessExecutionStopPostExecute(r ApiApiV1XcherryServiceProcessExecutionStopPostRequest) (*http.Response, error)
 
 	/*
+		ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost wait for a process completion
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest
+	*/
+	ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(ctx context.Context) ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest
+
+	// ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostExecute executes the request
+	//  @return ProcessExecutionWaitForCompletionResponse
+	ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostExecute(r ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest) (*ProcessExecutionWaitForCompletionResponse, *http.Response, error)
+
+	/*
 		ApiV1XcherryWorkerAsyncStateExecutePost invoking AsyncState.execute API
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -147,6 +159,18 @@ type DefaultAPI interface {
 
 	// InternalApiV1XcherryNotifyTimerTasksPostExecute executes the request
 	InternalApiV1XcherryNotifyTimerTasksPostExecute(r ApiInternalApiV1XcherryNotifyTimerTasksPostRequest) (*http.Response, error)
+
+	/*
+		InternalApiV1XcherryWaitForProcessCompletionPost for api service to ask async service to wait for process completion
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest
+	*/
+	InternalApiV1XcherryWaitForProcessCompletionPost(ctx context.Context) ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest
+
+	// InternalApiV1XcherryWaitForProcessCompletionPostExecute executes the request
+	//  @return WaitForProcessCompletionResponse
+	InternalApiV1XcherryWaitForProcessCompletionPostExecute(r ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest) (*WaitForProcessCompletionResponse, *http.Response, error)
 }
 
 // DefaultAPIService DefaultAPI service
@@ -812,6 +836,120 @@ func (a *DefaultAPIService) ApiV1XcherryServiceProcessExecutionStopPostExecute(r
 	return localVarHTTPResponse, nil
 }
 
+type ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest struct {
+	ctx                                      context.Context
+	ApiService                               DefaultAPI
+	processExecutionWaitForCompletionRequest *ProcessExecutionWaitForCompletionRequest
+}
+
+func (r ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest) ProcessExecutionWaitForCompletionRequest(processExecutionWaitForCompletionRequest ProcessExecutionWaitForCompletionRequest) ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest {
+	r.processExecutionWaitForCompletionRequest = &processExecutionWaitForCompletionRequest
+	return r
+}
+
+func (r ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest) Execute() (*ProcessExecutionWaitForCompletionResponse, *http.Response, error) {
+	return r.ApiService.ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostExecute(r)
+}
+
+/*
+ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost wait for a process completion
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest
+*/
+func (a *DefaultAPIService) ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(ctx context.Context) ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest {
+	return ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ProcessExecutionWaitForCompletionResponse
+func (a *DefaultAPIService) ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostExecute(r ApiApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPostRequest) (*ProcessExecutionWaitForCompletionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProcessExecutionWaitForCompletionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/xcherry/service/process-execution/wait-for-process-completion"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.processExecutionWaitForCompletionRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		var v ApiErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiApiV1XcherryWorkerAsyncStateExecutePostRequest struct {
 	ctx                      context.Context
 	ApiService               DefaultAPI
@@ -1357,4 +1495,110 @@ func (a *DefaultAPIService) InternalApiV1XcherryNotifyTimerTasksPostExecute(r Ap
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest struct {
+	ctx                             context.Context
+	ApiService                      DefaultAPI
+	waitForProcessCompletionRequest *WaitForProcessCompletionRequest
+}
+
+func (r ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest) WaitForProcessCompletionRequest(waitForProcessCompletionRequest WaitForProcessCompletionRequest) ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest {
+	r.waitForProcessCompletionRequest = &waitForProcessCompletionRequest
+	return r
+}
+
+func (r ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest) Execute() (*WaitForProcessCompletionResponse, *http.Response, error) {
+	return r.ApiService.InternalApiV1XcherryWaitForProcessCompletionPostExecute(r)
+}
+
+/*
+InternalApiV1XcherryWaitForProcessCompletionPost for api service to ask async service to wait for process completion
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest
+*/
+func (a *DefaultAPIService) InternalApiV1XcherryWaitForProcessCompletionPost(ctx context.Context) ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest {
+	return ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return WaitForProcessCompletionResponse
+func (a *DefaultAPIService) InternalApiV1XcherryWaitForProcessCompletionPostExecute(r ApiInternalApiV1XcherryWaitForProcessCompletionPostRequest) (*WaitForProcessCompletionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *WaitForProcessCompletionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.InternalApiV1XcherryWaitForProcessCompletionPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/internal/api/v1/xcherry/wait-for-process-completion"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.waitForProcessCompletionRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

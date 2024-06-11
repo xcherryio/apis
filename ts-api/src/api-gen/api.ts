@@ -1260,6 +1260,58 @@ export type ProcessExecutionStopType = typeof ProcessExecutionStopType[keyof typ
 
 
 /**
+ * the request for waiting for a process completion
+ * @export
+ * @interface ProcessExecutionWaitForCompletionRequest
+ */
+export interface ProcessExecutionWaitForCompletionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessExecutionWaitForCompletionRequest
+     */
+    'namespace': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProcessExecutionWaitForCompletionRequest
+     */
+    'processId': string;
+    /**
+     * the timeout for the waiting operation
+     * @type {number}
+     * @memberof ProcessExecutionWaitForCompletionRequest
+     */
+    'timeoutSeconds'?: number;
+}
+/**
+ * the response for waiting for a process completion
+ * @export
+ * @interface ProcessExecutionWaitForCompletionResponse
+ */
+export interface ProcessExecutionWaitForCompletionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProcessExecutionWaitForCompletionResponse
+     */
+    'timeout'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProcessExecutionWaitForCompletionResponse
+     */
+    'stopBySystem'?: boolean;
+    /**
+     * 
+     * @type {ProcessStatus}
+     * @memberof ProcessExecutionWaitForCompletionResponse
+     */
+    'status'?: ProcessStatus;
+}
+
+
+/**
  * 
  * @export
  * @interface ProcessIdFilter
@@ -1653,6 +1705,52 @@ export interface TimerResult {
 /**
  * 
  * @export
+ * @interface WaitForProcessCompletionRequest
+ */
+export interface WaitForProcessCompletionRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof WaitForProcessCompletionRequest
+     */
+    'shardId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WaitForProcessCompletionRequest
+     */
+    'processExecutionId': string;
+}
+/**
+ * 
+ * @export
+ * @interface WaitForProcessCompletionResponse
+ */
+export interface WaitForProcessCompletionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WaitForProcessCompletionResponse
+     */
+    'timeout'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WaitForProcessCompletionResponse
+     */
+    'stopBySystem'?: boolean;
+    /**
+     * 
+     * @type {ProcessStatus}
+     * @memberof WaitForProcessCompletionResponse
+     */
+    'status'?: ProcessStatus;
+}
+
+
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -1912,6 +2010,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary wait for a process completion
+         * @param {ProcessExecutionWaitForCompletionRequest} [processExecutionWaitForCompletionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost: async (processExecutionWaitForCompletionRequest?: ProcessExecutionWaitForCompletionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/xcherry/service/process-execution/wait-for-process-completion`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(processExecutionWaitForCompletionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary invoking AsyncState.execute API
          * @param {AsyncStateExecuteRequest} [asyncStateExecuteRequest] 
          * @param {*} [options] Override http request option.
@@ -2080,6 +2212,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary for api service to ask async service to wait for process completion
+         * @param {WaitForProcessCompletionRequest} [waitForProcessCompletionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiV1XcherryWaitForProcessCompletionPost: async (waitForProcessCompletionRequest?: WaitForProcessCompletionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/internal/api/v1/xcherry/wait-for-process-completion`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(waitForProcessCompletionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2170,6 +2336,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary wait for a process completion
+         * @param {ProcessExecutionWaitForCompletionRequest} [processExecutionWaitForCompletionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(processExecutionWaitForCompletionRequest?: ProcessExecutionWaitForCompletionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProcessExecutionWaitForCompletionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(processExecutionWaitForCompletionRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary invoking AsyncState.execute API
          * @param {AsyncStateExecuteRequest} [asyncStateExecuteRequest] 
          * @param {*} [options] Override http request option.
@@ -2231,6 +2410,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherryNotifyTimerTasksPost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary for api service to ask async service to wait for process completion
+         * @param {WaitForProcessCompletionRequest} [waitForProcessCompletionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async internalApiV1XcherryWaitForProcessCompletionPost(waitForProcessCompletionRequest?: WaitForProcessCompletionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WaitForProcessCompletionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.internalApiV1XcherryWaitForProcessCompletionPost(waitForProcessCompletionRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.internalApiV1XcherryWaitForProcessCompletionPost']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
@@ -2305,6 +2497,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary wait for a process completion
+         * @param {ProcessExecutionWaitForCompletionRequest} [processExecutionWaitForCompletionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(processExecutionWaitForCompletionRequest?: ProcessExecutionWaitForCompletionRequest, options?: any): AxiosPromise<ProcessExecutionWaitForCompletionResponse> {
+            return localVarFp.apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(processExecutionWaitForCompletionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary invoking AsyncState.execute API
          * @param {AsyncStateExecuteRequest} [asyncStateExecuteRequest] 
          * @param {*} [options] Override http request option.
@@ -2352,6 +2554,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: any): AxiosPromise<void> {
             return localVarFp.internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary for api service to ask async service to wait for process completion
+         * @param {WaitForProcessCompletionRequest} [waitForProcessCompletionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        internalApiV1XcherryWaitForProcessCompletionPost(waitForProcessCompletionRequest?: WaitForProcessCompletionRequest, options?: any): AxiosPromise<WaitForProcessCompletionResponse> {
+            return localVarFp.internalApiV1XcherryWaitForProcessCompletionPost(waitForProcessCompletionRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2437,6 +2649,18 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary wait for a process completion
+     * @param {ProcessExecutionWaitForCompletionRequest} [processExecutionWaitForCompletionRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(processExecutionWaitForCompletionRequest?: ProcessExecutionWaitForCompletionRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).apiV1XcherryServiceProcessExecutionWaitForProcessCompletionPost(processExecutionWaitForCompletionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary invoking AsyncState.execute API
      * @param {AsyncStateExecuteRequest} [asyncStateExecuteRequest] 
      * @param {*} [options] Override http request option.
@@ -2493,6 +2717,18 @@ export class DefaultApi extends BaseAPI {
      */
     public internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest?: NotifyTimerTasksRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).internalApiV1XcherryNotifyTimerTasksPost(notifyTimerTasksRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary for api service to ask async service to wait for process completion
+     * @param {WaitForProcessCompletionRequest} [waitForProcessCompletionRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public internalApiV1XcherryWaitForProcessCompletionPost(waitForProcessCompletionRequest?: WaitForProcessCompletionRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).internalApiV1XcherryWaitForProcessCompletionPost(waitForProcessCompletionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

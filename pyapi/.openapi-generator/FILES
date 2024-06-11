@@ -53,6 +53,8 @@ docs/ProcessExecutionStartRequest.md
 docs/ProcessExecutionStartResponse.md
 docs/ProcessExecutionStopRequest.md
 docs/ProcessExecutionStopType.md
+docs/ProcessExecutionWaitForCompletionRequest.md
+docs/ProcessExecutionWaitForCompletionResponse.md
 docs/ProcessIdFilter.md
 docs/ProcessIdReusePolicy.md
 docs/ProcessRpcWorkerRequest.md
@@ -71,6 +73,8 @@ docs/ThreadCloseType.md
 docs/TimeRangeFilter.md
 docs/TimerCommand.md
 docs/TimerResult.md
+docs/WaitForProcessCompletionRequest.md
+docs/WaitForProcessCompletionResponse.md
 docs/WorkerApiType.md
 docs/WorkerErrorResponse.md
 docs/WriteConflictMode.md
@@ -131,6 +135,8 @@ test/test_process_execution_start_request.py
 test/test_process_execution_start_response.py
 test/test_process_execution_stop_request.py
 test/test_process_execution_stop_type.py
+test/test_process_execution_wait_for_completion_request.py
+test/test_process_execution_wait_for_completion_response.py
 test/test_process_id_filter.py
 test/test_process_id_reuse_policy.py
 test/test_process_rpc_worker_request.py
@@ -149,6 +155,8 @@ test/test_thread_close_type.py
 test/test_time_range_filter.py
 test/test_timer_command.py
 test/test_timer_result.py
+test/test_wait_for_process_completion_request.py
+test/test_wait_for_process_completion_response.py
 test/test_worker_api_type.py
 test/test_worker_error_response.py
 test/test_write_conflict_mode.py
@@ -210,6 +218,8 @@ xcherryapi/models/process_execution_start_request.py
 xcherryapi/models/process_execution_start_response.py
 xcherryapi/models/process_execution_stop_request.py
 xcherryapi/models/process_execution_stop_type.py
+xcherryapi/models/process_execution_wait_for_completion_request.py
+xcherryapi/models/process_execution_wait_for_completion_response.py
 xcherryapi/models/process_id_filter.py
 xcherryapi/models/process_id_reuse_policy.py
 xcherryapi/models/process_rpc_worker_request.py
@@ -228,6 +238,8 @@ xcherryapi/models/thread_close_type.py
 xcherryapi/models/time_range_filter.py
 xcherryapi/models/timer_command.py
 xcherryapi/models/timer_result.py
+xcherryapi/models/wait_for_process_completion_request.py
+xcherryapi/models/wait_for_process_completion_response.py
 xcherryapi/models/worker_api_type.py
 xcherryapi/models/worker_error_response.py
 xcherryapi/models/write_conflict_mode.py
